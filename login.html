@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập | TechNova</title>
+    <link rel="stylesheet" href="css/form.css"/>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+
+</head>
+<body>
+<div class="overlay">
+    <div class="login-modal">
+        <h2>Chào mừng đến với TechNova!</h2>
+
+        <form id="login-form" action="" method="post" autocomplete="on">
+            <div class="input-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Nhập email"
+                required
+                autocomplete="username"
+              />
+              <small id="emailError" class="error-message"></small>
+            </div>
+          </form>
+          
+            <div class="input-group">
+                <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Nhập mật khẩu"
+                        required
+                        autocomplete="current-password"
+                />
+                <i class="fa-solid fa-eye" id="showEye" style="color: #000000;"></i>
+                <i class="fa-solid fa-eye-slash" id="hideEye" style="color: #000000; display: none;"></i>
+                <small id="passwordError" class="error-text"></small>
+            </div>
+
+            <!-- yc mk -->
+             <!-- 🔹 Thêm dòng hướng dẫn -->
+<p id="password-requirements" class="password-info">
+    *Mật khẩu phải có ít nhất <strong>8 ký tự</strong>, 
+    <strong>1 chữ hoa</strong>, <strong>1 số</strong> và 
+    <strong>1 ký tự đặc biệt</strong>.
+</p>
+
+            <div class="remember">
+                <label>
+                    <input type="checkbox" id="remember" />Lưu thông tin đăng nhập
+                </label>
+                <a href="forgot.html">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Đăng nhập</button>
+        </form>
+
+        <!-- Thêm dòng chia cách -->
+        <div class="divider">
+            <span>Hoặc đăng nhập bằng</span>
+        </div>
+
+        <!-- Các nút đăng nhập mạng xã hội -->
+        <div class="social-login">
+            <button type="button" class="google">
+                <img src="img/google.png" alt="Google logo">
+                Google
+            </button>
+            <button type="button" class="facebook">
+                <img src ="img/facebook.png" alt="Facebook logo">
+                Facebook
+            </button>
+            
+        </div>
+
+        <div class="signup">
+            <p>Chưa có tài khoản? <a href="signup.html">Đăng ký ngay</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="js/login.js"></script>
+</body>
+</html>
