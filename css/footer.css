@@ -1,0 +1,110 @@
+footer {
+    display: block;
+    background-color: #f8f8f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 50px 0;
+    line-height: 1.35;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+footer h4 {
+    /* Giữ nguyên */
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+
+footer ul {
+    /* Giữ nguyên */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer ul li {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+/* Bố cục cho 4 cột */
+.footer-main-content {
+    display: flex;
+    gap: 75px;
+    margin-bottom: 30px;
+}
+
+/* Chỉnh kích thước cho từng cột */
+.footer-col {
+    padding-right: 25px;
+}
+
+/* Điều chỉnh cho không bị cách quá xa ra khỏi phần trên */
+.footer-col h4:first-child {
+    margin-top: 0;
+}
+
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.payment-methods img {
+    width: 50px;
+    height: 25px;
+    object-fit: contain;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    padding: 2px;
+}
+
+.connect-methods {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.connect-methods img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Thêm responsive cho footer (để các cột xếp chồng khi màn hình nhỏ) */
+@media (max-width: 768px) {
+    .footer-main-content {
+        flex-wrap: wrap;
+    }
+
+    .footer-col {
+        width: 48%; /* 2 cột trên 1 hàng */
+        margin-bottom: 25px; /* Khoảng cách giữa các hàng cột */
+    }
+
+    .footer-col:nth-child(2n) {
+        padding-right: 0; /* Bỏ padding phải cho cột cuối hàng */
+    }
+
+    .footer-col:last-child,
+    .footer-col:nth-last-child(2) {
+        margin-bottom: 0; /* Bỏ margin cuối cùng */
+    }
+
+}
+
+@media (max-width: 480px) {
+    .footer-col {
+        width: 100%; /* 1 cột trên 1 hàng */
+        padding-right: 0;
+    }
+}
