@@ -4,15 +4,476 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang chủ | TechNova</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/mucSanPham.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif; 
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 120px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Segoe UI", sans-serif; 
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    /* === FLASH SALE === */
+    .flash-sale {
+      background: linear-gradient(135deg, #f85b5b, #d32f2f);
+      color: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flash-sale-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .flash-sale-header h2 {
+      font-family: "Segoe UI", sans-serif; 
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .timer {
+      background: #fff;
+      color: #d32f2f;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    /* === SLIDER === */
+    .slider-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      width: max-content;
+    }
+
+    /* === PRODUCT CARD === */
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 2px solid #d32f2f;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+      position: relative;
+      transition: .2s;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 230px;
+      margin: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, .12);
+    }
+
+    /* Góc giảm giá */
+    .discount-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #d32f2f;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 5px 8px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 12px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .product-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222;
+      text-align: center;
+      line-height: 1.3;
+      min-height: 42px;
+    }
+
+    .price {
+      color: #d32f2f;
+      font-weight: bold;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .price .old {
+      text-decoration: line-through;
+      color: #777;
+      font-size: 12px;
+      margin-left: 6px;
+    }
+
+    .sold {
+      font-size: 13px;
+      color: #999;
+      text-align: center;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #fff;
+    }
+
+    /* Nút điều hướng */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      color: #d32f2f;
+      font-size: 24px;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.3s;
+    }
+
+    .arrow:hover {
+      background: #fff;
+      color: #f85b5b;
+    }
+
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    /* Toàn section: nền xám nhạt */
+.home-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr 230px; /* Giảm chiều rộng 2 cột ngoài */
+  gap: 7px; /* Giảm khoảng cách giữa các khối */
+  max-width: 1200px;
+  margin: -100px auto 40px;
+  background: #f2ecec;
+  border-radius: 12px;
+  padding: 16px;
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng tổng width */
+  overflow: hidden; /* Ngăn tràn nội dung */
+}
+
+
+/* Cột trái, giữa, phải */
+.home-left, .home-center, .home-right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== KHUNG DANH MỤC ===== */
+.content-category {
+  background: #fff;
+  border-radius: 12px;
+  border: 2px solid #d32f2f;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 16px 20px;
+}
+
+.content-category h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #d32f2f;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Bỏ dấu chấm đầu dòng */
+.content-category ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.content-category ul li {
+  margin: 8px 0;
+}
+
+.content-category ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.content-category ul li a:hover {
+  color: #d32f2f;
+}
+
+/* ===== Vùng quảng cáo / slideshow ===== */
+
+.banners-container {
+  width: 100%;
+  max-width: 660px;   
+  margin: 0 auto 24px; /* căn giữa trong cột giữa */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #d32f2f;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
+  height: 452px;      
+}
+
+/* Khung chứa slideshow đúng kích thước */
+.slider-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  cursor: grab;
+}
+
+/* Slide wrapper và ảnh */
+.slides-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.banner-img {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Nút điều hướng */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.slider-nav:hover { background: #d32f2f; }
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* Dots */
+.dots-container {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.dot { width: 10px; height: 10px; background: rgba(255,255,255,0.7); border-radius: 50%; cursor: pointer; transition: all .25s;}
+.dot.active { background: #d32f2f; width: 18px; border-radius: 6px; }
+
+
+  </style>
 </head>
 <body>
   <!-- Header -->
   <div id="header-placeholder"></div>
 
-  <main style="max-width:1200px;margin:120px auto;padding:20px;">
-    <h1>Chào mừng đến với TechNova!</h1>
-    <p>Đây là trang chủ.</p>
+  <main>
+    <section class="home-layout">
+  <!-- Cột trái: Danh mục sản phẩm -->
+  <div class="home-left">
+    <div class="content-category">
+      <h2>Sản phẩm</h2>
+       <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="#" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </div>
+
+  <!-- Cột giữa: slideshow -->
+  <div class="home-center">
+   <div class="banners-container" id="banner-left">
+  <div class="slider-container">
+
+    <div class="slides-wrapper">
+      <a href="#"><img src="https://i.postimg.cc/QC0GXpKP/meg-ai1600pcie5-678x429.png" class="banner-img" alt="Banner AMD"></a>
+      <a href="#"><img src="https://bizweb.dktcdn.net/100/329/122/files/nguon-may-tinh-msi-mpg-a1000p-pcie5-nd.jpg?v=1669348348721" class="banner-img" alt="Banner Intel"></a>
+      <a href="#"><img src="https://i.postimg.cc/PxY3DjDc/Screenshot-2025-11-01-235443.png" class="banner-img" alt="Banner AMD"></a>
+    </div>
+
+    <button class="slider-nav prev-btn">❮</button>
+    <button class="slider-nav next-btn">❯</button>
+    <div class="dots-container"></div>
+  </div>
+</div>
+
+  </div>
+
+  <!-- Cột phải: danh mục nổi bật -->
+  <div class="home-right">
+    <div class="content-category">
+      <h2>Danh mục nổi bật</h2>
+      <a href="#" class="category-item">
+        <i class="fa-solid fa-star"></i> Sản phẩm 1 <i class="fa-solid fa-chevron-right"></i>
+      </a>
+      <a href="#" class="category-item">
+        <i class="fa-solid fa-star"></i> Sản phẩm 2 <i class="fa-solid fa-chevron-right"></i>
+      </a>
+      <a href="#" class="category-item">
+        <i class="fa-solid fa-star"></i> Sản phẩm 3 <i class="fa-solid fa-chevron-right"></i>
+      </a>
+      <a href="#" class="category-item">
+        <i class="fa-solid fa-star"></i> Sản phẩm 4 <i class="fa-solid fa-chevron-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+  </section>
+
+    <section class="flash-sale">
+      <div class="flash-sale-header">
+        <h2>FLASH SALE HỌC SINH - SINH VIÊN</h2>
+        <div class="timer">KẾT THÚC SAU: <span id="countdown">00:10:00</span></div>
+      </div>
+
+      <div class="slider-wrapper">
+        <button class="arrow left"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="slider" id="slider">
+
+          <div class="product-card">
+            <span class="discount-badge">-50%</span>
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/p/cpu-intel-core-i5-12400.jpg" class="product-image" alt="CPU Intel Core i5 12400">
+            <div class="product-title">CPU Intel Core i5 12400</div>
+            <div class="price">3.125.500đ <span class="old">6.250.000đ</span></div>
+            <div class="sold">Đã bán 4/5 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-25%</span>
+            <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/g/r/group_301_7__3.png" class="product-image" alt="Ổ cứng di động SSD Transcend ESD310C 1050MB/s 128GB">
+            <div class="product-title">Ổ cứng di động SSD Transcend ESD310C 1050MB/s 128GB</div>
+            <div class="price">592.500đ <span class="old">790.000đ</span></div>
+            <div class="sold">Đã bán 3/5 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-20%</span>
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/p/cpu-intel-core-i9-14900kf_2_.png" class="product-image" alt="CPU Intel Core i9 14900KF">
+            <div class="product-title">CPU Intel Core i9 14900KF</div>
+            <div class="price">14.352.000đ <span class="old">17.940.000đ</span></div>
+            <div class="sold">Đã bán 0/2 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-20%</span>
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/p/cpu-intel-core-i7-12700f.jpg" class="product-image" alt="CPU Intel Core i7 12700F">
+            <div class="product-title">CPU Intel Core i7 12700F</div>
+            <div class="price">7.680.000đ <span class="old">9.600.000đ</span></div>
+            <div class="sold">Đã bán 1/3 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-15%</span>
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/2/0/20_2_8.jpg" class="product-image" alt="RAM PC Kingston Fury 8GB 3200MHz KF432C16BB/8">
+            <div class="product-title">RAM PC Kingston Fury 8GB 3200MHz KF432C16BB/8</div>
+            <div class="price">1.096.000đ <span class="old">1.290.000đ</span></div>
+            <div class="sold">Đã bán 1/3 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-10%</span>
+            <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/1/9/192_1_1.png" class="product-image" alt="Ổ cứng HDD SEAGATE SKYHAWK AI 3.5">
+            <div class="product-title">Ổ cứng HDD SEAGATE SKYHAWK AI 3.5 SATA 3 7200RPM 10TB</div>
+            <div class="price">7.731.000đ <span class="old">8.590.000đ</span></div>
+            <div class="sold">Đã bán 0/5 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-10%</span>
+            <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/t/e/text_ng_n_17__7_30_1_1_1_1_1.png" class="product-image" alt="Ram PC Kingston Fury Beast RGB DDR5 5600MHz 64GB (2*32GB)">
+            <div class="product-title">Ram PC Kingston Fury Beast RGB DDR5 5600MHz 64GB (2*32GB)</div>
+            <div class="price">6.291.000đ <span class="old">6.990.000đ</span></div>
+            <div class="sold">Đã bán 2/5 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-10%</span>
+            <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/t/e/text_ng_n_19__4_44_1.png?_gl=1*1ngsdjw*_gcl_au*MTk1NDE3NjYwMS4xNzYxMzc5NTA4*_ga*MTc3NTUxMTE0Ny4xNzYxMzc5NTA5*_ga_QLK8WFHNK9*czE3NjE3NDc4NzQkbzExJGcxJHQxNzYxNzUzMjMxJGozMiRsMCRoMTI2MzI3NjE0NQ.." class="product-image" alt="Ổ cứng di động SSD Synology BeeDrive USB-C 3.2 Gen 2 2TB">
+            <div class="product-title">Ổ cứng di động SSD Synology BeeDrive USB-C 3.2 Gen 2 2TB</div>
+            <div class="price">6.561.000đ <span class="old">7.290.000đ</span></div>
+            <div class="sold">Đã bán 0/2 suất</div>
+          </div>
+
+          <div class="product-card">
+            <span class="discount-badge">-10%</span>
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/p/cpu-intel-core-i3-10105-sn_1.jpg" class="product-image" alt="CPU Intel Core i3 10105 (SN)">
+            <div class="product-title">CPU Intel Core i3 10105 (SN)</div>
+            <div class="price">2.781.000đ <span class="old">3.090.000đ</span></div>
+            <div class="sold">Đã bán 0/3 suất</div>
+          </div>
+
+        </div>
+        <button class="arrow right"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+    </section>
+
+      
+
   </main>
 
   <div id="footer-placeholder"></div>
@@ -20,6 +481,8 @@
   <!-- Nạp header -->
   <script src="js/loadHeader.js"></script>
   <script src="js/loadFooter.js"></script>
+  <script src="js/dualBannerSlideshow.js"></script>
+  <script src="js/flashSale.js"></script>
 
 </body>
 </html>
