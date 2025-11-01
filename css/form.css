@@ -1,0 +1,238 @@
+/* Reset margin cho toàn trang + thiết lập font + căn giữa nội dung */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, rgba(117, 117, 117, 0.56), #868686);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bao toàn bộ modal và căn giữa */
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Hộp chứa form đăng nhập & quên mật khẩu */
+.login-modal, .forgot-password-modal {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Tiêu đề */
+h2 {
+    color: #ff4400;
+    margin-bottom: 20px;
+}
+
+/* Khoảng cách giữa các input */
+.input-group {
+    margin: 15px 0;
+}
+
+/* Style cho ô nhập */
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+/* Các nút: Login | Signup | Forgot */
+.login-btn, .signup-btn, .forgot-password-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff4400;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+/* Hiệu ứng hover cho nút */
+.login-btn:hover,
+.signup-btn:hover,
+.forgot-password-btn:hover {
+    background-color: #b30600;
+}
+
+/* yc mk */
+.password-info {
+    font-size: 10px;
+    color: #666;
+    
+    margin-bottom: 15px;
+    line-height: 1.4;
+    display: block;
+    text-align: center; /* ✅ Căn giữa dòng mô tả */
+    
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+
+/* Khu vực Remember me + Forgot password link */
+.remember {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin: 10px 0;
+}
+
+/* Style cho các thẻ link */
+a {
+    color: #ff4400;
+    text-decoration: none;
+}
+
+/* Hover link */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Dòng chuyển giữa Login và Signup */
+.signup, .login {
+    margin-top: 20px;
+    font-size: 13px;
+}
+/* bỏ icon mắt vào trong ô mk */
+.input-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px; /* tạo khoảng cách giữa các ô */
+    min-height: 40px; /* giữ không gian cho dòng báo lỗi */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    padding-right: 40px; /* chừa chỗ cho icon */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    
+    box-sizing: border-box;
+}
+.input-group input.invalid {
+    border-color: #e74c3c;
+    background-color: #fef4f4;
+}
+
+/* Dòng báo lỗi — đặt cố định dưới ô nhập, không đẩy layout */
+.error-message,
+.error-text {
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    margin-top: 4px;
+    width: 100%;
+    color: #e74c3c;
+    font-size: 11px;
+    text-align: center; /* ✅ Căn giữa dòng chữ */
+    display: block;
+}
+
+/* icon mắt */
+.input-group i {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 14px;
+}
+/* Dòng chia cách */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc; /* màu đường kẻ */
+}
+
+.divider:not(:empty)::before {
+    margin-right: 10px; /* khoảng cách giữa đường và chữ */
+}
+
+.divider:not(:empty)::after {
+    margin-left: 10px; /* khoảng cách giữa đường và chữ */
+}
+
+.divider span {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+
+/* mxh */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* khoảng cách giữa các nút */
+    margin-top: 20px;
+}
+
+.social-login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 200px; /* chiều rộng nút */
+}
+
+.social-login button:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+
+/* Icon chung */
+
+.social-login img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Logo (ảnh SVG) */
+.social-login img {
+    object-fit: contain;
+}
+
+/* Tùy chỉnh màu icon riêng */
+.google img {
+    filter: none; /* Google */
+}
+
+.facebook img {
+    filter: none; /* Màu xanh Facebook */
+}
+
+

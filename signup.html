@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký | TechNova</title>
+    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="login-modal">
+            <h2>Tạo tài khoản mới</h2>
+    
+            <form id="signup-form">
+                <div class="input-group">
+                    <input type="text" id="name-signup" placeholder="Họ và tên" required />
+                </div>
+    
+                <div class="input-group">
+                    <input type="email" id="email-signup" placeholder="Nhập email" required />
+                    <small id="emailError" class="error-message"></small>
+                </div>
+    
+                <div class="input-group">
+                    <input type="password" id="password-signup" placeholder="Tạo mật khẩu" required />
+                    <i class="fa-solid fa-eye" id="showEye1"></i>
+                    <i class="fa-solid fa-eye-slash" id="hideEye1" style="display:none;"></i>
+                    <small id="passwordError" class="error-text"></small>
+                </div>
+    
+                <p id="password-requirements" class="password-info">
+                    *Mật khẩu phải có ít nhất <strong>8 ký tự</strong>, 
+                    <strong>1 chữ hoa</strong>, <strong>1 số</strong> và 
+                    <strong>1 ký tự đặc biệt</strong>.
+                </p>
+    
+                <div class="input-group">
+                    <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu" required />
+                    <i class="fa-solid fa-eye" id="showEye2"></i>
+                    <i class="fa-solid fa-eye-slash" id="hideEye2" style="display:none;"></i>
+                    <!-- ⚠️ đổi ID tránh trùng -->
+                    <small id="confirmError" class="error-text"></small>
+                </div>
+    
+                <button type="submit" class="signup-btn">Đăng ký</button>
+            </form>
+    
+            <div class="divider">
+                <span>Hoặc đăng ký bằng</span>
+            </div>
+    
+            <div class="social-login">
+                <button type="button" class="google">
+                    <img src="img/google.png" alt="Google logo">
+                    Google
+                </button>
+                <button type="button" class="facebook">
+                    <img src="img/facebook.png" alt="Facebook logo">
+                    Facebook
+                </button>
+            </div>
+    
+            <div class="login">
+                <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+    
+
+<script src="js/signup.js"></script>
+</body>
+</html>
