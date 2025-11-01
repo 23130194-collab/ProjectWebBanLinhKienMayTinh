@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguồn máy tính - PSU | TechNova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mucSanPham.css">
+</head>
+<body>
+
+<!-- Header -->
+<div id="header-placeholder"></div>
+
+<!-- Breadcrumb & Banners -->
+<div class="page-header-wrapper">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html" class="path">Trang chủ</a>
+            <span class="separator">/</span>
+            <a href="psu.html" class="path">Nguồn máy tính - PSU</a>
+        </div>
+
+        <!-- Banners -->
+        <div class="banners-container">
+
+            <div class="banner-link slider-container" id="banner-left">
+                <button class="slider-nav prev-btn">❮</button>
+                <button class="slider-nav next-btn">❯</button>
+
+                <div class="slides-wrapper">
+                    <a href="#"><img src="https://i.postimg.cc/nLM6kbmF/nguon-corsair.webp" class="banner-img" alt="Nguồn Corsair"></a>
+                    <a href="#"><img src="https://i.postimg.cc/W4tQnLZk/nguon-xigmatek-cate-26-08.webp" class="banner-img" alt="Nguồn Xigmatek"></a>
+                    <a href="#"><img src="https://i.postimg.cc/hGhHrWmZ/nguon-deepcool-cate-26-08.webp" class="banner-img" alt="Nguồn DeepCool"></a>
+                </div>
+                <div class="dots-container"></div>
+            </div>
+
+            <div class="banner-link slider-container" id="banner-right">
+                <button class="slider-nav prev-btn">❮</button>
+                <button class="slider-nav next-btn">❯</button>
+
+                <div class="slides-wrapper">
+                    <a href="#"><img src="https://i.postimg.cc/hGhHrWmZ/nguon-deepcool-cate-26-08.webp" class="banner-img" alt="Nguồn DeepCool 2"></a>
+                    <a href="#"><img src="https://i.postimg.cc/nLM6kbmF/nguon-corsair.webp" class="banner-img" alt="Nguồn CORSAIR 2"></a>
+                    <a href="#"><img src="https://i.postimg.cc/W4tQnLZk/nguon-xigmatek-cate-26-08.webp" class="banner-img" alt="Nguồn Corsair 2"></a>
+                </div>
+                <div class="dots-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="container">
+    <h1 class="page-title">Nguồn máy tính - PSU</h1>
+
+    <!-- Brand Filter -->
+    <div class="brand-filter">
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/Dwc6skGQ/brand-icon-deepcool.webp" alt="DeepCool">
+        </a>
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/Ls6T3Ckx/Frame-292-3.webp" alt="CORSAIR">
+        </a>
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/Qx29sh8C/icon-brand-gigabyte.webp" alt="GIGABYTE">
+        </a>
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/7ZSCZdhs/icon-brand-msi.webp" alt="MSI">
+        </a>
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/2SxGvRWX/brand-icon-xigmatek.webp" alt="XIGMATEK">
+        </a>
+    </div>
+
+    <!-- Filter Section -->
+    <h1 class="page-title">Chọn theo tiêu chí</h1>
+
+    <!-- Filter Toggle Button -->
+    <div class="filter-toggle-container">
+        <button class="filter-toggle-btn" id="filterToggleBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            Bộ lọc
+        </button>
+    </div>
+
+    <div class="filter-section">
+        <div class="option-group">
+            <h4 class="group-title">Công suất nguồn</h4>
+            <div class="options-grid">
+                <input type="checkbox" id="opt-power-1" name="power" value="400-">
+                <label for="opt-power-1" class="option-label">< 400W</label>
+
+                <input type="checkbox" id="opt-power-2" name="power" value="400-550">
+                <label for="opt-power-2" class="option-label">400W-550W</label>
+
+                <input type="checkbox" id="opt-power-3" name="power" value="550-650">
+                <label for="opt-power-3" class="option-label">550W-650W</label>
+
+                <input type="checkbox" id="opt-power-4" name="power" value="650-800">
+                <label for="opt-power-4" class="option-label">650W-800W</label>
+
+                <input type="checkbox" id="opt-power-5" name="power" value="800-1000">
+                <label for="opt-power-5" class="option-label">800W-1000W</label>
+
+                <input type="checkbox" id="opt-power-6" name="power" value="1000+">
+                <label for="opt-power-6" class="option-label">> 1000W</label>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <h4 class="group-title">Tiêu chuẩn nguồn</h4>
+            <div class="options-grid">
+                <input type="checkbox" id="opt-eff-1" name="efficiency" value="80 Plus">
+                <label for="opt-eff-1" class="option-label">80 Plus</label>
+
+                <input type="checkbox" id="opt-eff-2" name="efficiency" value="80 Plus Bronze">
+                <label for="opt-eff-2" class="option-label">80 Plus Bronze</label>
+
+                <input type="checkbox" id="opt-eff-3" name="efficiency" value="80 Plus Silver">
+                <label for="opt-eff-3" class="option-label">80 Plus Silver</label>
+
+                <input type="checkbox" id="opt-eff-4" name="efficiency" value="80 Plus Gold">
+                <label for="opt-eff-4" class="option-label">80 Plus Gold</label>
+
+                <input type="checkbox" id="opt-eff-5" name="efficiency" value="80 Plus Platinum">
+                <label for="opt-eff-5" class="option-label">80 Plus Platinum</label>
+
+                <input type="checkbox" id="opt-eff-6" name="efficiency" value="80 Plus Titanium">
+                <label for="opt-eff-6" class="option-label">80 Plus Titanium</label>
+
+                <input type="checkbox" id="opt-eff-7" name="efficiency" value="85% + EFFICIENCY">
+                <label for="opt-eff-7" class="option-label">85%+ EFFICIENCY</label>
+            </div>
+        </div>
+
+        <div class="action-bar">
+            <button class="cancel-button">Hủy</button>
+            <button class="confirm-button">Xác nhận</button>
+        </div>
+    </div>
+
+    <div class="applied-filters" id="applied-filters"></div>
+
+    <div class="sort-wrapper">
+        <h1 class="page-title">Sắp xếp theo</h1>
+
+        <div class="sort-buttons">
+            <input type="radio" id="sort-popular" name="sort" checked>
+            <label for="sort-popular" class="sort-btn">Phổ biến</label>
+
+            <input type="radio" id="sort-low-high" name="sort">
+            <label for="sort-low-high" class="sort-btn">Giá Thấp - Cao</label>
+
+            <input type="radio" id="sort-high-low" name="sort">
+            <label for="sort-high-low" class="sort-btn">Giá Cao - Thấp</label>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+        <!-- Sản phẩm 1 -->
+        <div class="product-card" data-power="600" data-efficiency="85% + EFFICIENCY">
+            <div class="discount-tag">
+                <span class="discount-percent">-31%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/rsZkcSv0/nguon-may-tinh-xigmatek-x-power-iii-550-500w-6.webp" alt="Nguồn Xigmatek 600W" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Xigmatek X-Power III 650 600W</h3>
+                <div class="price-section">
+                    <div class="current-price">890.000đ</div>
+                    <div class="original-price">1.290.000đ</div>
+                </div>
+            </a>
+
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 2 -->
+        <div class="product-card" data-power="400" data-efficiency="80 Plus">
+            <div class="discount-tag">
+                <span class="discount-percent">-18%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/nV3ZvJCn/group-329.webp" alt="Nguồn máy tính Xigmatek X-Power III 450 400W" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Xigmatek X-Power III 450 400W</h3>
+
+                <div class="price-section">
+                    <div class="current-price">650.000đ</div>
+                    <div class="original-price">790.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 3 -->
+        <div class="product-card" data-power="250" data-efficiency="80 Plus">
+            <div class="discount-tag">
+                <span class="discount-percent">-18%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/xTqQ54zt/nguon-may-tinh-xigmatek-x-power-iii-350-250w-1.webp" alt="Nguồn máy tính Xigmatek X-Power III 350 250W" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Xigmatek X-Power III 350 250W</h3>
+
+                <div class="price-section">
+                    <div class="current-price">450.000đ</div>
+                    <div class="original-price">550.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 4 -->
+        <div class="product-card" data-power="650" data-efficiency="80 Plus Bronze">
+            <div class="discount-tag">
+                <span class="discount-percent">-13%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/ZKgSMxPY/nguon-may-tinh-msi-mag-a650bnl-650w-1.webp" alt="Nguồn máy tính MSI Mag A650BNL Đen 650W (80 Plus Bronze)" class="product-image">
+                <h3 class="product-title">Nguồn máy tính MSI Mag A650BNL Đen 650W (80 Plus Bronze)</h3>
+
+                <div class="price-section">
+                    <div class="current-price">1.290.000đ</div>
+                    <div class="original-price">1.490.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 5 -->
+        <div class="product-card" data-power="750" data-efficiency="80 Plus Bronze">
+            <div class="discount-tag">
+                <span class="discount-percent">-20%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/1z1Z9RYB/nguon-may-tinh-msi-mag-a750bn-pcie5-750w-6.webp" alt="Nguồn máy tính MSI MAG A750BN PCIE5 750W" class="product-image">
+                <h3 class="product-title">Nguồn máy tính MSI MAG A750BN PCIE5 750W</h3>
+
+                <div class="price-section">
+                    <div class="current-price">1.590.000đ</div>
+                    <div class="original-price">1.990.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 6 -->
+        <div class="product-card" data-power="450">
+            <div class="discount-tag">
+                <span class="discount-percent">-30%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/4dq3QRxz/group-821.webp" alt="Nguồn máy tính Xigmatek X-Power III 500 450W" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Xigmatek X-Power III 500 450W</h3>
+
+                <div class="price-section">
+                    <div class="current-price">690.000đ</div>
+                    <div class="original-price">990.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 7 -->
+        <div class="product-card" data-power="650" data-efficiency="80 Plus Silver">
+            <div class="discount-tag">
+                <span class="discount-percent">-24%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/76dLnrL4/nguon-may-tinh-gigabyte-p650ss-650w-1.webp" alt="Nguồn máy tính Gigabyte P650SS 650W (80 Plus Sliver)" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Gigabyte P650SS 650W (80 Plus Sliver)</h3>
+
+                <div class="price-section">
+                    <div class="current-price">1.290.000đ</div>
+                    <div class="original-price">1.690.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 8 -->
+        <div class="product-card" data-power="850" data-efficiency="80 Plus Bronze">
+<!--            <div class="discount-tag">-->
+<!--                <span class="discount-percent"></span>-->
+<!--            </div>-->
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/FzSHPCfY/group-741-1-1.webp" alt="Nguồn máy tính Xigmatek Thor T850M V3 PCIe Gen 5.1 ATX 3.1 (850W, 80PLUS BRONZE)" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Xigmatek Thor T850M V3 PCIe Gen 5.1 ATX 3.1 (850W, 80PLUS BRONZE)</h3>
+
+                <div class="price-section">
+                    <div class="current-price">1.990.000đ</div>
+                    <div class="original-price"></div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 9 -->
+        <div class="product-card" data-power="600" data-efficiency="80 Plus">
+            <div class="discount-tag">
+                <span class="discount-percent">-13%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/NG2FfFdW/nguon-may-tinh-xigmatek-x-pro-xp650-600w-1.webp" alt="Nguồn máy tính Xigmatek X-PRO XP650 600W" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Xigmatek X-PRO XP650 600W</h3>
+
+                <div class="price-section">
+                    <div class="current-price">950.000đ</div>
+                    <div class="original-price">1.090.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 10 -->
+        <div class="product-card" data-power="600">
+            <div class="discount-tag">
+                <span class="discount-percent">-6%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/m2xDc4q4/nguon-may-tinh-xigmatek-litepower-ii-plus-ip750-600w-1.webp" alt="Nguồn máy tính Xigmatek LitePower II Plus IP750 600W" class="product-image">
+                <h3 class="product-title">Nguồn máy tính Xigmatek LitePower II Plus IP750 600W</h3>
+
+                <div class="price-section">
+                    <div class="current-price">890.000đ</div>
+                    <div class="original-price">950.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--   Chuyển trang    -->
+    <div class="pagination-container">
+        <button class="pagination-btn disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </button>
+
+        <a href="#" class="page-number active">1</a>
+        <a href="#" class="page-number">2</a>
+        <span class="ellipsis">...</span>
+        <a href="#" class="page-number">5</a>
+
+        <button class="pagination-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </div>
+</main>
+
+<!-- Footer -->
+<div id="footer-placeholder"></div>
+
+<script src="js/loadHeader.js"></script>
+<script src="js/loadFooter.js"></script>
+<script src="js/boLoc.js"></script>
+<script src="js/dualBannerSlideshow.js"></script>
+</body>
+</html>

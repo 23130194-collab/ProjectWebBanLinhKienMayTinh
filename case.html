@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case máy tính | TechNova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mucSanPham.css">
+</head>
+<body>
+
+<!-- Header -->
+<div id="header-placeholder"></div>
+
+<!-- Breadcrumb & Banners -->
+<div class="page-header-wrapper">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html" class="path">Trang chủ</a>
+            <span class="separator">/</span>
+            <a href="case.html" class="path">Case máy tính</a>
+        </div>
+
+        <!-- Banners -->
+        <div class="banners-container">
+
+            <div class="banner-link slider-container" id="banner-left">
+                <button class="slider-nav prev-btn">❮</button>
+                <button class="slider-nav next-btn">❯</button>
+
+                <div class="slides-wrapper">
+                    <a href="#"><img src="https://i.postimg.cc/gj2fjxpG/cate-case-msi.webp" class="banner-img" alt="Case máy tính MSI"></a>
+                    <a href="#"><img src="https://i.postimg.cc/Dfx9DPQ2/cate-case-corsair.webp" class="banner-img" alt="Case máy tính Corsair"></a>
+                    <a href="#"><img src="https://i.postimg.cc/fTF6WWgc/cate-case-xigmatek.webp" class="banner-img" alt="Case máy tính Xigmatek"></a>
+                </div>
+                <div class="dots-container"></div>
+            </div>
+
+            <div class="banner-link slider-container" id="banner-right">
+                <button class="slider-nav prev-btn">❮</button>
+                <button class="slider-nav next-btn">❯</button>
+
+                <div class="slides-wrapper">
+                    <a href="#"><img src="https://i.postimg.cc/fTF6WWgc/cate-case-xigmatek.webp" class="banner-img" alt="Case máy tính Xigmatek"></a>
+                    <a href="#"><img src="https://i.postimg.cc/gj2fjxpG/cate-case-msi.webp" class="banner-img" alt="Case máy tính MSI"></a>
+                    <a href="#"><img src="https://i.postimg.cc/Dfx9DPQ2/cate-case-corsair.webp" class="banner-img" alt="Case máy tính Corsair"></a>
+                </div>
+                <div class="dots-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="container">
+    <h1 class="page-title">Case máy tính</h1>
+
+    <!-- Brand Filter -->
+    <div class="brand-filter">
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/2SxGvRWX/brand-icon-xigmatek.webp" alt="Xigmatek">
+        </a>
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/Ls6T3Ckx/Frame-292-3.webp" alt="CORSAIR">
+        </a>
+        <a href="#" class="brand-logo">
+            <img src="https://i.postimg.cc/7ZSCZdhs/icon-brand-msi.webp" alt="MSI">
+        </a>
+    </div>
+
+    <!-- Filter Section -->
+    <h1 class="page-title">Chọn theo tiêu chí</h1>
+
+    <!-- Filter Toggle Button -->
+    <div class="filter-toggle-container">
+        <button class="filter-toggle-btn" id="filterToggleBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            Bộ lọc
+        </button>
+    </div>
+
+    <div class="filter-section">
+
+        <div class="option-group">
+            <h4 class="group-title">Hỗ trợ Mainboard</h4>
+            <div class="options-grid">
+                <input type="checkbox" id="opt-supMain-1" name="supportMainboard" value="ATX">
+                <label for="opt-supMain-1" class="option-label">ATX</label>
+
+                <input type="checkbox" id="opt-supMain-2" name="supportMainboard" value="Micro ATX">
+                <label for="opt-supMain-2" class="option-label">Micro ATX</label>
+
+                <input type="checkbox" id="opt-supMain-3" name="supportMainboard" value="M-ATX">
+                <label for="opt-supMain-3" class="option-label">M-ATX</label>
+
+                <input type="checkbox" id="opt-supMain-4" name="supportMainboard" value="E-ATX">
+                <label for="opt-supMain-4" class="option-label">E-ATX</label>
+
+                <input type="checkbox" id="opt-supMain-5" name="supportMainboard" value="Micro ITX">
+                <label for="opt-supMain-5" class="option-label">Micro ITX</label>
+
+                <input type="checkbox" id="opt-supMain-6" name="supportMainboard" value="Mini ITX">
+                <label for="opt-supMain-6" class="option-label">Mini ITX</label>
+
+                <input type="checkbox" id="opt-supMain-7" name="supportMainboard" value="ITX">
+                <label for="opt-supMain-7" class="option-label">ITX</label>
+            </div>
+        </div>
+
+        <div class="action-bar">
+            <button class="cancel-button">Hủy</button>
+            <button class="confirm-button">Xác nhận</button>
+        </div>
+    </div>
+
+    <div class="applied-filters" id="applied-filters"></div>
+
+    <div class="sort-wrapper">
+        <h1 class="page-title">Sắp xếp theo</h1>
+
+        <div class="sort-buttons">
+            <input type="radio" id="sort-popular" name="sort" checked>
+            <label for="sort-popular" class="sort-btn">Phổ biến</label>
+
+            <input type="radio" id="sort-low-high" name="sort">
+            <label for="sort-low-high" class="sort-btn">Giá Thấp - Cao</label>
+
+            <input type="radio" id="sort-high-low" name="sort">
+            <label for="sort-high-low" class="sort-btn">Giá Cao - Thấp</label>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+        <!-- Sản phẩm 1 -->
+        <div class="product-card" data-supportMainboard="Micro ATX, ITX">
+            <div class="discount-tag">
+                <span class="discount-percent">-13%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/FKnCrNpS/m-y-t-nh-1-27.webp" alt="Case máy tính Xigmatek MYX 3F (3 FAN)" class="product-image">
+                <h3 class="product-title">Case máy tính Xigmatek MYX 3F (3 FAN) </h3>
+                <div class="price-section">
+                    <div class="current-price">690.000đ</div>
+                    <div class="original-price">790.000đ</div>
+                </div>
+            </a>
+
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 2 -->
+        <div class="product-card" data-supportMainboard="Micro ATX, Mini ITX">
+            <div class="discount-tag">
+                <span class="discount-percent">-16%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/sXQ61qH8/case-may-tinh-edra-ecs1105-m-atx-1.webp" alt="Case máy tính Edra ECS1105" class="product-image">
+                <h3 class="product-title">Case máy tính Edra ECS1105</h3>
+
+                <div class="price-section">
+                    <div class="current-price">250.000đ</div>
+                    <div class="original-price">299.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 3 -->
+        <div class="product-card" data-supportMainboard="Micro ATX, ITX, M-ATX">
+<!--            <div class="discount-tag">
+                <span class="discount-percent"></span>
+            </div>-->
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/76FBz9pf/m-y-t-nh-4-11.webp" alt="Case máy tính Xigmatek Pano M NANO 3GF" class="product-image">
+                <h3 class="product-title">Case máy tính Xigmatek Pano M NANO 3GF</h3>
+
+                <div class="price-section">
+                    <div class="current-price">850.000đ</div>
+                    <div class="original-price"></div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 4 -->
+        <div class="product-card" data-supportMainboard="ATX, Micro ATX, E-ATX, ITX">
+<!--            <div class="discount-tag">-->
+<!--                <span class="discount-percent"></span>-->
+<!--            </div>-->
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/KcTpbXgw/m-y-t-nh-4-12.webp" alt="Case máy tính Xigmatek DUO X 3F" class="product-image">
+                <h3 class="product-title">Case máy tính Xigmatek DUO X 3F</h3>
+
+                <div class="price-section">
+                    <div class="current-price">750.000đ</div>
+                    <div class="original-price"></div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 5 -->
+        <div class="product-card" data-supportMainboard="ITX, M-ATX">
+<!--            <div class="discount-tag">-->
+<!--                <span class="discount-percent"></span>-->
+<!--            </div>-->
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/fWdqs49R/m-y-t-nh-46.webp" alt="Case máy tính XIGMATEK XS-09" class="product-image">
+                <h3 class="product-title">Case máy tính XIGMATEK XS-09</h3>
+
+                <div class="price-section">
+                    <div class="current-price">250.000đ</div>
+                    <div class="original-price"></div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 6 -->
+        <div class="product-card" data-supportMainboard="Micro ATX, ITX, M-ATX">
+<!--            <div class="discount-tag">-->
+<!--                <span class="discount-percent"></span>-->
+<!--            </div>-->
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/QCNRC05t/m-y-t-nh-2-17.webp" alt="Case máy tính Xigmatek Ocean M NANO" class="product-image">
+                <h3 class="product-title">Case máy tính Xigmatek Ocean M NANO</h3>
+
+                <div class="price-section">
+                    <div class="current-price">790.000đ</div>
+                    <div class="original-price"></div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 7 -->
+        <div class="product-card" data-supportMainboard="Micro ATX, ITX, M-ATX">
+<!--            <div class="discount-tag">-->
+<!--                <span class="discount-percent"></span>-->
+<!--            </div>-->
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/jqvpmY05/m-y-t-nh-3-1-1.webp" alt="Case máy tính Xigmatek Ocean M NANO Arctic" class="product-image">
+                <h3 class="product-title">Case máy tính Xigmatek Ocean M NANO Arctic</h3>
+
+                <div class="price-section">
+                    <div class="current-price">850.000đ</div>
+                    <div class="original-price"></div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 8 -->
+        <div class="product-card" data-supportMainboard="ATX, Micro ATX, Mini ITX">
+            <div class="discount-tag">
+                <span class="discount-percent">-19%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/SRd7Npbx/case-may-tinh-msi-mag-forge-320r-airflow-6.webp" alt="Case máy tính MSI MAG FORGE 320R AIRFLOW" class="product-image">
+                <h3 class="product-title">Case máy tính MSI MAG FORGE 320R AIRFLOW</h3>
+
+                <div class="price-section">
+                    <div class="current-price">1.290.000đ</div>
+                    <div class="original-price">1.590.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 9 -->
+        <div class="product-card" data-supportMainboard="ATX, Micro ATX, Mini ITX">
+            <div class="discount-tag">
+                <span class="discount-percent">-23%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/9FnvXPQv/case-may-tinh-msi-mag-forge-120a-airflow-1.webp" alt="Case máy tính MSI MAG FORGE 120A AIRFLOW" class="product-image">
+                <h3 class="product-title">Case máy tính MSI MAG FORGE 120A AIRFLOW</h3>
+
+                <div class="price-section">
+                    <div class="current-price">990.000đ</div>
+                    <div class="original-price">1.290.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 10 -->
+        <div class="product-card" data-supportMainboard="ATX">
+<!--            <div class="discount-tag">-->
+<!--                <span class="discount-percent"></span>-->
+<!--            </div>-->
+            <a href="#" class="product-link">
+                <img src="https://i.postimg.cc/sgGbMBBg/case-may-tinh-corsair-6500x-tempered-glass-mid-tower-9.webp" alt="Case máy tính Corsair 6500X Tempered Glass Mid-Tower" class="product-image">
+                <h3 class="product-title">Case máy tính Corsair 6500X Tempered Glass Mid-Tower</h3>
+
+                <div class="price-section">
+                    <div class="current-price">4.590.000đ</div>
+                    <div class="original-price"></div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--   Chuyển trang    -->
+    <div class="pagination-container">
+        <button class="pagination-btn disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </button>
+
+        <a href="#" class="page-number active">1</a>
+        <a href="#" class="page-number">2</a>
+        <span class="ellipsis">...</span>
+        <a href="#" class="page-number">5</a>
+
+        <button class="pagination-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </div>
+</main>
+
+<!-- Footer -->
+<div id="footer-placeholder"></div>
+
+<script src="js/loadHeader.js"></script>
+<script src="js/loadFooter.js"></script>
+<script src="js/boLoc.js"></script>
+<script src="js/dualBannerSlideshow.js"></script>
+</body>
+</html>
