@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPU | TechNova</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/mucSanPham.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <!-- Breadcrumb & Banners -->
+<div class="page-header-wrapper">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html" class="path">Trang chủ</a>
+            <span class="separator">/</span>
+            <a href="cpu.html" class="path">CPU</a>
+        </div>
+
+        <!-- Banners -->
+        <div class="banners-container">
+
+            <div class="banner-link slider-container" id="banner-left">
+                <button class="slider-nav prev-btn">❮</button>
+                <button class="slider-nav next-btn">❯</button>
+
+                <div class="slides-wrapper">
+                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/amd.png" class="banner-img" alt="CPU AMD"></a>
+                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate-cpu-intel-28-08.png" class="banner-img" alt="CPU Intel"></a>
+                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/amd.png" class="banner-img" alt="CPU AMD"></a>
+                </div>
+                <div class="dots-container"></div>
+            </div>
+
+            <div class="banner-link slider-container" id="banner-right">
+                <button class="slider-nav prev-btn">❮</button>
+                <button class="slider-nav next-btn">❯</button>
+
+                <div class="slides-wrapper">
+                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate-cpu-intel-28-08.png" class="banner-img" alt="CPU Intel"></a>
+                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/amd.png" class="banner-img" alt="CPU AMD"></a>
+                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate-cpu-intel-28-08.png" class="banner-img" alt="CPU Intel"></a>
+                </div>
+                <div class="dots-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="container">
+    <h1 class="page-title">CPU</h1>
+
+    <!-- Brand Filter -->
+    <div class="brand-filter">
+        <a href="#" class="brand-logo">
+            <img src="https://blog.logomaster.ai/hs-fs/hubfs/intel-logo-1968.jpg?width=1680&height=1135&name=intel-logo-1968.jpg" alt="CPU Intel">
+        </a>
+        <a href="#" class="brand-logo">
+            <img src="https://logos-world.net/wp-content/uploads/2020/03/AMD-Logo.png" alt="CPU AMD">
+        </a>
+    </div>
+
+    <!-- Filter Section -->
+    <h1 class="page-title">Chọn theo tiêu chí</h1>
+
+    <!-- Filter Toggle Button -->
+    <div class="filter-toggle-container">
+        <button class="filter-toggle-btn" id="filterToggleBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            Bộ lọc
+        </button>
+    </div>
+
+    <div class="filter-section">
+        <div class="option-group">
+            <h4 class="group-title">Dòng sản phẩm</h4>
+            <div class="options-grid">
+                <input type="checkbox" id="opt-product-1" name="product" value="Core i9">
+                <label for="opt-product-1" class="option-label">Core i9</label>
+
+                <input type="checkbox" id="opt-product-2" name="product" value="Core i7">
+                <label for="opt-product-2" class="option-label">Core i7</label>
+
+                <input type="checkbox" id="opt-product-3" name="product" value="Core i5">
+                <label for="opt-product-3" class="option-label">Core i5</label>
+
+                <input type="checkbox" id="opt-product-4" name="product" value="Core i3">
+                <label for="opt-product-4" class="option-label">Core i3</label>
+
+                <input type="checkbox" id="opt-product-5" name="product" value="Core Ultra 9">
+                <label for="opt-product-5" class="option-label">Core Ultra 9</label>
+
+                <input type="checkbox" id="opt-product-6" name="product" value="Core Ultra 7">
+                <label for="opt-product-6" class="option-label">Core Ultra 7</label>
+
+                <input type="checkbox" id="opt-product-7" name="product" value="Core Ultra 5">
+                <label for="opt-product-7" class="option-label">Core Ultra 5</label>
+
+                <input type="checkbox" id="opt-product-8" name="product" value="Ryzen 9">
+                <label for="opt-product-8" class="option-label">Ryzen 9</label>
+
+                <input type="checkbox" id="opt-product-9" name="product" value="Ryzen 7">
+                <label for="opt-product-9" class="option-label">Ryzen 7</label>
+
+                <input type="checkbox" id="opt-product-10" name="product" value="Ryzen 5">
+                <label for="opt-product-10" class="option-label">Ryzen 5</label>
+
+                <input type="checkbox" id="opt-product-11" name="product" value="Ryzen 3">
+                <label for="opt-product-11" class="option-label">Ryzen 3</label>
+
+                <input type="checkbox" id="opt-product-12" name="product" value="AMD Ryzen PRO">
+                <label for="opt-product-12" class="option-label">AMD Ryzen PRO</label>
+
+                <input type="checkbox" id="opt-product-13" name="product" value="AMD Athlon">
+                <label for="opt-product-13" class="option-label">AMD Athlon</label>
+
+            </div>
+        </div>
+
+        <div class="option-group">
+            <h4 class="group-title">Thế hệ CPU</h4>
+            <div class="options-grid">
+                <input type="checkbox" id="opt-generation-1" name="generation" value="Intel thế hệ 14">
+                <label for="opt-generation-1" class="option-label">Intel thế hệ 14</label>
+
+                <input type="checkbox" id="opt-generation-2" name="generation" value="Intel thế hệ 14">
+                <label for="opt-generation-2" class="option-label">Intel thế hệ 13</label>
+
+                <input type="checkbox" id="opt-generation-3" name="generation" value="Intel thế hệ 14">
+                <label for="opt-generation-3" class="option-label">Intel thế hệ 12</label>
+
+                <input type="checkbox" id="opt-generation-4" name="generation" value="Intel thế hệ 14">
+                <label for="opt-generation-4" class="option-label">Intel thế hệ 11</label>
+
+                <input type="checkbox" id="opt-generation-5" name="generation" value="AMD Ryzen thế hệ thứ 9">
+                <label for="opt-generation-5" class="option-label">AMD Ryzen thế hệ thứ 9</label>
+
+                <input type="checkbox" id="opt-generation-6" name="generation" value="AMD Ryzen thế hệ thứ 8">
+                <label for="opt-generation-6" class="option-label">AMD Ryzen thế hệ thứ 8</label>
+
+                <input type="checkbox" id="opt-generation-7" name="generation" value="AMD Ryzen thế hệ thứ 7">
+                <label for="opt-generation-7" class="option-label">AMD Ryzen thế hệ thứ 7</label>
+
+                <input type="checkbox" id="opt-generation-8" name="generation" value="AMD Ryzen thế hệ thứ 5">
+                <label for="opt-generation-8" class="option-label">AMD Ryzen thế hệ thứ 5</label>
+
+                <input type="checkbox" id="opt-generation-9" name="generation" value="AMD Ryzen thế hệ thứ 4">
+                <label for="opt-generation-9" class="option-label">AMD Ryzen thế hệ thứ 4</label>
+
+                <input type="checkbox" id="opt-generation-10" name="generation" value="AMD Ryzen thế hệ thứ 3">
+                <label for="opt-generation-10" class="option-label">AMD Ryzen thế hệ thứ 3</label>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <h4 class="group-title">Socket</h4>
+            <div class="options-grid">
+                <input type="checkbox" id="opt-socket-1" name="socket" value="LGA 1700">
+                <label for="opt-socket-1" class="option-label">LGA 1700</label>
+
+                <input type="checkbox" id="opt-socket-2" name="socket" value="LGA 1200">
+                <label for="opt-socket-2" class="option-label">LGA 1200</label>
+
+                <input type="checkbox" id="opt-socket-3" name="socket" value="AM5">
+                <label for="opt-socket-3" class="option-label">AM5</label>
+
+                <input type="checkbox" id="opt-socket-4" name="socket" value="AM4">
+                <label for="opt-socket-4" class="option-label">AM4</label>
+
+                <input type="checkbox" id="opt-socket-5" name="socket" value="sWRX8">
+                <label for="opt-socket-5" class="option-label">sWRX8</label>
+
+                <input type="checkbox" id="opt-socket-6" name="socket" value="FCLGA1851">
+                <label for="opt-socket-6" class="option-label">FCLGA1851</label>
+
+                <input type="checkbox" id="opt-socket-7" name="socket" value="FCLGA1700">
+                <label for="opt-socket-7" class="option-label">FCLGA1700</label>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <h4 class="group-title">Số nhân</h4>
+            <div class="options-grid">
+                <input type="checkbox" id="opt-core-1" name="core" value="64">
+                <label for="opt-core-1" class="option-label">64</label>
+
+                <input type="checkbox" id="opt-core-2" name="core" value="32">
+                <label for="opt-core-2" class="option-label">32</label>
+
+                <input type="checkbox" id="opt-core-3" name="core" value="24">
+                <label for="opt-core-3" class="option-label">24</label>
+
+                <input type="checkbox" id="opt-core-4" name="core" value="20">
+                <label for="opt-core-4" class="option-label">20</label>
+
+                <input type="checkbox" id="opt-core-5" name="core" value="16">
+                <label for="opt-core-5" class="option-label">16</label>
+
+                <input type="checkbox" id="opt-core-6" name="core" value="14">
+                <label for="opt-core-6" class="option-label">14</label>
+
+                <input type="checkbox" id="opt-core-7" name="core" value="12">
+                <label for="opt-core-7" class="option-label">12</label>
+
+                <input type="checkbox" id="opt-core-8" name="core" value="10">
+                <label for="opt-core-8" class="option-label">10</label>
+
+                <input type="checkbox" id="opt-core-9" name="core" value="8">
+                <label for="opt-core-9" class="option-label">8</label>
+
+                <input type="checkbox" id="opt-core-10" name="core" value="6">
+                <label for="opt-core-10" class="option-label">6</label>
+
+                <input type="checkbox" id="opt-core-11" name="core" value="4">
+                <label for="opt-core-11" class="option-label">4</label>
+
+                <input type="checkbox" id="opt-core-12" name="core" value="2">
+                <label for="opt-core-12" class="option-label">2</label>
+            </div>
+        </div>
+
+
+        <div class="action-bar">
+            <button class="cancel-button">Hủy</button>
+            <button class="confirm-button">Xác nhận</button>
+        </div>
+    </div>
+
+    <div class="applied-filters" id="applied-filters"></div>
+
+    <div class="sort-wrapper">
+        <h1 class="page-title">Sắp xếp theo</h1>
+
+        <div class="sort-buttons">
+            <input type="radio" id="sort-popular" name="sort" checked>
+            <label for="sort-popular" class="sort-btn">Phổ biến</label>
+
+            <input type="radio" id="sort-low-high" name="sort">
+            <label for="sort-low-high" class="sort-btn">Giá Thấp - Cao</label>
+
+            <input type="radio" id="sort-high-low" name="sort">
+            <label for="sort-high-low" class="sort-btn">Giá Cao - Thấp</label>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+        <!-- Sản phẩm 1 -->
+        <div class="product-card" data-product="Core i5" data-generation="Intel thế hệ 12" data-socket="LGA 1700" data-core="6">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_5_.png" alt="CPU Intel Core i5 12400" class="product-image">
+                <h3 class="product-title">CPU Intel Core i5 12400</h3>
+                <div class="price-section">
+                    <div class="current-price">5.312.500đ</div>
+                    <div class="original-price">6.250.000đ</div>
+                </div>
+            </a>
+
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 2 -->
+        <div class="product-card" data-product="Core i7" data-generation="Intel thế hệ 12" data-socket="LGA 1700" data-core="12">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_252_2_.png" alt="CPU Intel Core i7 12700F" class="product-image">
+                <h3 class="product-title">CPU Intel Core i7 12700F</h3>
+                <div class="price-section">
+                    <div class="current-price">5.865.000đ</div>
+                    <div class="original-price">6.900.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 3 -->
+        <div class="product-card" data-product="Core i9" data-generation="Intel thế hệ 14" data-socket="LGA 1700" data-core="24">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/p/cpu-intel-core-i9-14900kf_1_.png" alt="CPU Intel Core i9 14900KF" class="product-image">
+                <h3 class="product-title">CPU Intel Core i9 14900KF</h3>
+                <div class="price-section">
+                    <div class="current-price">14.866.500đ</div>
+                    <div class="original-price">17.490.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 4 -->
+        <div class="product-card" data-product="Core i3" data-generation="Intel thế hệ 12" data-socket="LGA 1700" data-core="4">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_4__1.png" alt="CPU Intel Core i3 12100F" class="product-image">
+                <h3 class="product-title">CPU Intel Core i3 12100F</h3>
+                <div class="price-section">
+                    <div class="current-price">2.286.500đ</div>
+                    <div class="original-price">2.690.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 5 -->
+        <div class="product-card" data-product="Core Ultra i9" data-generation="Intel thế hệ 14" data-socket="FCLGA1851" data-core="24">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_2_3.png" alt="CPU Intel Core Ultra 9 285K" class="product-image">
+                <h3 class="product-title">CPU Intel Core Ultra 9 285K</h3>
+                <div class="price-section">
+                    <div class="current-price">17.841.500đ</div>
+                    <div class="original-price">20.990.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 6 -->
+        <div class="product-card" data-product="Ryzen 5" data-generation="AMD Ryzen thế hệ thứ 5" data-socket="AM5" data-core="6">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/a/gaming_002_5__3.png" alt="CPU AMD Ryzen 5 7600" class="product-image">
+                <h3 class="product-title">CPU AMD Ryzen 5 7600</h3>
+                <div class="price-section">
+                    <div class="current-price">6.026.500đ</div>
+                    <div class="original-price">7.090.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 7 -->
+        <div class="product-card" data-product="Ryzen 7" data-generation="AMD Ryzen thế hệ thứ 9" data-socket="AM5" data-core="8">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/p/cpu-amd-ryzen-7-9800x3d_1_.png" alt="CPU AMD Ryzen 7 9800X3D (WOF)" class="product-image">
+                <h3 class="product-title">CPU AMD Ryzen 7 9800X3D (WOF)</h3>
+                <div class="price-section">
+                    <div class="current-price">14.441.500đ</div>
+                    <div class="original-price">16.990.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 8 -->
+        <div class="product-card" data-product="Ryzen 9" data-generation="AMD Ryzen thế hệ thứ 9" data-socket="AM5" data-core="12">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_1__1.png" alt="CPU AMD Ryzen 9 9900X" class="product-image">
+                <h3 class="product-title">CPU AMD Ryzen 9 9900X</h3>
+                <div class="price-section">
+                    <div class="current-price">13.421.500đ</div>
+                    <div class="original-price">15.790.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 9 -->
+        <div class="product-card" data-product="AMD Athlon" data-generation="AMD Ryzen thế hệ thứ 3" data-socket="AM4" data-core="2">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_248_4.png" alt="CPU AMD Athlon 3000G" class="product-image">
+                <h3 class="product-title">CPU AMD Athlon 3000G</h3>
+                <div class="price-section">
+                    <div class="current-price">1.351.500đ</div>
+                    <div class="original-price">1.590.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm 10 -->
+        <div class="product-card" data-product="Ryzen 5" data-generation="AMD Ryzen thế hệ thứ 4" data-socket="AM4" data-core="6">
+            <div class="discount-tag">
+                <span class="discount-percent">-15%</span>
+            </div>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_246_7_.png" alt="CPU AMD Ryzen 5 4600G" class="product-image">
+                <h3 class="product-title">CPU AMD Ryzen 5 4600G</h3>
+                <div class="price-section">
+                    <div class="current-price">2.881.500đ</div>
+                    <div class="original-price">3.300.000đ</div>
+                </div>
+            </a>
+            <div class="product-footer-interaction">
+                <div class="rating">
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <span class="rating-value">5.0</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="like-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--   Chuyển trang    -->
+    <div class="pagination-container">
+        <button class="pagination-btn disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </button>
+
+        <a href="#" class="page-number active">1</a>
+        <a href="#" class="page-number">2</a>
+        <span class="ellipsis">...</span>
+        <a href="#" class="page-number">5</a>
+            
+        
+
+        <button class="pagination-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+    </div>
+</main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/loadHeader.js"></script>
+  <script src="js/loadFooter.js"></script>
+  <script src="js/dualBannerSlideshow.js"></script>
+  <script src="js/boLoc.js"></script>
+</body>
+</html>
