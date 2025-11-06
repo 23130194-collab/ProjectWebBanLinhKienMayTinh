@@ -3,21 +3,25 @@ const categoryBox = document.getElementById("categoryBox");
 const overlay = document.getElementById("overlay");
 
 categoryToggle.addEventListener("click", (e) => {
-  e.preventDefault();
-  categoryBox.classList.toggle("show");
-  overlay.classList.toggle("active");
+    e.preventDefault();
+    categoryBox.classList.toggle("show");
+    overlay.classList.toggle("active");
 });
 
 overlay.addEventListener("click", () => {
-  categoryBox.classList.remove("show");
-  overlay.classList.remove("active");
+    categoryBox.classList.remove("show");
+    overlay.classList.remove("active");
 });
 
-//  Thêm chức năng chuyển trang cho nút giỏ hàng và đăng nhập
-document.querySelector(".cart-btn").addEventListener("click", () => {
-  window.location.href = "cart.html";
-});
+// --- Gạch chân trang hiện tại ---
+const currentPage = window.location.pathname.split("/").pop(); // Lấy tên file hiện tại
+const navLinks = document.querySelectorAll(".nav-links a");
 
-document.querySelector(".login-btn").addEventListener("click", () => {
-  window.location.href = "login.html";
+navLinks.forEach(link => {
+    const linkPage = link.getAttribute("href");
+    if (linkPage === currentPage || (linkPage === "index.html" && currentPage === "")) {
+        link.classList.add("active"); // Gạch chân trang đang ở
+    } else {
+        link.classList.remove("active"); // Bỏ gạch chân trang khác
+    }
 });
