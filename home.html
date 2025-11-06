@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +10,22 @@
     <link rel="stylesheet" href="css/mucSanPham.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/thongBao.css">
     
 </head>
+
 <body>
 <!-- Header -->
 <header class="header">
     <div class="header-container">
-        <a href="index.html" class="logo">
+        <a href="home.html" class="logo">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
             <span class="brand-name">TechNova</span>
         </a>
 
         <nav class="nav-links">
-            <a href="index.html" class="active">Trang chủ</a>
+            <a href="home.html" class="active">Trang chủ</a>
             <a href="gioithieu.html">Giới thiệu</a>
             <a href="#" id="category-toggle">Danh mục</a>
             <a href="lienHe.html">Liên hệ</a>
@@ -34,14 +37,15 @@
         </div>
 
         <div class="header-actions">
-            <a href="login.html" class="icon-btn" title="Giỏ hàng">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
                 <i class="fas fa-shopping-cart"></i>
             </a>
 
-            <a href="login.html" class="icon-btn" title="Tài khoản của bạn">
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
                 <i class="fas fa-user"></i>
             </a>
         </div>
+
 
         <!-- Danh mục -->
         <div class="category-box" id="categoryBox">
@@ -99,12 +103,14 @@
 
                     <div class="slides-wrapper">
                         <a href="#"><img src="https://i.postimg.cc/QC0GXpKP/meg-ai1600pcie5-678x429.png"
-                                         class="banner-img" alt="Banner AMD"></a>
+                                         class="banner-img"
+                                         alt="Banner AMD"></a>
                         <a href="#"><img
                                 src="https://bizweb.dktcdn.net/100/329/122/files/nguon-may-tinh-msi-mpg-a1000p-pcie5-nd.jpg?v=1669348348721"
                                 class="banner-img" alt="Banner Intel"></a>
                         <a href="#"><img src="https://i.postimg.cc/PxY3DjDc/Screenshot-2025-11-01-235443.png"
-                                         class="banner-img" alt="Banner AMD"></a>
+                                         class="banner-img"
+                                         alt="Banner AMD"></a>
                     </div>
 
                     <button class="slider-nav prev-btn">❮</button>
@@ -118,6 +124,7 @@
 
         <div class="home-right">
             <!-- ===== KHUNG 1: CHÀO MỪNG & ĐĂNG NHẬP ===== -->
+            <!-- ===== KHUNG 1: CHÀO MỪNG & LIÊN HỆ ===== -->
             <div class="suggest-box">
                 <div class="suggest-welcome">
                     <div class="suggest-text">
@@ -126,17 +133,56 @@
                     </div>
                 </div>
 
-                <div class="suggest-auth">
-                    <a href="login.html" class="suggest-auth-link">Đăng nhập</a>
-                    <span class="auth-separator">hoặc</span>
-                    <a href="signup.html" class="suggest-auth-link">Đăng ký</a>
+                <span id="openNotice" class="suggest-item" style="cursor:pointer;">
+            <i class="fa-solid fa-bell"></i> Thông báo của bạn
+            <i class="fa-solid fa-chevron-right"></i>
+          </span>
+
+                <!-- Overlay nền mờ -->
+                <div class="notice-overlay" id="noticeOverlay"></div>
+
+                <!-- Khung thông báo -->
+                <div class="notice-box" id="noticeBox">
+                    <div class="notice-header">
+                        <span>Thông báo</span>
+                    </div>
+
+                    <div class="notice-content">
+                        <div class="notice-item">
+                            <i class="fa-solid fa-truck icon"></i>
+                            <div>
+                                <div>Đơn hàng <b>01214S2510002030</b> vừa được giao thành công.</div>
+                                <div class="notice-meta">
+                                    <span>1 tuần trước</span>
+                                    <a class="notice-detail" href="#">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="notice-item">
+                            <i class="fa-solid fa-truck icon"></i>
+                            <div>
+                                <div>Đơn hàng <b>01214S2510002030</b> vừa được giao thành công.</div>
+                                <div class="notice-meta">
+                                    <span>1 tuần trước</span>
+                                    <a class="notice-detail" href="#">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="closeNoticeBtn" class="close-btn">Đóng</div>
                 </div>
 
-                <a href="#" class="suggest-item">
+
+                <a href="contact.html" class="suggest-item">
                     <i class="fa-solid fa-phone-volume"></i> Liên hệ với chúng tôi
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
             </div>
+
 
             <!-- ===== KHUNG 2: ƯU ĐÃI ===== -->
             <div class="suggest-box">
@@ -445,8 +491,11 @@
 
 <script src="js/header.js"></script>
 <script src="js/dualBannerSlideshow.js"></script>
+<script src="js/thongBao.js"></script>
 
 <script src="js/flashSale.js"></script>
 
+
 </body>
+
 </html>

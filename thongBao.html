@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông báo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            margin: 0;
+            background: #f9f9f9;
+        }
+
+        /* Container căn giữa giống Cellphones */
+        .notice-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 85px; /* dưới header */
+        }
+
+        /* Khung thông báo */
+        .notice-box {
+            width: 90%;
+            max-width: 420px;
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+            animation: popup .25s ease;
+        }
+
+        @keyframes popup {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        .notice-header {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 8px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .tab {
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: #eee;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .tab.active {
+            background: #d90000;
+            color: white;
+        }
+
+        /* Item */
+        .notice-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .notice-item i.icon {
+            font-size: 22px;
+            color: #12A150;
+        }
+
+        .notice-time {
+            font-size: 12px;
+            color: #777;
+            margin: 3px 0;
+        }
+
+        .notice-detail {
+            font-size: 13px;
+            color: #0066ff;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        /* Close button */
+        .close-btn {
+            margin-top: 6px;
+            text-align: center;
+            padding: 10px;
+            background: #d90000;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            opacity: .85;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-container">
+        <a href="home.html" class="logo">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+            <span class="brand-name">TechNova</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="home.html" class="active">Trang chủ</a>
+            <a href="gioithieu.html">Giới thiệu</a>
+            <a href="#" id="category-toggle">Danh mục</a>
+            <a href="lienHe.html">Liên hệ</a>
+        </nav>
+
+        <div class="search-box">
+            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+
+
+        <!-- Danh mục -->
+        <div class="category-box" id="categoryBox">
+            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+</header>
+<!-- Overlay nền mờ -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Thông báo box -->
+<div class="notice-container">
+    <div class="notice-box">
+
+        <div class="notice-header">Thông báo</div>
+
+        <div class="tabs">
+            <div class="tab active">Tất cả</div>
+            <div class="tab">Đơn hàng</div>
+        </div>
+
+        <div class="notice-item">
+            <i class="fa-solid fa-clipboard-check icon"></i>
+            <div>
+                Đơn hàng <b>01214S2510002030</b> đã giao thành công.
+                <div class="notice-time">1 tuần trước</div>
+                <a class="notice-detail" href="chiTietDon.html?id=01214S2510002030">
+                    Xem chi tiết
+                </a>
+            </div>
+        </div>
+
+        <div class="notice-item">
+            <i class="fa-solid fa-bag-shopping icon"></i>
+            <div>
+                Đơn hàng <b>01214S2510002030</b> đang được giao đến bạn.
+                <div class="notice-time">1 tuần trước</div>
+                <a class="notice-detail" href="chiTietDon.html?id=01214S2510002030">
+                    Xem chi tiết
+                </a>
+            </div>
+        </div>
+
+        <div id="closeBtn" class="close-btn">Đóng</div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById("closeBtn").onclick = () => history.back();
+</script>
+
+</body>
+</html>
