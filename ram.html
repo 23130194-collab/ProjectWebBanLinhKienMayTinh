@@ -4,11 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAM | TechNova</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/mucSanPham.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
-<div id="header-placeholder"></div>
+<header class="header">
+    <div class="header-container">
+        <a href="home.html" class="logo">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+            <span class="brand-name">TechNova</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="home.html" class="active">Trang chủ</a>
+            <a href="gioithieu.html">Giới thiệu</a>
+            <a href="#" id="category-toggle">Danh mục</a>
+            <a href="lienHe.html">Liên hệ</a>
+        </nav>
+
+        <div class="search-box">
+            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+
+        <!-- Danh mục -->
+        <div class="category-box" id="categoryBox">
+            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+</header>
+<!-- Overlay nền mờ -->
+<div class="overlay" id="overlay"></div>
 
 <!-- Breadcrumb & Banners -->
 <div class="page-header-wrapper">
@@ -28,8 +82,12 @@
                 <button class="slider-nav next-btn">❯</button>
 
                 <div class="slides-wrapper">
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_kingston.png" class="banner-img" alt="RAM Kingston"></a>
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_adata.png" class="banner-img" alt="RAM ADATA"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_kingston.png"
+                            class="banner-img" alt="RAM Kingston"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_adata.png"
+                            class="banner-img" alt="RAM ADATA"></a>
 
                 </div>
                 <div class="dots-container"></div>
@@ -40,8 +98,12 @@
                 <button class="slider-nav next-btn">❯</button>
 
                 <div class="slides-wrapper">
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_adata.png" class="banner-img" alt="RAM ADATA"></a>
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_kingston.png" class="banner-img" alt="RAM Kingston"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_adata.png"
+                            class="banner-img" alt="RAM ADATA"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate_ram_kingston.png"
+                            class="banner-img" alt="RAM Kingston"></a>
 
                 </div>
                 <div class="dots-container"></div>
@@ -57,22 +119,28 @@
     <!-- Brand Filter -->
     <div class="brand-filter">
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/b/r/brand-icon-kingston.png" alt="RAM Kingston">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/b/r/brand-icon-kingston.png"
+                 alt="RAM Kingston">
         </a>
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/t/_/t_i_xu_ng_6__1_8.png" alt="SAMSUNG">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/t/_/t_i_xu_ng_6__1_8.png"
+                 alt="SAMSUNG">
         </a>
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/b/r/brand-icon-lexar.png" alt="Lexar">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/b/r/brand-icon-lexar.png"
+                 alt="Lexar">
         </a>
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/i/c/icon-brand-adata.png" alt="ADATA">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/i/c/icon-brand-adata.png"
+                 alt="ADATA">
         </a>
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Logo/Frame_291.png" alt="PNY">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Logo/Frame_291.png"
+                 alt="PNY">
         </a>
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Logo/Frame_292.png" alt="PATRIOT">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/wysiwyg/Logo/Frame_292.png"
+                 alt="PATRIOT">
         </a>
     </div>
 
@@ -182,7 +250,8 @@
                 <span class="discount-percent">-20%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_1_.png" alt="RAM Laptop Kingston 1.2V 8GB 3200MHz KVR32S22S8/8" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_1_.png"
+                     alt="RAM Laptop Kingston 1.2V 8GB 3200MHz KVR32S22S8/8" class="product-image">
                 <h3 class="product-title">RAM Laptop Kingston 1.2V 8GB 3200MHz KVR32S22S8/8</h3>
                 <div class="price-section">
                     <div class="current-price">790.000đ</div>
@@ -191,31 +260,23 @@
             </a>
 
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -225,7 +286,8 @@
                 <span class="discount-percent">-29%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_3_.png" alt="RAM Laptop Kingston Sodimm 1.2V 16GB 3200MHz CL22" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_3_.png"
+                     alt="RAM Laptop Kingston Sodimm 1.2V 16GB 3200MHz CL22" class="product-image">
                 <h3 class="product-title">RAM Laptop Kingston Sodimm 1.2V 16GB 3200MHz CL22</h3>
                 <div class="price-section">
                     <div class="current-price">1.490.000đ</div>
@@ -233,31 +295,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -267,7 +321,8 @@
                 <span class="discount-percent">-6%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_4_.png" alt="RAM PC Kingston Fury Beast Black 16GB 3200MHz DDR4 KF432C16BB1/16" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_4_.png"
+                     alt="RAM PC Kingston Fury Beast Black 16GB 3200MHz DDR4 KF432C16BB1/16" class="product-image">
                 <h3 class="product-title">RAM PC Kingston Fury Beast Black 16GB 3200MHz DDR4 KF432C16BB1/16</h3>
                 <div class="price-section">
                     <div class="current-price">1.490.000đ</div>
@@ -275,31 +330,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -309,7 +356,8 @@
                 <span class="discount-percent">-17%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/p/r/productgallery215_2.png" alt="RAM PC ADATA XPG D50 RGB 16GB (1x16GB) 3200MHz DDR4" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/p/r/productgallery215_2.png"
+                     alt="RAM PC ADATA XPG D50 RGB 16GB (1x16GB) 3200MHz DDR4" class="product-image">
                 <h3 class="product-title">RAM PC ADATA XPG D50 RGB 16GB (1x16GB) 3200MHz DDR4</h3>
                 <div class="price-section">
                     <div class="current-price">1.890.000đ</div>
@@ -317,41 +365,35 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
         <!-- Sản phẩm 5 -->
-        <div class="product-card" data-dungluong="16GB" data-loaiRAM="DDR5" data-hotro="SO-DIMM (Laptop)" data-denLED="khonghotroLED">
+        <div class="product-card" data-dungluong="16GB" data-loaiRAM="DDR5" data-hotro="SO-DIMM (Laptop)"
+             data-denLED="khonghotroLED">
             <div class="discount-tag">
                 <span class="discount-percent">-5%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-kingston-ddr5-5600mhz-16gb-kvr56s46bs8-16wp_1_.png" alt="Ram Laptop Kingston DDR5 5600MHz 16GB KVR56S46BS8-16WP" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-kingston-ddr5-5600mhz-16gb-kvr56s46bs8-16wp_1_.png"
+                     alt="Ram Laptop Kingston DDR5 5600MHz 16GB KVR56S46BS8-16WP" class="product-image">
                 <h3 class="product-title">Ram Laptop Kingston DDR5 5600MHz 16GB KVR56S46BS8-16WP</h3>
                 <div class="price-section">
                     <div class="current-price">1.890.000đ</div>
@@ -359,73 +401,58 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
         <!-- Sản phẩm 6 -->
         <div class="product-card" data-dungluong="8GB" data-loaiRAM="DDR4" data-hotro="DIMM (PC, Desktop)">
-        <div class="discount-tag">
-            <span class="discount-percent">-29%</span>
-        </div>
-        <a href="#" class="product-link">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_317_1__1.png" alt="RAM PC ADATA XPG D50 RGB 8GB (1x8GB) 3200MHz DDR4" class="product-image">
-            <h3 class="product-title">RAM PC ADATA XPG D50 RGB 8GB (1x8GB) 3200MHz DDR4</h3>
-            <div class="price-section">
-                <div class="current-price">990.000đ</div>
-                <div class="original-price">1.390.000đ</div>
+            <div class="discount-tag">
+                <span class="discount-percent">-29%</span>
             </div>
-        </a>
+            <a href="#" class="product-link">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_317_1__1.png"
+                     alt="RAM PC ADATA XPG D50 RGB 8GB (1x8GB) 3200MHz DDR4" class="product-image">
+                <h3 class="product-title">RAM PC ADATA XPG D50 RGB 8GB (1x8GB) 3200MHz DDR4</h3>
+                <div class="price-section">
+                    <div class="current-price">990.000đ</div>
+                    <div class="original-price">1.390.000đ</div>
+                </div>
+            </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -435,7 +462,8 @@
                 <span class="discount-percent">-26%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_2_.png" alt="RAM PC Kingston Fury 8GB 3200MHz KF432C16BB/8" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_2_.png"
+                     alt="RAM PC Kingston Fury 8GB 3200MHz KF432C16BB/8" class="product-image">
                 <h3 class="product-title">RAM PC Kingston Fury 8GB 3200MHz KF432C16BB/8</h3>
                 <div class="price-section">
                     <div class="current-price">950.000đ</div>
@@ -443,31 +471,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -477,7 +497,8 @@
                 <span class="discount-percent">-17%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-adata-xpg-d35g-rgb-16gb-3200mhz-ddr4-ax4u320016g16a-sbkd35g_1_.png" alt="Ram PC ADATA XPG D35G RGB 16GB (1x16GB) 3200MHz DDR4" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-adata-xpg-d35g-rgb-16gb-3200mhz-ddr4-ax4u320016g16a-sbkd35g_1_.png"
+                     alt="Ram PC ADATA XPG D35G RGB 16GB (1x16GB) 3200MHz DDR4" class="product-image">
                 <h3 class="product-title">Ram PC ADATA XPG D35G RGB 16GB (1x16GB) 3200MHz DDR4</h3>
                 <div class="price-section">
                     <div class="current-price">1.490.000đ</div>
@@ -485,41 +506,35 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
         <!-- Sản phẩm 9 -->
-        <div class="product-card" data-dungluong="8GB" data-loaiRAM="DDR5" data-hotro="SO-DIMM (Laptop)" data-denLED="khonghotroLED">
+        <div class="product-card" data-dungluong="8GB" data-loaiRAM="DDR5" data-hotro="SO-DIMM (Laptop)"
+             data-denLED="khonghotroLED">
             <div class="discount-tag">
                 <span class="discount-percent">-34%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-kingston-ddr5-5600mhz-8gb-kvr56s46bs6-8_1_.png" alt="Ram Laptop Kingston DDR5 5600MHz 8GB KVR56S46BS6-8" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-kingston-ddr5-5600mhz-8gb-kvr56s46bs6-8_1_.png"
+                     alt="Ram Laptop Kingston DDR5 5600MHz 8GB KVR56S46BS6-8" class="product-image">
                 <h3 class="product-title">Ram Laptop Kingston DDR5 5600MHz 8GB KVR56S46BS6-8</h3>
                 <div class="price-section">
                     <div class="current-price">990.000đ</div>
@@ -527,41 +542,35 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
         <!-- Sản phẩm 10 -->
-        <div class="product-card" data-dungluong="16GB" data-loaiRAM="DDR4" data-hotro="DIMM (PC, Desktop)" data-denLED="hotroLED">
+        <div class="product-card" data-dungluong="16GB" data-loaiRAM="DDR4" data-hotro="DIMM (PC, Desktop)"
+             data-denLED="hotroLED">
             <div class="discount-tag">
                 <span class="discount-percent">-16%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-adata-xpg-lancer-rgb-16gb-6000mhz-ddr5-ax5u6000c3016g-clarbk_1_.png" alt="Ram PC ADATA XPG LANCER RGB 16GB (1x16GB) 6000MHz DDR5" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/r/a/ram-adata-xpg-lancer-rgb-16gb-6000mhz-ddr5-ax5u6000c3016g-clarbk_1_.png"
+                     alt="Ram PC ADATA XPG LANCER RGB 16GB (1x16GB) 6000MHz DDR5" class="product-image">
                 <h3 class="product-title">Ram PC ADATA XPG LANCER RGB 16GB (1x16GB) 6000MHz DDR5</h3>
                 <div class="price-section">
                     <div class="current-price">2.090.000đ</div>
@@ -569,31 +578,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -602,7 +603,8 @@
     <div class="pagination-container">
         <button class="pagination-btn disabled">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd"
+                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
             </svg>
         </button>
 
@@ -612,19 +614,84 @@
         <a href="#" class="page-number">5</a>
 
 
-
         <button class="pagination-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
             </svg>
         </button>
     </div>
 </main>
 
-<div id="footer-placeholder"></div>
+<footer>
+    <div class="footer-container">
+        <div class="footer-main-content">
 
-<script src="js/loadHeader.js"></script>
-<script src="js/loadFooter.js"></script>
+            <div class="footer-col col-1">
+                <h4>Tổng đài hỗ trợ miễn phí</h4>
+                <ul>
+                    <li>Mua hàng - bảo hành 1800.2097 (7h30 - 18h30)</li>
+                    <li>Khiếu nại 1800.2063 (8h00 - 21h30)</li>
+                </ul>
+
+                <h4>Phương thức thanh toán</h4>
+                <div class="payment-methods">
+                    <img src="https://i.postimg.cc/FsJvZGsX/apple-Pay.png" alt="Apple Pay">
+                    <img src="https://i.postimg.cc/pTTbnJ10/bidv.png" alt="BIDV">
+                    <img src="https://i.postimg.cc/L6fXXmPn/momo.jpg" alt="MoMo">
+                    <img src="https://i.postimg.cc/bYn803wR/Zalo-Pay.png" alt="Zalo Pay">
+                </div>
+            </div>
+
+            <div class="footer-col col-2">
+                <h4>Thông tin về chính sách</h4>
+                <ul>
+                    <li>Mua hàng và thanh toán online</li>
+                    <li>Mua hàng trả góp online</li>
+                    <li>Mua hàng trả góp bằng thẻ tín dụng</li>
+                    <li>Chính sách giao hàng</li>
+                    <li>Chính sách đổi trả</li>
+                    <li>Đổi điểm</li>
+                    <li>Xem ưu đãi</li>
+                    <li>Tra cứu hóa đơn điện tử</li>
+                    <li>Thông tin hóa đơn mua hàng</li>
+                    <li>Trung tâm bảo hành chính hãng</li>
+                    <li>Quy định về việc sao lưu dữ liệu</li>
+                    <li>Thuế VAT</li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-3">
+                <h4>Dịch vụ và thông tin khác</h4>
+                <ul>
+                    <li>Khách hàng doanh nghiệp</li>
+                    <li>Ưu đãi thanh toán</li>
+                    <li>Quy chế hoạt động</li>
+                    <li>Chính sách bảo mật thông tin cá nhân</li>
+                    <li>Chính sách bảo hành</li>
+                    <li>Liên hệ hợp tác kinh doanh</li>
+                    <li>Tuyển dụng</li>
+                    <li>Dịch vụ bảo hành</li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-4">
+                <h4>Kết nối với TechNova</h4>
+                <div class="connect-methods">
+                    <img src="https://i.postimg.cc/CLjh0my7/youtube.png" alt="Youtube">
+                    <img src="https://i.postimg.cc/rsBv3Xyx/facebook.png" alt="Facebook">
+                    <img src="https://i.postimg.cc/vBkYYKHS/tiktok.png" alt="TikTok">
+                    <img src="https://i.postimg.cc/k55qxC26/Zalo.png" alt="Zalo">
+                </div>
+            </div>
+
+        </div>
+        <div class="footer-subscription"></div>
+    </div>
+</footer>
+
+
+<script src="js/header.js"></script>
 <script src="js/dualBannerSlideshow.js"></script>
 <script src="js/boLoc.js"></script>
 </body>

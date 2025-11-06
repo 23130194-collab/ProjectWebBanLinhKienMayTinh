@@ -4,11 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card màn hình | TechNova</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/mucSanPham.css">
+    l
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
-<div id="header-placeholder"></div>
+<header class="header">
+    <div class="header-container">
+        <a href="home.html" class="logo">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+            <span class="brand-name">TechNova</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="home.html" class="active">Trang chủ</a>
+            <a href="gioithieu.html">Giới thiệu</a>
+            <a href="#" id="category-toggle">Danh mục</a>
+            <a href="lienHe.html">Liên hệ</a>
+        </nav>
+
+        <div class="search-box">
+            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+
+        <!-- Danh mục -->
+        <div class="category-box" id="categoryBox">
+            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+</header>
+<!-- Overlay nền mờ -->
+<div class="overlay" id="overlay"></div>
 
 <!-- Breadcrumb & Banners -->
 <div class="page-header-wrapper">
@@ -28,8 +83,12 @@
                 <button class="slider-nav next-btn">❯</button>
 
                 <div class="slides-wrapper">
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-amd-cate-26-08.jpg" class="banner-img" alt="CardManHinh AMD Radeon"></a>
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-nvidia-cate-26-08.jpg" class="banner-img" alt=" NVIDIA"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-amd-cate-26-08.jpg"
+                            class="banner-img" alt="CardManHinh AMD Radeon"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-nvidia-cate-26-08.jpg"
+                            class="banner-img" alt=" NVIDIA"></a>
 
                 </div>
                 <div class="dots-container"></div>
@@ -40,8 +99,12 @@
                 <button class="slider-nav next-btn">❯</button>
 
                 <div class="slides-wrapper">
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-nvidia-cate-26-08.jpg" class="banner-img" alt=" NVIDIA"></a>
-                    <a href="#"><img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-amd-cate-26-08.jpg" class="banner-img" alt="CardManHinh AMD Radeon"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-nvidia-cate-26-08.jpg"
+                            class="banner-img" alt=" NVIDIA"></a>
+                    <a href="#"><img
+                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/card-man-hinh-amd-cate-26-08.jpg"
+                            class="banner-img" alt="CardManHinh AMD Radeon"></a>
 
                 </div>
                 <div class="dots-container"></div>
@@ -57,13 +120,16 @@
     <!-- Brand Filter -->
     <div class="brand-filter">
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/b/r/brand-icon-asus.png" alt="ASUS">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/b/r/brand-icon-asus.png"
+                 alt="ASUS">
         </a>
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/i/c/icon-brand-gigabyte.png" alt="GIGABYE">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/i/c/icon-brand-gigabyte.png"
+                 alt="GIGABYE">
         </a>
         <a href="#" class="brand-logo">
-            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/i/c/icon-brand-msi.png" alt="msi">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:50/q:30/plain/https://cellphones.com.vn/media/catalog/product/i/c/icon-brand-msi.png"
+                 alt="msi">
         </a>
 
     </div>
@@ -201,7 +267,8 @@
                 <span class="discount-percent">-14%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-dual-geforce-rtx-3060-oc-12gb-dual-rtx3060_1_.png" alt="VGA ASUS Dual Geforce RTX 3060 OC 12GB DUAL-RTX3060-O12G-V2" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-dual-geforce-rtx-3060-oc-12gb-dual-rtx3060_1_.png"
+                     alt="VGA ASUS Dual Geforce RTX 3060 OC 12GB DUAL-RTX3060-O12G-V2" class="product-image">
                 <h3 class="product-title">VGA ASUS Dual Geforce RTX 3060 OC 12GB DUAL-RTX3060-O12G-V2</h3>
                 <div class="price-section">
                     <div class="current-price">7.690.000đ</div>
@@ -210,31 +277,23 @@
             </a>
 
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -244,8 +303,11 @@
                 <span class="discount-percent">-8%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-rog-astral-geforce-rtx-5090-oc-32gb_1_.png" alt="VGA Asus ROG Astral Geforce RTX 5090 OC 32GB ROG-ASTRAL-RTX5090-O32G-GAMING" class="product-image">
-                <h3 class="product-title">VGA Asus ROG Astral Geforce RTX 5090 OC 32GB ROG-ASTRAL-RTX5090-O32G-GAMING</h3>
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-rog-astral-geforce-rtx-5090-oc-32gb_1_.png"
+                     alt="VGA Asus ROG Astral Geforce RTX 5090 OC 32GB ROG-ASTRAL-RTX5090-O32G-GAMING"
+                     class="product-image">
+                <h3 class="product-title">VGA Asus ROG Astral Geforce RTX 5090 OC 32GB
+                    ROG-ASTRAL-RTX5090-O32G-GAMING</h3>
                 <div class="price-section">
                     <div class="current-price">109.990.000đ</div>
                     <div class="original-price">119.990.000đ</div>
@@ -253,31 +315,23 @@
             </a>
 
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -287,7 +341,8 @@
                 <span class="discount-percent">-16%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-dual-radeon-rx-6500-xt-oc-4gb-dual-rx6500xt_1_.png" alt="VGA Asus Dual Radeon RX 6500 XT OC 4GB DUAL-RX6500XT-O4G-V2" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-dual-radeon-rx-6500-xt-oc-4gb-dual-rx6500xt_1_.png"
+                     alt="VGA Asus Dual Radeon RX 6500 XT OC 4GB DUAL-RX6500XT-O4G-V2" class="product-image">
                 <h3 class="product-title">VGA Asus Dual Radeon RX 6500 XT OC 4GB DUAL-RX6500XT-O4G-V2</h3>
                 <div class="price-section">
                     <div class="current-price">3.690.000đ</div>
@@ -295,31 +350,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -329,7 +376,8 @@
                 <span class="discount-percent">-22%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-msi-geforce-rtx-3050-ventus-2x-6g-oc_2_.png" alt="VGA MSI GeForce RTX 3050 VENTUS 2X 6G OC" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-msi-geforce-rtx-3050-ventus-2x-6g-oc_2_.png"
+                     alt="VGA MSI GeForce RTX 3050 VENTUS 2X 6G OC" class="product-image">
                 <h3 class="product-title">VGA MSI GeForce RTX 3050 VENTUS 2X 6G OC</h3>
                 <div class="price-section">
                     <div class="current-price">4.690.000đ</div>
@@ -337,31 +385,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -371,7 +411,8 @@
                 <span class="discount-percent">-24%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_236_2_15.png" alt="VGA MSI GeForce RTX 5060 8GB VENTUS 2X OC" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_236_2_15.png"
+                     alt="VGA MSI GeForce RTX 5060 8GB VENTUS 2X OC" class="product-image">
                 <h3 class="product-title">VGA MSI GeForce RTX 5060 8GB VENTUS 2X OC</h3>
                 <div class="price-section">
                     <div class="current-price">9.490.000đ</div>
@@ -379,31 +420,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -413,7 +446,8 @@
                 <span class="discount-percent">-13%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-msi-geforce-rtx-3060-ventus-2x-12g-oc_2_.png" alt="VGA MSI GeForce RTX 3060 VENTUS 2X 12G OC" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-msi-geforce-rtx-3060-ventus-2x-12g-oc_2_.png"
+                     alt="VGA MSI GeForce RTX 3060 VENTUS 2X 12G OC" class="product-image">
                 <h3 class="product-title">VGA MSI GeForce RTX 3060 VENTUS 2X 12G OC</h3>
                 <div class="price-section">
                     <div class="current-price">7.790.000đ</div>
@@ -421,31 +455,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -455,7 +481,8 @@
                 <span class="discount-percent">-14%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_839_3_.png" alt="VGA Gigabyte Radeon RX 6500 XT Eagle 4GB GV-R65XTEAGLE-4GD" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_839_3_.png"
+                     alt="VGA Gigabyte Radeon RX 6500 XT Eagle 4GB GV-R65XTEAGLE-4GD" class="product-image">
                 <h3 class="product-title">VGA Gigabyte Radeon RX 6500 XT Eagle 4GB GV-R65XTEAGLE-4GD</h3>
                 <div class="price-section">
                     <div class="current-price">3.790.000đ</div>
@@ -463,31 +490,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -497,7 +516,8 @@
                 <span class="discount-percent">-20%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_236_2_16.png" alt="VGA MSI GeForce RTX 5070 12GB VENTUS 2X OC" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_236_2_16.png"
+                     alt="VGA MSI GeForce RTX 5070 12GB VENTUS 2X OC" class="product-image">
                 <h3 class="product-title">VGA MSI GeForce RTX 5070 12GB VENTUS 2X OC</h3>
                 <div class="price-section">
                     <div class="current-price">18.490.000đ</div>
@@ -505,31 +525,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -539,7 +551,8 @@
                 <span class="discount-percent">-5%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-prime-geforce-rtx-5060-ti-16gb-oc_1_.png" alt="VGA Asus Prime Geforce RTX 5060 Ti 16GB OC PRIME-RTX5060TI-O16G" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-prime-geforce-rtx-5060-ti-16gb-oc_1_.png"
+                     alt="VGA Asus Prime Geforce RTX 5060 Ti 16GB OC PRIME-RTX5060TI-O16G" class="product-image">
                 <h3 class="product-title">VGA Asus Prime Geforce RTX 5060 Ti 16GB OC PRIME-RTX5060TI-O16G</h3>
                 <div class="price-section">
                     <div class="current-price">18.990.000đ</div>
@@ -547,31 +560,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -581,7 +586,8 @@
                 <span class="discount-percent">-9%</span>
             </div>
             <a href="#" class="product-link">
-                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-gigabyte-geforce-rtx-5070-ti-eagle-oc-16gb_1_.png" alt="VGA Gigabyte Geforce RTX 5070 Ti Eagle OC 16GB GV-N507TEAGLEOC-16GD" class="product-image">
+                <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-gigabyte-geforce-rtx-5070-ti-eagle-oc-16gb_1_.png"
+                     alt="VGA Gigabyte Geforce RTX 5070 Ti Eagle OC 16GB GV-N507TEAGLEOC-16GD" class="product-image">
                 <h3 class="product-title">VGA Gigabyte Geforce RTX 5070 Ti Eagle OC 16GB GV-N507TEAGLEOC-16GD</h3>
                 <div class="price-section">
                     <div class="current-price">31.990.000đ</div>
@@ -589,31 +595,23 @@
                 </div>
             </a>
             <div class="product-footer-interaction">
-                <div class="rating">
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
-                    <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                    </svg>
+                <!-- Đánh giá -->
+                <div class="action-item rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                        <i class="fa-solid fa-star star-icon"></i>
+                    </div>
                     <span class="rating-value">5.0</span>
                 </div>
-                <div class="action-buttons">
-                    <button class="like-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.736 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Yêu thích -->
+                <button class="action-item like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
             </div>
         </div>
 
@@ -622,7 +620,8 @@
     <div class="pagination-container">
         <button class="pagination-btn disabled">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                <path fill-rule="evenodd"
+                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
             </svg>
         </button>
 
@@ -632,19 +631,84 @@
         <a href="#" class="page-number">5</a>
 
 
-
         <button class="pagination-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
             </svg>
         </button>
     </div>
 </main>
 
-<div id="footer-placeholder"></div>
+<footer>
+    <div class="footer-container">
+        <div class="footer-main-content">
 
-<script src="js/loadHeader.js"></script>
-<script src="js/loadFooter.js"></script>
+            <div class="footer-col col-1">
+                <h4>Tổng đài hỗ trợ miễn phí</h4>
+                <ul>
+                    <li>Mua hàng - bảo hành 1800.2097 (7h30 - 18h30)</li>
+                    <li>Khiếu nại 1800.2063 (8h00 - 21h30)</li>
+                </ul>
+
+                <h4>Phương thức thanh toán</h4>
+                <div class="payment-methods">
+                    <img src="https://i.postimg.cc/FsJvZGsX/apple-Pay.png" alt="Apple Pay">
+                    <img src="https://i.postimg.cc/pTTbnJ10/bidv.png" alt="BIDV">
+                    <img src="https://i.postimg.cc/L6fXXmPn/momo.jpg" alt="MoMo">
+                    <img src="https://i.postimg.cc/bYn803wR/Zalo-Pay.png" alt="Zalo Pay">
+                </div>
+            </div>
+
+            <div class="footer-col col-2">
+                <h4>Thông tin về chính sách</h4>
+                <ul>
+                    <li>Mua hàng và thanh toán online</li>
+                    <li>Mua hàng trả góp online</li>
+                    <li>Mua hàng trả góp bằng thẻ tín dụng</li>
+                    <li>Chính sách giao hàng</li>
+                    <li>Chính sách đổi trả</li>
+                    <li>Đổi điểm</li>
+                    <li>Xem ưu đãi</li>
+                    <li>Tra cứu hóa đơn điện tử</li>
+                    <li>Thông tin hóa đơn mua hàng</li>
+                    <li>Trung tâm bảo hành chính hãng</li>
+                    <li>Quy định về việc sao lưu dữ liệu</li>
+                    <li>Thuế VAT</li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-3">
+                <h4>Dịch vụ và thông tin khác</h4>
+                <ul>
+                    <li>Khách hàng doanh nghiệp</li>
+                    <li>Ưu đãi thanh toán</li>
+                    <li>Quy chế hoạt động</li>
+                    <li>Chính sách bảo mật thông tin cá nhân</li>
+                    <li>Chính sách bảo hành</li>
+                    <li>Liên hệ hợp tác kinh doanh</li>
+                    <li>Tuyển dụng</li>
+                    <li>Dịch vụ bảo hành</li>
+                </ul>
+            </div>
+
+            <div class="footer-col col-4">
+                <h4>Kết nối với TechNova</h4>
+                <div class="connect-methods">
+                    <img src="https://i.postimg.cc/CLjh0my7/youtube.png" alt="Youtube">
+                    <img src="https://i.postimg.cc/rsBv3Xyx/facebook.png" alt="Facebook">
+                    <img src="https://i.postimg.cc/vBkYYKHS/tiktok.png" alt="TikTok">
+                    <img src="https://i.postimg.cc/k55qxC26/Zalo.png" alt="Zalo">
+                </div>
+            </div>
+
+        </div>
+        <div class="footer-subscription"></div>
+    </div>
+</footer>
+
+
+<script src="js/header.js"></script>
 <script src="js/dualBannerSlideshow.js"></script>
 <script src="js/boLoc.js"></script>
 </body>
