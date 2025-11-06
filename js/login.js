@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.addEventListener("submit", (event) => {
         event.preventDefault(); // Ngăn form reload
 
-       // alert("Đăng nhập thành công!");
+        // alert("Đăng nhập thành công!");
         setTimeout(() => {
-            window.location.href = "index.html";
+            window.location.href = "home.html";
         }, 500);
     });
 });
