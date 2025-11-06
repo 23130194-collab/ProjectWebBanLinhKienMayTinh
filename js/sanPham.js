@@ -1,0 +1,93 @@
+// Lấy các phần tử cần thiết
+const specBtn = document.querySelector('.spec-btn');
+const specModal = document.getElementById('spec-modal');
+const closeBtn = document.getElementById('close-spec-modal');
+
+// Thực hiện đóng mở bảng thông sô sản phẩm
+if (specBtn && specModal && closeBtn) {
+    // 1. Mở Modal khi click vào nút "Thông số"
+    specBtn.addEventListener('click', () => {
+        specModal.style.display = 'block';
+        // Ngăn cuộn trang chính khi modal mở
+        document.body.style.overflow = 'hidden';
+    });
+
+    // 2. Đóng Modal khi click vào nút "X"
+    closeBtn.addEventListener('click', () => {
+        specModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Bật lại cuộn trang
+    });
+
+    // 3. Đóng Modal khi click ra ngoài (trên vùng nền mờ)
+    window.addEventListener('click', (event) => {
+        if (event.target === specModal) {
+            specModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Bật lại cuộn trang
+        }
+    });
+}
+
+// Thực hiện đóng mở khung viết đánh giá
+const btnWriteReview = document.getElementById('btn-write-review');
+const reviewModal = document.getElementById('review-modal');
+const closeReviewModal = document.getElementById('close-review-modal');
+
+if (btnWriteReview && reviewModal && closeReviewModal) {
+    // Mở modal viết đánh giá
+    btnWriteReview.addEventListener('click', () => {
+        reviewModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Đóng modal
+    closeReviewModal.addEventListener('click', () => {
+        reviewModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    // Đóng khi click ra ngoài
+    window.addEventListener('click', (event) => {
+        if (event.target === reviewModal) {
+            reviewModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Xử lý khi nhấn chọn rating đánh giá trong phần đánh giá
+const ratingOptions = document.querySelectorAll('.rating-option');
+ratingOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        // Bỏ active cho tất cả
+        ratingOptions.forEach(opt => opt.classList.remove('active'));
+        // Thêm active cho option được chọn
+        option.classList.add('active');
+    });
+});
+
+// Thực hiện nút
+const btnScrollTop = document.getElementById('btn-scroll-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        btnScrollTop.classList.add('show');
+    } else {
+        btnScrollTop.classList.remove('show');
+    }
+});
+
+btnScrollTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// === XỬ LÝ FILTER ĐÁNH GIÁ ===
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+});

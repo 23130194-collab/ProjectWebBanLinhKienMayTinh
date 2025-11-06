@@ -51,16 +51,21 @@ body {
     border-radius: 10px;
 
     /* QUAN TRỌNG CHO SLIDESHOW VÀ KÉO THẢ */
-    position: relative;                                                     /* Cho vị trí các nút nav và overflow */
-    overflow: hidden;                                                       /* Ẩn các slide bị trượt ra ngoài */
-    cursor: grab;                                                           /* Con trỏ tay kéo */
+    position: relative;
+    /* Cho vị trí các nút nav và overflow */
+    overflow: hidden;
+    /* Ẩn các slide bị trượt ra ngoài */
+    cursor: grab;
+    /* Con trỏ tay kéo */
 }
 
 /* Wrapper chứa các slide */
 .slides-wrapper {
     display: flex;
-    width: 100%;                                                            /* Sẽ được set lại bằng JS, hoặc tự co dãn 100% * số slide */
-    transition: transform 0.5s ease-in-out;                                 /* Hiệu ứng chuyển động mượt */
+    width: 100%;
+    /* Sẽ được set lại bằng JS, hoặc tự co dãn 100% * số slide */
+    transition: transform 0.5s ease-in-out;
+    /* Hiệu ứng chuyển động mượt */
 }
 
 .banner-img {
@@ -71,7 +76,7 @@ body {
     border-radius: 10px;
 }
 
-/* --- Navigation Buttons (Mũi tên) --- */
+/* --- Navigation Buttons (Mũi tên điều hướng) --- */
 .slider-nav {
     position: absolute;
     top: 50%;
@@ -99,7 +104,7 @@ body {
     right: 10px;
 }
 
-/* --- Dots Navigation (Chấm điều hướng) --- */
+/* --- Dots Navigation (Dấu chấm điều hướng) --- */
 .dots-container {
     position: absolute;
     bottom: 10px;
@@ -175,7 +180,7 @@ body {
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Segoe UI", sans-serif;
 }
 
 .filter-toggle-btn:hover {
@@ -244,7 +249,6 @@ body {
     background-color: #e0f0ff;
     border-color: #007bff;
     color: #007bff;
-    /*font-weight: 600;*/
     font-weight: bold;
 }
 
@@ -259,12 +263,13 @@ body {
     gap: 10px;
 }
 
-.cancel-button, .confirm-button {
+.cancel-button,
+.confirm-button {
     padding: 10px 20px;
     border-radius: 6px;
     font-size: 13px;
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Segoe UI", sans-serif;
 }
 
 .cancel-button {
@@ -294,9 +299,11 @@ body {
     .option-group {
         flex: 0 0 100%;
     }
+
     .action-bar {
         flex-direction: column;
     }
+
     .cancel-button,
     .confirm-button {
         width: 100%;
@@ -342,7 +349,7 @@ body {
     border-radius: 8px;
     font-size: 13px;
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Segoe UI", sans-serif;
 }
 
 .sort-btn:hover {
@@ -356,7 +363,7 @@ body {
     font-weight: 600;
 }
 
-/* Hiển thị sản phẩm - SỬA LỖI: 5 sản phẩm một hàng */
+/* Hiển thị sản phẩm 5 sản phẩm một hàng */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -423,12 +430,13 @@ body {
     font-weight: bold;
     padding: 5px 8px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .discount-tag .discount-percent {
     display: block;
 }
+
 .product-image {
     width: 100%;
     height: 180px;
@@ -472,93 +480,106 @@ body {
 
 .product-footer-interaction {
     display: flex;
-    justify-content: space-between;
+    width: 100%;
     align-items: center;
-    margin-top: auto;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 16px;
+    /*margin-bottom: 16px;*/
+    flex-wrap: nowrap;
 }
 
-/* Rating với SVG */
-.rating {
+.product-footer-interaction .separator {
+    color: #ddd;
+    font-size: 14px;
+}
+
+/* Mỗi item */
+.action-item {
     display: flex;
     align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    border: none;
+    background: transparent;
+}
+
+.action-item:hover {
+    background: #f8f8f8;
+}
+
+/* === ĐÁNH GIÁ === */
+.rating {
+    gap: 4px;
+    padding: 4px 0;
+    cursor: default;
+    pointer-events: none; /* Không cho focus */
+}
+
+.rating .stars {
+    display: flex;
     gap: 2px;
-    flex-shrink: 0;
 }
 
 .star-icon {
     width: 16px;
     height: 16px;
-    fill: #ffc107;
-    flex-shrink: 0;
+    color: #ffc107;
 }
 
 .rating-value {
     font-weight: 600;
     color: #333;
-    margin-left: 4px;
     font-size: 13px;
+    margin-left: 2px;
 }
 
-
-/* Nút Yêu thích */
-.action-buttons {
-    display: flex;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
+/* === YÊU THÍCH === */
 .like-btn {
-    /* Loại bỏ viền và nền mặc định */
-    border: none;
-    background: transparent;
-
-    /* Chỉnh kích thước và căn giữa icon */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    cursor: pointer;
+    color: #a19f9f;
 }
 
-.like-btn svg {
-    width: 16px;
-    height: 16px;
-
-    fill: #a19f9f;
-    stroke: #555;
-    stroke-width: 0;
-    flex-shrink: 0;
+.like-btn i {
+    font-size: 16px;
+    transition: color 0.2s;
 }
 
-.like-btn:hover svg {
-    /* Trái tim đầy màu đỏ */
-    fill: #db1d32;
-    stroke: #db1d32; /* Đảm bảo viền có màu nếu fill không hoạt động hoàn hảo */
-    stroke-width: 0; /* Bỏ viền ngoài khi fill */
+/* Hover */
+.like-btn:hover,
+.like-btn:hover i,
+.like-btn:hover .action-label {
+    color: #db1d32;
 }
 
-.like-btn:active svg {
-    fill: #db1d32;
-    stroke: #db1d32;
-    stroke-width: 0;
-    /* Có thể thêm hiệu ứng scale nhỏ để tạo cảm giác nhấn */
-    transform: scale(0.9);
+/* Khi được click (focus) → đỏ + trái tim đầy */
+.like-btn:focus,
+.like-btn:focus i,
+.like-btn:focus .action-label {
+    color: #db1d32;
+    outline: none;
 }
 
+.like-btn:focus i {
+    font-weight: 900; /* fa-solid */
+}
 
 /* PHÂN TRANG (PAGINATION) */
 .pagination-container {
     display: flex;
-    justify-content: center; /* Căn giữa thanh phân trang */
+    justify-content: center;
+    /* Căn giữa thanh phân trang */
     align-items: center;
-    margin: 60px 0; /* Khoảng cách trên/dưới so với nội dung */
+    margin: 60px 0;
+    /* Khoảng cách trên/dưới so với nội dung */
     gap: 8px;
 }
 
-.pagination-btn, .page-number {
+.pagination-btn,
+.page-number {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -599,10 +620,12 @@ body {
 }
 
 .page-number.active {
-    background-color: #d32f2f; /* Màu đỏ nổi bật cho trang hiện tại */
+    background-color: #d32f2f;
+    /* Màu đỏ nổi bật cho trang hiện tại */
     color: white;
     border-color: #d32f2f;
-    pointer-events: none; /* Không cho phép click vào trang hiện tại */
+    pointer-events: none;
+    /* Không cho phép click vào trang hiện tại */
 }
 
 .ellipsis {
