@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/thongTin.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-container">
+        <a href="index.html" class="logo">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+            <span class="brand-name">TechNova</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html" class="active">Trang chủ</a>
+            <a href="gioithieu.html">Giới thiệu</a>
+            <a href="#" id="category-toggle">Danh mục</a>
+            <a href="lienHe.html">Liên hệ</a>
+        </nav>
+
+        <div class="search-box">
+            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+
+        <!-- Danh mục -->
+        <div class="category-box" id="categoryBox">
+            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+</header>
+<!-- Overlay nền mờ -->
+<div class="overlay" id="overlay"></div>
+<div class="app-container">
+    <div class="app-scroll">
+
+        <div class="header-cart">
+            <a href="thongTinNhanHang.html"><i class="fa-solid fa-arrow-left"></i></a>
+            <span>Thanh toán</span>
+        </div>
+
+        <div class="tabs">
+            <div class="tab">1. THÔNG TIN</div>
+            <div class="tab active">2. THANH TOÁN</div>
+        </div>
+
+        <!-- Khung thanh toán giống CellphoneS -->
+        <div class="box">
+
+            <div class="line">
+                Dùng điểm tích lũy
+                <label class="switch">
+                    <input type="checkbox" id="usePointsToggle">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+            <div class="line">
+                Số lượng sản phẩm
+                <span>01</span>
+            </div>
+
+            <div class="line">
+                Tổng tiền hàng
+                <span>3.190.000₫</span>
+            </div>
+
+            <div class="line">
+                Phí vận chuyển
+                <span>Miễn phí</span>
+            </div>
+
+            <div class="line discount">
+                Giảm giá trực tiếp
+                <span>-200.000₫</span>
+            </div>
+
+            <div class="line discount">
+                Giảm giá dùng điểm tích lũy
+                <span></span>
+            </div>
+
+            <div class="line total">
+                <b>Tổng tiền</b>
+                <b>2.990.000₫</b>
+            </div>
+        </div>
+
+
+        <div class="payment-box">
+
+            <div class="section-title">THÔNG TIN THANH TOÁN</div>
+
+            <select class="payment-select">
+
+                <option>Thanh toán khi nhận hàng (COD)</option>
+                <option>Chuyển khoản ngân hàng</option>
+                <option>Thanh toán qua Momo</option>
+                <option>Thanh toán qua VNPay</option>
+            </select>
+        </div>
+
+        <div class="box receiver-box">
+            <div class="section-title">THÔNG TIN NHẬN HÀNG</div>
+            <div class="info-row">
+                <span>Khách hàng</span>
+                <span>Trần Thị Mỹ Trâm</span>
+            </div>
+            <div class="info-row">
+                <span>Số điện thoại</span>
+                <span>0337710175</span>
+            </div>
+            <div class="info-row">
+                <span>Email</span>
+                <span>23130340@st.hcmuaf.edu.vn</span>
+            </div>
+            <div class="info-row">
+                <span>Nhận hàng tại</span>
+                <span>377-379 Điện Biên Phủ, P.25, Q. Bình Thạnh, TP. HCM</span>
+            </div>
+        </div>
+
+        <div class="confirm">
+            <input type="checkbox" checked>
+            Bằng việc đặt hàng, bạn đồng ý với <a href="#">Điều khoản sử dụng</a> của TechNova.
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER THANH TOÁN -->
+<div class="footer-bar">
+    <span class="total-amount">Tổng tiền: 2.990.000₫</span>
+    <button class="btn-buy-link">Thanh toán</button>
+</div>
+
+<script src="js/header.js"></script>
+<script src="js/thongTin.js"></script>
+
+</body>
+
+</html>
