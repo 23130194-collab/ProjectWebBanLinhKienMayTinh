@@ -1,0 +1,762 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f5f6fa;
+}
+
+/* Container chính */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-600px);
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid #e8e8e8;
+    padding: 20px 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    margin-bottom: 40px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #00c9a7 0%, #5b86e5 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: linear-gradient(90deg, #ff6633, #ff3366);
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #5b86e5;
+    letter-spacing: 1px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0 12px;
+}
+
+.nav-item {
+    margin-bottom: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #64748b;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+    background: #f1f5f9;
+    color: #5b86e5;
+}
+
+.nav-link.active {
+    background: #eef2ff;
+    color: #5b86e5;
+    font-weight: 500;
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Logout Section */
+.logout-section {
+    padding: 12px;
+    border-top: 1px solid #e8e8e8;
+    margin-top: auto;
+}
+
+.logout-link {
+    color: #ef4444 !important;
+}
+
+.logout-link:hover {
+    background: #fee2e2 !important;
+    color: #dc2626 !important;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-340px);
+    width: 940px;
+    height: 70px;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    z-index: 99;
+}
+
+.search-box {
+    position: relative;
+    width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #5b86e5;
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.notification-btn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #f8fafc;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.notification-btn:hover {
+    background: #eef2ff;
+    color: #1a1a1a;
+    border-color: #5b86e5;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    background: #ef4444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    border: 2px solid white;
+}
+
+.user-profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.user-profile:hover {
+    border-color: #5b86e5;
+    transform: scale(1.05);
+}
+
+.user-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Main Content */
+.main-content {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-340px);
+    width: 940px;
+    margin-top: 70px;
+    padding: 32px;
+    min-height: calc(100vh - 70px);
+    overflow-y: auto;
+    height: calc(100vh - 70px);
+}
+
+/* Đây là nơi bạn sẽ thêm nội dung của mình */
+.content-area {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.breadcrumb {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.breadcrumb a {
+    color: #64748b;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: #5b86e5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .header {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .search-box {
+        width: 200px;
+    }
+}
+
+
+/* order */
+/* --- ORDER LIST TABLE --- */
+.order-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.order-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order-section-header h2 {
+    font-size: 22px;
+    color: #111827;
+    font-weight: 600;
+}
+
+.add-btn {
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: #4f46e5;
+}
+
+.order-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.order-tools select,
+.order-tools input {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+    color: #475569;
+}
+
+.order-tools input {
+    width: 220px;
+}
+
+.order-tools button {
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.order-tools button:hover {
+    background: #4f46e5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #334155;
+}
+
+th,
+td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #475569;
+}
+
+td a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.badge.paid {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.badge.shipped {
+    background: #d4fcdf;
+    color: #1c702e;
+}
+
+.badge.processing {
+    background: #fedbdb;
+    color: #a81313;
+}
+
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    margin: 0 4px;
+    font-size: 14px;
+}
+
+.action-btn.edit {
+    background: #dafce8;
+    color: #065f46;
+    cursor: pointer;
+}
+
+.action-btn.delete {
+    background: #fee2e2;
+    color: #b91c1c;
+    cursor: pointer;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+/* Căn đều các cột còn lại */
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Nền, viền, và màu chữ nhẹ */
+thead {
+    background-color: #f5f7fb;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Cột checkbox: giữ chỗ ở header, căn giữa ở body */
+th.checkbox-col {
+    width: 56px;               /* chỉnh theo kích thước checkbox / căn chỉnh cần thiết */
+    padding: 0;                /* bớt padding để header trông gọn */
+    background: #f5f7fb;       /* giữ màu nền header nếu muốn */
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Căn giữa checkbox trong body, giữ đúng width */
+tbody td:first-child {
+    width: 56px;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 8px; /* nếu muốn khoảng cách trái tí */
+}
+
+/* Ẩn focus outline th checkbox (nếu có) */
+th.checkbox-col:focus,
+th.checkbox-col input {
+    outline: none;
+}
+
+/* Nếu bạn dùng checkbox có kích thước lớn, tăng width tương ứng */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.15);
+    color: #374151;
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    border-color: #6366f1;
+    color: #6366f1;
+}
+
+.page-btn.active {
+    background: #6366f1;
+    color: #fff;
+    border-color: #6366f1;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 6px; /* khoảng cách giữa hai nút */
+    align-items: center;
+    justify-content: center; /* căn giữa nếu muốn */
+}
+
+.edit-btn {
+    background-color: #d4f8e8;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #fde2e1;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+/* Điều chỉnh khoảng cách giữa "Order list" và "breadcrumb" */
+.page-title {
+    margin-bottom: 15px;
+}
+
+/* Điều chỉnh khoảng cách giữa "breadcrumb" và "Showing 10..." */
+.breadcrumb {
+    margin-bottom: 15px;
+}
+/* ========== CSS CHO CHI TIẾT HÓA ĐƠN ========== */
+
+.back-button {
+    background: #f1f5f9;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 20px;
+    transition: background 0.3s;
+}
+
+.back-button:hover {
+    background: #e2e8f0;
+}
+
+.invoice-container {
+    background-color: #fff;
+    border-radius: 8px;
+    /* Không cần padding ở đây vì .content-area đã có */
+}
+
+/* Header Hóa Đơn */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.invoice-logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #6366f1; /* Màu logo từ ảnh */
+}
+
+.invoice-header-right {
+    text-align: right;
+}
+
+.invoice-header-right h2 {
+    font-size: 24px;
+    margin-bottom: 4px;
+    color: #1e293b;
+}
+
+.invoice-order-id {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* Thông tin Meta */
+.invoice-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.meta-column {
+    flex-basis: 30%;
+}
+
+.meta-column strong {
+    color: #1e293b;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.meta-column address,
+.meta-column div {
+    color: #475569;
+}
+
+/* Bảng Sản Phẩm */
+.invoice-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.invoice-items-table th,
+.invoice-items-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.invoice-items-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #475569;
+}
+
+.invoice-items-table td {
+    color: #334155;
+    vertical-align: top;
+}
+
+.invoice-items-table td small {
+    color: #64748b;
+}
+
+/* Tổng kết */
+.invoice-summary {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.summary-details {
+    width: 100%;
+    max-width: 300px;
+    font-size: 14px;
+}
+
+.summary-details div {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    color: #475569;
+}
+
+.summary-details div span:last-child {
+    font-weight: 500;
+    color: #334155;
+}
+
+.summary-details .summary-total {
+    border-top: 2px solid #e2e8f0;
+    margin-top: 8px;
+    padding-top: 12px;
+}
+.summary-details .summary-total strong {
+    font-size: 18px;
+    color: #1e293b;
+}
+
+/* Footer Hóa Đơn */
+.invoice-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.invoice-notes {
+    flex-grow: 1;
+}
+.invoice-notes strong {
+    color: #1e293b;
+    display: block;
+    margin-bottom: 8px;
+}
+.invoice-notes p {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.invoice-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.invoice-actions .action-btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s;
+}
+
+
+.invoice-actions .action-btn.submit {
+    background-color: #6366f1;
+    color: #fff;
+    font-size: 15px;
+}
+.invoice-actions .action-btn.submit:hover {
+    background-color: #4f46e5;
+}
+.invoice-actions button {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 6px;
+    transition: background 0.3s;
+    width: 100%;
+    height: 100%;
+
+}
