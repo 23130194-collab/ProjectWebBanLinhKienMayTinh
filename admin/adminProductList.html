@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Admin</title>
+    <link rel="stylesheet" href="admincss/adminProductList.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="logo">
+        <a href="adminProductList.html">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+        </a>
+        <span class="logo-text">TechNova</span>
+    </div>
+
+    <ul class="nav-menu">
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
+                Dashboard
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                Khách hàng
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link active">
+                <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
+                Sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
+                Hóa đơn
+            </a>
+        </li>
+    </ul>
+
+    <!-- Logout Section -->
+    <div class="logout-section">
+        <a href="#" class="nav-link logout-link">
+                <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+            Đăng xuất
+        </a>
+    </div>
+</aside>
+
+<!-- Header -->
+<header class="header">
+    <div class="search-box">
+        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" class="search-input" placeholder="Tìm kiếm">
+    </div>
+
+    <div class="header-actions">
+        <button class="notification-btn">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-badge">3</span>
+        </button>
+
+        <div class="user-profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
+                 alt="User Profile">
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-area">
+        <h1 class="page-title">Sản phẩm</h1>
+        <div class="breadcrumb">
+            <a href="#">Trang chủ</a> / <span>Danh sách sản phẩm</span>
+        </div>
+
+        <!-- Sản phẩm -->
+        <div class="product-page">
+
+            <!-- Thanh bộ lọc -->
+            <aside class="filters-sidebar">
+
+                <!-- Danh mục sản phẩm -->
+                <div class="filter-block">
+                    <h3 class="filter-title">Danh mục</h3>
+                    <ul class="category-list">
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">CPU</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">Mainboard</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">RAM</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">Ổ cứng</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">Card màn hình</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">Nguồn máy tính</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">Tản nhiệt</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="category-item">
+                            <span class="category-icon">❯</span>
+                            <span class="category-name">Case máy tính</span>
+                            <span class="category-count">30</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Nhãn hàng -->
+                <div class="filter-block">
+                    <h3 class="filter-title">Nhãn hàng</h3>
+                    <ul class="brand-list">
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">ASUS</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">Intel</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">MSI</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">SAMSUNG</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">GIGABYTE</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">ASRock</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">Kingston</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">DEEPCOOL</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">COOLERMASTER</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">Lexar</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">Western Digital</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">ADATA</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">SEAGATE</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">Xigmatek</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">CORSAIR</span>
+                            <span class="category-count">30</span>
+                        </li>
+                        <li class="brand-item">
+                            <span class="brand-icon">❯</span>
+                            <span class="brand-name">Transcend</span>
+                            <span class="category-count">30</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </aside>
+
+            <!-- Sản phẩm -->
+            <div class="products-content">
+                <!-- Phần điều hướng sản phẩm -->
+                <div class="products-top-bar">
+                    <div class="search-wrapper">
+                        <input type="text" class="product-search" placeholder="Tìm kiếm">
+                        <svg class="search-icon-product" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </div>
+
+                    <button class="upload-btn">Thêm sản phẩm</button>
+                </div>
+
+                <!-- Tùy chọn hiện sản phẩm -->
+                <div class="filter-tabs">
+                    <button class="filter-tab active">Phổ biến</button>
+                    <button class="filter-tab">Nổi bật</button>
+                    <button class="filter-tab">Hàng mới về</button>
+                </div>
+
+                <!-- Khung chứa sản phẩm -->
+                <div class="products-grid">
+
+                    <!-- Sản phẩm 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/o/-/o-cung-di-dong-ssd-kingston-xs1000-usb-3-2-gen-2-den-1tb_2_.png"
+                                 alt="Ổ cứng di động SSD Kingston XS1000 USB 3.2 Gen 2 1TB Đen">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-13%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">Ổ cứng di động SSD Kingston XS1000 USB 3.2 Gen 2 1TB Đen</h4>
+                            <div class="product-price">
+                                <span class="current-price">2.090.000đ</span>
+                                <span class="old-price">2.390.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_1_.png"
+                                 alt="RAM Laptop Kingston 1.2V 8GB 3200MHz KVR32S22S8/8">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-10%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">RAM Laptop Kingston 1.2V 8GB 3200MHz KVR32S22S8/8</h4>
+                            <div class="product-price">
+                                <span class="current-price">890.000đ</span>
+                                <span class="old-price">990.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_3_.png"
+                                 alt="CPU Intel Core i5 12400F">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-10%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">CPU Intel Core i5 12400F</h4>
+                            <div class="product-price">
+                                <span class="current-price">4.290.000đ</span>
+                                <span class="old-price">4.990.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/v/g/vga-asus-dual-geforce-rtx-3060-oc-12gb-dual-rtx3060_1_.png"
+                                 alt="VGA ASUS Dual Geforce RTX 3060 OC 12GB DUAL-RTX3060-O12G-V2">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-14%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">VGA ASUS Dual Geforce RTX 3060 OC 12GB DUAL-RTX3060-O12G-V2</h4>
+                            <div class="product-price">
+                                <span class="current-price">7.690.000đ</span>
+                                <span class="old-price">8.990.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                 alt="Mainboard MSI B760M Gaming WIFI DDR5">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-6%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">Mainboard MSI B760M Gaming WIFI DDR5</h4>
+                            <div class="product-price">
+                                <span class="current-price">2.990.000đ</span>
+                                <span class="old-price">3.190.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/c/p/cpu-amd-ryzen-7-9800x3d_1_.png"
+                                 alt="CPU AMD Ryzen 7 9800X3D (WOF)">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-13%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">CPU AMD Ryzen 7 9800X3D (WOF)</h4>
+                            <div class="product-price">
+                                <span class="current-price">14.350.000đ</span>
+                                <span class="old-price">16.990.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 7 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/n/g/nguon-may-tinh-xigmatek-x-power-iii-550-500w_6_.png"
+                                 alt="Nguồn máy tính Xigmatek X-Power III 650 600W">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-31%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">Nguồn máy tính Xigmatek X-Power III 650 600W</h4>
+                            <div class="product-price">
+                                <span class="current-price">890.000đ</span>
+                                <span class="old-price">1.290.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 8 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/_/m_y_t_nh_4__11.png"
+                                 alt="Case máy tính Xigmatek Pano M NANO 3GF M-ATX">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+<!--                            <span class="discount-badge"></span>-->
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">Case máy tính Xigmatek Pano M NANO 3GF M-ATX</h4>
+                            <div class="product-price">
+                                <span class="current-price">850.000đ</span>
+<!--                                <span class="old-price"></span>-->
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 9 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/_/m_y_t_nh_42.png"
+                                 alt="Tản nhiệt khí Xigmatek EPIX II">
+                            <div class="product-actions left">
+                                <button class="action-btn">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="discount-badge">-20%</span>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-name">Tản nhiệt khí Xigmatek EPIX II</h4>
+                            <div class="product-price">
+                                <span class="current-price">390.000đ</span>
+                                <span class="old-price">490.000đ</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">5.0</span>
+                            </div>
+                            <p class="stock-info">Còn 10 sản phẩm</p>
+                        </div>
+                    </div>
+
+                </div> <!-- Thẻ div kết thúc sản phẩm -->
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn prev">&lt;</button>
+                    <button class="page-btn">01</button>
+                    <button class="page-btn active">02</button>
+                    <button class="page-btn">03</button>
+                    <button class="page-btn">04</button>
+                    <button class="page-btn">05</button>
+                    <button class="page-btn next">&gt;</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+</body>
+</html>
