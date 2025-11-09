@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Admin - Upload Product</title>
+    <link rel="stylesheet" href="admincss/customersList.css">
+    <link rel="stylesheet" href="admincss/detailsCustomers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="adminProductList.html">
+                <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+            </a>
+            <span class="logo-text">TechNova</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                    Khách hàng
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="adminProductList.html" class="nav-link active">
+                    <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
+                    Sản phẩm
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
+                    Hóa đơn
+                </a>
+            </li>
+        </ul>
+
+        <!-- Logout Section -->
+        <div class="logout-section">
+            <a href="#" class="nav-link logout-link">
+                <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                Đăng xuất
+            </a>
+        </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="search-box">
+            <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" class="search-input" placeholder="Search">
+        </div>
+
+        <div class="header-actions">
+            <button class="notification-btn">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+
+            <div class="user-profile">
+                <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
+                    alt="User Profile">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-area">
+            <h1 class="page-title">Order list</h1>
+            <div class="breadcrumb">
+                <a href="#">Home</a> / <span>Order List</span> / <span>Customer Details</span>
+            </div>
+
+            <!-- Đây là nơi bạn thêm nội dung của mình -->
+            <!-- <div style="margin-top: 24px; padding: 20px; background: #f8fafc; border-radius: 8px; text-align: center; color: #64748b;"> -->
+            <!-- Thêm nội dung của bạn vào đây -->
+            <div class="customer-detail">
+                <!-- Cột trái: Thông tin khách hàng -->
+                <div class="customer-profile">
+                    <div class="profile-card">
+                        <img src="https://i.postimg.cc/Cx9RqX78/Chat-GPT-Image-22-40-49-9-thg-11-2025-removebg-preview.png"
+                            alt="Customer Photo" class="profile-img">
+                        <h2 class="customer-name">Trinh Tran Phuong Tuan</h2>
+                        <p class="customer-phone">+38 (094) 730-24-25</p>
+                        <p class="customer-email">margaretraw@gmail.com</p>
+
+                        <div class="balance-box">Balance $1200</div>
+
+                        <div class="customer-stats">
+                            <p><strong>Last Order:</strong> 7 days ago – <a href="#">#80294</a></p>
+                            <p><strong>Average Order Value:</strong> $574.00</p>
+
+                            <p><strong>Marketing Email:</strong> Subscribed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột phải: Danh sách đơn hàng -->
+                <div class="orders-section">
+                    <div class="orders-header">
+                        <h3>Orders</h3>
+                        <p>Total spent <strong>$85,560.00</strong> on <strong>7 orders</strong></p>
+                    </div>
+
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#">#Kz025417</a></td>
+                                <td>Today at 4:55 pm</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>6</td>
+                                <td>$520.00</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">#80293</a></td>
+                                <td>Today at 4:50 pm</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>6</td>
+                                <td>$985.00</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">#78621</a></td>
+                                <td>November 20, 2021</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>10</td>
+                                <td>$623.00</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">#78622</a></td>
+                                <td>November 15, 2021</td>
+                                <td><span class="status canceled">Canceled</span></td>
+                                <td>3</td>
+                                <td>$120.00</td>
+                            </tr>
+                            <tr class="extra-customer hidden">
+                                <td>Maria Tran</td>
+                                <td>maria@example.com</td>
+                                <td>0912-789-654</td>
+                                <td><span class="status active">Active</span></td>
+                            </tr>
+                            <tr class="extra-customer hidden">
+                                <td>David Pham</td>
+                                <td>david@example.com</td>
+                                <td>0934-567-890</td>
+                                <td><span class="status inactive">Inactive</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <div class="view-all-orders">
+                <a href="#">View All Orders</a>
+            </div> -->
+                    <div class="view-all-orders">
+                        <button id="viewMoreBtn">View more orders</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+        <!-- Khung Thông tin cá nhân -->
+        <!-- <section class="personal-info">
+  <div class="info-card">
+    <div class="info-header">
+      <h2>Thông tin cá nhân</h2>
+      <a href="#" class="update-btn">Cập nhật</a>
+    </div>
+
+    <div class="info-body">
+      <div class="info-row">
+        <span>Họ và tên:</span>
+        <p>Nguyễn Võ Quang Minh</p>
+        <span>Số điện thoại:</span>
+        <p>0978173770</p>
+      </div>
+
+      <div class="info-row">
+        <span>Giới tính:</span>
+        <p>-</p>
+        <span>Email:</span>
+        <p>-</p>
+      </div>
+
+      <div class="info-row">
+        <span>Ngày sinh:</span>
+        <p>18/11/2005</p>
+        <span>Địa chỉ mặc định:</span>
+        <p>-</p>
+      </div>
+    </div>
+  </div>
+</section> -->
+        <!-- Khung Thông tin cá nhân -->
+        <section class="personal-info">
+            <!-- Khung hiển thị -->
+            <div class="info-card" id="infoView">
+                <div class="info-header">
+                    <h2>Thông tin cá nhân</h2>
+                    <button id="editBtn" class="update-btn">Cập nhật</button>
+                </div>
+
+                <div class="info-body">
+                    <div class="info-row">
+                        <span>Họ và tên:</span>
+                        <p id="name">Nguyễn Võ Quang Minh</p>
+                        <span>Số điện thoại:</span>
+                        <p id="phone">0978173770</p>
+                    </div>
+                    <div class="info-row">
+                        <span>Giới tính:</span>
+                        <p id="gender">Nam</p>
+                        <span>Email:</span>
+                        <p id="email">minh@example.com</p>
+                    </div>
+                    <div class="info-row">
+                        <span>Ngày sinh:</span>
+                        <p id="dob">18/11/2005</p>
+                        <span>Địa chỉ:</span>
+                        <p id="address">123 Nguyễn Trãi, Q5, TP.HCM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khung chỉnh sửa (ẩn lúc đầu) -->
+            <div class="info-card hidden" id="infoForm">
+                <div class="info-header">
+                    <h2>Cập nhật thông tin</h2>
+                </div>
+
+                <div class="info-body">
+                    <div class="info-row">
+                        <span>Họ và tên:</span>
+                        <input type="text" id="inputName" value="Nguyễn Võ Quang Minh">
+                        <span>Số điện thoại:</span>
+                        <input type="text" id="inputPhone" value="0978173770">
+                    </div>
+                    <div class="info-row">
+                        <span>Giới tính:</span>
+                        <select id="inputGender">
+                            <option>Nam</option>
+                            <option>Nữ</option>
+                            <option>Khác</option>
+                        </select>
+                        <span>Email:</span>
+                        <input type="email" id="inputEmail" value="minh@example.com">
+                    </div>
+                    <div class="info-row">
+                        <span>Ngày sinh:</span>
+                        <input type="date" id="inputDob" value="2005-11-18">
+                        <span>Địa chỉ:</span>
+                        <input type="text" id="inputAddress" value="123 Nguyễn Trãi, Q5, TP.HCM">
+                    </div>
+                </div>
+
+                <div class="info-actions">
+                    <button id="saveBtn" class="save-btn">Lưu</button>
+                    <button id="cancelBtn" class="cancel-btn">Hủy</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
