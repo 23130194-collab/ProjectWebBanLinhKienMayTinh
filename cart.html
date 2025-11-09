@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng | TechNova</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cart.css">
+    
+</head>
+
+<body>
+<header class="header">
+    <div class="header-container">
+        <a href="home.html" class="logo">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png">
+            <span class="brand-name">TechNova</span>
+        </a>
+        <nav class="nav-links">
+            <a href="home.html" class="active">Trang chủ</a>
+            <a href="gioithieu.html">Giới thiệu</a>
+            <a href="#" id="category-toggle">Danh mục</a>
+            <a href="lienHe.html">Liên hệ</a>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="header-actions">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+
+        <!-- Danh mục -->
+        <div class="category-box" id="categoryBox">
+            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+</header>
+<!-- Overlay nền mờ -->
+<div class="overlay" id="overlay"></div>
+<div class="app-container">
+    <div class="header-cart">
+        <i class="fa fa-arrow-left"></i>
+        Giỏ hàng của bạn
+    </div>
+    <div class="cart-select-all">
+        <input type="checkbox" id="checkAll"> Chọn tất cả
+    </div>
+    <div class="cart-content">
+        <div class="product-item">
+            <input type="checkbox" class="select-item">
+            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png">
+            <div class="info">
+                <div class="info-line">
+                    <span>Mainboard MSI B760M Gaming WIFI DDR5</span>
+                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                        <button class="delete-icon"><i class="fa fa-trash"></i></button>
+                        <div class="qty">
+                            <button>-</button>
+                            <input type="text" value="1" readonly>
+                            <button>+</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="current-price">2.990.000₫</span>
+                    <span class="old-price">3.190.000₫</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-bar">
+    <span class="total-amount">Tạm tính: 6.291.000₫</span>
+    <a href="thongTinNhanHang.html" class="btn-buy-link">Mua ngay</a>
+</div>
+<script src="js/header.js"></script>
+<script src=""></script>
+</body>
+
+</html>

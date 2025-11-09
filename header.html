@@ -1,41 +1,39 @@
-<header>
-  <div class="header-container">
-    <!-- Logo + TechNova -->
-    <a href="index.html" class="logo">
-      <img src="img/logo (2).png" alt="TechNova Logo">
-      <span>TechNova</span>
-    </a>
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+        <span class="brand-name">TechNova</span>
+      </a>
 
-    <!-- Nút Danh mục -->
-    <a href="#" class="menu-btn" id="toggleMenu">
-      <i class="fas fa-th-large"></i> Danh mục
-    </a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="gioithieu.html">Giới thiệu</a>
+        <a href="#" id="category-toggle">Danh mục</a>
+        <a href="lienhe.html">Liên hệ</a>
+      </nav>
 
-    <!-- Thanh tìm kiếm -->
-    <div class="search-bar">
-      <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
-      <i class="fas fa-search"></i>
+      <div class="search-box">
+        <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+
+      <div class="header-actions">
+        <button class="cart-btn" title="Giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+        <button class="login-btn" title="Đăng nhập"><i class="fas fa-user"></i></button>
+      </div>
+
+      <!-- Danh mục -->
+      <div class="category-box" id="categoryBox">
+        <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="#" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i class="fa-solid fa-chevron-right"></i></a>
+        <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i class="fa-solid fa-chevron-right"></i></a>
+      </div>
     </div>
-
-    <!-- Nút Giỏ hàng + Đăng nhập -->
-    <div class="header-actions">
-      <a href="giohang.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a>
-      <a href="login.html"><i class="fas fa-user"></i> Đăng nhập</a>
-    </div>
-
-    <!-- Khung danh mục -->
-    <div class="category-box" id="categoryBox">
-      <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i class="fa-solid fa-chevron-right"></i></a>
-      <a href="#" class="category-item"><i class="fa-solid fa-laptop"></i> Mainboard <i class="fa-solid fa-chevron-right"></i></a>
-      <a href="#" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i class="fa-solid fa-chevron-right"></i></a>
-      <a href="#" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i class="fa-solid fa-chevron-right"></i></a>
-      <a href="#" class="category-item"><i class="fa-solid fa-video"></i> Card màn hình <i class="fa-solid fa-chevron-right"></i></a>
-      <a href="#" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i class="fa-solid fa-chevron-right"></i></a>
-      <a href="#" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i class="fa-solid fa-chevron-right"></i></a>
-      <a href="#" class="category-item"><i class="fa-solid fa-desktop"></i> Case máy tính <i class="fa-solid fa-chevron-right"></i></a>
-    </div>
-  </div>
-</header>
-
-<!-- Overlay nền mờ -->
-<div class="overlay" id="overlay"></div>
+  </header>
+    <!-- Overlay nền mờ -->
+    <div class="overlay" id="overlay"></div>

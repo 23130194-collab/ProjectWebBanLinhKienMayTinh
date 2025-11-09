@@ -6,48 +6,21 @@
     <title>Đăng nhập | TechNova</title>
     <link rel="stylesheet" href="css/form.css"/>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
-
 </head>
 <body>
 <div class="overlay">
     <div class="login-modal">
         <h2>Chào mừng đến với TechNova!</h2>
 
-        <form id="login-form" action="" method="post" autocomplete="on">
+        <form id="login-form" action="#" method="post">
             <div class="input-group">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Nhập email"
-                required
-                autocomplete="username"
-              />
-              <small id="emailError" class="error-message"></small>
-            </div>
-          </form>
-          
-            <div class="input-group">
-                <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Nhập mật khẩu"
-                        required
-                        autocomplete="current-password"
-                />
-                <i class="fa-solid fa-eye" id="showEye" style="color: #000000;"></i>
-                <i class="fa-solid fa-eye-slash" id="hideEye" style="color: #000000; display: none;"></i>
-                <small id="passwordError" class="error-text"></small>
+                <input type="email" id="email" name="email" placeholder="Nhập email" required />
             </div>
 
-            <!-- yc mk -->
-             <!-- 🔹 Thêm dòng hướng dẫn -->
-<p id="password-requirements" class="password-info">
-    *Mật khẩu phải có ít nhất <strong>8 ký tự</strong>, 
-    <strong>1 chữ hoa</strong>, <strong>1 số</strong> và 
-    <strong>1 ký tự đặc biệt</strong>.
-</p>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+            </div>
+
 
             <div class="remember">
                 <label>
@@ -59,22 +32,19 @@
             <button type="submit" class="login-btn">Đăng nhập</button>
         </form>
 
-        <!-- Thêm dòng chia cách -->
         <div class="divider">
             <span>Hoặc đăng nhập bằng</span>
         </div>
 
-        <!-- Các nút đăng nhập mạng xã hội -->
         <div class="social-login">
             <button type="button" class="google">
-                <img src="img/google.png" alt="Google logo">
+                <img src="https://i.postimg.cc/52XY45D7/z7179766768017-0600811c9c5ce7a039bb0715af80295b.jpg" alt="Google logo">
                 Google
             </button>
             <button type="button" class="facebook">
-                <img src ="img/facebook.png" alt="Facebook logo">
+                <img src="https://i.postimg.cc/rsBv3Xyx/facebook.png" alt="Facebook logo">
                 Facebook
             </button>
-            
         </div>
 
         <div class="signup">
