@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="admincss/customersList.css">
     <link rel="stylesheet" href="admincss/detailsCustomers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admincss/adminNotification.css">
+    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
 </head>
 
 <body>
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="logo">
-            <a href="adminProductList.html">
+            <a href="adminDashboard.html">
                 <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
             </a>
             <span class="logo-text">TechNova</span>
@@ -22,14 +24,14 @@
 
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="adminDashboard.html" class="nav-link">
                     <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
                     Dashboard
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="customersList.html" class="nav-link">
                     <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
                     Khách hàng
                 </a>
@@ -43,7 +45,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="adminHoaDon.html" class="nav-link">
                     <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
                     Hóa đơn
                 </a>
@@ -52,7 +54,7 @@
 
         <!-- Logout Section -->
         <div class="logout-section">
-            <a href="#" class="nav-link logout-link">
+            <a href="../login.html" class="nav-link logout-link">
                 <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
                 Đăng xuất
             </a>
@@ -63,15 +65,69 @@
     <header class="header">
         <div class="search-box">
             <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <input type="text" class="search-input" placeholder="Search">
+            <input type="text" class="search-input" placeholder="Tìm kiếm">
         </div>
 
         <div class="header-actions">
-            <button class="notification-btn">
+            <button class="notification-btn" id="notificationBtn">
                 <i class="fa-solid fa-bell"></i>
                 <span class="notification-badge">3</span>
             </button>
 
+            <!-- Thông báo -->
+            <div class="notification-dropdown" id="notificationDropdown">
+                <div class="notification-header">
+                    <h3>Thông báo</h3>
+                </div>
+
+                <div class="notification-list">
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: #5b86e5;">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                            <span class="notification-time">20 giây trước</span>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: #5b86e5;">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
+                                    công!</strong></p>
+                            <span class="notification-time">20 phút trước</span>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: #5b86e5;">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
+                                    công!</strong></p>
+                            <span class="notification-time">5 giờ trước</span>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: #5b86e5;">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                            <span class="notification-time">12 giờ trước</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-footer">
+                    <a href="adminAllNotification.html" class="see-all-link">Xem tất cả thông báo</a>
+                </div>
+            </div>
             <div class="user-profile">
                 <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
                     alt="User Profile">
@@ -82,14 +138,12 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="content-area">
-            <h1 class="page-title">Order list</h1>
+            <h1 class="page-title">Chi tiết khách hàng</h1>
             <div class="breadcrumb">
-                <a href="#">Home</a> / <span>Order List</span> / <span>Customer Details</span>
+                <a href="adminDashboard.html">Trang chủ</a> / <span>Danh sách khách hàng</span> / <span>Chi tiết khách
+                    hàng</span>
             </div>
 
-            <!-- Đây là nơi bạn thêm nội dung của mình -->
-            <!-- <div style="margin-top: 24px; padding: 20px; background: #f8fafc; border-radius: 8px; text-align: center; color: #64748b;"> -->
-            <!-- Thêm nội dung của bạn vào đây -->
             <div class="customer-detail">
                 <!-- Cột trái: Thông tin khách hàng -->
                 <div class="customer-profile">
@@ -97,16 +151,15 @@
                         <img src="https://i.postimg.cc/Cx9RqX78/Chat-GPT-Image-22-40-49-9-thg-11-2025-removebg-preview.png"
                             alt="Customer Photo" class="profile-img">
                         <h2 class="customer-name">Trinh Tran Phuong Tuan</h2>
-                        <p class="customer-phone">+38 (094) 730-24-25</p>
-                        <p class="customer-email">margaretraw@gmail.com</p>
+                        <p class="customer-phone">+(84) 332 669 512</p>
+                        <p class="customer-email">phuongtuan@gmail.com</p>
 
-                        <div class="balance-box">Balance $1200</div>
+                        <div class="balance-box">Tiền tích lũy: 1.623.000đ</div>
 
                         <div class="customer-stats">
-                            <p><strong>Last Order:</strong> 7 days ago – <a href="#">#80294</a></p>
-                            <p><strong>Average Order Value:</strong> $574.00</p>
-
-                            <p><strong>Marketing Email:</strong> Subscribed</p>
+                            <p><strong>Lần cuối:</strong> 7 ngày trước – <a href="#">#1988001</a></p>
+                            <p><strong>Số tiền trung bình:</strong> 5.623.000đ</p>
+                            <p><strong>Marketing Email:</strong> -</p>
                         </div>
                     </div>
                 </div>
@@ -114,106 +167,60 @@
                 <!-- Cột phải: Danh sách đơn hàng -->
                 <div class="orders-section">
                     <div class="orders-header">
-                        <h3>Orders</h3>
-                        <p>Total spent <strong>$85,560.00</strong> on <strong>7 orders</strong></p>
+                        <h3>Tất cả đơn hàng</h3>
+                        <p>Tổng chi phí <strong>85.560.000</strong> trong <strong>7 đơn hàng</strong></p>
                     </div>
 
                     <table class="orders-table">
                         <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Items</th>
-                                <th>Total</th>
+                                <th>Mã đơn hàng</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Trạng thái đơn hàng</th>
+                                <th>Số sản phẩm</th>
+                                <th>Tổng tiền</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><a href="#">#Kz025417</a></td>
-                                <td>Today at 4:55 pm</td>
-                                <td><span class="status pending">Pending</span></td>
+                                <td><a href="adminHoaDon.html">#1988001</a></td>
+                                <td>09/11/2025 at 4:55 pm</td>
+                                <td><span class="status pending">Đang xử lý</span></td>
                                 <td>6</td>
-                                <td>$520.00</td>
+                                <td>1.520.000đ</td>
                             </tr>
                             <tr>
                                 <td><a href="#">#80293</a></td>
-                                <td>Today at 4:50 pm</td>
-                                <td><span class="status pending">Pending</span></td>
+                                <td>22/12/2025 at 4:50 pm</td>
+                                <td><span class="status pending">Đang xử lý</span></td>
                                 <td>6</td>
-                                <td>$985.00</td>
+                                <td>1.985.000đ</td>
                             </tr>
                             <tr>
                                 <td><a href="#">#78621</a></td>
-                                <td>November 20, 2021</td>
-                                <td><span class="status completed">Completed</span></td>
+                                <td>20/11/2024 at 4:50 pm</td>
+                                <td><span class="status completed">Đã hoàn thành</span></td>
                                 <td>10</td>
-                                <td>$623.00</td>
+                                <td>1.623.000đ</td>
                             </tr>
                             <tr>
                                 <td><a href="#">#78622</a></td>
-                                <td>November 15, 2021</td>
-                                <td><span class="status canceled">Canceled</span></td>
+                                <td>15/11/2026 at 4:50 pm</td>
+                                <td><span class="status canceled">Đã hủy</span></td>
                                 <td>3</td>
-                                <td>$120.00</td>
+                                <td>1.120.000đ</td>
                             </tr>
-                            <tr class="extra-customer hidden">
-                                <td>Maria Tran</td>
-                                <td>maria@example.com</td>
-                                <td>0912-789-654</td>
-                                <td><span class="status active">Active</span></td>
-                            </tr>
-                            <tr class="extra-customer hidden">
-                                <td>David Pham</td>
-                                <td>david@example.com</td>
-                                <td>0934-567-890</td>
-                                <td><span class="status inactive">Inactive</span></td>
-                            </tr>
+
                         </tbody>
                     </table>
 
-                    <!-- <div class="view-all-orders">
-                <a href="#">View All Orders</a>
-            </div> -->
                     <div class="view-all-orders">
-                        <button id="viewMoreBtn">View more orders</button>
+                        <button id="viewMoreBtn">Xem thêm đơn hàng</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- </div> -->
-        <!-- Khung Thông tin cá nhân -->
-        <!-- <section class="personal-info">
-  <div class="info-card">
-    <div class="info-header">
-      <h2>Thông tin cá nhân</h2>
-      <a href="#" class="update-btn">Cập nhật</a>
-    </div>
-
-    <div class="info-body">
-      <div class="info-row">
-        <span>Họ và tên:</span>
-        <p>Nguyễn Võ Quang Minh</p>
-        <span>Số điện thoại:</span>
-        <p>0978173770</p>
-      </div>
-
-      <div class="info-row">
-        <span>Giới tính:</span>
-        <p>-</p>
-        <span>Email:</span>
-        <p>-</p>
-      </div>
-
-      <div class="info-row">
-        <span>Ngày sinh:</span>
-        <p>18/11/2005</p>
-        <span>Địa chỉ mặc định:</span>
-        <p>-</p>
-      </div>
-    </div>
-  </div>
-</section> -->
+       
         <!-- Khung Thông tin cá nhân -->
         <section class="personal-info">
             <!-- Khung hiển thị -->
@@ -226,19 +233,19 @@
                 <div class="info-body">
                     <div class="info-row">
                         <span>Họ và tên:</span>
-                        <p id="name">Nguyễn Võ Quang Minh</p>
+                        <p id="name">Trịnh Trần Phương Tuấn</p>
                         <span>Số điện thoại:</span>
-                        <p id="phone">0978173770</p>
+                        <p id="phone">+(84) 332 669 512</p>
                     </div>
                     <div class="info-row">
                         <span>Giới tính:</span>
                         <p id="gender">Nam</p>
                         <span>Email:</span>
-                        <p id="email">minh@example.com</p>
+                        <p id="email">phuongtuan@gmail.com</p>
                     </div>
                     <div class="info-row">
                         <span>Ngày sinh:</span>
-                        <p id="dob">18/11/2005</p>
+                        <p id="dob">12/04/1997</p>
                         <span>Địa chỉ:</span>
                         <p id="address">123 Nguyễn Trãi, Q5, TP.HCM</p>
                     </div>
@@ -286,5 +293,7 @@
     </main>
 
 </body>
+<script src="adminjs/adminHoaDon.js"></script>
+<script src="adminjs/adminNotification.js"></script>
 
 </html>
