@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Admin - Danh sách hóa đơn</title>
+    <title>TechNova Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="admincss/adminHoaDon.css">
     <link rel="stylesheet" href="admincss/adminNotification.css">
+    <link rel="stylesheet" href="admincss/adminAllNotification.css">
+    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
 </head>
 <body>
-
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
@@ -45,13 +44,14 @@
         </li>
 
         <li class="nav-item">
-            <a href="adminHoaDonList.html" class="nav-link active">
+            <a href="adminHoaDon.html" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
                 Hóa đơn
             </a>
         </li>
     </ul>
 
+    <!-- Logout Section -->
     <div class="logout-section">
         <a href="../login.html" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
@@ -95,7 +95,8 @@
                         <i class="fa-solid fa-users"></i>
                     </div>
                     <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng <strong>thành công!</strong></p>
+                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
+                            công!</strong></p>
                         <span class="notification-time">20 phút trước</span>
                     </div>
                 </div>
@@ -105,7 +106,8 @@
                         <i class="fa-solid fa-file-invoice"></i>
                     </div>
                     <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 <strong>thành công!</strong></p>
+                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
+                            công!</strong></p>
                         <span class="notification-time">5 giờ trước</span>
                     </div>
                 </div>
@@ -135,66 +137,92 @@
 <!-- Main Content -->
 <main class="main-content">
     <div class="content-area">
-        <h1 class="page-title">Hoá đơn</h1>
-        <div class="breadcrumb"><a href="#">Home</a> / <span>Hoá đơn</span></div>
-
-        <div class="order-tools">
-            <div>
-                Xem nhiều hơn
-                <select>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                </select>
+        <div class="notification-container">
+            <!-- Thông báo 1 -->
+            <div class="notification-item">
+                <div class="notification-icon-circle">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Đã thêm thông tin sản phẩm #RAM111 vào hệ thống <strong>thành
+                        công!</strong></p>
+                    <span class="notification-time">20 phút trước</span>
+                </div>
             </div>
 
-            <div>
-                <input type="text" placeholder="Tìm kiếm..." />
-                <button>Tìm kiếm</button>
+            <!-- Thông báo 2 -->
+            <div class="notification-item">
+                <div class="notification-icon-circle">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Đã cập nhật thông tin sản phẩm #CPU222 trên hệ thống <strong>thành
+                        công!</strong></p>
+                    <span class="notification-time">3 giờ trước</span>
+                </div>
             </div>
-        </div>
 
-        <table>
-            <thead>
-            <tr>
-                <th class="checkbox-col" aria-hidden="true"></th>
-                <th>Mã đơn hàng</th>
-                <th>Tên khách hàng</th>
-                <th>Ngày đặt hàng</th>
-                <th>Trạng thái thanh toán</th>
-                <th>Tổng cộng</th>
-                <th>Phương thức thanh toán</th>
-                <th>Trạng thái đơn hàng</th>
-                <th>Hoạt động</th>
-            </tr>
-            </thead>
+            <!-- Thông báo 3 -->
+            <div class="notification-item">
+                <div class="notification-icon-circle">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Đã thêm tài khoản khách hàng #USER333 vào hệ thống <strong>thành
+                        công!</strong></p>
+                    <span class="notification-time">5 giờ trước</span>
+                </div>
+            </div>
 
-            <tbody>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td><a href="adminChiTietHoaDon.html">#1988001</a></td>
-                <td>HuongLan</td>
-                <td>09/11/2025<br />16:48</td>
-                <td><span class="badge paid">Đã thanh toán</span></td>
-                <td>9.891.000đ</td>
-                <td>Tiền mặt</td>
-                <td><span class="badge shipped">Đã vận chuyển</span></td>
-                <td>
-                    <div class="action-buttons">
-                        <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
-                        <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </td>
-            </tr>
-            <!-- Thêm các đơn hàng khác nếu cần -->
-            </tbody>
-        </table>
+            <!-- Thông báo 4 -->
+            <div class="notification-item">
+                <div class="notification-icon-circle">
+                    <i class="fa-solid fa-file-invoice"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Đã cập nhật trạng thái hóa đơn #1988001 vào hệ thống <strong>thành
+                        công!</strong></p>
+                    <span class="notification-time">6 giờ trước</span>
+                </div>
+            </div>
 
-        <div class="pagination">
-            <button class="page-btn prev" disabled>&lt;</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn next">&gt;</button>
+            <!-- Thông báo 5 -->
+            <div class="notification-item">
+                <div class="notification-icon-circle">
+                    <i class="fa-solid fa-file-invoice"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Đã thêm hóa đơn #1988001 vào hệ thống <strong>thành công!</strong></p>
+                    <span class="notification-time">10 giờ trước</span>
+                </div>
+            </div>
+
+            <!-- Thông báo 6 -->
+            <div class="notification-item">
+                <div class="notification-icon-circle">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Đã ẩn thông tin sản phẩm #CPU123 trên hệ thống <strong>thành
+                        công!</strong></p>
+                    <span class="notification-time">1 ngày trước</span>
+                </div>
+            </div>
+
+            <!-- Notification 7 -->
+            <div class="notification-item">
+                <div class="notification-icon-circle">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Đã thêm thông tin sản phẩm #CPU123 vào hệ thống <strong>thành
+                        công!</strong></p>
+                    <span class="notification-time">2 ngày trước</span>
+                </div>
+            </div>
+
+            <!-- View All Button -->
+            <button class="view-all-btn">Xem thêm thông báo</button>
         </div>
     </div>
 </main>
