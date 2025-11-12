@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mainboard MSI B760M Gaming WIFI DDR5</title>
+    <title>Sản phẩn | TechNova</title>
     <link rel="stylesheet" href="css/sanPham.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -22,7 +22,7 @@
 
         <nav class="nav-links">
             <a href="home.html" class="active">Trang chủ</a>
-            <a href="gioithieu.html">Giới thiệu</a>
+            <a href="gioiThieu.html">Giới thiệu</a>
             <a href="#" id="category-toggle">Danh mục</a>
             <a href="lienHe.html">Liên hệ</a>
         </nav>
@@ -444,14 +444,29 @@
             </div>
 
             <div class="reviews-filter">
-                <button class="filter-btn active">Tất cả</button>
-                <button class="filter-btn">Có hình ảnh</button>
-                <button class="filter-btn">Đã mua hàng</button>
-                <button class="filter-btn">5 sao</button>
-                <button class="filter-btn">4 sao</button>
-                <button class="filter-btn">3 sao</button>
-                <button class="filter-btn">2 sao</button>
-                <button class="filter-btn">1 sao</button>
+                <input type="radio" name="review-filter" id="filter-all" class="filter-input" checked>
+                <label for="filter-all" class="filter-btn">Tất cả</label>
+
+                <input type="radio" name="review-filter" id="filter-images" class="filter-input">
+                <label for="filter-images" class="filter-btn">Có hình ảnh</label>
+
+                <input type="radio" name="review-filter" id="filter-purchased" class="filter-input">
+                <label for="filter-purchased" class="filter-btn">Đã mua hàng</label>
+
+                <input type="radio" name="review-filter" id="filter-5star" class="filter-input">
+                <label for="filter-5star" class="filter-btn">5 sao</label>
+
+                <input type="radio" name="review-filter" id="filter-4star" class="filter-input">
+                <label for="filter-5star" class="filter-btn">4 sao</label>
+
+                <input type="radio" name="review-filter" id="filter-3star" class="filter-input">
+                <label for="filter-5star" class="filter-btn">3 sao</label>
+
+                <input type="radio" name="review-filter" id="filter-2star" class="filter-input">
+                <label for="filter-5star" class="filter-btn">2 sao</label>
+
+                <input type="radio" name="review-filter" id="filter-1star" class="filter-input">
+                <label for="filter-5star" class="filter-btn">1 sao</label>
             </div>
 
             <div class="reviews-list">
@@ -539,27 +554,38 @@
 
                     <div class="review-rating-select">
                         <h4>Đánh giá chung</h4>
+
                         <div class="rating-options">
-                            <div class="rating-option" data-rating="1">
+                            <input type="radio" name="rating" id="rate1" class="rating-input">
+                            <label for="rate1" class="rating-option">
                                 <i class="fa-solid fa-star"></i>
                                 <span>Rất tệ</span>
-                            </div>
-                            <div class="rating-option" data-rating="2">
+                            </label>
+
+                            <input type="radio" name="rating" id="rate2" class="rating-input">
+                            <label for="rate2" class="rating-option">
                                 <i class="fa-solid fa-star"></i>
                                 <span>Tệ</span>
-                            </div>
-                            <div class="rating-option" data-rating="3">
+                            </label>
+
+                            <input type="radio" name="rating" id="rate3" class="rating-input">
+                            <label for="rate3" class="rating-option">
                                 <i class="fa-solid fa-star"></i>
                                 <span>Bình thường</span>
-                            </div>
-                            <div class="rating-option" data-rating="4">
+                            </label>
+
+                            <input type="radio" name="rating" id="rate4" class="rating-input">
+                            <label for="rate4" class="rating-option">
                                 <i class="fa-solid fa-star"></i>
                                 <span>Tốt</span>
-                            </div>
-                            <div class="rating-option" data-rating="5">
+                            </label>
+
+                            <input type="radio" name="rating" id="rate5" class="rating-input" checked>
+                            <!-- Mặc định chọn 5 sao -->
+                            <label for="rate5" class="rating-option">
                                 <i class="fa-solid fa-star"></i>
                                 <span>Tuyệt vời</span>
-                            </div>
+                            </label>
                         </div>
                     </div>
 
@@ -602,7 +628,7 @@
         </div>
     </div>
 
-    <!-- Nút lên đầu trang -->
+    <!-- Nút cuộn lên đầu trang -->
     <button class="btn-scroll-top" id="btn-scroll-top">
         Lên đầu <i class="fa-solid fa-chevron-up"></i>
     </button>

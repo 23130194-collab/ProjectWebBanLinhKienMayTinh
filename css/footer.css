@@ -1,7 +1,7 @@
 footer {
     display: block;
-    background-color: #f8f8f8;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #EEEEEEFF;
+    font-family: "Segoe UI", sans-serif;
     padding: 50px 0;
     line-height: 1.35;
 }
@@ -87,24 +87,29 @@ footer ul li {
     }
 
     .footer-col {
-        width: 48%; /* 2 cột trên 1 hàng */
-        margin-bottom: 25px; /* Khoảng cách giữa các hàng cột */
+        width: 48%;
+        /* 2 cột trên 1 hàng */
+        margin-bottom: 25px;
+        /* Khoảng cách giữa các hàng cột */
     }
 
     .footer-col:nth-child(2n) {
-        padding-right: 0; /* Bỏ padding phải cho cột cuối hàng */
+        padding-right: 0;
+        /* Bỏ padding phải cho cột cuối hàng */
     }
 
     .footer-col:last-child,
     .footer-col:nth-last-child(2) {
-        margin-bottom: 0; /* Bỏ margin cuối cùng */
+        margin-bottom: 0;
+        /* Bỏ margin cuối cùng */
     }
 
 }
 
 @media (max-width: 480px) {
     .footer-col {
-        width: 100%; /* 1 cột trên 1 hàng */
+        width: 100%;
+        /* 1 cột trên 1 hàng */
         padding-right: 0;
     }
 }
