@@ -20,7 +20,6 @@ body {
 .header-cart i {
     font-size: 20px;
     color: #000; /* Mũi tên màu đen */
-    cursor: pointer;
 }
 
 /* Container dưới header */
@@ -118,6 +117,36 @@ body {
 }
 
 /* Phương thức nhận hàng */
+/*.method-box {*/
+/*    display: flex;*/
+/*    gap: 10px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.method {*/
+/*    flex: 1;*/
+/*    text-align: center;*/
+/*    padding: 10px;*/
+/*    border-radius: 8px;*/
+/*    background: #eee;*/
+/*    cursor: pointer;*/
+/*    font-size: 13px;*/
+/*    transition: background 0.2s ease, color 0.2s ease;*/
+/*}*/
+
+/*.method:hover {*/
+/*    background: #f3c2c2;*/
+/*    color: #d70018;*/
+/*    transform: scale(1.02);*/
+/*}*/
+
+/*.method.active {*/
+/*    background: #d70018;*/
+/*    color: white;*/
+/*    font-weight: 600;*/
+/*    transform: scale(1.05);*/
+/*}*/
+
 .method-box {
     display: flex;
     gap: 10px;
@@ -130,9 +159,11 @@ body {
     padding: 10px;
     border-radius: 8px;
     background: #eee;
-    cursor: pointer;
     font-size: 13px;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .method:hover {
@@ -146,6 +177,19 @@ body {
     color: white;
     font-weight: 600;
     transform: scale(1.05);
+}
+
+/* === NÚT QUAY LẠI === */
+.back-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.back-link:hover {
+    opacity: 0.7;
 }
 
 
@@ -180,7 +224,6 @@ body {
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
-    border: none;
 }
 
 
