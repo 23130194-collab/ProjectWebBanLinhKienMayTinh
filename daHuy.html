@@ -11,6 +11,7 @@
 
 </head>
 <body>
+
 <header class="header">
     <div class="header-container">
         <a href="home.html" class="logo">
@@ -40,6 +41,7 @@
             </a>
         </div>
 
+        <!-- Danh mục -->
         <div class="category-box" id="categoryBox">
             <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
                     class="fa-solid fa-chevron-right"></i></a>
@@ -61,7 +63,9 @@
     </div>
 </header>
 <div class="overlay" id="overlay"></div>
+
 <div class="container">
+    <!-- Top summary -->
     <div class="top-card" role="region" aria-label="thông tin tài khoản">
         <div class="profile">
 
@@ -116,9 +120,9 @@
 
     </div>
 
-
     <div class="main">
 
+        <!-- sidebar -->
         <aside class="side" aria-label="menu">
             <nav class="menu" aria-label="menu chính">
                 <a href="user.html" class="menu-item active" data-target="orders">
@@ -142,12 +146,15 @@
                 </a>
             </nav>
         </aside>
+        <!-- content -->
         <section class="content">
 
+            <!-- Đơn hàng -->
             <div class="section active" id="orders">
+                <!-- Tabs -->
                 <div class="tabs" role="tablist" aria-label="lọc đơn hàng">
                     <a href="user.html">
-                        <div class="tab active">Tất cả</div>
+                        <div class="tab">Tất cả</div>
                     </a>
                     <a href="choXacNhan.html">
                         <div class="tab">Chờ xác nhận</div>
@@ -162,85 +169,16 @@
                         <div class="tab">Đã giao hàng</div>
                     </a>
                     <a href="daHuy.html">
-                        <div class="tab">Đã huỷ</div>
+                        <div class="tab active">Đã huỷ</div>
                     </a>
                 </div>
 
 
+                <!-- Orders -->
                 <div class="orders" id="orders-list">
 
-                    <article class="order" data-status="pending">
-                        <div class="thumb"><img
-                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
-                                alt=""></div>
-                        <div class="details">
-                            <div class="meta">Đơn hàng: <strong>#001</strong> • Ngày đặt hàng: 01/11/2025</div>
-                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
-                            <div class="price">3.190.000₫</div>
-                        </div>
-                        <div class="right">
-                            <div class="status-pill pending">Chờ xác nhận</div>
-                            <div class="muted">Tổng thanh toán:</div>
-                            <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
 
-                        </div>
-                    </article>
-
-                    <article class="order" data-status="confirmed">
-                        <div class="thumb"><img
-                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
-                                alt=""></div>
-                        <div class="details">
-                            <div class="meta">Đơn hàng: <strong>#002</strong> • Ngày đặt hàng: 29/10/2025</div>
-                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
-                            <div class="price">3.190.000₫</div>
-                        </div>
-                        <div class="right">
-                            <div class="status-pill confirmed">Đã xác nhận</div>
-                            <div class="muted">Tổng thanh toán:</div>
-                            <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
-
-                        </div>
-                    </article>
-
-                    <article class="order" data-status="shipping">
-                        <div class="thumb"><img
-                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
-                                alt=""></div>
-                        <div class="details">
-                            <div class="meta">Đơn hàng: <strong>#003</strong> • Ngày đặt hàng: 28/10/2025</div>
-                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
-                            <div class="price">3.190.000₫</div>
-                        </div>
-                        <div class="right">
-                            <div class="status-pill shipping">Đang vận chuyển</div>
-                            <div class="muted">Tổng thanh toán:</div>
-                            <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
-
-                        </div>
-                    </article>
-
-                    <article class="order" data-status="delivered">
-                        <div class="thumb"><img
-                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
-                                alt=""></div>
-                        <div class="details">
-                            <div class="meta">Đơn hàng: <strong>#004</strong> • Ngày đặt hàng: 27/10/2025</div>
-                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
-                            <div class="price">3.190.000₫</div>
-                        </div>
-                        <div class="right">
-                            <div class="status-pill delivered">Đã giao hàng</div>
-                            <div class="muted">Tổng thanh toán:</div>
-                            <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
-
-                        </div>
-                    </article>
-
+                    <!-- cancelled -->
                     <article class="order" data-status="cancelled">
                         <div class="thumb"><img
                                 src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
@@ -255,10 +193,130 @@
                             <div class="muted">Tổng thanh toán:</div>
                             <div class="total">2.990.000₫</div>
                             <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
-
                         </div>
                     </article>
 
+                </div>
+            </div>
+
+            <div class="section" id="favorites">
+                <h2>Sản phẩm yêu thích</h2>
+
+                <div class="favorite-grid">
+
+                    <article class="product-card-fav">
+                        <div class="product-fav-thumb">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_3_.png"
+                                 alt="CPU Intel Core i5 12400F">
+                        </div>
+                        <div class="product-fav-details">
+                            <h4 class="product-fav-title">CPU Intel Core i5 12400F</h4>
+                            <div class="product-fav-price">
+                                <span class="new-price">3.990.000₫</span>
+                                <span class="old-price">4.000.000₫</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-heart product-fav-heart"></i>
+                    </article>
+
+                    <article class="product-card-fav">
+                        <div class="product-fav-thumb">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                 alt="Mainboard MSI B760M Gaming WIFI DDR5">
+                        </div>
+                        <div class="product-fav-details">
+                            <h4 class="product-fav-title">Mainboard MSI B760M Gaming WIFI DDR5</h4>
+                            <div class="product-fav-price">
+                                <span class="new-price">2.990.000₫</span>
+                                <span class="old-price">3.190.000₫</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-heart product-fav-heart"></i>
+                    </article>
+
+                    <article class="product-card-fav">
+                        <div class="product-fav-thumb">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/mainboard-msi-pro-h610m-s-ddr4_1_.png"
+                                 alt="Mainboard MSI Pro H610M-S DDR4">
+                        </div>
+                        <div class="product-fav-details">
+                            <h4 class="product-fav-title">Mainboard MSI Pro H610M-S DDR4</h4>
+                            <div class="product-fav-price">
+                                <span class="new-price">1.690.000₫</span>
+                                <span class="old-price">1.990.000₫</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-heart product-fav-heart"></i>
+                    </article>
+
+                    <article class="product-card-fav">
+                        <div class="product-fav-thumb">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_451.png"
+                                 alt="Mainboard Asus Prime B760M-A DDR4">
+                        </div>
+                        <div class="product-fav-details">
+                            <h4 class="product-fav-title">Mainboard Asus Prime B760M-A DDR4</h4>
+                            <div class="product-fav-price">
+                                <span class="new-price">2.790.000₫</span>
+                                <span class="old-price">3.190.000₫</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-heart product-fav-heart"></i>
+                    </article>
+
+                </div>
+            </div>
+            <div class="section" id="account">
+                <h2>Thông tin tài khoản</h2>
+
+                <div class="info-section">
+                    <div class="card" style="grid-column: span 2;">
+                        <h3>Thông tin cá nhân <span class="update-btn">Cập nhật</span></h3>
+
+                        <div class="info-grid">
+
+                            <div class="info-col">
+                                <div class="info-line">
+                                    <span class="info-label">Họ và tên:</span>
+                                    <span class="info-value">Nguyễn Võ Quang Minh</span>
+                                </div>
+                                <div class="info-line">
+                                    <span class="info-label">Giới tính:</span>
+                                    <span class="info-value">-</span>
+                                </div>
+                                <div class="info-line">
+                                    <span class="info-label">Ngày sinh:</span>
+                                    <span class="info-value">18/11/2005</span>
+                                </div>
+                            </div>
+
+                            <div class="info-col">
+                                <div class="info-line">
+                                    <span class="info-label">Số điện thoại:</span>
+                                    <span class="info-value">0978173770</span>
+                                </div>
+                                <div class="info-line">
+                                    <span class="info-label">Email:</span>
+                                    <span class="info-value">-</span>
+                                </div>
+                                <div class="info-line">
+                                    <span class="info-label">Địa chỉ mặc định:</span>
+                                    <span class="info-value">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Mật khẩu <span class="update-btn">Thay đổi</span></h3>
+                        <div class="info-item">Cập nhật lần cuối: 29/10/2025 16:11</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Tài khoản liên kết</h3>
+                        <div class="linked"><i class="fa-brands fa-google"
+                                               style="color: #ff7b00;"></i><span>Google</span><span
+                                class="linked-status">Liên kết</span></div>
+                    </div>
                 </div>
             </div>
 
@@ -268,5 +326,6 @@
 </div>
 
 <script src="js/header.js"></script>
+
 </body>
 </html>
