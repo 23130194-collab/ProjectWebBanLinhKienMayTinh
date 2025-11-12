@@ -1,4 +1,4 @@
-/*  RESET CƠ BẢN VÀ CĂN GIỮA TRANG */
+
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
@@ -9,7 +9,6 @@ body {
     justify-content: center;
 }
 
-/*  LỚP PHỦ CHO FORM (CĂN GIỮA TRONG TRANG) */
 .overlay {
     display: flex;
     align-items: center;
@@ -17,7 +16,6 @@ body {
     width: 100%;
 }
 
-/*  FORM CHÍNH: Login | Signup | Forgot password */
 .login-modal,
 .signup-modal,
 .forgot-password-modal {
@@ -28,6 +26,7 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
     transition: all 0.3s ease;
+
 }
 
 .login-modal:hover,
@@ -37,7 +36,6 @@ body {
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
-/*  TIÊU ĐỀ TRONG FORM */
 h2 {
     color: #ff4400;
     font-size: 26px;
@@ -45,7 +43,6 @@ h2 {
     margin-bottom: 25px;
 }
 
-/*  NHÓM Ô NHẬP DỮ LIỆU (input-group) */
 .input-group {
     margin: 13px 0;
 }
@@ -60,23 +57,25 @@ h2 {
     transition: border 0.3s, box-shadow 0.3s;
 }
 
-/*  Hiệu ứng khi focus input */
 .input-group input:focus {
     border-color: #0077ff;
     box-shadow: 0 0 6px rgba(0, 81, 255, 0.4);
     outline: none;
 }
 
-/*  NÚT CHÍNH (Login, Signup, Forgot) */
 .login-btn,
 .signup-btn,
 .forgot-password-btn {
+    display: block;
     width: 100%;
+    text-align: center;
+    box-sizing: border-box;
     padding: 13px;
     border: none;
     border-radius: 10px;
     background-color: #ff4400;
     color: white;
+    text-decoration: none;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -91,7 +90,6 @@ h2 {
     transform: translateY(-2px);
 }
 
-/*  MÔ TẢ HOẶC GỢI Ý (Forgot password page) */
 .password-info {
     font-size: 11px;
     color: #666;
@@ -101,7 +99,6 @@ h2 {
     font-weight: 500;
 }
 
-/*  KHU VỰC "NHỚ MẬT KHẨU" + "QUÊN MẬT KHẨU" */
 .remember {
     display: flex;
     justify-content: space-between;
@@ -110,7 +107,7 @@ h2 {
     margin: 10px 0;
 }
 
-/*  LINK (VD: Đăng nhập, Đăng ký, Quên mật khẩu) */
+/*  link */
 a {
     color: #ff4400;
     text-decoration: none;
@@ -120,14 +117,12 @@ a:hover {
     text-decoration: underline;
 }
 
-/*  DÒNG CHUYỂN QUA LẠI GIỮA LOGIN & SIGNUP */
 .signup,
 .login {
     margin-top: 20px;
     font-size: 13px;
 }
 
-/*  ĐƯỜNG CHIA (OR ĐĂNG NHẬP BẰNG ...) */
 .divider {
     display: flex;
     align-items: center;
@@ -156,7 +151,6 @@ a:hover {
     font-weight: 500;
 }
 
-/*  KHU VỰC ĐĂNG NHẬP MẠNG XÃ HỘI (Google, Facebook) */
 .social-login {
     display: flex;
     justify-content: center;
@@ -164,7 +158,6 @@ a:hover {
     margin-top: 20px;
 }
 
-/* NÚT MXH (CHUNG) */
 .social-login button {
     display: flex;
     align-items: center;
@@ -188,7 +181,6 @@ a:hover {
     transform: translateY(-2px);
 }
 
-/* ICON TRONG NÚT MXH */
 .social-login img {
     width: 22px;
     height: 22px;

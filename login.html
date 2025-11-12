@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Đăng nhập | TechNova</title>
     <link rel="stylesheet" href="css/form.css"/>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <div class="overlay">
@@ -14,22 +16,22 @@
 
         <form id="login-form" action="#" method="post">
             <div class="input-group">
-                <input type="email" id="email" name="email" placeholder="Nhập email" required />
+                <input type="email" id="email" name="email" placeholder="Nhập email" required/>
             </div>
 
             <div class="input-group">
-                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required/>
             </div>
 
 
             <div class="remember">
                 <label>
-                    <input type="checkbox" id="remember" />Lưu thông tin đăng nhập
+                    <input type="checkbox" id="remember"/>Lưu thông tin đăng nhập
                 </label>
                 <a href="forgot.html">Quên mật khẩu?</a>
             </div>
 
-            <button type="submit" class="login-btn">Đăng nhập</button>
+            <a href="home.html" class="login-btn">Đăng nhập</a>
         </form>
 
         <div class="divider">
@@ -38,7 +40,8 @@
 
         <div class="social-login">
             <button type="button" class="google">
-                <img src="https://i.postimg.cc/52XY45D7/z7179766768017-0600811c9c5ce7a039bb0715af80295b.jpg" alt="Google logo">
+                <img src="https://i.postimg.cc/52XY45D7/z7179766768017-0600811c9c5ce7a039bb0715af80295b.jpg"
+                     alt="Google logo">
                 Google
             </button>
             <button type="button" class="facebook">
@@ -52,7 +55,5 @@
         </div>
     </div>
 </div>
-
-<script src="js/login.js"></script>
 </body>
 </html>
