@@ -180,18 +180,14 @@ h1 {
 .home-layout {
     display: grid;
     grid-template-columns: 230px 1fr 230px;
-    /* Giảm chiều rộng 2 cột ngoài */
     gap: 7px;
-    /* Giảm khoảng cách giữa các khối */
     max-width: 1200px;
     margin: -10px auto 40px;
     background: #f9f9f9;
     border-radius: 12px;
     padding: 16px;
     box-sizing: border-box;
-    /* Đảm bảo padding không làm tăng tổng width */
     overflow: hidden;
-    /* Ngăn tràn nội dung */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
 }
 
@@ -249,7 +245,6 @@ h1 {
     width: 100%;
     max-width: 660px;
     margin: 0 auto 24px;
-    /* căn giữa trong cột giữa */
     border-radius: 12px;
     overflow: hidden;
     border: 2px solid #ddd;

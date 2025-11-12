@@ -10,19 +10,13 @@ body {
     left: 50%;
     transform: translateX(-50%);
     top: 110px;
-    /* dưới header */
     width: 100%;
     max-width: 600px;
     background: #f6f6f6;
     height: calc(100vh - 90px - 65px);
-    /* header + footer */
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    /* không cuộn container */
 }
-
-/* chỗ này cuộn nội dung */
-
 
 .cart-select-all {
     display: flex;

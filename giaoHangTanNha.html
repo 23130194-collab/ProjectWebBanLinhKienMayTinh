@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin</title>
+    <title>Thông tin giao hàng | TechNova</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 
         <nav class="nav-links">
             <a href="home.html" class="active">Trang chủ</a>
-            <a href="gioithieu.html">Giới thiệu</a>
+            <a href="gioiThieu.html">Giới thiệu</a>
             <a href="#" id="category-toggle">Danh mục</a>
             <a href="lienHe.html">Liên hệ</a>
         </nav>
@@ -69,7 +69,9 @@
     <div class="app-scroll">
 
         <div class="header-cart">
-            <i class="fa-solid fa-arrow-left"></i>
+            <a href="thongTinNhanHang.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
             <span>Thông tin</span>
         </div>
 
@@ -98,8 +100,8 @@
             <div class="section-title">THÔNG TIN NHẬN HÀNG</div>
 
             <div class="method-box">
-                <div class="method ">Nhận tại cửa hàng</div>
-                <div class="method active">Giao hàng tận nơi</div>
+                <a href="thongTinNhanHang.html" class="method">Nhận tại cửa hàng</a>
+                <a href="giaoHangTanNha.html" class="method active">Giao hàng tận nơi</a>
             </div>
 
             <textarea placeholder="Tỉnh/thành phố"></textarea>
@@ -119,5 +121,4 @@
 
 </body>
 <script src="js/header.js"></script>
-<script src="js/thongTin.js"></script>
 </html>
