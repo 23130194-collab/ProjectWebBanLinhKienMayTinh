@@ -1,4 +1,4 @@
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // Hàm chung xử lý logic cho MỘT banner
     function setupSlider(sliderId) {

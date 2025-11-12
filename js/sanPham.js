@@ -54,18 +54,7 @@ if (btnWriteReview && reviewModal && closeReviewModal) {
     });
 }
 
-// Xử lý khi nhấn chọn rating đánh giá trong phần đánh giá
-const ratingOptions = document.querySelectorAll('.rating-option');
-ratingOptions.forEach(option => {
-    option.addEventListener('click', () => {
-        // Bỏ active cho tất cả
-        ratingOptions.forEach(opt => opt.classList.remove('active'));
-        // Thêm active cho option được chọn
-        option.classList.add('active');
-    });
-});
-
-// Thực hiện nút
+// Nút lên đầu trang
 const btnScrollTop = document.getElementById('btn-scroll-top');
 
 window.addEventListener('scroll', () => {
@@ -80,14 +69,5 @@ btnScrollTop.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
-    });
-});
-
-// === XỬ LÝ FILTER ĐÁNH GIÁ ===
-const filterBtns = document.querySelectorAll('.filter-btn');
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
     });
 });
