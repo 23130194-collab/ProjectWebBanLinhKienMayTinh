@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Admin - Danh sách hóa đơn</title>
+    <title>TechNova Admin - Chi tiết hóa đơn</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="admincss/adminHoaDon.css">
+    <link rel="stylesheet" href="admincss/adminChiTietHoaDon.css">
     <link rel="stylesheet" href="admincss/adminNotification.css">
+
 </head>
 <body>
 
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="adminDashboard.html">
+        <a href="adminDashboard.html.html">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
         <a href="adminDashboard.html" style="text-decoration: none;">
@@ -45,7 +46,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="adminHoaDonList.html" class="nav-link active">
+            <a href="adminHoaDon.html" class="nav-link active">
                 <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
                 Hóa đơn
             </a>
@@ -53,7 +54,7 @@
     </ul>
 
     <div class="logout-section">
-        <a href="../login.html" class="nav-link logout-link">
+        <a href="#" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
             Đăng xuất
         </a>
@@ -135,66 +136,90 @@
 <!-- Main Content -->
 <main class="main-content">
     <div class="content-area">
-        <h1 class="page-title">Hoá đơn</h1>
-        <div class="breadcrumb"><a href="#">Home</a> / <span>Hoá đơn</span></div>
+        <a href="adminHoaDon.html" class="back-button">&lt; Quay lại trang hoá đơn</a>
 
-        <div class="order-tools">
-            <div>
-                Xem nhiều hơn
-                <select>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                </select>
-            </div>
+        <div class="invoice-container">
+            <header class="invoice-header">
+                <div>
+                    <span class="invoice-logo">TechNova</span>
+                </div>
+                <div class="invoice-header-right">
+                    <h2>Chi tiết hoá đơn</h2>
+                    <span class="invoice-order-id">Đơn hàng #1988001</span>
+                </div>
+            </header>
 
-            <div>
-                <input type="text" placeholder="Tìm kiếm..." />
-                <button>Tìm kiếm</button>
-            </div>
-        </div>
+            <section class="invoice-meta">
+                <div class="meta-column">
+                    <strong>Thanh toán cho:</strong>
+                    <address>
+                        John Smith<br />
+                        Khoa Nonghoc, NongLamUniversity
+                    </address>
+                </div>
+                <div class="meta-column">
+                    <strong>Vận chuyển đến:</strong>
+                    <address>
+                        HuongLan<br />
+                        Khoa Congnghethongtin, NongLamUniversity
+                    </address>
+                </div>
+                <div class="meta-column">
+                    <strong>Phương thức thanh toán:</strong>
+                    <div>Tiền mặt</div>
+                    <div>info@email.com</div>
+                    <br/>
+                    <strong>Ngày đặt hàng:</strong>
+                    <div>09/11/2025</div>
+                </div>
+            </section>
 
-        <table>
-            <thead>
-            <tr>
-                <th class="checkbox-col" aria-hidden="true"></th>
-                <th>Mã đơn hàng</th>
-                <th>Tên khách hàng</th>
-                <th>Ngày đặt hàng</th>
-                <th>Trạng thái thanh toán</th>
-                <th>Tổng cộng</th>
-                <th>Phương thức thanh toán</th>
-                <th>Trạng thái đơn hàng</th>
-                <th>Hoạt động</th>
-            </tr>
-            </thead>
+            <table class="invoice-items-table">
+                <thead>
+                <tr>
+                    <th>Số</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng số tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>
+                        <strong>Mainboard ASUS TUF Gaming X670E-Plus Wifi DDR5</strong><br />
+                    </td>
+                    <td>9.891.000đ</td>
+                    <td>1</td>
+                    <td>9.891.000đ</td>
+                </tr>
+                <!-- Thêm sản phẩm khác nếu cần -->
+                </tbody>
+            </table>
 
-            <tbody>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td><a href="adminChiTietHoaDon.html">#1988001</a></td>
-                <td>HuongLan</td>
-                <td>09/11/2025<br />16:48</td>
-                <td><span class="badge paid">Đã thanh toán</span></td>
-                <td>9.891.000đ</td>
-                <td>Tiền mặt</td>
-                <td><span class="badge shipped">Đã vận chuyển</span></td>
-                <td>
-                    <div class="action-buttons">
-                        <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
-                        <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
+            <section class="invoice-summary">
+                <div class="summary-details">
+                    <div><span>Tổng tiền hàng</span> <span>10.990.000đ</span></div>
+                    <div><span>Phí vận chuyển</span> <span>Miễn phí</span></div>
+                    <div><span>Giảm giá trực tiếp</span> <span>-1.099.000</span></div>
+                    <div><span>Giảm giá dùng điểm tích luỹ</span> <span></span></div>
+                    <div class="summary-total">
+                        <strong>Tổng tiền</strong>
+                        <strong>8.891.000</strong>
                     </div>
-                </td>
-            </tr>
-            <!-- Thêm các đơn hàng khác nếu cần -->
-            </tbody>
-        </table>
+                </div>
+            </section>
 
-        <div class="pagination">
-            <button class="page-btn prev" disabled>&lt;</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn next">&gt;</button>
+            <footer class="invoice-footer">
+                <div class="invoice-notes">
+                    <strong>Ghi chú:</strong>
+                    <p>Tất cả các khoản phải được thanh toán trong vòng 7 ngày kể từ ngày nhận được hóa đơn. Thanh toán bằng séc, thẻ tín dụng hoặc thanh toán trực tuyến. Nếu khoản không được thanh toán trong vòng 7 ngày, thông tin tín dụng được cung cấp để xác nhận công việc đã thực hiện sẽ bị tính phí theo báo giá đã thỏa thuận ở trên.</p>
+                </div>
+                <div class="invoice-actions">
+                    <button class="action-btn submit">Gửi</button>
+                </div>
+            </footer>
         </div>
     </div>
 </main>
