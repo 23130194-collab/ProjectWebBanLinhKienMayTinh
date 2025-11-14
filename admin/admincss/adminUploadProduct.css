@@ -381,9 +381,15 @@
 .form-actions {
     grid-column: 1 / -1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 12px;
     margin-top: 8px;
+    align-items: center;
+}
+
+.action-group-right {
+    display: flex;
+    gap: 12px; /* Giữ khoảng cách 12px giữa Hủy và Hoàn thành */
 }
 
 .btn-cancel {
