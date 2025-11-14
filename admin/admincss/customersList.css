@@ -146,3 +146,29 @@
     font-size: 18px;
     flex-shrink: 0;
 }
+
+/* ====== PAGE HEADER ====== */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.add-customer-btn {
+    background-color: #1b7e62;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.add-customer-btn:hover {
+    background-color: #065f46;
+}
