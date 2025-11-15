@@ -815,3 +815,15 @@ html {
 .small-link {
     text-decoration: none;
 }
+.btn-cancel {
+    background: #ea2e2e;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.btn-cancel:hover {
+    background: #d02626;
+}
