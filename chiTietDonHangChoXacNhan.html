@@ -3,16 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Đơn hàng của tôi | TechNova</title>
+    <title>Chi tiết đơn hàng | TechNova</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/user.css">
     <link rel="stylesheet" href="css/header.css">
-
 </head>
+
 <body>
-
-
 <header class="header">
     <div class="header-container">
         <a href="home.html" class="logo">
@@ -21,7 +19,7 @@
         </a>
 
         <nav class="nav-links">
-            <a href="home.html" class="active">Trang chủ</a>
+            <a href="home.html">Trang chủ</a>
             <a href="gioiThieu.html">Giới thiệu</a>
             <a href="#" id="category-toggle">Danh mục</a>
             <a href="lienHe.html">Liên hệ</a>
@@ -33,13 +31,8 @@
         </div>
 
         <div class="header-actions">
-            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-
-            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
-                <i class="fas fa-user"></i>
-            </a>
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng"><i class="fas fa-shopping-cart"></i></a>
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn"><i class="fas fa-user"></i></a>
         </div>
 
         <!-- Danh mục -->
@@ -63,17 +56,17 @@
         </div>
     </div>
 </header>
+
 <div class="overlay" id="overlay"></div>
 
 <div class="container">
-    <!-- Top summary -->
-    <div class="top-card" role="region" aria-label="thông tin tài khoản">
+    <!-- top summary -->
+    <div class="top-card">
         <div class="profile">
-
             <div class="summary-card">
                 <div class="summary-left">
                     <img src="https://maunailxinh.com/wp-content/uploads/2025/04/meme-gau-truc-bua-4.jpg" alt="avatar"
-                         class="summary-avatar"/>
+                         class="summary-avatar">
                     <div class="summary-info">
                         <div class="summary-name">Nguyễn Võ Quang Minh</div>
                         <div class="summary-phone">0123456789</div>
@@ -83,9 +76,7 @@
                 <div class="summary-divider"></div>
 
                 <div class="summary-item">
-                    <div class="summary-icon">
-                        <i class="fa-solid fa-cart-shopping" style="color: #ff0000;"></i>
-                    </div>
+                    <div class="summary-icon"><i class="fa-solid fa-cart-shopping" style="color:#ff0000;"></i></div>
                     <div class="summary-text">
                         <div class="summary-count">5</div>
                         <div class="summary-label">Tổng số đơn hàng đã mua</div>
@@ -95,27 +86,23 @@
                 <div class="summary-divider"></div>
 
                 <div class="summary-item">
-                    <div class="summary-icon">
-                        <i class="fa-solid fa-sack-dollar" style="color: #74C0FC;"></i>
-                    </div>
+                    <div class="summary-icon"><i class="fa-solid fa-sack-dollar" style="color:#74C0FC;"></i></div>
                     <div class="summary-text">
                         <div class="summary-count">2.265.000₫</div>
-                        <div class="summary-small">Tổng tiền tích lũy</div>
-                        <div class="summary-label">Từ ngày 01/01/2024</div>
+                        <div class="summary-label">Tổng tiền tích lũy</div>
                     </div>
                 </div>
 
-
             </div>
         </div>
-
     </div>
 
+    <!-- MAIN -->
     <div class="main">
 
-        <!-- sidebar -->
-        <aside class="side" aria-label="menu">
-            <nav class="menu" aria-label="menu chính">
+        <!-- SIDEBAR -->
+        <aside class="side">
+            <nav class="menu">
                 <a href="user.html" class="menu-item active" data-target="orders">
                     <i class="fa-solid fa-list icon"></i>
                     <span class="label">Đơn hàng của tôi</span>
@@ -137,6 +124,7 @@
                 </a>
             </nav>
         </aside>
+
         <!-- content -->
         <section class="content">
 
@@ -145,13 +133,13 @@
                 <!-- Tabs -->
                 <div class="tabs" role="tablist" aria-label="lọc đơn hàng">
                     <a href="user.html">
-                        <div class="tab">Tất cả</div>
+                        <div class="tab active">Tất cả</div>
                     </a>
                     <a href="choXacNhan.html">
                         <div class="tab">Chờ xác nhận</div>
                     </a>
                     <a href="daXacNhan.html">
-                        <div class="tab active">Đã xác nhận</div>
+                        <div class="tab">Đã xác nhận</div>
                     </a>
                     <a href="dangVanChuyen.html">
                         <div class="tab">Đang vận chuyển</div>
@@ -163,33 +151,7 @@
                         <div class="tab">Đã huỷ</div>
                     </a>
                 </div>
-
-
-                <!-- Orders -->
-                <div class="orders" id="orders-list">
-
-
-                    <!-- confirmed -->
-                    <article class="order" data-status="confirmed">
-                        <div class="thumb"><img
-                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
-                                alt=""></div>
-                        <div class="details">
-                            <div class="meta">Đơn hàng: <strong>#002</strong> • Ngày đặt hàng: 29/10/2025</div>
-                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
-                            <div class="price">3.190.000₫</div>
-                        </div>
-                        <div class="right">
-                            <div class="status-pill confirmed">Đã xác nhận</div>
-                            <div class="muted">Tổng thanh toán:</div>
-                            <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
-                        </div>
-                    </article>
-
-                </div>
             </div>
-
             <div class="section" id="favorites">
                 <h2>Sản phẩm yêu thích</h2>
 
@@ -310,14 +272,65 @@
                     </div>
                 </div>
             </div>
+            <div class="section active" id="order-details">
+                <div class="order-details-view">
+                    <a class="back-link" href="user.html">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        Đơn hàng của tôi / <span>Chi tiết đơn hàng</span>
+                    </a>
+
+                    <div class="card detail-card">
+                        <h3 class="card-title">Tổng quan</h3>
+                        <div class="overview-header">
+                            <span>Đơn hàng: <strong>#1988010</strong></span>
+                            <span class="divider"></span>
+                            <span>Ngày đặt hàng: <strong>29/10/2025</strong></span>
+                            <span class="divider"></span>
+
+                        </div>
+
+                        <div class="overview-product">
+                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                 alt="Product" class="product-thumb-small">
+                            <div class="product-details-small">
+                                <div class="product-title-small">Mainboard MSI B760M Gaming WIFI DDR5</div>
+                                <div class="product-price-small">3.190.000₫</div>
+                                <div class="product-warranty">Thời hạn bảo hành: 28/10/2026</div>
+                            </div>
+                            <div class="product-quantity-small">
+                                <span>Số lượng: <strong>1</strong></span>
+                                <button class="btn-buy-again-new">Mua lại</button>
+                            </div>
+                        </div>
+                    </div>
 
 
+                    <div class="card detail-card">
+                        <h3 class="card-title">Thông tin thanh toán</h3>
+                        <div class="payment-group">
+                            <div class="payment-sub-title">Sản phẩm</div>
+                            <div class="payment-line-new"><span>Số lượng sản phẩm:</span><strong>1</strong></div>
+                            <div class="payment-line-new"><span>Tổng tiền hàng:</span><strong>3.190.000₫</strong></div>
+                            <div class="payment-line-new"><span>Giảm giá:</span><strong
+                                    style="color:var(--accent-dark);">-400.000₫</strong></div>
+                            <div class="payment-line-new"><span>Phí vận chuyển:</span><strong style="color:green;">Miễn
+                                phí</strong></div>
+                        </div>
+
+                        <div class="payment-group">
+                            <div class="payment-sub-title">Thanh toán</div>
+                            <div class="payment-line-new final"><span>Tổng số tiền:</span><strong class="final-price">2.990.000₫</strong>
+                            </div>
+                            <div class="payment-line-new final"><span>Tổng số tiền đã thanh toán:</span><strong
+                                    class="final-price">2.990.000₫</strong></div>
+                        </div>
+                        <button class="btn-cancel">Huỷ đơn</button>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
-
 </div>
-
-<script src="js/header.js"></script>
 
 </body>
 </html>
