@@ -348,7 +348,7 @@ body {
 }
 
 .save-btn {
-    background: #10b981;
+    background: #4288fa;
     color: #fff;
     border: none;
     padding: 8px 14px;
@@ -358,7 +358,7 @@ body {
 }
 
 .save-btn:hover {
-    background: #059669;
+    background: #3b82f6;
 }
 
 .cancel-btn {
@@ -609,7 +609,7 @@ body {
     justify-content: center;
     /* Căn giữa thanh phân trang */
     align-items: center;
-    margin: 60px 0;
+    margin: 30px 0;
     /* Khoảng cách trên/dưới so với nội dung */
     gap: 8px;
 }
