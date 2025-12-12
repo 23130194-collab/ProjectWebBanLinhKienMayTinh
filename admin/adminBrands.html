@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Admin - Chi tiết hóa đơn</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>TechNova Admin - Thương hiệu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="admincss/adminBrands.css">
     <link rel="stylesheet" href="admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="admincss/adminChiTietHoaDon.css">
     <link rel="stylesheet" href="admincss/adminNotification.css">
-
 </head>
+
 <body>
 
 <!-- Sidebar -->
@@ -45,7 +46,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="adminBrands.html" class="nav-link">
+            <a href="adminBrands.html" class="nav-link active">
                 <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
                 Thương hiệu
             </a>
@@ -66,7 +67,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="adminHoaDon.html" class="nav-link active">
+            <a href="adminHoaDon.html" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
                 Đơn hàng
             </a>
@@ -82,13 +83,7 @@
     </div>
 </aside>
 
-<!-- Header -->
 <header class="header">
-    <div class="search-box">
-        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input type="text" class="search-input" placeholder="Tìm kiếm">
-    </div>
-
     <div class="header-actions">
         <button class="notification-btn" id="notificationBtn">
             <i class="fa-solid fa-bell"></i>
@@ -117,7 +112,8 @@
                         <i class="fa-solid fa-users"></i>
                     </div>
                     <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng <strong>thành công!</strong></p>
+                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
+                            công!</strong></p>
                         <span class="notification-time">20 phút trước</span>
                     </div>
                 </div>
@@ -127,7 +123,8 @@
                         <i class="fa-solid fa-file-invoice"></i>
                     </div>
                     <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 <strong>thành công!</strong></p>
+                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
+                            công!</strong></p>
                         <span class="notification-time">5 giờ trước</span>
                     </div>
                 </div>
@@ -154,101 +151,124 @@
     </div>
 </header>
 
-<!-- Main Content -->
+<!--Main content-->
 <main class="main-content">
     <div class="content-area">
-        <a href="adminHoaDon.html" class="back-button">&lt; Quay lại trang hoá đơn</a>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Thương hiệu</h1>
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link">Trang chủ</a>
+                    <span>/</span>
+                    <span class="breadcrumb-current">Thương hiệu</span>
+                </div>
+            </div>
 
-        <div class="invoice-container">
-            <header class="invoice-header">
-                <div>
-                    <span class="invoice-logo">TechNova</span>
-                </div>
-                <div class="invoice-header-right">
-                    <h2>Chi tiết hoá đơn</h2>
-                    <span class="invoice-order-id">Đơn hàng #1988001</span>
-                </div>
-            </header>
 
-            <section class="invoice-meta">
-                <div class="meta-column">
-                    <strong>Thanh toán cho:</strong>
-                    <address>
-                        John Smith<br/>
-                        Đường số 3, Linh Trung, TP. Hồ Chí Minh
-                    </address>
-                </div>
-                <div class="meta-column">
-                    <strong>Vận chuyển đến:</strong>
-                    <address>
-                        HuongLan<br/>
-                        Khu phố 33, Linh Xuân, TP. Hồ Chí Minh
-                    </address>
-                    <div>info@gmail.com</div>
+        </div>
 
-                </div>
-                <div class="meta-column">
-                    <strong>Phương thức thanh toán:</strong>
-                    <div>Tiền mặt</div>
-                    <br/>
-                    <strong>Ngày đặt hàng:</strong>
-                    <div>09/11/2025</div>
-                </div>
-            </section>
+        <!-- FORM NHẬP THÔNG TIN -->
+        <div class="brand-form">
 
-            <table class="invoice-items-table">
+            <div class="form-group">
+                <label class="form-label">Tên thương hiệu mới</label>
+                <input type="text" placeholder="Nhập tên thương hiệu">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Thứ tự hiển thị</label>
+                <input type="number" placeholder="Nhập thứ tự">
+            </div>
+
+        </div>
+
+        <!-- HÌNH ẢNH -->
+        <div class="image-section">
+            <label class="form-label">Hình ảnh thương hiệu</label>
+            <div class="image-upload-box">
+                <i class="fa-solid fa-image"></i>
+            </div>
+        </div>
+
+        <!-- Nút + Tìm kiếm -->
+        <div class="form-search-row">
+
+            <button class="add-brand-submit">Thêm thương hiệu</button>
+
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input-brand" placeholder="Tìm kiếm thương hiệu">
+            </div>
+
+        </div>
+
+        <!-- Danh sách -->
+        <div class="brand-table-container">
+            <table class="brand-table">
                 <thead>
                 <tr>
-                    <th>STT</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Tổng tiền</th>
+                    <th><input type="checkbox"></th>
+                    <th>Hình ảnh</th>
+                    <th>Tên thương hiệu</th>
+                    <th>Thứ tự</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
                 </tr>
                 </thead>
+
                 <tbody>
+
                 <tr>
-                    <td>01</td>
+                    <td><input type="checkbox"></td>
                     <td>
-                        <strong>Mainboard ASUS TUF Gaming X670E-Plus Wifi DDR5</strong><br/>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Intel_logo_2023.svg/330px-Intel_logo_2023.svg.png" width="55">
                     </td>
-                    <td>9.891.000đ</td>
+                    <td>Intel</td>
                     <td>1</td>
-                    <td>9.891.000đ</td>
+                    <td><span class="status status-active">Hoạt động</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn view"><i class="fa-solid fa-eye"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </td>
                 </tr>
-                <!-- Thêm sản phẩm khác nếu cần -->
+
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/AMD_Logo.svg/500px-AMD_Logo.svg.png" width="55">
+                    </td>
+                    <td>AMD</td>
+                    <td>2</td>
+                    <td><span class="status status-hidden">Ẩn</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn view"><i class="fa-solid fa-eye"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+
                 </tbody>
+
             </table>
+        </div>
 
-            <section class="invoice-summary">
-                <div class="summary-details">
-                    <div><span>Tổng tiền hàng</span> <span>10.990.000đ</span></div>
-                    <div><span>Phí vận chuyển</span> <span>0đ</span></div>
-                    <div><span>Giảm giá</span> <span>-1.099.000</span></div>
-                    <div class="summary-total">
-                        <strong>Tổng tiền</strong>
-                        <strong>8.891.000</strong>
-                    </div>
-                </div>
-            </section>
-
-            <footer class="invoice-footer">
-                <div class="invoice-notes">
-                    <strong>Ghi chú:</strong>
-                    <p>Tất cả các khoản phải được thanh toán trong vòng 7 ngày kể từ ngày nhận được hóa đơn. Thanh toán
-                        bằng séc, thẻ tín dụng hoặc thanh toán trực tuyến. Nếu khoản không được thanh toán trong vòng 7
-                        ngày, thông tin tín dụng được cung cấp để xác nhận công việc đã thực hiện sẽ bị tính phí theo
-                        báo giá đã thỏa thuận ở trên.</p>
-                </div>
-                <div class="invoice-actions">
-                    <a href="adminHoaDon.html">
-                        <button class="action-btn submit">Gửi</button>
-                    </a>
-                </div>
-            </footer>
+        <!-- Phân trang -->
+        <div class="pagination-container">
+            <button class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="page-number active">1</div>
+            <div class="page-number">2</div>
+            <div class="page-number">...</div>
+            <div class="page-number">5</div>
+            <button class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
     </div>
 </main>
-<script src="adminjs/adminNotification.js"></script>
 </body>
+<script src="adminjs/adminNotification.js"></script>
+<script src="adminjs/adminProductList.js"></script>
 </html>

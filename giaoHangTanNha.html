@@ -69,45 +69,87 @@
     <div class="app-scroll">
 
         <div class="header-cart">
-            <a href="thongTinNhanHang.html" class="back-link">
+            <a href="cart.html" class="back-link">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
             <span>Thông tin</span>
         </div>
-
+<!-- 
         <div class="tabs">
             <div class="tab active">1. THÔNG TIN</div>
             <div class="tab">2. THANH TOÁN</div>
-        </div>
+        </div> -->
 
         <div class="product-box">
             <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png">
             <div class="product-info">
                 <b>Mainboard MSI B760M Gaming WIFI DDR5</b><br>
-                <span class="price">2.990.000₫</span>
+                <div>
+                        <span class="current-price">2.990.000₫</span>
+                        <span class="old-price">3.190.000₫</span>
+                </div>
                 <small class="product-qty">Số lượng: 1</small>
             </div>
         </div>
 
         <div class="section">
             <div class="section-title">THÔNG TIN KHÁCH HÀNG</div>
-            <input class="input-box" placeholder="Họ và tên" value="">
-            <input class="input-box" placeholder="Số điện thoại" value="">
+            <input class="input-box" placeholder="Họ và tên*" value="">
+            <input class="input-box" placeholder="Số điện thoại*" value="">
             <input class="input-box" placeholder="Email" value="">
         </div>
 
         <div class="section">
-            <div class="section-title">THÔNG TIN NHẬN HÀNG</div>
+            <div class="section-title">ĐỊA CHỈ NHẬN HÀNG</div>
 
-            <div class="method-box">
+            <!-- <div class="method-box">
                 <a href="thongTinNhanHang.html" class="method">Nhận tại cửa hàng</a>
                 <a href="giaoHangTanNha.html" class="method active">Giao hàng tận nơi</a>
+            </div> -->
+
+            <textarea placeholder="Tỉnh/thành phố*"></textarea>
+            <textarea placeholder="Quận/huyện*"></textarea>
+            <textarea placeholder="Số nhà, tên đường*"></textarea>
+            <textarea placeholder="Ghi chú (nếu có)"></textarea>
+        </div>
+
+        <div class="payment-box">
+
+            <div class="section-title">PHƯƠNG THỨC THANH TOÁN</div>
+
+            <select class="payment-select">
+                <option>Thanh toán khi nhận hàng (COD)</option>
+                <option>Chuyển khoản ngân hàng</option>
+            </select>
+        </div>
+
+        <div class="box">
+            <div class="section-title">CHI TIẾT THANH TOÁN</div>
+
+            <!-- <div class="line">
+                Số lượng sản phẩm
+                <span>01</span>
+            </div> -->
+
+            <div class="line">
+                Tổng tiền hàng
+                <span>3.190.000₫</span>
             </div>
 
-            <textarea placeholder="Tỉnh/thành phố"></textarea>
-            <textarea placeholder="Quận/huyện"></textarea>
-            <textarea placeholder="Số nhà, tên đường"></textarea>
-            <textarea placeholder="Ghi chú (nếu có)"></textarea>
+            <div class="line">
+                Phí vận chuyển
+                <span>0đ</span>
+            </div>
+
+            <div class="line discount">
+                Giảm giá trực tiếp
+                <span>-200.000₫</span>
+            </div>
+
+            <div class="line total">
+                <b>Tổng tiền</b>
+                <b>2.990.000₫</b>
+            </div>
         </div>
 
 
@@ -116,7 +158,7 @@
 
 <div class="footer-bar">
     <span class="total-amount">Tạm tính: 2.990.000₫</span>
-    <a href="thanhToan.html" class="btn-buy-link">Tiếp tục</a>
+    <a href="user.html" class="btn-buy-link">Thanh Toán</a>
 </div>
 
 </body>

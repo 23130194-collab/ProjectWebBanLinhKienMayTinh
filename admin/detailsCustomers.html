@@ -4,223 +4,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Admin - Upload Product</title>
+    <title>TechNova Admin - Thêm sản phẩm</title>
     <link rel="stylesheet" href="admincss/customersList.css">
     <link rel="stylesheet" href="admincss/detailsCustomers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="admincss/adminNotification.css">
     <link rel="stylesheet" href="admincss/headerAndSidebar.css">
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="logo">
-            <a href="adminDashboard.html">
-                <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
-            </a>
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="logo">
+        <a href="adminDashboard.html">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+        </a>
+        <a href="adminDashboard.html" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </div>
+        </a></div>
 
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="adminDashboard.html" class="nav-link">
-                    <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
-                    Dashboard
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="customersList.html" class="nav-link active">
-                    <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
-                    Khách hàng
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="adminProductList.html" class="nav-link">
-                    <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
-                    Sản phẩm
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="adminHoaDon.html" class="nav-link">
-                    <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
-                    Hóa đơn
-                </a>
-            </li>
-        </ul>
-
-        <!-- Logout Section -->
-        <div class="logout-section">
-            <a href="../login.html" class="nav-link logout-link">
-                <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-                Đăng xuất
+    <ul class="nav-menu">
+        <li class="nav-item">
+            <a href="adminDashboard.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
+                Dashboard
             </a>
-        </div>
-    </aside>
+        </li>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="search-box">
-            <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <input type="text" class="search-input" placeholder="Tìm kiếm">
-        </div>
+        <li class="nav-item">
+            <a href="customersList.html" class="nav-link active">
+                <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                Khách hàng
+            </a>
+        </li>
 
-        <div class="header-actions">
-            <button class="notification-btn" id="notificationBtn">
-                <i class="fa-solid fa-bell"></i>
-                <span class="notification-badge">3</span>
-            </button>
+        <li class="nav-item">
+            <a href="adminCategories.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
+                Mục sản phẩm
+            </a>
+        </li>
 
-            <!-- Thông báo -->
-            <div class="notification-dropdown" id="notificationDropdown">
-                <div class="notification-header">
-                    <h3>Thông báo</h3>
+        <li class="nav-item">
+            <a href="adminBrands.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
+                Thương hiệu
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminAttributes.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
+                Thuộc tính
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminProductList.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
+                Sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminHoaDon.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                Đơn hàng
+            </a>
+        </li>
+    </ul>
+
+    <!-- Logout Section -->
+    <div class="logout-section">
+        <a href="../login.html" class="nav-link logout-link">
+            <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+            Đăng xuất
+        </a>
+    </div>
+</aside>
+
+<!-- Header -->
+<header class="header">
+    <div class="search-box">
+        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" class="search-input" placeholder="Tìm kiếm">
+    </div>
+
+    <div class="header-actions">
+        <button class="notification-btn" id="notificationBtn">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-badge">3</span>
+        </button>
+
+        <!-- Thông báo -->
+        <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-header">
+                <h3>Thông báo</h3>
+            </div>
+
+            <div class="notification-list">
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                        <span class="notification-time">20 giây trước</span>
+                    </div>
                 </div>
 
-                <div class="notification-list">
-                    <div class="notification-item">
-                        <div class="notification-icon" style="background: #5b86e5;">
-                            <i class="fa-solid fa-box-open"></i>
-                        </div>
-                        <div class="notification-content">
-                            <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                            <span class="notification-time">20 giây trước</span>
-                        </div>
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-users"></i>
                     </div>
-
-                    <div class="notification-item">
-                        <div class="notification-icon" style="background: #5b86e5;">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <div class="notification-content">
-                            <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
-                                    công!</strong></p>
-                            <span class="notification-time">20 phút trước</span>
-                        </div>
-                    </div>
-
-                    <div class="notification-item">
-                        <div class="notification-icon" style="background: #5b86e5;">
-                            <i class="fa-solid fa-file-invoice"></i>
-                        </div>
-                        <div class="notification-content">
-                            <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
-                                    công!</strong></p>
-                            <span class="notification-time">5 giờ trước</span>
-                        </div>
-                    </div>
-
-                    <div class="notification-item">
-                        <div class="notification-icon" style="background: #5b86e5;">
-                            <i class="fa-solid fa-box-open"></i>
-                        </div>
-                        <div class="notification-content">
-                            <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                            <span class="notification-time">12 giờ trước</span>
-                        </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
+                            công!</strong></p>
+                        <span class="notification-time">20 phút trước</span>
                     </div>
                 </div>
 
-                <div class="notification-footer">
-                    <a href="adminAllNotification.html" class="see-all-link">Xem tất cả thông báo</a>
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
+                            công!</strong></p>
+                        <span class="notification-time">5 giờ trước</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                        <span class="notification-time">12 giờ trước</span>
+                    </div>
                 </div>
             </div>
-            <div class="user-profile">
-                <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
-                    alt="User Profile">
+
+            <div class="notification-footer">
+                <a href="adminAllNotification.html" class="see-all-link">Xem tất cả thông báo</a>
             </div>
         </div>
-    </header>
+        <div class="user-profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
+                 alt="User Profile">
+        </div>
+    </div>
+</header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="content-area">
-            <h1 class="page-title">Chi tiết khách hàng</h1>
-            <div class="breadcrumb">
-                <a href="adminDashboard.html">Trang chủ</a> / <span>Danh sách khách hàng</span> / <span>Chi tiết khách
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-area">
+        <h1 class="page-title">Chi tiết khách hàng</h1>
+        <div class="breadcrumb">
+            <a href="adminDashboard.html">Trang chủ</a> / <a href="customersList.html">Danh sách khách hàng</a> / <span>Chi tiết khách
                     hàng</span>
-            </div>
-
-            <div class="customer-detail">
-                <!-- Cột trái: Thông tin khách hàng -->
-                <div class="customer-profile">
-                    <div class="profile-card">
-                        <img src="https://i.postimg.cc/Cx9RqX78/Chat-GPT-Image-22-40-49-9-thg-11-2025-removebg-preview.png"
-                            alt="Customer Photo" class="profile-img">
-                        <h2 class="customer-name">Trinh Tran Phuong Tuan</h2>
-                        <p class="customer-phone">+(84) 332 669 512</p>
-                        <p class="customer-email">phuongtuan@gmail.com</p>
-
-                        <div class="balance-box">Tổng đơn hàng: 7</div>
-
-                        <div class="customer-stats">
-                            <p><strong>Lần cuối:</strong> 7 ngày trước – <a href="#">#1988001</a></p>
-                            <p><strong>Số tiền trung bình:</strong> 5.623.000đ</p>
-                            <p><strong>Marketing Email:</strong> -</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cột phải: Danh sách đơn hàng -->
-                <div class="orders-section">
-                    <div class="orders-header">
-                        <h3>Tất cả đơn hàng</h3>
-                        <p>Tổng chi phí <strong>85.560.000đ</strong> </p>
-                    </div>
-
-                    <table class="orders-table">
-                        <thead>
-                            <tr>
-                                <th>Mã đơn hàng</th>
-                                <th>Ngày đặt hàng</th>
-                                <th>Trạng thái đơn hàng</th>
-                                <th>Số sản phẩm</th>
-                                <th>Tổng tiền</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="adminHoaDon.html">#1988001</a></td>
-                                <td>09/11/2025 at 4:55 pm</td>
-                                <td><span class="status pending">Đang xử lý</span></td>
-                                <td>6</td>
-                                <td>1.520.000đ</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">#80293</a></td>
-                                <td>22/12/2025 at 4:50 pm</td>
-                                <td><span class="status pending">Đang xử lý</span></td>
-                                <td>6</td>
-                                <td>1.985.000đ</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">#78621</a></td>
-                                <td>20/11/2024 at 4:50 pm</td>
-                                <td><span class="status completed">Đã hoàn thành</span></td>
-                                <td>10</td>
-                                <td>1.623.000đ</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">#78622</a></td>
-                                <td>15/11/2026 at 4:50 pm</td>
-                                <td><span class="status canceled">Đã hủy</span></td>
-                                <td>3</td>
-                                <td>1.120.000đ</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                    <div class="view-all-orders">
-                        <button id="viewMoreBtn">Xem thêm đơn hàng</button>
-                    </div>
-                </div>
-            </div>
         </div>
-       
+
         <!-- Khung Thông tin cá nhân -->
         <section class="personal-info">
             <!-- Khung hiển thị -->
@@ -290,10 +236,290 @@
             </div>
         </section>
 
-    </main>
+        <div class="customer-detail">
+            <div class="orders-section">
+                <div class="orders-header">
+                    <h3>Tất cả đơn hàng</h3>
+                </div>
+
+                <table class="orders-table">
+                    <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Trạng thái đơn hàng</th>
+                        <th>Số sản phẩm</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><a href="adminHoaDon.html">#1988001</a></td>
+                        <td>09/11/2025 at 4:55 pm</td>
+                        <td><span class="status pending">Đang xử lý</span></td>
+                        <td>6</td>
+                        <td>1.520.000đ</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">#80293</a></td>
+                        <td>22/12/2025 at 4:50 pm</td>
+                        <td><span class="status pending">Đang xử lý</span></td>
+                        <td>6</td>
+                        <td>1.985.000đ</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">#78621</a></td>
+                        <td>20/11/2024 at 4:50 pm</td>
+                        <td><span class="status completed">Đã hoàn thành</span></td>
+                        <td>10</td>
+                        <td>1.623.000đ</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">#78622</a></td>
+                        <td>15/11/2026 at 4:50 pm</td>
+                        <td><span class="status canceled">Đã hủy</span></td>
+                        <td>3</td>
+                        <td>1.120.000đ</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">#78623</a></td>
+                        <td>15/01/2026 at 4:50 pm</td>
+                        <td><span class="status completed">Đã hoàn thành</span></td>
+                        <td>1</td>
+                        <td>1.120.000đ</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="pagination-container">
+                    <button class="pagination-btn disabled">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                    </button>
+
+                    <a href="#" class="page-number active">1</a>
+                    <a href="#" class="page-number">2</a>
+                    <span class="ellipsis">...</span>
+                    <a href="#" class="page-number">5</a>
+
+                    <button class="pagination-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+
+        <div class="section" id="favorites">
+            <!-- <h2>Sản phẩm yêu thích</h2> -->
+
+            <div class="favorite-grid">
+
+                <article class="product-card-fav">
+                    <div class="product-fav-thumb">
+                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_3_.png"
+                             alt="CPU Intel Core i5 12400F">
+                    </div>
+                    <div class="product-fav-details">
+                        <h4 class="product-fav-title">CPU Intel Core i5 12400F</h4>
+                        <div class="product-fav-price">
+                            <span class="new-price">3.990.000₫</span>
+                            <span class="old-price">4.000.000₫</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-heart product-fav-heart"></i>
+                </article>
+
+                <article class="product-card-fav">
+                    <div class="product-fav-thumb">
+                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                             alt="Mainboard MSI B760M Gaming WIFI DDR5">
+                    </div>
+                    <div class="product-fav-details">
+                        <h4 class="product-fav-title">Mainboard MSI B760M Gaming WIFI DDR5</h4>
+                        <div class="product-fav-price">
+                            <span class="new-price">2.990.000₫</span>
+                            <span class="old-price">3.190.000₫</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-heart product-fav-heart"></i>
+                </article>
+
+                <article class="product-card-fav">
+                    <div class="product-fav-thumb">
+                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/mainboard-msi-pro-h610m-s-ddr4_1_.png"
+                             alt="Mainboard MSI Pro H610M-S DDR4">
+                    </div>
+                    <div class="product-fav-details">
+                        <h4 class="product-fav-title">Mainboard MSI Pro H610M-S DDR4</h4>
+                        <div class="product-fav-price">
+                            <span class="new-price">1.690.000₫</span>
+                            <span class="old-price">1.990.000₫</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-heart product-fav-heart"></i>
+                </article>
+
+                <article class="product-card-fav">
+                    <div class="product-fav-thumb">
+                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_451.png"
+                             alt="Mainboard Asus Prime B760M-A DDR4">
+                    </div>
+                    <div class="product-fav-details">
+                        <h4 class="product-fav-title">Mainboard Asus Prime B760M-A DDR4</h4>
+                        <div class="product-fav-price">
+                            <span class="new-price">2.790.000₫</span>
+                            <span class="old-price">3.190.000₫</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-heart product-fav-heart"></i>
+                </article>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="review-section">
+        <!-- <h2 class="review-title">Đánh giá sản phẩm</h2> -->
+
+        <table class="review-table">
+            <thead>
+            <tr>
+                <th>PRODUCT</th>
+                <th>RATING</th>
+                <th>REVIEW</th>
+                <th>STATUS</th>
+                <th>DATE</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr>
+                <td class="product-name">
+                    <a href="#">VGA Asus Prime Geforce RTX 5060 Ti 16GB...</a>
+                </td>
+
+                <td>
+                    <div class="rating-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star-half-stroke"></i>
+                    </div>
+                </td>
+
+                <td class="review-text">
+                    It's lovely, works right out of the box and has a number of useful functions.
+                </td>
+
+                <td>
+                    <span class="status success">Thành công</span>
+                </td>
+
+                <td class="date">Dec 9, 2:28PM</td>
+            </tr>
+
+            <tr>
+                <td class="product-name">
+                    <a href="#">Ổ cứng di động SSD Kingston XS1000 USB 3.2 Gen 2 1TB Đen</a>
+                </td>
+
+                <td class="rating-stars">
+                    <div class="rating-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star-half-stroke"></i>
+                    </div>
+                </td>
+
+                <td class="review-text">
+                    Exceptional smartwatch with a wealth of useful functions at an affordable price.
+                </td>
+
+                <td>
+                    <span class="status success">Thành công</span>
+                </td>
+
+                <td class="date">Dec 9, 2:28PM</td>
+            </tr>
+
+            <tr>
+                <td class="product-name">
+                    <a href="#">CPU Intel Core i7 12700F</a>
+                </td>
+
+                <td class="rating-stars">
+                    <div class="rating-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star-half-stroke"></i>
+                    </div>
+                </td>
+
+                <td class="review-text">
+                    Works well and feels good. Wish it had a wider diameter like a real wheel.
+                </td>
+
+                <td>
+                    <span class="status cancelled">Đã hủy</span>
+                </td>
+
+                <td class="date">Dec 4, 12:56 PM</td>
+            </tr>
+
+            <tr>
+                <td class="product-name">
+                    <a href="#">CPU Intel Core i9 14900KF</a>
+                </td>
+
+                <td class="rating-stars">
+                    <div class="rating-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star-half-stroke"></i>
+                    </div>
+                </td>
+
+                <td class="review-text">
+                    My son says these are the greatest he's ever tasted.
+                </td>
+
+                <td>
+                    <span class="status cancelled">Đã hủy</span>
+                </td>
+
+                <td class="date">Nov 28, 7:28 PM</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+
+</main>
 
 </body>
 <script src="adminjs/adminHoaDon.js"></script>
 <script src="adminjs/adminNotification.js"></script>
+<script src="adminjs/adminUpdateCustomer.js"></script>
 
 </html>
