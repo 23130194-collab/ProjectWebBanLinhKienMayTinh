@@ -15,13 +15,12 @@
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="adminDashboard.html.html">
+        <a href="adminDashboard.html">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
         <a href="adminDashboard.html" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </a>
-    </div>
+        </a></div>
 
     <ul class="nav-menu">
         <li class="nav-item">
@@ -39,6 +38,27 @@
         </li>
 
         <li class="nav-item">
+            <a href="adminCategories.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
+                Mục sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminBrands.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
+                Thương hiệu
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminAttributes.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
+                Thuộc tính
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a href="adminProductList.html" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
                 Sản phẩm
@@ -47,14 +67,15 @@
 
         <li class="nav-item">
             <a href="adminHoaDon.html" class="nav-link active">
-                <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
-                Hóa đơn
+                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                Đơn hàng
             </a>
         </li>
     </ul>
 
+    <!-- Logout Section -->
     <div class="logout-section">
-        <a href="#" class="nav-link logout-link">
+        <a href="../login.html" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
             Đăng xuất
         </a>
@@ -153,21 +174,22 @@
                 <div class="meta-column">
                     <strong>Thanh toán cho:</strong>
                     <address>
-                        John Smith<br />
-                        Khoa Nonghoc, NongLamUniversity
+                        John Smith<br/>
+                        Đường số 3, Linh Trung, TP. Hồ Chí Minh
                     </address>
                 </div>
                 <div class="meta-column">
                     <strong>Vận chuyển đến:</strong>
                     <address>
-                        HuongLan<br />
-                        Khoa Congnghethongtin, NongLamUniversity
+                        HuongLan<br/>
+                        Khu phố 33, Linh Xuân, TP. Hồ Chí Minh
                     </address>
+                    <div>info@gmail.com</div>
+
                 </div>
                 <div class="meta-column">
                     <strong>Phương thức thanh toán:</strong>
                     <div>Tiền mặt</div>
-                    <div>info@email.com</div>
                     <br/>
                     <strong>Ngày đặt hàng:</strong>
                     <div>09/11/2025</div>
@@ -177,18 +199,18 @@
             <table class="invoice-items-table">
                 <thead>
                 <tr>
-                    <th>Số</th>
+                    <th>STT</th>
                     <th>Tên sản phẩm</th>
                     <th>Giá</th>
                     <th>Số lượng</th>
-                    <th>Tổng số tiền</th>
+                    <th>Tổng tiền</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>01</td>
                     <td>
-                        <strong>Mainboard ASUS TUF Gaming X670E-Plus Wifi DDR5</strong><br />
+                        <strong>Mainboard ASUS TUF Gaming X670E-Plus Wifi DDR5</strong><br/>
                     </td>
                     <td>9.891.000đ</td>
                     <td>1</td>
@@ -201,9 +223,8 @@
             <section class="invoice-summary">
                 <div class="summary-details">
                     <div><span>Tổng tiền hàng</span> <span>10.990.000đ</span></div>
-                    <div><span>Phí vận chuyển</span> <span>Miễn phí</span></div>
-                    <div><span>Giảm giá trực tiếp</span> <span>-1.099.000</span></div>
-                    <div><span>Giảm giá dùng điểm tích luỹ</span> <span></span></div>
+                    <div><span>Phí vận chuyển</span> <span>0đ</span></div>
+                    <div><span>Giảm giá</span> <span>-1.099.000</span></div>
                     <div class="summary-total">
                         <strong>Tổng tiền</strong>
                         <strong>8.891.000</strong>
@@ -214,10 +235,15 @@
             <footer class="invoice-footer">
                 <div class="invoice-notes">
                     <strong>Ghi chú:</strong>
-                    <p>Tất cả các khoản phải được thanh toán trong vòng 7 ngày kể từ ngày nhận được hóa đơn. Thanh toán bằng séc, thẻ tín dụng hoặc thanh toán trực tuyến. Nếu khoản không được thanh toán trong vòng 7 ngày, thông tin tín dụng được cung cấp để xác nhận công việc đã thực hiện sẽ bị tính phí theo báo giá đã thỏa thuận ở trên.</p>
+                    <p>Tất cả các khoản phải được thanh toán trong vòng 7 ngày kể từ ngày nhận được hóa đơn. Thanh toán
+                        bằng séc, thẻ tín dụng hoặc thanh toán trực tuyến. Nếu khoản không được thanh toán trong vòng 7
+                        ngày, thông tin tín dụng được cung cấp để xác nhận công việc đã thực hiện sẽ bị tính phí theo
+                        báo giá đã thỏa thuận ở trên.</p>
                 </div>
                 <div class="invoice-actions">
-                    <button class="action-btn submit">Gửi</button>
+                    <a href="adminHoaDon.html">
+                        <button class="action-btn submit">Gửi</button>
+                    </a>
                 </div>
             </footer>
         </div>
