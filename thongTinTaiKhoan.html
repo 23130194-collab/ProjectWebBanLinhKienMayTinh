@@ -49,7 +49,7 @@
                     class="fa-solid fa-chevron-right"></i></a>
             <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
                     class="fa-solid fa-chevron-right"></i></a>
-            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
+            <a href="../../tataat/demo2/src/main/cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
                     class="fa-solid fa-chevron-right"></i></a>
             <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
                     class="fa-solid fa-chevron-right"></i></a>
@@ -137,45 +137,85 @@
 
                 <div class="info-section">
                     <div class="card" style="grid-column: span 2;">
-                        <h3>Thông tin cá nhân <span class="update-btn">Cập nhật</span></h3>
-
-                        <div class="info-grid">
-
-                            <div class="info-col">
-                                <div class="info-line">
-                                    <span class="info-label">Họ và tên:</span>
-                                    <span class="info-value">Nguyễn Võ Quang Minh</span>
+                        <!-- Khung Thông tin cá nhân -->
+<!--                        <section class="personal-info">-->
+                            <!-- Khung hiển thị -->
+                            <div class="info-card" id="infoView">
+                                <div class="info-header">
+                                    <h2>Thông tin cá nhân</h2>
+                                    <button id="editBtn" class="update-btn">Cập nhật</button>
                                 </div>
-                                <div class="info-line">
-                                    <span class="info-label">Giới tính:</span>
-                                    <span class="info-value">-</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">Ngày sinh:</span>
-                                    <span class="info-value">18/11/2005</span>
+
+                                <div class="info-body">
+                                    <div class="info-row">
+                                        <span>Họ và tên:</span>
+                                        <p id="name">Trịnh Trần Phương Tuấn</p>
+                                        <span>Số điện thoại:</span>
+                                        <p id="phone">+(84) 332 669 512</p>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Giới tính:</span>
+                                        <p id="gender">Nam</p>
+                                        <span>Email:</span>
+                                        <p id="email">phuongtuan@gmail.com</p>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Ngày sinh:</span>
+                                        <p id="dob">12/04/1997</p>
+                                        <span>Địa chỉ:</span>
+                                        <p id="address">123 Nguyễn Trãi, Q5, TP.HCM</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="info-col">
-                                <div class="info-line">
-                                    <span class="info-label">Số điện thoại:</span>
-                                    <span class="info-value">0978173770</span>
+                            <!-- Khung chỉnh sửa (ẩn lúc đầu) -->
+                            <div class="info-card hidden" id="infoForm">
+                                <div class="info-header">
+                                    <h2>Cập nhật thông tin</h2>
                                 </div>
-                                <div class="info-line">
-                                    <span class="info-label">Email:</span>
-                                    <span class="info-value">-</span>
+
+                                <div class="info-body">
+                                    <div class="info-row">
+                                        <span>Họ và tên:</span>
+                                        <input type="text" id="inputName" value="Nguyễn Võ Quang Minh">
+                                        <span>Số điện thoại:</span>
+                                        <input type="text" id="inputPhone" value="0978173770">
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Giới tính:</span>
+                                        <select id="inputGender">
+                                            <option>Nam</option>
+                                            <option>Nữ</option>
+                                            <option>Khác</option>
+                                        </select>
+                                        <span>Email:</span>
+                                        <input type="email" id="inputEmail" value="minh@example.com">
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Ngày sinh:</span>
+                                        <input type="date" id="inputDob" value="2005-11-18">
+                                        <span>Địa chỉ:</span>
+                                        <input type="text" id="inputAddress" value="123 Nguyễn Trãi, Q5, TP.HCM">
+                                    </div>
                                 </div>
-                                <div class="info-line">
-                                    <span class="info-label">Địa chỉ mặc định:</span>
-                                    <span class="info-value">-</span>
+
+                                <div class="info-actions">
+                                    <button id="saveBtn" class="save-btn">Lưu</button>
+                                    <button id="cancelBtn" class="cancel-btn">Hủy</button>
                                 </div>
                             </div>
-                        </div>
+<!--                        </section>-->
                     </div>
                     <div class="card">
-                        <h3>Mật khẩu <span class="update-btn">Thay đổi</span></h3>
+                        <h3>
+                            Mật khẩu
+                            <a href="thayDoiMK.html" class="update-btn-ud">Thay đổi</a>
+                        </h3>
+
                         <div class="info-item">Cập nhật lần cuối: 29/10/2025 16:11</div>
+
                     </div>
+
 
                     <div class="card">
                         <h3>Tài khoản liên kết</h3>
@@ -191,5 +231,7 @@
 </div>
 
 <script src="js/header.js"></script>
+<script src="js/thongTinTaiKhoan.js"></script>
+
 </body>
 </html>

@@ -42,7 +42,7 @@ main {
 }
 
 .contact-icon {
-    width: 100px;
+    width: 200px;
     height: auto;
 
     opacity: 0.95;
@@ -72,7 +72,7 @@ form label {
     margin-top: 8px;
 }
 
-form input, form select, form textarea {
+form input, form textarea {
     width: 100%;
     padding: 11px 14px;
     border-radius: 10px;
