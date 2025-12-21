@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Admin - Upload Product</title>
+    <title>TechNova Admin - Danh sách khách hàng</title>
     <link rel="stylesheet" href="admincss/customersList.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="admincss/adminNotification.css">
@@ -15,7 +15,7 @@
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="adminDashboard.html.html">
+        <a href="adminDashboard.html">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
         <a href="adminDashboard.html" style="text-decoration: none;">
@@ -38,6 +38,27 @@
         </li>
 
         <li class="nav-item">
+            <a href="adminCategories.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
+                Mục sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminBrands.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
+                Thương hiệu
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminAttributes.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
+                Thuộc tính
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a href="adminProductList.html" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
                 Sản phẩm
@@ -46,8 +67,8 @@
 
         <li class="nav-item">
             <a href="adminHoaDon.html" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
-                Hóa đơn
+                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                Đơn hàng
             </a>
         </li>
     </ul>
@@ -139,11 +160,19 @@
 <main class="main-content">
     <div class="content-area">
         <div class="page-header">
-    <h1 class="page-title">Danh sách khách hàng</h1>
-    <a href="adminThemKhachHang.html" class="add-customer-btn">
-        <i class="fa-solid fa-user-plus"></i> Thêm khách hàng
-    </a>
-</div>
+            <h1 class="page-title">Danh sách khách hàng</h1>
+            <a href="adminThemKhachHang.html" class="add-customer-btn">
+                <i class="fa-solid fa-user-plus"></i> Thêm khách hàng
+            </a>
+        </div>
+
+        <div class="breadcrumb">
+            <a href="adminDashboard.html" class="breadcrumb-link">Trang chủ</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Danh sách khách hàng</span>
+        </div>
+
+
 
         <div class="customer-list">
             <table class="customer-table">
@@ -151,20 +180,20 @@
                 <tr>
                     <th><input type="checkbox" id="selectAll"></th>
                     <th>
-                        Name
+                        Họ tên
                         <button class="sort-btn" id="sortName" title="Sort by Name">
                             <i class="fa-solid fa-sort"></i>
                         </button>
                     </th>
                     <th>Email</th>
                     <th>
-                        Orders
+                        Đơn hàng
                         <button class="sort-btn" id="sortOrders" title="Sort by Orders">
                             <i class="fa-solid fa-sort"></i>
                         </button>
                     </th>
-                    <th>Join On</th>
-                    <th>Action</th>
+                    <th>Tham gia</th>
+                    <th>Thao tác</th>
                 </tr>
                 </thead>
                 <tbody id="customerTableBody">
@@ -331,29 +360,31 @@
                     </td>
                 </tr>
                 </tbody>
-                
+
             </table>
             <!--   Chuyển trang    -->
-    <div class="pagination-container">
-        <button class="pagination-btn disabled">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-            </svg>
-        </button>
+            <div class="pagination-container">
+                <button class="pagination-btn disabled">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </button>
 
-        <a href="#" class="page-number active">1</a>
-        <a href="#" class="page-number">2</a>
-        <span class="ellipsis">...</span>
-        <a href="#" class="page-number">5</a>
+                <a href="#" class="page-number active">1</a>
+                <a href="#" class="page-number">2</a>
+                <span class="ellipsis">...</span>
+                <a href="#" class="page-number">5</a>
 
-        <button class="pagination-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </button>
-    </div>
+                <button class="pagination-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </div>
             <!-- </div> -->
 
         </div>
