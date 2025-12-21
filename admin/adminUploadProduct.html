@@ -19,8 +19,7 @@
         </a>
         <a href="adminDashboard.html" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </a>
-    </div>
+        </a></div>
 
     <ul class="nav-menu">
         <li class="nav-item">
@@ -29,28 +28,53 @@
                 Dashboard
             </a>
         </li>
+
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="customersList.html" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
                 Khách hàng
             </a>
         </li>
+
+        <li class="nav-item">
+            <a href="adminCategories.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
+                Mục sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminBrands.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
+                Thương hiệu
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminAttributes.html" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
+                Thuộc tính
+            </a>
+        </li>
+
         <li class="nav-item">
             <a href="adminProductList.html" class="nav-link active">
                 <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
                 Sản phẩm
             </a>
         </li>
+
         <li class="nav-item">
             <a href="adminHoaDon.html" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-file-invoice"></i></span>
-                Hóa đơn
+                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                Đơn hàng
             </a>
         </li>
     </ul>
 
+    <!-- Logout Section -->
     <div class="logout-section">
-        <a href="#" class="nav-link logout-link">
+        <a href="../login.html" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
             Đăng xuất
         </a>
@@ -134,199 +158,169 @@
     <div class="content-area">
         <h1 class="page-title">Thêm sản phẩm</h1>
         <div class="breadcrumb">
-            <a href="adminDashboard.html">Trang chủ</a> / <span>Thêm sản phẩm</span>
+            <a href="adminDashboard.html">Trang chủ</a> / <a href="adminProductList.html">Danh sách sản phẩm</a> / <span>Thêm sản phẩm</span>
         </div>
 
-        <!-- Upload Product Form -->
         <div class="upload-product-container">
-
-            <!-- Thông tin cơ bản (trái) -->
-            <div class="form-section half-width">
-                <h2 class="section-title">Thông tin cơ bản</h2>
-
+            <div class="form-section">
                 <div class="form-group">
-                    <label>Tên sản phẩm</label>
+                    <h3>Tên sản phẩm</h3>
                     <input type="text" placeholder="Nhập tên sản phẩm" class="form-input">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Giá gốc</label>
-                        <input type="text" placeholder="Nhập giá tiền" class="form-input">
-                    </div>
-                    <div class="form-group">
-                        <label>Giá trị khuyến mãi</label>
-                        <input type="text" placeholder="Nhập giá trị" class="form-input">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Mô tả sản phẩm</label>
-                    <textarea placeholder="Nhập mô tả sản phẩm" class="form-textarea" rows="4"></textarea>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Phân loại</label>
-                        <select class="form-select" id="category-select">
-                            <option value="ram" selected>RAM</option>
-                            <option value="cpu">CPU</option>
-                            <option value="mainboard">Mainboard</option>
-                            <option value="vga">Card màn hình</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nhãn hàng</label>
+                        <h3>Danh mục</h3>
                         <select class="form-select">
-                            <option value="">Chọn nhãn hàng</option>
-                            <option>Kingston</option>
-                            <option>SAMSUNG</option>
-                            <option>Lexar</option>
-                            <option>ADATA</option>
-                            <option>PNY</option>
-                            <option>PATRIOT</option>
+                            <option>Chọn danh mục</option>
+                            <option>CPU</option>
+                            <option>Mainboard</option>
+                            <option>RAM</option>
+                            <option>Ổ cứng</option>
+                            <option>Card màn hình</option>
+                            <option>Nguồn máy tính</option>
+                            <option>Tản nhiệt</option>
+                            <option>Case máy tính</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-group">
-                        <label>Vận chuyển</label>
+                        <h3>Thương hiệu</h3>
                         <select class="form-select">
-                            <option>Miễn phí</option>
+                            <option>Chọn thương hiệu</option>
+                            <option>Asus</option>
+                            <option>MSI</option>
+                            <option>Gigabyte</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Số lượng</label>
-                        <input type="text" placeholder="Nhập số lượng" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Giới thiệu sản phẩm:</h3>
+                <div class="rich-text-editor">
+                    <div class="rte-toolbar">
+                        <div class="rte-group">
+                            <select class="rte-select"><option>Paragraph</option></select>
+                            <button><i class="fa-solid fa-bold"></i></button>
+                            <button><i class="fa-solid fa-italic"></i></button>
+                            <button><i class="fa-solid fa-underline"></i></button>
+                            <button><i class="fa-solid fa-strikethrough"></i></button>
+                            <button><i class="fa-solid fa-quote-right"></i></button>
+                            <button><i class="fa-solid fa-align-left"></i></button>
+                            <button><i class="fa-solid fa-align-center"></i></button>
+                            <button><i class="fa-solid fa-align-right"></i></button>
+                            <button><i class="fa-solid fa-link"></i></button>
+                            <button><i class="fa-solid fa-image"></i></button>
+                        </div>
+                        <button class="rte-close"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="rte-content" contenteditable="true">
+                    </div>
+                    <div class="rte-footer">
+                        <span>Word count: 0</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label>Flash Sale</label>
-                    <select class="form-select">
-                        <option>Flash Sale Học sinh - Sinh viên</option>
-                        <option>Flash Sale Năm học mới</option>
-                        <option>Flash Sale Đêm hội Trăng Rằm</option>
+            <div class="form-section">
+                <div class="attribute-header">
+                    <h3>Thuộc tính</h3>
+                    <select class="form-select attribute-select">
+                        <option>Chọn thuộc tính</option>
+                        <option>Dung lượng</option>
+                        <option>Loại RAM</option>
+                        <option>Bus RAM</option>
                     </select>
                 </div>
+
+                <div class="attribute-item">
+                    <div class="attr-top">
+                        <span class="attr-name">Thuộc tính 1:</span>
+                        <span class="attr-delete">Xóa <i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div class="attr-body">
+                        <div class="attr-row">
+                            <span class="attr-label">Tên:</span>
+                            <span class="attr-static-val">Giá trị</span>
+                        </div>
+                        <div class="attr-row">
+                            <span class="attr-label">Thuộc tính 1:</span>
+                            <input type="text" class="form-input" value="Giá trị">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attribute-item">
+                    <div class="attr-top">
+                        <span class="attr-name">Thuộc tính 2:</span>
+                        <span class="attr-delete">Xóa <i class="fa-solid fa-chevron-left"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Giá sản phẩm:</h3>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Thời gian từ</label>
-                        <input type="text" placeholder="Nhập DD/MM/YYYY" class="form-input">
+                        <label>Giá gốc (VND)</label>
+                        <input type="text" placeholder="Nhập giá sản phẩm" class="form-input">
                     </div>
                     <div class="form-group">
-                        <label>Thời gian đến</label>
-                        <input type="text" placeholder="Nhập DD/MM/YYYY" class="form-input">
+                        <label>Giảm giá (%)</label>
+                        <input type="text" placeholder="Nhập giá trị giảm giá" class="form-input">
                     </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ngày bắt đầu giảm giá</label>
+                        <input type="text" placeholder="Từ DD-MM-YYYY" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày kết thúc giảm giá</label>
+                        <input type="text" placeholder="Đến DD-MM-YYYY" class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Số lượng tồn kho</label>
+                    <input type="text" placeholder="Nhập số lượng sản phẩm" class="form-input">
                 </div>
             </div>
 
-            <!-- Thông số kỹ thuật (phải) -->
-            <div class="form-section half-width">
-                <h2 class="section-title">Thông số kỹ thuật</h2>
+            <div class="form-section">
+                <h3>Hình ảnh sản phẩm:</h3>
+                <div class="image-uploader-wrapper">
+                    <div class="image-upload-box">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
 
-                <!-- Bảng thông số RAM - HIỆN MẶC ĐỊNH -->
-                <div id="ram-spec-table">
-                    <div class="spec-section">
-                        <h3>Thông số chung</h3>
-                        <div class="spec-items">
-                            <div class="spec-item">
-                                <div class="spec-label">Dung lượng</div>
-                                <div class="spec-value">
-                                    <input type="text" class="spec-value-input" placeholder="VD: 8GB">
-                                </div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="spec-label">Loại RAM</div>
-                                <div class="spec-value">
-                                    <input type="text" class="spec-value-input" placeholder="VD: DDR4">
-                                </div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="spec-label">Bus RAM</div>
-                                <div class="spec-value">
-                                    <input type="text" class="spec-value-input" placeholder="VD: 3200MHz">
-                                </div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="spec-label">Hỗ trợ</div>
-                                <div class="spec-value">
-                                    <input type="text" class="spec-value-input" placeholder="VD: SO-DIMM (Laptop)">
-                                </div>
-                            </div>
+                    <div class="image-inputs">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="font-size: 13px; color: #4b5563; margin-bottom: 6px; display: block;">Thứ tự hiển thị</label>
+                            <input type="number" placeholder="Nhập thứ tự hiển thị" class="form-input" style="width: 220px;">
                         </div>
+                        <button class="btn-add-img">Thêm hình ảnh</button>
                     </div>
-                    <hr class="spec-hr">
-                    <div class="spec-section">
-                        <h3>Thông số khác</h3>
-                        <div class="spec-items">
-                            <div class="spec-item">
-                                <div class="spec-label">Điện áp</div>
-                                <div class="spec-value">
-                                    <input type="text" class="spec-value-input" placeholder="VD: 1.2V">
-                                </div>
-                            </div>
-                        </div>
+                </div>
+
+                <div class="image-thumbnails">
+                    <div class="thumb-item">
+                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_1_.png" alt="img">
+                    </div>
+                    <div class="thumb-item">
+                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/d/_/d_p.png" alt="img">
+                        <span class="remove-thumb"><i class="fa-solid fa-circle-xmark"></i></span>
+                    </div>
+                    <div class="thumb-item">
+                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/x/x/xxong.png" alt="img">
+                        <span class="remove-thumb"><i class="fa-solid fa-circle-xmark"></i></span>
                     </div>
                 </div>
             </div>
 
-            <!-- Phiên bản sản phẩm -->
-<!--            <div class="form-section full-width">-->
-<!--                <h2 class="section-title">Phiên bản sản phẩm</h2>-->
-
-<!--                <div class="variant-header">-->
-<!--                    <div class="variant-col variant-col-key">Thuộc tính</div>-->
-<!--                    <div class="variant-col variant-col-values">Giá trị</div>-->
-<!--                    <div class="variant-col variant-col-btn"></div>-->
-<!--                </div>-->
-
-<!--                <div class="variant-input-group">-->
-<!--                    <input type="text" placeholder="Dung lượng" class="form-input variant-key">-->
-<!--                    <input type="text" placeholder="8GB, 16GB" class="form-input variant-values">-->
-<!--                    <button class="btn-add-variant">Thêm</button>-->
-<!--                </div>-->
-
-<!--                <div class="variant-list" id="variantList"></div>-->
-<!--            </div>-->
-
-            <!-- Hình ảnh sản phẩm -->
-            <div class="form-section full-width">
-                <div class="image-upload-container">
-                    <div class="image-preview">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_1_.png"
-                             alt="Ảnh 1">
-                    </div>
-                    <div class="image-preview">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/d/_/d_p.png"
-                             alt="Ảnh 2">
-                    </div>
-                    <div class="image-preview">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/x/x/xxong.png"
-                             alt="Ảnh 3">
-                    </div>
-                    <div class="image-upload-placeholder">
-                        <i class="fa-regular fa-image"></i>
-                        <p>image upload</p>
-                        <input type="file" accept="image/*" style="display: none;">
-                    </div>
-                </div>
+            <div class="form-actions-footer">
+                <a href="adminProductList.html"><button class="btn-cancel">Hủy</button></a>
+                <a href="adminProductList.html"><button class="btn-complete">Hoàn thành</button></a>
             </div>
-
-            <!-- Action Buttons -->
-            <div class="form-actions">
-                <button class="btn-cancel btn-delete">Xóa sản phẩm</button>
-
-                <div class="action-group-right">
-                    <a href="adminProductList.html">
-                        <button class="btn-cancel">Hủy</button>
-                    </a>
-                    <a href="adminProductList.html">
-                        <button class="btn-publish">Hoàn thành</button>
-                    </a>
-                </div>
         </div>
     </div>
 </main>
