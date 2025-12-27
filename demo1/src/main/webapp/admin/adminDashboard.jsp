@@ -1,0 +1,329 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN" />
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--    <link rel="stylesheet" href="admincss/adminDashBoard.css">-->
+    <link rel="stylesheet" href="admincss/adminNotification.css">
+    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="admincss/adminDashBoard.css">
+</head>
+<body>
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="logo">
+        <a href="adminDashboard.html">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+        </a>
+        <a href="adminDashboard.html" style="text-decoration: none;">
+            <span class="logo-text">TechNova</span>
+        </a></div>
+
+    <ul class="nav-menu">
+        <li class="nav-item">
+            <a href="adminDashboard.html" class="nav-link active">
+                <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
+                Dashboard
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="customersList.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                Khách hàng
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminCategories.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
+                Mục sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminBrands.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
+                Thương hiệu
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminAttributes.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
+                Thuộc tính
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminProductList.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
+                Sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminHoaDon.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                Đơn hàng
+            </a>
+        </li>
+    </ul>
+
+    <!-- Logout Section -->
+    <div class="logout-section">
+        <a href="../login.html" class="nav-link logout-link">
+            <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+            Đăng xuất
+        </a>
+    </div>
+</aside>
+
+<!-- Header -->
+<header class="header">
+    <div class="search-box">
+        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" class="search-input" placeholder="Tìm kiếm">
+    </div>
+
+    <div class="header-actions">
+        <button class="notification-btn" id="notificationBtn">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-badge">3</span>
+        </button>
+
+        <!-- Thông báo -->
+        <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-header">
+                <h3>Thông báo</h3>
+            </div>
+
+            <div class="notification-list">
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                        <span class="notification-time">20 giây trước</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm tài khoản khách hàng <strong>thành công!</strong></p>
+                        <span class="notification-time">20 phút trước</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 <strong>thành công!</strong></p>
+                        <span class="notification-time">5 giờ trước</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                        <span class="notification-time">12 giờ trước</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-footer">
+                <a href="adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a>
+            </div>
+        </div>
+        <div class="user-profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
+                 alt="User Profile">
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-area">
+        <h1 class="page-title">Dashboard</h1>
+        <div class="breadcrumb">
+            <a href="adminDashboard.html">Trang chủ</a> / <span>Dashboard</span>
+        </div>
+
+        <!-- Các thẻ tiêu chí -->
+        <div class="stats-grid">
+            <!-- Tổng doanh thu -->
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #00c9a7 0%, #5b86e5 100%);">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="stat-label">Tổng doanh thu</h3>
+                    <p class="stat-value">57.000.000đ</p>
+                    <div class="stat-change positive">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>+0.162%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tổng đơn hàng -->
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="stat-label">Tổng đơn hàng</h3>
+                    <p class="stat-value">10,523</p>
+                    <div class="stat-change positive">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>+0.056%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Đơn hàng gần đây -->
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="stat-label">Đơn hàng gần đây</h3>
+                    <p class="stat-value">1,234</p>
+                    <div class="stat-change positive">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>+0.025%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tổng sản phẩm bán ra -->
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="stat-label">Tổng sản phẩm bán ra</h3>
+                    <p class="stat-value">210.018</p>
+                    <div class="stat-change positive">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>+0.036%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+            <!-- Tổng doanh số -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Tổng doanh số</h3>
+                    <div class="chart-tabs">
+                        <button class="chart-tab active">7 Ngày</button>
+                        <button class="chart-tab">Tháng</button>
+                        <button class="chart-tab">Năm</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <!-- Thay canvas bằng img -->
+                    <img src="https://i.postimg.cc/J0RZc56z/Screenshot-2025-11-11-232332.png"
+                         alt="Biểu đồ tổng doanh số" class="chart-image">
+                </div>
+            </div>
+
+            <!-- Monthly Statistics -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Thống kê tháng</h3>
+                    <label>
+                        <select class="time-select">
+                            <option>7 ngày gần đây</option>
+                            <option>30 ngày gần đây</option>
+                            <option>90 ngày gần đây</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="stats-legend">
+                    <div class="legend-item">
+                        <div class="legend-item-header">
+                            <span class="legend-dot" style="background: #fbbf24;"></span>
+                            <span class="legend-label">Lợi nhuận</span>
+                        </div>
+                        <span class="legend-value">13,570</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-item-header">
+                            <span class="legend-dot" style="background: #5b86e5;"></span>
+                            <span class="legend-label">Hoàn trả</span>
+                        </div>
+                        <span class="legend-value">455,877</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-item-header">
+                            <span class="legend-dot" style="background: #00c9a7;"></span>
+                            <span class="legend-label">Chi phí</span>
+                        </div>
+                        <span class="legend-value">455,877</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <img src="https://i.postimg.cc/1XywcrCR/Screenshot-2025-11-11-232516.png"
+                         alt="Biểu đồ thống kê tháng" class="chart-image">
+                </div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="chart-card full-width">
+                <div class="chart-header">
+                    <h3 class="chart-title">Doanh thu</h3>
+                    <select class="time-select">
+                        <option>7 ngày gần đây</option>
+                        <option>30 ngày gần đây</option>
+                    </select>
+                </div>
+                <div class="stats-legend">
+                    <div class="legend-item">
+                        <div class="legend-item-header">
+                            <span class="legend-dot" style="background: #fbbf24;"></span>
+                            <span class="legend-label">Khách</span>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-item-header">
+                            <span class="legend-dot" style="background: #00c9a7;"></span>
+                            <span class="legend-label">Bán hàng</span>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-item-header">
+                            <span class="legend-dot" style="background: #5b86e5;"></span>
+                            <span class="legend-label">Lợi nhuận</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <img src="https://i.postimg.cc/XqndckHv/Screenshot-2025-11-11-232534.png" alt="Biểu đồ doanh thu"
+                         class="chart-image">
+                </div>
+            </div>
+        </div>
+</main>
+<script src="adminjs/adminNotification.js"></script>
+</body>
+</html>
