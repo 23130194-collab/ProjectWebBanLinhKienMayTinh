@@ -1,5 +1,7 @@
 package com.example.demo1.model;
 
+import java.sql.Timestamp;
+
 public class User {
     private int id;
     private int role;
@@ -11,10 +13,13 @@ public class User {
     private String gender;
     private String birthday;
     private String status;
-    private String created_at;
     private String updated_at;
+    private Timestamp created_at;
 
-    public User(int id, int role, String email, String password, String name, String phone, String address, String gender, String birthday, String status, String created_at, String updated_at) {
+
+    public User(int id, int role, String email, String password,
+                String name, String phone, String address, String gender,
+                String birthday, String status, Timestamp created_at, String updated_at) {
         this.id = id;
         this.role = role;
         this.email = email;
@@ -112,11 +117,11 @@ public class User {
         this.status = status;
     }
 
-    public String getCreated_at() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 
