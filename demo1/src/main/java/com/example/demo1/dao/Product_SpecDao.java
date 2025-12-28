@@ -19,4 +19,26 @@ public class Product_SpecDao {
                         .list()
         );
     }
+
+    /**
+     * Lấy danh sách các giá trị đặc tả (spec) duy nhất cho một thuộc tính cụ thể trong một danh mục.
+     * Ví dụ: Lấy tất cả các loại socket duy nhất trong danh mục CPU.
+     * @param categoryId ID của danh mục.
+     * @param attributeId ID của thuộc tính.
+     * @return Danh sách các chuỗi giá trị đặc tả.
+     */
+    public List<String> getDistinctSpecValues(int categoryId, int attributeId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                        "SELECT DISTINCT ps.spec_value FROM product_specs ps " +
+                        "JOIN products p ON ps.product_id = p.id " +
+                        "WHERE p.category_id = :categoryId AND ps.attribute_id = :attributeId " +
+                        "ORDER BY ps.spec_value ASC"
+                )
+                .bind("categoryId", categoryId)
+                .bind("attributeId", attributeId)
+                .mapTo(String.class)
+                .list()
+        );
+    }
 }

@@ -155,12 +155,20 @@ body {
     justify-content: center;
     overflow: hidden;
     background: white;
+    text-decoration: none;
+    color: inherit;
 }
 
 .brand-logo img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 75%;
+    max-height: 75%;
     object-fit: contain;
+}
+
+/* --- Brand Filter Active State --- */
+.brand-logo.active {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 /* FILTER TOGGLE BUTTON */
@@ -184,7 +192,7 @@ body {
 }
 
 .filter-toggle-btn:hover {
-    background: #fbe6e8;
+    background: #f8f9fa;
 }
 
 /* FILTER SECTION */
@@ -236,13 +244,11 @@ body {
     white-space: nowrap;
     transition: all 0.3s ease;
     color: #333;
-    /*font-weight: bold;*/
 }
 
 .option-label:hover {
     border-color: #007bff;
     background-color: #f8f9ff;
-
 }
 
 .options-grid input[type="checkbox"]:checked + .option-label {
@@ -285,13 +291,13 @@ body {
 
 .confirm-button {
     border: none;
-    background: #d70018;
+    background: #007bff;
     color: white;
     font-weight: 600;
 }
 
 .confirm-button:hover {
-    background: #a50416;
+    background: #0056b3;
 }
 
 /* Responsive Filter */
@@ -317,6 +323,54 @@ body {
     }
 }
 
+/* --- Applied Filters --- */
+.applied-filters-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.applied-filters-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+
+.applied-filters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.applied-filter-tag {
+    display: flex;
+    align-items: center;
+    background-color: #e0f0ff;
+    color: #0056b3;
+    border: 1px solid #b3d7ff;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.remove-filter-btn {
+    margin-left: 8px;
+    color: #0056b3;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.remove-filter-btn:hover {
+    opacity: 1;
+}
+
 /* Sắp xếp theo */
 .sort-wrapper {
     display: flex;
@@ -337,10 +391,6 @@ body {
     gap: 10px;
 }
 
-.sort-buttons input[type="radio"] {
-    display: none;
-}
-
 .sort-btn {
     padding: 8px 14px;
     border: 1px solid #ddd;
@@ -349,17 +399,20 @@ body {
     font-size: 14px;
     cursor: pointer;
     font-family: "Segoe UI", sans-serif;
+    color: black;
+    text-decoration: none;
 }
 
 .sort-btn:hover {
     background: #f8f9fa;
 }
 
-.sort-buttons input[type="radio"]:checked + .sort-btn {
-    background: #e0f0ff;
+.sort-buttons .sort-btn.active {
+    background-color: #e0f0ff;
     border-color: #007bff;
     color: #007bff;
     font-weight: 600;
+    text-decoration: none;
 }
 
 /* Hiển thị sản phẩm 5 sản phẩm một hàng */
@@ -483,7 +536,6 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    /*margin-bottom: 16px;*/
     flex-wrap: nowrap;
 }
 
@@ -516,7 +568,7 @@ body {
     gap: 4px;
     padding: 4px 0;
     cursor: default;
-    pointer-events: none; /* Không cho focus */
+    pointer-events: none;
 }
 
 .rating .stars {
