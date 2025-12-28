@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -202,7 +204,8 @@
                     <div class="product-card">
                         <c:if test="${rp.discount_value > 0}">
                             <div class="discount-tag">
-                                <span class="discount-percent">-<fmt:formatNumber value="${rp.discount_value}" pattern="#"/>%</span>
+                                <span class="discount-percent">-<fmt:formatNumber value="${rp.discount_value}"
+                                                                                  pattern="#"/>%</span>
                             </div>
                         </c:if>
 
@@ -210,9 +213,12 @@
                             <img src="${rp.image}" alt="${rp.name}" class="product-image">
                             <h3 class="product-title">${rp.name}</h3>
                             <div class="price-section">
-                                <div class="current-price"><fmt:formatNumber value="${rp.price}" pattern="#,###"/>đ</div>
+                                <div class="current-price"><fmt:formatNumber value="${rp.price}" pattern="#,###"/>đ
+                                </div>
                                 <c:if test="${rp.discount_value > 0}">
-                                    <div class="original-price"><fmt:formatNumber value="${rp.old_price}" pattern="#,###"/>đ</div>
+                                    <div class="original-price"><fmt:formatNumber value="${rp.old_price}"
+                                                                                  pattern="#,###"/>đ
+                                    </div>
                                 </c:if>
                             </div>
                         </a>
@@ -221,10 +227,12 @@
                             <div class="action-item rating">
                                 <div class="stars-container">
                                     <div class="stars-outer">
-                                        <div class="stars-inner" style="width: ${ (rp.avg_rating * 1.0 / 5) * 100 }%;"></div>
+                                        <div class="stars-inner"
+                                             style="width: ${ (rp.avg_rating * 1.0 / 5) * 100 }%;"></div>
                                     </div>
                                 </div>
-                                <span class="rating-value"><fmt:formatNumber value="${rp.avg_rating}" pattern="0.0"/></span>
+                                <span class="rating-value"><fmt:formatNumber value="${rp.avg_rating}"
+                                                                             pattern="0.0"/></span>
                             </div>
                             <button class="action-item like-btn" title="Thêm vào yêu thích">
                                 <i class="fa-regular fa-heart"></i>
@@ -251,7 +259,15 @@
                         </div>
                     </div>
                     <div class="rating-count">${reviewSummary.totalReviews} lượt đánh giá</div>
-                    <button class="btn-write-review" id="btn-write-review">Viết đánh giá</button>
+
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.auth}">
+                            <button class="btn-write-review" id="btn-write-review">Viết đánh giá</button>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="login.jsp" class="btn-write-review">Viết đánh gi</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <div class="rating-distribution">
@@ -380,7 +396,8 @@
                             </div>
                         </div>
                         <div class="review-comment-box">
-                            <textarea name="comment" placeholder="Xin mời chia sẻ một số cảm nhận về sản phẩm"></textarea>
+                            <textarea name="comment"
+                                      placeholder="Xin mời chia sẻ một số cảm nhận về sản phẩm"></textarea>
                         </div>
 
                         <button class="btn-submit-review">GỬI ĐÁNH GIÁ</button>
