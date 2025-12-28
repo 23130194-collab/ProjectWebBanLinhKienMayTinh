@@ -4,7 +4,7 @@ import com.example.demo1.dao.AuthDao;
 import com.example.demo1.model.User;
 
 public class AuthService {
-    AuthDao authDao = new AuthDao();
+    UserDao authDao = new UserDao();
 
     public User checkLogin(String email, String password) {
         User u = authDao.getUserByEmail(email);
