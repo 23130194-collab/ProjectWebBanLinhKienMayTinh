@@ -2,7 +2,7 @@ package com.example.demo1.dao;
 
 import com.example.demo1.model.User;
 
-public class AuthDao extends DatabaseDao {
+public class UserDao extends DatabaseDao {
     public User getUserByEmail(String email) {
         return get().withHandle( h -> h.createQuery( "select * from users where email = :email").bind("email", email)
                 .mapToBean(User.class).stream().findFirst().orElse(null));
