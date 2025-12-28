@@ -20,4 +20,16 @@ public class BrandDao {
                         .orElse(null) // Lấy giá trị hoặc trả về null nếu không thấy
         );
     }
+
+    public List<Brand> getBrandsByCategoryId(int categoryId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT DISTINCT b.* FROM brands b " +
+                                "JOIN products p ON b.id = p.brand_id " +
+                                "WHERE p.category_id = :categoryId " +
+                                "ORDER BY b.display_order ASC")
+                        .bind("categoryId", categoryId)
+                        .mapToBean(Brand.class)
+                        .list()
+        );
+    }
 }

@@ -265,7 +265,7 @@
                             <button class="btn-write-review" id="btn-write-review">Viết đánh giá</button>
                         </c:when>
                         <c:otherwise>
-                            <a href="login.jsp" class="btn-write-review">Viết đánh gi</a>
+                            <a href="login.jsp" class="btn-write-review">Viết đánh giá</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
