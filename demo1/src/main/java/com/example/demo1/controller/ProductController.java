@@ -14,7 +14,6 @@ import java.util.List;
 
 @WebServlet(name = "ProductController", value = "/product-detail")
 public class ProductController extends HttpServlet {
-    private static final int RELATED_PRODUCTS_PER_PAGE = 5;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,18 +29,8 @@ public class ProductController extends HttpServlet {
                 return;
             }
 
-            // Lấy trang hiện tại cho sản phẩm liên quan
-            String relatedPageStr = request.getParameter("relatedPage");
-            int relatedCurrentPage = 1;
-            if (relatedPageStr != null && !relatedPageStr.isEmpty()) {
-                relatedCurrentPage = Integer.parseInt(relatedPageStr);
-            }
-
-            // Lấy sản phẩm liên quan đã phân trang
-            ProductPage relatedProductPage = ps.getRelatedProductsPage(p, relatedCurrentPage, RELATED_PRODUCTS_PER_PAGE);
-            List<Product> relatedProducts = relatedProductPage.getProducts();
-            int relatedTotalPages = (int) Math.ceil((double) relatedProductPage.getTotalProducts() / RELATED_PRODUCTS_PER_PAGE);
-
+            // Lấy danh sách sản phẩm liên quan (tối đa 3 sản phẩm, không phân trang)
+            List<Product> relatedProducts = ps.getRelatedProducts(p);
 
             ReviewSummary summary = ps.getReviewSummary(id);
             List<Review> initialReviews = reviewDao.getReviewsWithFilterAndPagination(id, 0, 5, 0);
@@ -53,10 +42,8 @@ public class ProductController extends HttpServlet {
             request.setAttribute("reviews", initialReviews);
             request.setAttribute("reviewSummary", summary);
             
-            // Thuộc tính sản phẩm liên quan và phân trang
+            // Thuộc tính sản phẩm liên quan
             request.setAttribute("relatedProducts", relatedProducts);
-            request.setAttribute("relatedCurrentPage", relatedCurrentPage);
-            request.setAttribute("relatedTotalPages", relatedTotalPages);
 
             request.getRequestDispatcher("sanPham.jsp").forward(request, response);
 
@@ -66,7 +53,7 @@ public class ProductController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         // Để trống
     }
 }
