@@ -1,6 +1,6 @@
 package com.example.demo1.service;
 
-import com.example.demo1.dao.AuthDao;
+import com.example.demo1.dao.UserDao;
 import com.example.demo1.model.User;
 
 public class AuthService {
