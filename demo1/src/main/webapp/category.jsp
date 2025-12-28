@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<fmt:setLocale value="vi_VN" />
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -75,15 +78,9 @@
                 <button class="slider-nav next-btn">❯</button>
 
                 <div class="slides-wrapper">
-                    <a href="#"><img
-                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/amd.png"
-                            class="banner-img" alt="CPU AMD"></a>
-                    <a href="#"><img
-                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate-cpu-intel-28-08.png"
-                            class="banner-img" alt="CPU Intel"></a>
-                    <a href="#"><img
-                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/amd.png"
-                            class="banner-img" alt="CPU AMD"></a>
+                    <c:forEach items="${leftBanners}" var="banner">
+                        <a href="#"><img src="${banner.image}" class="banner-img" alt="${banner.name}"></a>
+                    </c:forEach>
                 </div>
                 <div class="dots-container"></div>
             </div>
@@ -93,15 +90,9 @@
                 <button class="slider-nav next-btn">❯</button>
 
                 <div class="slides-wrapper">
-                    <a href="#"><img
-                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate-cpu-intel-28-08.png"
-                            class="banner-img" alt="CPU Intel"></a>
-                    <a href="#"><img
-                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/amd.png"
-                            class="banner-img" alt="CPU AMD"></a>
-                    <a href="#"><img
-                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:595:100/q:100/plain/https://dashboard.cellphones.com.vn/storage/cate-cpu-intel-28-08.png"
-                            class="banner-img" alt="CPU Intel"></a>
+                    <c:forEach items="${rightBanners}" var="banner">
+                        <a href="#"><img src="${banner.image}" class="banner-img" alt="${banner.name}"></a>
+                    </c:forEach>
                 </div>
                 <div class="dots-container"></div>
             </div>
@@ -115,13 +106,23 @@
 
     <!-- Brand Filter -->
     <div class="brand-filter">
-        <a href="#" class="brand-logo">
-            <img src="https://blog.logomaster.ai/hs-fs/hubfs/intel-logo-1968.jpg?width=1680&height=1135&name=intel-logo-1968.jpg"
-                 alt="CPU Intel">
-        </a>
-        <a href="#" class="brand-logo">
-            <img src="https://logos-world.net/wp-content/uploads/2020/03/AMD-Logo.png" alt="CPU AMD">
-        </a>
+        <c:forEach items="${brandList}" var="brand">
+            <%-- Logic to toggle brand filter --%>
+            <c:choose>
+                <c:when test="${selectedBrandId == brand.id}">
+                    <%-- Brand is selected, link to remove filter --%>
+                    <a href="list-product?id=${category.id}" class="brand-logo active">
+                        <img src="${brand.logo}" alt="${brand.name}">
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <%-- Brand is not selected, link to apply filter --%>
+                    <a href="list-product?id=${category.id}&brandId=${brand.id}" class="brand-logo">
+                        <img src="${brand.logo}" alt="${brand.name}">
+                    </a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
     </div>
 
     <!-- Filter Section -->
@@ -137,175 +138,93 @@
         </button>
     </div>
 
-    <div class="filter-section">
-        <div class="option-group">
-            <h4 class="group-title">Dòng sản phẩm</h4>
-            <div class="options-grid">
-                <input type="checkbox" id="opt-product-1" name="product" value="Core i9">
-                <label for="opt-product-1" class="option-label">Core i9</label>
+    <form action="list-product" method="POST">
+        <input type="hidden" name="id" value="${category.id}">
+        <c:if test="${not empty selectedBrandId}">
+            <input type="hidden" name="brandId" value="${selectedBrandId}">
+        </c:if>
 
-                <input type="checkbox" id="opt-product-2" name="product" value="Core i7">
-                <label for="opt-product-2" class="option-label">Core i7</label>
+        <div class="filter-section">
+            <c:forEach var="entry" items="${filterableAttributes}">
+                <div class="option-group">
+                    <h4 class="group-title">${entry.key.name}</h4>
+                    <div class="options-grid">
+                        <c:forEach var="value" items="${entry.value}">
+                            <c:set var="isChecked" value="${false}" />
+                            <c:if test="${not empty selectedSpecs[entry.key.id]}">
+                                <c:forEach var="selectedValue" items="${selectedSpecs[entry.key.id]}">
+                                    <c:if test="${selectedValue eq value}">
+                                        <c:set var="isChecked" value="${true}" />
+                                    </c:if>
+                                </c:forEach>
+                            </c:if>
+                            <input type="checkbox" id="spec-${entry.key.id}-${value}" name="spec_${entry.key.id}" value="${value}" ${isChecked ? 'checked' : ''}>
+                            <label for="spec-${entry.key.id}-${value}" class="option-label">${value}</label>
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:forEach>
 
-                <input type="checkbox" id="opt-product-3" name="product" value="Core i5">
-                <label for="opt-product-3" class="option-label">Core i5</label>
-
-                <input type="checkbox" id="opt-product-4" name="product" value="Core i3">
-                <label for="opt-product-4" class="option-label">Core i3</label>
-
-                <input type="checkbox" id="opt-product-5" name="product" value="Core Ultra 9">
-                <label for="opt-product-5" class="option-label">Core Ultra 9</label>
-
-                <input type="checkbox" id="opt-product-6" name="product" value="Core Ultra 7">
-                <label for="opt-product-6" class="option-label">Core Ultra 7</label>
-
-                <input type="checkbox" id="opt-product-7" name="product" value="Core Ultra 5">
-                <label for="opt-product-7" class="option-label">Core Ultra 5</label>
-
-                <input type="checkbox" id="opt-product-8" name="product" value="Ryzen 9">
-                <label for="opt-product-8" class="option-label">Ryzen 9</label>
-
-                <input type="checkbox" id="opt-product-9" name="product" value="Ryzen 7">
-                <label for="opt-product-9" class="option-label">Ryzen 7</label>
-
-                <input type="checkbox" id="opt-product-10" name="product" value="Ryzen 5">
-                <label for="opt-product-10" class="option-label">Ryzen 5</label>
-
-                <input type="checkbox" id="opt-product-11" name="product" value="Ryzen 3">
-                <label for="opt-product-11" class="option-label">Ryzen 3</label>
-
-                <input type="checkbox" id="opt-product-12" name="product" value="AMD Ryzen PRO">
-                <label for="opt-product-12" class="option-label">AMD Ryzen PRO</label>
-
-                <input type="checkbox" id="opt-product-13" name="product" value="AMD Athlon">
-                <label for="opt-product-13" class="option-label">AMD Athlon</label>
-
+            <div class="action-bar">
+                <a href="list-product?id=${category.id}&brand?id=${selectedBrandId}" class="cancel-button" style="text-decoration: none;">Bỏ lọc</a>
+                <button type="submit" class="confirm-button">Xem kết quả</button>
             </div>
         </div>
+    </form>
 
-        <div class="option-group">
-            <h4 class="group-title">Thế hệ CPU</h4>
-            <div class="options-grid">
-                <input type="checkbox" id="opt-generation-1" name="generation" value="Intel thế hệ 14">
-                <label for="opt-generation-1" class="option-label">Intel thế hệ 14</label>
+    <!-- Applied Filters -->
+    <div class="applied-filters-container">
+        <c:if test="${not empty selectedSpecs}">
+            <span class="page-title">Đang lọc theo:</span>
+            <div class="applied-filters-list">
+                <c:forEach var="specGroup" items="${selectedSpecs}">
+                    <c:forEach var="specValue" items="${specGroup.value}">
+                        <%-- Build the removal URL for this specific filter --%>
+                        <c:url var="removeUrl" value="list-product">
+                            <c:param name="id" value="${category.id}" />
+                            <c:if test="${not empty selectedBrandId}">
+                                <c:param name="brandId" value="${selectedBrandId}" />
+                            </c:if>
+                            <%-- Re-add all other selected specs --%>
+                            <c:forEach var="otherGroup" items="${selectedSpecs}">
+                                <c:forEach var="otherValue" items="${otherGroup.value}">
+                                    <%-- Add the spec back if it's not the one we're removing --%>
+                                    <c:if test="${not (otherGroup.key == specGroup.key and otherValue == specValue)}">
+                                        <c:param name="spec_${otherGroup.key}" value="${otherValue}" />
+                                    </c:if>
+                                </c:forEach>
+                            </c:forEach>
+                        </c:url>
 
-                <input type="checkbox" id="opt-generation-2" name="generation" value="Intel thế hệ 14">
-                <label for="opt-generation-2" class="option-label">Intel thế hệ 13</label>
-
-                <input type="checkbox" id="opt-generation-3" name="generation" value="Intel thế hệ 14">
-                <label for="opt-generation-3" class="option-label">Intel thế hệ 12</label>
-
-                <input type="checkbox" id="opt-generation-4" name="generation" value="Intel thế hệ 14">
-                <label for="opt-generation-4" class="option-label">Intel thế hệ 11</label>
-
-                <input type="checkbox" id="opt-generation-5" name="generation" value="AMD Ryzen thế hệ thứ 9">
-                <label for="opt-generation-5" class="option-label">AMD Ryzen thế hệ thứ 9</label>
-
-                <input type="checkbox" id="opt-generation-6" name="generation" value="AMD Ryzen thế hệ thứ 8">
-                <label for="opt-generation-6" class="option-label">AMD Ryzen thế hệ thứ 8</label>
-
-                <input type="checkbox" id="opt-generation-7" name="generation" value="AMD Ryzen thế hệ thứ 7">
-                <label for="opt-generation-7" class="option-label">AMD Ryzen thế hệ thứ 7</label>
-
-                <input type="checkbox" id="opt-generation-8" name="generation" value="AMD Ryzen thế hệ thứ 5">
-                <label for="opt-generation-8" class="option-label">AMD Ryzen thế hệ thứ 5</label>
-
-                <input type="checkbox" id="opt-generation-9" name="generation" value="AMD Ryzen thế hệ thứ 4">
-                <label for="opt-generation-9" class="option-label">AMD Ryzen thế hệ thứ 4</label>
-
-                <input type="checkbox" id="opt-generation-10" name="generation" value="AMD Ryzen thế hệ thứ 3">
-                <label for="opt-generation-10" class="option-label">AMD Ryzen thế hệ thứ 3</label>
+                        <div class="applied-filter-tag">
+                            <span>${specValue}</span>
+                            <a href="${removeUrl}" class="remove-filter-btn">&times;</a>
+                        </div>
+                    </c:forEach>
+                </c:forEach>
             </div>
-        </div>
-
-        <div class="option-group">
-            <h4 class="group-title">Socket</h4>
-            <div class="options-grid">
-                <input type="checkbox" id="opt-socket-1" name="socket" value="LGA 1700">
-                <label for="opt-socket-1" class="option-label">LGA 1700</label>
-
-                <input type="checkbox" id="opt-socket-2" name="socket" value="LGA 1200">
-                <label for="opt-socket-2" class="option-label">LGA 1200</label>
-
-                <input type="checkbox" id="opt-socket-3" name="socket" value="AM5">
-                <label for="opt-socket-3" class="option-label">AM5</label>
-
-                <input type="checkbox" id="opt-socket-4" name="socket" value="AM4">
-                <label for="opt-socket-4" class="option-label">AM4</label>
-
-                <input type="checkbox" id="opt-socket-5" name="socket" value="sWRX8">
-                <label for="opt-socket-5" class="option-label">sWRX8</label>
-
-                <input type="checkbox" id="opt-socket-6" name="socket" value="FCLGA1851">
-                <label for="opt-socket-6" class="option-label">FCLGA1851</label>
-
-                <input type="checkbox" id="opt-socket-7" name="socket" value="FCLGA1700">
-                <label for="opt-socket-7" class="option-label">FCLGA1700</label>
-            </div>
-        </div>
-
-        <div class="option-group">
-            <h4 class="group-title">Số nhân</h4>
-            <div class="options-grid">
-                <input type="checkbox" id="opt-core-1" name="core" value="64">
-                <label for="opt-core-1" class="option-label">64</label>
-
-                <input type="checkbox" id="opt-core-2" name="core" value="32">
-                <label for="opt-core-2" class="option-label">32</label>
-
-                <input type="checkbox" id="opt-core-3" name="core" value="24">
-                <label for="opt-core-3" class="option-label">24</label>
-
-                <input type="checkbox" id="opt-core-4" name="core" value="20">
-                <label for="opt-core-4" class="option-label">20</label>
-
-                <input type="checkbox" id="opt-core-5" name="core" value="16">
-                <label for="opt-core-5" class="option-label">16</label>
-
-                <input type="checkbox" id="opt-core-6" name="core" value="14">
-                <label for="opt-core-6" class="option-label">14</label>
-
-                <input type="checkbox" id="opt-core-7" name="core" value="12">
-                <label for="opt-core-7" class="option-label">12</label>
-
-                <input type="checkbox" id="opt-core-8" name="core" value="10">
-                <label for="opt-core-8" class="option-label">10</label>
-
-                <input type="checkbox" id="opt-core-9" name="core" value="8">
-                <label for="opt-core-9" class="option-label">8</label>
-
-                <input type="checkbox" id="opt-core-10" name="core" value="6">
-                <label for="opt-core-10" class="option-label">6</label>
-
-                <input type="checkbox" id="opt-core-11" name="core" value="4">
-                <label for="opt-core-11" class="option-label">4</label>
-
-                <input type="checkbox" id="opt-core-12" name="core" value="2">
-                <label for="opt-core-12" class="option-label">2</label>
-            </div>
-        </div>
-
-
-        <div class="action-bar">
-            <button class="cancel-button">Hủy</button>
-            <button class="confirm-button">Xác nhận</button>
-        </div>
+        </c:if>
     </div>
-
-    <div class="applied-filters" id="applied-filters"></div>
 
     <div class="sort-wrapper">
         <h1 class="page-title">Sắp xếp theo</h1>
-
         <div class="sort-buttons">
-            <input type="radio" id="sort-popular" name="sort" checked>
-            <label for="sort-popular" class="sort-btn">Phổ biến</label>
+            <%-- Base URL with all current filters --%>
+            <c:url var="baseUrl" value="list-product">
+                <c:param name="id" value="${category.id}" />
+                <c:if test="${not empty selectedBrandId}">
+                    <c:param name="brandId" value="${selectedBrandId}" />
+                </c:if>
+                <c:forEach var="specGroup" items="${selectedSpecs}">
+                    <c:forEach var="specValue" items="${specGroup.value}">
+                        <c:param name="spec_${specGroup.key}" value="${specValue}" />
+                    </c:forEach>
+                </c:forEach>
+            </c:url>
 
-            <input type="radio" id="sort-low-high" name="sort">
-            <label for="sort-low-high" class="sort-btn">Giá Thấp - Cao</label>
-
-            <input type="radio" id="sort-high-low" name="sort">
-            <label for="sort-high-low" class="sort-btn">Giá Cao - Thấp</label>
+            <a href="${baseUrl}&sort=popular" class="sort-btn ${selectedSortOrder == 'popular' ? 'active' : ''}">Phổ biến</a>
+            <a href="${baseUrl}&sort=price_asc" class="sort-btn ${selectedSortOrder == 'price_asc' ? 'active' : ''}">Giá Thấp - Cao</a>
+            <a href="${baseUrl}&sort=price_desc" class="sort-btn ${selectedSortOrder == 'price_desc' ? 'active' : ''}">Giá Cao - Thấp</a>
         </div>
     </div>
 
@@ -348,28 +267,51 @@
             </div>
         </c:forEach>
     </div>
-    <!--   Chuyển trang    -->
-    <div class="pagination-container">
-        <button class="pagination-btn disabled">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-            </svg>
-        </button>
 
-        <a href="#" class="page-number active">1</a>
-        <a href="#" class="page-number">2</a>
-        <span class="ellipsis">...</span>
-        <a href="#" class="page-number">5</a>
+    <!-- Pagination -->
+    <c:if test="${totalPages > 1}">
+        <div class="pagination-container">
+            <%-- Previous Button --%>
+            <c:url var="prevUrl" value="list-product">
+                <c:param name="id" value="${category.id}" />
+                <c:if test="${not empty selectedBrandId}"><c:param name="brandId" value="${selectedBrandId}" /></c:if>
+                <c:if test="${not empty selectedSortOrder}"><c:param name="sort" value="${selectedSortOrder}" /></c:if>
+                <c:forEach var="specGroup" items="${selectedSpecs}"><c:forEach var="specValue" items="${specGroup.value}"><c:param name="spec_${specGroup.key}" value="${specValue}" /></c:forEach></c:forEach>
+                <c:param name="page" value="${currentPage - 1}" />
+            </c:url>
+            <a href="${currentPage > 1 ? prevUrl : '#'}" class="pagination-btn ${currentPage == 1 ? 'disabled' : ''}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+            </a>
 
+            <%-- Page Numbers --%>
+            <c:forEach begin="1" end="${totalPages}" var="i">
+                <c:url var="pageUrl" value="list-product">
+                    <c:param name="id" value="${category.id}" />
+                    <c:if test="${not empty selectedBrandId}"><c:param name="brandId" value="${selectedBrandId}" /></c:if>
+                    <c:if test="${not empty selectedSortOrder}"><c:param name="sort" value="${selectedSortOrder}" /></c:if>
+                    <c:forEach var="specGroup" items="${selectedSpecs}"><c:forEach var="specValue" items="${specGroup.value}"><c:param name="spec_${specGroup.key}" value="${specValue}" /></c:forEach></c:forEach>
+                    <c:param name="page" value="${i}" />
+                </c:url>
+                <a href="${pageUrl}" class="page-number ${currentPage == i ? 'active' : ''}">${i}</a>
+            </c:forEach>
 
-        <button class="pagination-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        </button>
-    </div>
+            <%-- Next Button --%>
+            <c:url var="nextUrl" value="list-product">
+                <c:param name="id" value="${category.id}" />
+                <c:if test="${not empty selectedBrandId}"><c:param name="brandId" value="${selectedBrandId}" /></c:if>
+                <c:if test="${not empty selectedSortOrder}"><c:param name="sort" value="${selectedSortOrder}" /></c:if>
+                <c:forEach var="specGroup" items="${selectedSpecs}"><c:forEach var="specValue" items="${specGroup.value}"><c:param name="spec_${specGroup.key}" value="${specValue}" /></c:forEach></c:forEach>
+                <c:param name="page" value="${currentPage + 1}" />
+            </c:url>
+            <a href="${currentPage < totalPages ? nextUrl : '#'}" class="pagination-btn ${currentPage == totalPages ? 'disabled' : ''}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </a>
+        </div>
+    </c:if>
 </main>
 
 <footer>
