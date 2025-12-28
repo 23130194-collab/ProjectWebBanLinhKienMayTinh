@@ -1,0 +1,116 @@
+/* Phần Main Content */
+.main-content {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-340px);
+    width: 940px;
+    margin-top: 70px;
+    padding: 32px;
+    min-height: calc(100vh - 70px);
+    overflow-y: auto;
+    height: calc(100vh - 70px);
+}
+
+.content-area {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Notification List Styles */
+.notification-container {
+    max-width: 100%;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.notification-item:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    transform: translateX(4px);
+}
+
+.notification-icon-circle {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background: #6366f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-text {
+    font-size: 15px;
+    color: #1e293b;
+    margin-bottom: 4px;
+    font-weight: 400;
+}
+
+.notification-text strong {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.notification-time {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* View All Button */
+.view-all-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 24px;
+}
+
+.view-all-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .header,
+    .main-content {
+        left: 0;
+        transform: translateX(0);
+        width: 100%;
+    }
+
+    .search-box {
+        width: 200px;
+    }
+}

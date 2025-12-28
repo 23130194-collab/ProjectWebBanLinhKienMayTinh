@@ -517,6 +517,10 @@
     </div>
 </footer>
 
+<script>
+    const globalContextPath = "${pageContext.request.contextPath}";
+</script>
+
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
 <script src="${pageContext.request.contextPath}/js/sanPham.js"></script>
 </body>
