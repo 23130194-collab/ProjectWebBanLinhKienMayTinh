@@ -1,0 +1,213 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f8fafc;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+/* Form thêm danh mục */
+.category-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.row {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 5px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.input-label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+
+.input-category,
+.input-order {
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.input-category {
+    width: 250px;
+}
+
+.input-order {
+    width: 150px;
+}
+
+
+.row-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Button */
+.add-category-btn {
+    padding: 10px 20px;
+    background: #5b86e5;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 150px;
+}
+
+/* Ô tìm kiếm */
+.search-wrapper {
+    position: relative;
+    width: 260px;
+}
+
+.search-wrapper .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.search-input-product {
+    width: 100%;
+    padding: 10px 12px 10px 34px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.search-input-product {
+    width: 100%;
+    padding: 10px 12px 10px 34px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.search-input-product:focus {
+    border-color: #5b86e5;
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.1);
+}
+
+/* Table */
+.category-table-container {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.category-table th {
+    background: #f1f5f9;
+    padding: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.category-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.category-table tr:hover {
+    background: #f8fafc;
+}
+
+.status {
+    display: inline-block;
+    width: 110px;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+
+}
+.status-selling {
+    background: #dcfce7; color: #15803d;
+
+}
+.status-hidden {
+    background: #fee2e2; color: #b91c1c;
+
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+.btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+.btn.edit { background: #e0f2fe; color: #0284c7; }
+.btn.delete { background: #fee2e2; color: #dc2626; }
+.btn.view { background: #e0f2fe; color: #0284c7; }
+
+.btn:hover { opacity: 0.8; }
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+    gap: 8px;
+}
+
+.pagination-btn, .page-number {
+    display: flex; align-items: center; justify-content: center;
+    min-width: 36px; height: 36px;
+    border-radius: 4px; text-decoration: none; font-size: 14px;
+    cursor: pointer; border: 1px solid #e2e8f0;
+    background: white; color: #334155;
+    transition: all 0.2s;
+}
+
+.page-number.active {
+    background-color: #5b86e5;
+    color: white; border-color: #5b86e5;
+}
+
+.pagination-btn:hover, .page-number:hover:not(.active) {
+    background-color: #f1f5f9;
+}

@@ -1,0 +1,399 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN" />
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Admin - Danh sách khách hàng</title>
+    <link rel="stylesheet" href="admincss/customersList.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admincss/adminNotification.css">
+    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
+</head>
+
+<body>
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="logo">
+        <a href="adminDashboard.jsp">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+        </a>
+        <a href="adminDashboard.jsp" style="text-decoration: none;">
+            <span class="logo-text">TechNova</span>
+        </a>    </div>
+
+    <ul class="nav-menu">
+        <li class="nav-item">
+            <a href="adminDashboard.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
+                Dashboard
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="customersList.html" class="nav-link active">
+                <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+                Khách hàng
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminCategories.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
+                Mục sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminBrands.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
+                Thương hiệu
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminAttributes.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
+                Thuộc tính
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminProductList.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
+                Sản phẩm
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="adminHoaDon.jsp" class="nav-link">
+                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
+                Đơn hàng
+            </a>
+        </li>
+    </ul>
+
+    <!-- Logout Section -->
+    <div class="logout-section">
+        <a href="../login.html" class="nav-link logout-link">
+            <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+            Đăng xuất
+        </a>
+    </div>
+</aside>
+
+<!-- Header -->
+<header class="header">
+    <div class="search-box">
+        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" class="search-input" placeholder="Tìm kiếm">
+    </div>
+
+    <div class="header-actions">
+        <button class="notification-btn" id="notificationBtn">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-badge">3</span>
+        </button>
+
+        <!-- Thông báo -->
+        <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-header">
+                <h3>Thông báo</h3>
+            </div>
+
+            <div class="notification-list">
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                        <span class="notification-time">20 giây trước</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
+                            công!</strong></p>
+                        <span class="notification-time">20 phút trước</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
+                            công!</strong></p>
+                        <span class="notification-time">5 giờ trước</span>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon" style="background: #5b86e5;">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
+                        <span class="notification-time">12 giờ trước</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-footer">
+                <a href="adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a>
+            </div>
+        </div>
+        <div class="user-profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
+                 alt="User Profile">
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="content-area">
+        <div class="page-header">
+            <h1 class="page-title">Danh sách khách hàng</h1>
+            <a href="adminThemKhachHang.jsp" class="add-customer-btn">
+                <i class="fa-solid fa-user-plus"></i> Thêm khách hàng
+            </a>
+        </div>
+
+        <div class="breadcrumb">
+            <a href="adminDashboard.jsp" class="breadcrumb-link">Trang chủ</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Danh sách khách hàng</span>
+        </div>
+
+
+
+        <div class="customer-list">
+            <table class="customer-table">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" id="selectAll"></th>
+                    <th>
+                        Họ tên
+                        <button class="sort-btn" id="sortName" title="Sort by Name">
+                            <i class="fa-solid fa-sort"></i>
+                        </button>
+                    </th>
+                    <th>Email</th>
+                    <th>
+                        Đơn hàng
+                        <button class="sort-btn" id="sortOrders" title="Sort by Orders">
+                            <i class="fa-solid fa-sort"></i>
+                        </button>
+                    </th>
+                    <th>Tham gia</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody id="customerTableBody">
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="detailsCustomers.jsp" class="customer-link">
+                            <div class="reviewer-avatar">T</div>
+                            Trinh Tran Phuong Tuan
+                        </a>
+                    </td>
+                    <td>phuongtuan@gmail.com</td>
+                    <td>120</td>
+                    <td>12/04/2025</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-charlotte.html" class="customer-link">
+                            <div class="reviewer-avatar">A</div>
+                            Thien An
+                        </a>
+                    </td>
+                    <td>thienan@gmail.com</td>
+                    <td>99</td>
+                    <td>1/09/2024</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-isabella.html" class="customer-link">
+                            <div class="reviewer-avatar">V</div>
+                            Nguyen Thanh Viet
+                        </a>
+                    </td>
+                    <td>vietsky@gmail.com</td>
+                    <td>230</td>
+                    <td>1/09/2022</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-jessica.html" class="customer-link">
+                            <div class="reviewer-avatar">G</div>
+                            Nguyen Huong Giang
+                        </a>
+                    </td>
+                    <td>jessica@gmail.com</td>
+                    <td>45</td>
+                    <td>10/09/2022</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-jessica.html" class="customer-link">
+                            <div class="reviewer-avatar">H</div>
+                            Do Minh Hang
+                        </a>
+                    </td>
+                    <td>minhhangdo@gmail.com</td>
+                    <td>45</td>
+                    <td>19/04/2021</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-jessica.html" class="customer-link">
+                            <div class="reviewer-avatar">M</div>
+                            Hoang Thi Mai
+                        </a>
+                    </td>
+                    <td>maimai@gmail.com</td>
+                    <td>15</td>
+                    <td>12/09/2024</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-jessica.html" class="customer-link">
+                            <div class="reviewer-avatar">L</div>
+                            Tran Van Long
+                        </a>
+                    </td>
+                    <td>longnguyen1203@gmail.com</td>
+                    <td>77</td>
+                    <td>09/05/2022</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-jessica.html" class="customer-link">
+                            <div class="reviewer-avatar">N</div>
+                            Trinh Thi Bich Ngoc
+                        </a>
+                    </td>
+                    <td>bichngoctrinh@gmail.com</td>
+                    <td>42</td>
+                    <td>16/11/2022</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-check"></td>
+                    <td>
+                        <a href="customer-jessica.html" class="customer-link">
+                            <div class="reviewer-avatar">D</div>
+                            Phan Anh Dung
+                        </a>
+                    </td>
+                    <td>phananhdung@gmail.com</td>
+                    <td>45</td>
+                    <td>25/12/2022</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
+                            <button class="action-btn delete"><i class="fa-solid fa-lock"></i>️</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <!--   Chuyển trang    -->
+            <div class="pagination-container">
+                <button class="pagination-btn disabled">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </button>
+
+                <a href="#" class="page-number active">1</a>
+                <a href="#" class="page-number">2</a>
+                <span class="ellipsis">...</span>
+                <a href="#" class="page-number">5</a>
+
+                <button class="pagination-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </div>
+            <!-- </div> -->
+
+        </div>
+    </div>
+</main>
+</body>
+<script src="adminjs/adminNotification.js"></script>
+</html>
