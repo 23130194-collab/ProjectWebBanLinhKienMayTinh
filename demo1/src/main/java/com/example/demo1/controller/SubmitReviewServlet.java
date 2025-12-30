@@ -18,8 +18,11 @@ public class SubmitReviewServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        HttpSession session = request.getSession(false); // Lấy session hiện có, không tạo mới
+        User user = null;
+        if (session != null) {
+            user = (User) session.getAttribute("auth"); // Sửa khóa từ "user" thành "auth"
+        }
 
         // Kiểm tra xem người dùng đã đăng nhập chưa
         if (user == null) {

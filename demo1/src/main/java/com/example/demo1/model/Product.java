@@ -128,12 +128,4 @@ public class Product implements Serializable {
         this.image = image;
     }
 
-    // Hàm hỗ trợ để lấy chữ cái đầu
-    public String getInitial() {
-        if (name == null || name.isEmpty()) {
-            return "?";
-        }
-        // Lấy ký tự đầu tiên, viết hoa và cắt khoảng trắng
-        return name.trim().substring(0, 1).toUpperCase();
-    }
 }
