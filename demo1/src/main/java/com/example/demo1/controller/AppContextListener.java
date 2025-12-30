@@ -15,19 +15,17 @@ public class AppContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        // Lấy ServletContext từ sự kiện
         ServletContext context = sce.getServletContext();
-
-        // Tạo service và lấy danh sách tất cả các danh mục
         CategoryService categoryService = new CategoryService();
-        List<Category> categoryList = categoryService.getAllCategories();
+        
+        // ĐÃ SỬA: Chỉ lấy các danh mục đang hoạt động để hiển thị cho người dùng
+        List<Category> categoryList = categoryService.getActiveCategories();
 
-        // Đặt danh sách danh mục vào application scope
         context.setAttribute("categoryList", categoryList);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        // Phương thức này được gọi khi ứng dụng tắt, không cần làm gì ở đây
+        // Không cần làm gì ở đây
     }
 }

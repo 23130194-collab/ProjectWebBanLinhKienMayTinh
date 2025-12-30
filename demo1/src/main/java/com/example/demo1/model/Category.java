@@ -2,15 +2,17 @@ package com.example.demo1.model;
 
 public class Category {
     private int id;
-    private String icon;
+    private String image;
     private String name;
     private int display_order;
+    private String status;
 
-    public Category(int id,String icon, String name, int display_order) {
+    public Category(int id, String image, String name, int display_order, String status) {
         this.id = id;
-        this.icon = icon;
+        this.image = image;
         this.name = name;
         this.display_order = display_order;
+        this.status = status;
     }
 
     public Category() {
@@ -24,12 +26,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getImage() {
+        return image;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getName() {
@@ -46,5 +48,13 @@ public class Category {
 
     public void setDisplay_order(int display_order) {
         this.display_order = display_order;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

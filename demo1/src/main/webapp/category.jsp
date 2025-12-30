@@ -50,7 +50,15 @@
         <div class="category-box" id="categoryBox">
             <c:forEach items="${applicationScope.categoryList}" var="cat">
                 <a href="list-product?id=${cat.id}" class="category-item">
-                    <img src="${cat.icon}" class="category-icon" alt="${cat.name}">
+                    <c:set var="imageSrc" value="${cat.image}"/>
+                    <c:choose>
+                        <c:when test="${fn:startsWith(imageSrc, 'http')}">
+                            <img src="${imageSrc}" class="category-icon" alt="${cat.name}">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${pageContext.request.contextPath}/${imageSrc}" class="category-icon" alt="${cat.name}">
+                        </c:otherwise>
+                    </c:choose>
                     ${cat.name}
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
