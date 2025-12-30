@@ -152,4 +152,18 @@ public class ProductDao {
                         .one()
         );
     }
+
+    /**
+     * Đếm số lượng sản phẩm thuộc về một danh mục.
+     * @param categoryId ID của danh mục.
+     * @return Số lượng sản phẩm.
+     */
+    public int countProductsByCategoryId(int categoryId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM products WHERE category_id = :categoryId")
+                        .bind("categoryId", categoryId)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
 }
