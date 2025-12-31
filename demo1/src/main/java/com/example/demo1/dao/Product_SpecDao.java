@@ -13,7 +13,7 @@ public class Product_SpecDao {
                 handle.createQuery("SELECT s.*, a.name AS attribute_name " +
                                 "FROM product_specs s " +
                                 "JOIN attributes a ON s.attribute_id = a.id " +
-                                "WHERE s.product_id = :pid")
+                                "WHERE s.product_id = :pid AND a.status = 'active'") // THÊM ĐIỀU KIỆN LỌC TẠI ĐÂY
                         .bind("pid", pid)
                         .mapToBean(Product_Spec.class)
                         .list()

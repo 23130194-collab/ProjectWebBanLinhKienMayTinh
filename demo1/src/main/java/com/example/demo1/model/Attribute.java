@@ -3,11 +3,11 @@ package com.example.demo1.model;
 public class Attribute {
     private int id;
     private String name;
-
-    public Attribute(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    private String status;
+    private int categoryId;
+    private int displayOrder;
+    private int isFilterable;
+    // -----------------------------------------
 
     public Attribute() {
     }
@@ -27,4 +27,38 @@ public class Attribute {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(int displayOrder) {
+        this.displayOrder = displayOrder;
+    }
+
+    public int getIsFilterable() {
+        return isFilterable;
+    }
+
+    public void setIsFilterable(int isFilterable) {
+        this.isFilterable = isFilterable;
+    }
+    // ---------------------------------------------
 }
