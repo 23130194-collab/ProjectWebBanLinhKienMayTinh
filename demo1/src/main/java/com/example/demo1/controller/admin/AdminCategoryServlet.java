@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-@WebServlet(name = "AdminCategoryServlet", value = "/admin-categories")
+@WebServlet(name = "AdminCategoryServlet", value = "/admin/categories")
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
     maxFileSize = 1024 * 1024 * 10, // 10MB
@@ -101,7 +101,7 @@ public class AdminCategoryServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("errorMessage", "ID danh mục không hợp lệ.");
         }
-        response.sendRedirect(request.getContextPath() + "/admin-categories");
+        response.sendRedirect(request.getContextPath() + "/admin/categories");
     }
 
     private void handleInsertPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -134,7 +134,7 @@ public class AdminCategoryServlet extends HttpServlet {
             return;
         }
 
-        response.sendRedirect(request.getContextPath() + "/admin-categories");
+        response.sendRedirect(request.getContextPath() + "/admin/categories");
     }
 
     private void handleUpdatePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -168,7 +168,7 @@ public class AdminCategoryServlet extends HttpServlet {
             return;
         }
 
-        response.sendRedirect(request.getContextPath() + "/admin-categories");
+        response.sendRedirect(request.getContextPath() + "/admin/categories");
     }
 
     private String handleImageUpload(HttpServletRequest request) throws IOException, ServletException {

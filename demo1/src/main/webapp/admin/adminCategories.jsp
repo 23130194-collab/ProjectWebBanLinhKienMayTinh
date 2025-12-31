@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNova Admin - Danh mục sản phẩm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminNotification.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminCategories.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminCategories.css">
 </head>
 
 <body>
@@ -20,65 +21,25 @@
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp">
+        <a href="${contextPath}/admin/adminDashboard.jsp">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
-        <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp" style="text-decoration: none;">
+        <a href="${contextPath}/admin/adminDashboard.jsp" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </a></div>
+        </a>
+    </div>
 
     <ul class="nav-menu">
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
-                Dashboard
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/customersList.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
-                Khách hàng
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin-categories" class="nav-link active">
-                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
-                Mục sản phẩm
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/adminBrands.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
-                Thương hiệu
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/adminAttributes.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
-                Thuộc tính
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/adminProductList.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
-                Sản phẩm
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/adminHoaDon.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
-                Đơn hàng
-            </a>
-        </li>
-        <%-- Các mục nav khác --%>
+        <li class="nav-item"><a href="${contextPath}/admin/adminDashboard.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin-product-list" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
     </ul>
     <div class="logout-section">
-        <a href="${pageContext.request.contextPath}/logout" class="nav-link logout-link">
+        <a href="${contextPath}/logout" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
             Đăng xuất
         </a>
@@ -107,7 +68,7 @@
             <div class="page-title-wrapper">
                 <h1 class="page-title">Mục sản phẩm</h1>
                 <div class="breadcrumb">
-                    <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp" class="breadcrumb-link">Trang chủ</a>
+                    <a href="${contextPath}/admin/adminDashboard.jsp" class="breadcrumb-link">Trang chủ</a>
                     <span class="breadcrumb-separator">/</span>
                     <span class="breadcrumb-current">Danh mục</span>
                 </div>
@@ -128,7 +89,7 @@
         </c:if>
 
         <!-- Form thêm/sửa danh mục -->
-        <form action="${pageContext.request.contextPath}/admin-categories" method="post" enctype="multipart/form-data" class="category-form" id="addCategoryForm">
+        <form action="${contextPath}/admin/categories" method="post" enctype="multipart/form-data" class="category-form" id="addCategoryForm">
             <c:if test="${not empty categoryToEdit}">
                 <input type="hidden" name="categoryId" value="${categoryToEdit.id}">
             </c:if>
@@ -170,7 +131,7 @@
                         </c:choose>
                     </button>
                     <c:if test="${not empty categoryToEdit}">
-                        <a href="${pageContext.request.contextPath}/admin-categories" class="cancel-btn">Hủy</a>
+                        <a href="${contextPath}/admin/categories" class="cancel-btn">Hủy</a>
                     </c:if>
                 </div>
             </div>
@@ -187,7 +148,7 @@
 
                         <%-- Trường hợp 2: Ảnh lưu trong server (local) --%>
                         <c:otherwise>
-                            <img src="${pageContext.request.contextPath}/${categoryToEdit.image}" alt="Preview"
+                            <img src="${contextPath}/${categoryToEdit.image}" alt="Preview"
                                  style="height: 40px; border-radius: 4px; border: 1px solid #e2e8f0;">
                         </c:otherwise>
                     </c:choose>
@@ -196,7 +157,7 @@
         </form>
 
         <!-- Form tìm kiếm -->
-        <form action="${pageContext.request.contextPath}/admin-categories" method="get" class="form-search-row" id="searchForm">
+        <form action="${contextPath}/admin/categories" method="get" class="form-search-row" id="searchForm">
             <div class="search-wrapper">
                 <input type="text" name="searchKeyword" class="search-input-category" placeholder="Tìm kiếm mục sản phẩm..." value="${searchKeyword}">
                 <a href="#" class="search-icon-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -227,7 +188,7 @@
                                     <img src="${imageSrc}" alt="${cat.name}" class="table-image">
                                 </c:when>
                                 <c:otherwise>
-                                    <img src="${pageContext.request.contextPath}/${imageSrc}" alt="${cat.name}" class="table-image">
+                                    <img src="${contextPath}/${imageSrc}" alt="${cat.name}" class="table-image">
                                 </c:otherwise>
                             </c:choose>
                         </td>
@@ -245,8 +206,8 @@
                         </td>
                         <td>
                             <div class="action-buttons">
-                                <a href="${pageContext.request.contextPath}/admin-categories?action=edit&id=${cat.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
-                                <a href="${pageContext.request.contextPath}/admin-categories?action=delete&id=${cat.id}" class="action-btn delete" title="Xóa" onclick="return confirmDelete();"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="${contextPath}/admin/categories?action=edit&id=${cat.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
+                                <a href="${contextPath}/admin/categories?action=delete&id=${cat.id}" class="action-btn delete" title="Xóa" onclick="return confirmDelete();"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
                         </td>
                     </tr>

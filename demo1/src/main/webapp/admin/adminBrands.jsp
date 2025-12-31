@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNova Admin - Thương hiệu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="admincss/adminBrands.css">
-    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="admincss/adminNotification.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminBrands.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
 </head>
 
 <body>
@@ -20,25 +21,26 @@
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="adminDashboard.jsp">
+        <a href="${contextPath}/admin/adminDashboard.jsp">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
-        <a href="adminDashboard.jsp" style="text-decoration: none;">
+        <a href="${contextPath}/admin/adminDashboard.jsp" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </a></div>
+        </a>
+    </div>
 
     <ul class="nav-menu">
-        <li class="nav-item"><a href="adminDashboard.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
-        <li class="nav-item"><a href="customersList.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
-        <li class="nav-item"><a href="adminCategories.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
-        <li class="nav-item"><a href="brands" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
-        <li class="nav-item"><a href="adminAttributes.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
-        <li class="nav-item"><a href="adminProductList.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
-        <li class="nav-item"><a href="adminHoaDon.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/adminDashboard.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin-product-list" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
     </ul>
 
     <div class="logout-section">
-        <a href="../logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a>
+        <a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a>
     </div>
 </aside>
 
@@ -59,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="notification-footer"><a href="adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a></div>
+            <div class="notification-footer"><a href="${contextPath}/admin/adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a></div>
         </div>
         <div class="user-profile">
             <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg" alt="User Profile">
@@ -74,18 +76,27 @@
             <div>
                 <h1 class="page-title">Thương hiệu</h1>
                 <div class="breadcrumb">
-                    <a href="adminDashboard.jsp" class="breadcrumb-link">Trang chủ</a>
+                    <a href="${contextPath}/admin/adminDashboard.jsp" class="breadcrumb-link">Trang chủ</a>
                     <span>/</span>
                     <span class="breadcrumb-current">Thương hiệu</span>
                 </div>
             </div>
         </div>
 
-        <c:if test="${not empty errorMessage}">
-            <div class="error-message">${errorMessage}</div>
+        <!-- Hiển thị thông báo -->
+        <c:if test="${not empty sessionScope.successMessage}">
+            <div class="alert alert-success">${sessionScope.successMessage}</div>
+            <c:remove var="successMessage" scope="session"/>
+        </c:if>
+        <c:if test="${not empty sessionScope.errorMessage}">
+            <div class="alert alert-danger">${sessionScope.errorMessage}</div>
+            <c:remove var="errorMessage" scope="session"/>
+        </c:if>
+        <c:if test="${not empty requestScope.errorMessage}">
+            <div class="alert alert-danger">${requestScope.errorMessage}</div>
         </c:if>
 
-        <form action="brands" method="post" id="brandForm" enctype="multipart/form-data">
+        <form action="${contextPath}/admin/brands" method="post" id="brandForm" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${brandToEdit.id}">
 
             <div class="brand-form">
@@ -118,16 +129,31 @@
                         <input type="text" id="image-url" name="logo" class="image-input-box" placeholder="https://example.com/image.png" value="${brandToEdit.logo}">
                         <button type="submit" class="add-brand-submit">
                             <c:choose>
-                                <c:when test="${brandToEdit != null}">Cập nhật</c:when>
+                                <c:when test="${not empty brandToEdit}">Cập nhật</c:when>
                                 <c:otherwise>Thêm thương hiệu</c:otherwise>
                             </c:choose>
                         </button>
+                        <c:if test="${not empty brandToEdit}">
+                            <a href="${contextPath}/admin/brands" class="cancel-btn">Hủy</a>
+                        </c:if>
                     </div>
 
                 </div>
             </div>
+            <c:set var="previewLogoUrl" value="${brandToEdit.logo}" />
+            <c:choose>
+                <c:when test="${not empty previewLogoUrl and previewLogoUrl.startsWith('http')}">
+                    <c:set var="finalPreviewUrl" value="${previewLogoUrl}" />
+                </c:when>
+                <c:when test="${not empty previewLogoUrl}">
+                    <c:set var="finalPreviewUrl" value="${contextPath}/${previewLogoUrl}" />
+                </c:when>
+                <c:otherwise>
+                    <c:set var="finalPreviewUrl" value="#" />
+                </c:otherwise>
+            </c:choose>
             <img id="image-preview"
-                 src="${not empty brandToEdit.logo ? pageContext.request.contextPath.concat('/').concat(brandToEdit.logo) : '#'}"
+                 src="${finalPreviewUrl}"
                  alt="Image Preview"
                  style="max-width: 200px; max-height: 200px; margin-top: 10px; display: ${not empty brandToEdit.logo ? 'block' : 'none'};"/>
             <!-- Tìm kiếm -->
@@ -163,7 +189,7 @@
                                     <img src="${logoUrl}" width="55" alt="${brand.name}" onerror="this.style.display='none'">
                                 </c:when>
                                 <c:when test="${not empty logoUrl}">
-                                    <img src="${pageContext.request.contextPath}/${logoUrl}" width="55" alt="${brand.name}" onerror="this.style.display='none'">
+                                    <img src="${contextPath}/${logoUrl}" width="55" alt="${brand.name}" onerror="this.style.display='none'">
                                 </c:when>
                             </c:choose>
                         </td>
@@ -176,8 +202,8 @@
                         </td>
                         <td>
                             <div class="action-buttons">
-                                <a href="brands?action=edit&id=${brand.id}" class="action-btn edit"><i class="fa-solid fa-pen"></i></a>
-                                <a href="brands?action=delete&id=${brand.id}" class="action-btn delete" onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này không?')">
+                                <a href="${contextPath}/admin/brands?action=edit&id=${brand.id}" class="action-btn edit"><i class="fa-solid fa-pen"></i></a>
+                                <a href="${contextPath}/admin/brands?action=delete&id=${brand.id}" class="action-btn delete" onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này không?')">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </div>
@@ -192,26 +218,26 @@
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
                 <c:if test="${currentPage > 1}">
-                    <a href="brands?page=${currentPage - 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
+                    <a href="${contextPath}/admin/brands?page=${currentPage - 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
                 </c:if>
                 <c:forEach var="i" begin="1" end="${totalPages}">
-                    <a href="brands?page=${i}&keyword=${keyword}" class="page-number ${i == currentPage ? 'active' : ''}">${i}</a>
+                    <a href="${contextPath}/admin/brands?page=${i}&keyword=${keyword}" class="page-number ${i == currentPage ? 'active' : ''}">${i}</a>
                 </c:forEach>
                 <c:if test="${currentPage < totalPages}">
-                    <a href="brands?page=${currentPage + 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="${contextPath}/admin/brands?page=${currentPage + 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
                 </c:if>
             </div>
         </c:if>
     </div>
 </main>
 </body>
-<script src="../adminjs/adminNotification.js"></script>
+<script src="${contextPath}/admin/adminjs/adminNotification.js"></script>
 <script>
     document.getElementById('searchInput').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
             var keyword = this.value;
-            window.location.href = 'brands?keyword=' + encodeURIComponent(keyword);
+            window.location.href = '${contextPath}/admin/brands?keyword=' + encodeURIComponent(keyword);
         }
     });
 </script>
