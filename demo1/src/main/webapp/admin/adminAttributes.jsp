@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNova Admin - Thuộc tính</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminAttributes.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminNotification.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminAttributes.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
 
 </head>
 
@@ -20,23 +21,23 @@
 
 <aside class="sidebar">
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/admin/dashboard">
+        <a href="${contextPath}/admin/adminDashboard.jsp">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
-        <a href="${pageContext.request.contextPath}/admin/dashboard" style="text-decoration: none;">
+        <a href="${contextPath}/admin/adminDashboard.jsp" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
         </a>
     </div>
     <ul class="nav-menu">
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin-attributes" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/adminDashboard.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin-product-list" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
     </ul>
-    <div class="logout-section"><a href="${pageContext.request.contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
+    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
 </aside>
 
 <header class="header">
@@ -62,42 +63,10 @@
                         <span class="notification-time">20 giây trước</span>
                     </div>
                 </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">20 phút trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-file-invoice"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">5 giờ trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">12 giờ trước</span>
-                    </div>
-                </div>
             </div>
 
             <div class="notification-footer">
-                <a href="adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a>
+                <a href="${contextPath}/admin/adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a>
             </div>
         </div>
         <div class="user-profile">
@@ -111,7 +80,7 @@
     <div class="content-area">
         <div class="page-title">Thuộc tính</div>
         <div class="breadcrumb">
-            <a href="${pageContext.request.contextPath}/admin/dashboard" class="breadcrumb-link">Trang chủ</a>
+            <a href="${contextPath}/admin/adminDashboard.jsp" class="breadcrumb-link">Trang chủ</a>
             <span class="breadcrumb-separator">/</span>
             <span class="breadcrumb-current">Thuộc tính</span>
         </div>
@@ -149,7 +118,7 @@
 
         <!-- FORM SECTION -->
         <div class="form-section">
-            <form method="post" action="${pageContext.request.contextPath}/admin-attributes">
+            <form method="post" action="${contextPath}/admin/attributes">
                 <input type="hidden" name="action" value="${not empty attributeToEdit ? 'update' : 'add'}">
                 <input type="hidden" name="id" value="${attributeToEdit.id}">
 
@@ -202,7 +171,7 @@
                                 <button type="submit" class="btn-update">
                                     <i class="fa-solid fa-save"></i> Cập nhật
                                 </button>
-                                <a href="${pageContext.request.contextPath}/admin-attributes" class="btn-cancel">Hủy</a>
+                                <a href="${contextPath}/admin/attributes" class="btn-cancel">Hủy</a>
                             </c:when>
                             <c:otherwise>
                                 <button type="submit" class="btn-add">
@@ -217,7 +186,7 @@
 
         <!-- SEARCH -->
         <div class="top-actions">
-             <form action="${pageContext.request.contextPath}/admin-attributes" method="get" class="search-wrapper">
+             <form action="${contextPath}/admin/attributes" method="get" class="search-wrapper">
                  <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" name="keyword" class="search-input-brand" placeholder="Tìm kiếm thuộc tính" value="${keyword}">
                 <button type="submit" style="display:none;"></button>
@@ -257,8 +226,8 @@
                             </span>
                         </td>
                         <td class="actions">
-                            <a href="${pageContext.request.contextPath}/admin-attributes?action=edit&id=${attr.id}" class="btn-edit"><i class="fa-solid fa-pen"></i></a>
-                            <form action="${pageContext.request.contextPath}/admin-attributes" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc chắn muốn xóa thuộc tính này không?');">
+                            <a href="${contextPath}/admin/attributes?action=edit&id=${attr.id}" class="btn-edit"><i class="fa-solid fa-pen"></i></a>
+                            <form action="${contextPath}/admin/attributes" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc chắn muốn xóa thuộc tính này không?');">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="${attr.id}">
                                 <button type="submit" class="btn-delete"><i class="fa-solid fa-trash"></i></button>
@@ -275,14 +244,14 @@
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
                 <c:if test="${currentPage > 1}">
-                    <a href="${pageContext.request.contextPath}/admin-attributes?page=${currentPage - 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
+                    <a href="${contextPath}/admin/attributes?page=${currentPage - 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
                 </c:if>
                 <c:forEach var="i" begin="1" end="${totalPages}">
-                    <a href="${pageContext.request.contextPath}/admin-attributes?page=${i}&keyword=${keyword}" class="page-number ${currentPage == i ? 'active' : ''}">${i}</a>
+                    <a href="${contextPath}/admin/attributes?page=${i}&keyword=${keyword}" class="page-number ${currentPage == i ? 'active' : ''}">${i}</a>
 
                 </c:forEach>
                 <c:if test="${currentPage < totalPages}">
-                    <a href="${pageContext.request.contextPath}/admin-attributes?page=${currentPage + 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="${contextPath}/admin/attributes?page=${currentPage + 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
                 </c:if>
             </div>
         </c:if>
