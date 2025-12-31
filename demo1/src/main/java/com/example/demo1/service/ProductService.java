@@ -96,4 +96,8 @@ public class ProductService {
 
         return new ProductPage(products, totalProducts);
     }
+
+    public List<Product> getFilteredProducts(Integer categoryId, String status) {
+        return pdao.getFilteredProducts(categoryId, status);
+    }
 }
