@@ -18,6 +18,8 @@ import java.nio.file.Paths;
 @WebServlet(name = "AdminBrandController", value = "/admin/brands")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 15)
 public class AdminBrandController extends HttpServlet {
+    private static final String SERVLET_PATH = "/admin/brands";
+    private static final String JSP_PATH = "/admin/adminBrands.jsp";
     private final BrandService brandService = new BrandService();
     private static final String EXTERNAL_UPLOAD_DIR = System.getProperty("user.home") + File.separator + "web_uploads";
     private static final String DB_UPLOAD_DIR = "uploads";
@@ -70,7 +72,7 @@ public class AdminBrandController extends HttpServlet {
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("keyword", keyword);
 
-        request.getRequestDispatcher("/admin/adminBrands.jsp").forward(request, response);
+        request.getRequestDispatcher(JSP_PATH).forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -79,13 +81,13 @@ public class AdminBrandController extends HttpServlet {
             Brand brandToEdit = brandService.getBrandById(id);
             if (brandToEdit == null) {
                 request.getSession().setAttribute("errorMessage", "Thương hiệu không tồn tại.");
-                response.sendRedirect(request.getContextPath() + "/admin/brands");
+                response.sendRedirect(request.getContextPath() + SERVLET_PATH);
                 return;
             }
             request.setAttribute("brandToEdit", brandToEdit);
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("errorMessage", "ID thương hiệu không hợp lệ.");
-            response.sendRedirect(request.getContextPath() + "/admin/brands");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH);
             return;
         }
         listBrands(request, response);
@@ -130,7 +132,7 @@ public class AdminBrandController extends HttpServlet {
             brand = brandService.getBrandById(Integer.parseInt(idParam));
             if (brand == null) {
                 request.getSession().setAttribute("errorMessage", "Lỗi: Thương hiệu bạn đang cố cập nhật không tồn tại hoặc đã bị xóa.");
-                response.sendRedirect(request.getContextPath() + "/admin/brands");
+                response.sendRedirect(request.getContextPath() + SERVLET_PATH);
                 return;
             }
         } else {
@@ -151,7 +153,7 @@ public class AdminBrandController extends HttpServlet {
 
         brandService.saveBrand(brand);
         request.getSession().setAttribute("successMessage", isNew ? "Thêm thương hiệu thành công!" : "Cập nhật thương hiệu thành công!");
-        response.sendRedirect(request.getContextPath() + "/admin/brands");
+        response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 
     private void deleteBrand(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -165,6 +167,6 @@ public class AdminBrandController extends HttpServlet {
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("errorMessage", "ID thương hiệu không hợp lệ.");
         }
-        response.sendRedirect(request.getContextPath() + "/admin/brands");
+        response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 }
