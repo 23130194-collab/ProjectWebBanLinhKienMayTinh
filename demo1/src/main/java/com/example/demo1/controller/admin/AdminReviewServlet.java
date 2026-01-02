@@ -14,6 +14,8 @@ import java.util.List;
 
 @WebServlet(name = "AdminReviewServlet", value = "/admin/reviews")
 public class AdminReviewServlet extends HttpServlet {
+    private static final String SERVLET_PATH = "/admin/reviews";
+    private static final String JSP_PATH = "/admin/adminReview.jsp";
     private ReviewService reviewService = new ReviewService();
     private static final int REVIEWS_PER_PAGE = 10;
 
@@ -37,7 +39,7 @@ public class AdminReviewServlet extends HttpServlet {
         if ("update".equals(action)) {
             handleUpdatePost(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/reviews");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH);
         }
     }
 
@@ -70,7 +72,7 @@ public class AdminReviewServlet extends HttpServlet {
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("totalPages", totalPages);
 
-        request.getRequestDispatcher("/admin/adminReview.jsp").forward(request, response);
+        request.getRequestDispatcher(JSP_PATH).forward(request, response);
     }
 
     private void handleEditGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -104,6 +106,6 @@ public class AdminReviewServlet extends HttpServlet {
         String searchKeyword = request.getParameter("searchKeyword") != null ? request.getParameter("searchKeyword") : "";
         String statusFilter = request.getParameter("statusFilter") != null ? request.getParameter("statusFilter") : "all"; // The status from the tab
 
-        response.sendRedirect(request.getContextPath() + "/admin/reviews?page=" + page + "&status=" + statusFilter + "&searchKeyword=" + searchKeyword);
+        response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?page=" + page + "&status=" + statusFilter + "&searchKeyword=" + searchKeyword);
     }
 }
