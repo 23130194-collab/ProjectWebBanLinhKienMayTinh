@@ -15,6 +15,8 @@ import java.util.List;
 
 @WebServlet(name = "AdminAttributeServlet", value = "/admin/attributes")
 public class AdminAttributeServlet extends HttpServlet {
+    private static final String SERVLET_PATH = "/admin/attributes";
+    private static final String JSP_PATH = "/admin/adminAttributes.jsp";
     private AttributeService attributeService;
     private CategoryDao categoryDao;
 
@@ -37,7 +39,7 @@ public class AdminAttributeServlet extends HttpServlet {
                 request.setAttribute("attributeToEdit", attributeToEdit);
             } catch (NumberFormatException e) {
                 // Handle invalid ID
-                response.sendRedirect(request.getContextPath() + "/admin/attributes?error=invalid_id");
+                response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?error=invalid_id");
                 return;
             }
         }
@@ -68,7 +70,7 @@ public class AdminAttributeServlet extends HttpServlet {
         request.setAttribute("currentPage", page);
         request.setAttribute("keyword", keyword);
 
-        request.getRequestDispatcher("/admin/adminAttributes.jsp").forward(request, response);
+        request.getRequestDispatcher(JSP_PATH).forward(request, response);
     }
 
     @Override
@@ -76,7 +78,7 @@ public class AdminAttributeServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
-            response.sendRedirect(request.getContextPath() + "/admin/attributes");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH);
             return;
         }
 
@@ -92,12 +94,12 @@ public class AdminAttributeServlet extends HttpServlet {
                     deleteAttribute(request, response);
                     break;
                 default:
-                    response.sendRedirect(request.getContextPath() + "/admin/attributes");
+                    response.sendRedirect(request.getContextPath() + SERVLET_PATH);
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/admin/attributes?error=true");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?error=true");
         }
     }
 
@@ -142,16 +144,16 @@ public class AdminAttributeServlet extends HttpServlet {
             request.setAttribute("currentPage", page);
 
             // D. Forward lại về trang JSP (Không dùng sendRedirect)
-            request.getRequestDispatcher("/admin/adminAttributes.jsp").forward(request, response);
+            request.getRequestDispatcher(JSP_PATH).forward(request, response);
             return;
         }
 
         // 2. NẾU KHÔNG TRÙNG -> THÊM MỚI BÌNH THƯỜNG
         if (name != null && !name.trim().isEmpty()) {
             attributeService.createAttributeForCategory(name, status, categoryId, displayOrder, isFilterable);
-            response.sendRedirect(request.getContextPath() + "/admin/attributes?success=add");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?success=add");
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/attributes?error=name_required");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?error=name_required");
         }
     }
 
@@ -165,9 +167,9 @@ public class AdminAttributeServlet extends HttpServlet {
 
         if (name != null && !name.trim().isEmpty()) {
             attributeService.updateAttributeAndCategoryLink(id, name, status, categoryId, displayOrder, isFilterable);
-            response.sendRedirect(request.getContextPath() + "/admin/attributes?success=update");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?success=update");
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/attributes?action=edit&id=" + id + "&error=name_required");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?action=edit&id=" + id + "&error=name_required");
         }
     }
 
@@ -175,9 +177,9 @@ public class AdminAttributeServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             attributeService.deleteAttribute(id);
-            response.sendRedirect(request.getContextPath() + "/admin/attributes?success=delete");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?success=delete");
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/admin/attributes?error=invalid_id");
+            response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?error=invalid_id");
         }
     }
 }
