@@ -4,83 +4,188 @@ import com.example.demo1.model.Review;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Query;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.*;
 
 public class ReviewDao {
     private Jdbi jdbi = DatabaseDao.get();
 
-    /**
-     * Lấy tất cả đánh giá cho một sản phẩm.
-     */
-    public List<Review> getReviewsByProductId(int productId) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT r.*, u.name AS user_name " +
-                                "FROM reviews r " +
-                                "JOIN users u ON r.user_id = u.id " +
-                                "WHERE r.product_id = :pid " +
-                                "ORDER BY r.created_at DESC")
-                        .bind("pid", productId)
-                        .mapToBean(Review.class)
-                        .list()
-        );
-    }
+    // ĐÃ SỬA: Thay JOIN thành LEFT JOIN ở đây để đảm bảo không mất review
+    private final String REVIEW_COLUMNS = "r.id, r.user_id, r.product_id, r.rating, r.content, r.created_at, r.status, ";
+    private final String USER_PRODUCT_COLUMNS = "u.name AS userName, p.name AS productName, p.image as productImage ";
+    private final String JOIN_TABLES = "FROM reviews r LEFT JOIN users u ON r.user_id = u.id LEFT JOIN products p ON r.product_id = p.id ";
 
-    /**
-     * Phương thức: Lấy đánh giá có phân trang và bộ lọc.
-     *
-     * @param productId    ID sản phẩm.
-     * @param ratingFilter Số sao để lọc (1-5), hoặc 0 để lấy tất cả.
-     * @param limit        Số lượng đánh giá tối đa cần lấy.
-     * @param offset       Vị trí bắt đầu lấy.
-     * @return Danh sách các bài đánh giá.
-     */
-    public List<Review> getReviewsWithFilterAndPagination(int productId, int ratingFilter, int limit, int offset) {
-        String baseQuery = "SELECT r.*, u.name AS user_name FROM reviews r JOIN users u ON r.user_id = u.id WHERE r.product_id = :productId ";
-        
-        // Thêm điều kiện lọc nếu có
-        if (ratingFilter > 0) {
-            baseQuery += "AND r.rating = :ratingFilter ";
-        }
-        
-        // Thêm sắp xếp và phân trang
-        String finalQuery = baseQuery + "ORDER BY r.created_at DESC LIMIT :limit OFFSET :offset";
+    private final String BASE_SELECT = "SELECT r.id, r.user_id, r.product_id, r.rating, r.content, r.created_at, r.status, " +
+            "COALESCE(u.name, 'Người dùng ẩn danh') as userName, " +
+            "p.name as productName, p.image as productImage " +
+            "FROM reviews r " +
+            "LEFT JOIN users u ON r.user_id = u.id " +
+            "LEFT JOIN products p ON r.product_id = p.id ";
 
+    public List<Review> getAllReviewsForAdmin(String keyword, String status) {
         return jdbi.withHandle(handle -> {
-            Query query = handle.createQuery(finalQuery)
-                    .bind("productId", productId)
-                    .bind("limit", limit)
-                    .bind("offset", offset);
+            StringBuilder sql = new StringBuilder("SELECT " + REVIEW_COLUMNS + USER_PRODUCT_COLUMNS + JOIN_TABLES);
+            boolean hasWhere = false;
 
-            if (ratingFilter > 0) {
-                query.bind("ratingFilter", ratingFilter);
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                sql.append("WHERE (p.name LIKE :keyword OR u.name LIKE :keyword) ");
+                hasWhere = true;
+            }
+
+            if (status != null && !status.trim().isEmpty()) {
+                sql.append(hasWhere ? "AND " : "WHERE ");
+                sql.append("r.status = :status ");
+            }
+
+            sql.append("ORDER BY r.created_at DESC");
+
+            Query query = handle.createQuery(sql.toString());
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                query.bind("keyword", "%" + keyword.trim() + "%");
+            }
+            if (status != null && !status.trim().isEmpty()) {
+                query.bind("status", status);
             }
 
             return query.mapToBean(Review.class).list();
         });
     }
 
+    public Review getReviewById(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT " + REVIEW_COLUMNS + USER_PRODUCT_COLUMNS + JOIN_TABLES + "WHERE r.id = :id")
+                        .bind("id", id)
+                        .mapToBean(Review.class)
+                        .findFirst()
+                        .orElse(null)
+        );
+    }
+
+    public void updateReviewStatus(int reviewId, String status) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE reviews SET status = :status WHERE id = :id")
+                        .bind("status", status)
+                        .bind("id", reviewId)
+                        .execute()
+        );
+    }
+
     public Map<Integer, Integer> getRawStarCounts(int productId) {
+        return jdbi.withHandle(handle ->
+                // SỬA: Dùng LIKE '%active%' thay vì = 'active' để đếm đủ
+                handle.createQuery("SELECT rating, COUNT(*) as count FROM reviews WHERE product_id = :productId AND status LIKE '%active%' GROUP BY rating")
+                        .bind("productId", productId)
+                        .reduceRows(new HashMap<Integer, Integer>(), (map, row) -> {
+                            map.put(row.getColumn("rating", Integer.class), row.getColumn("count", Integer.class));
+                            return map;
+                        })
+        );
+    }
+
+    public List<Review> getReviewsWithFilterAndPagination(int productId, int ratingFilter, int limit, int offset, boolean forAdmin) {
         return jdbi.withHandle(handle -> {
-            return handle.createQuery("SELECT rating, COUNT(*) as cnt FROM reviews WHERE product_id = :pid GROUP BY rating")
-                    .bind("pid", productId)
-                    .mapToMap()
-                    .reduce(new HashMap<Integer, Integer>(), (accumulator, row) -> {
-                        accumulator.put((Integer) row.get("rating"), ((Long) row.get("cnt")).intValue());
-                        return accumulator;
-                    });
+            // Thêm COALESCE để chặn null ngay từ database
+            StringBuilder sql = new StringBuilder("SELECT r.*, COALESCE(u.name, 'Người dùng ẩn danh') AS userName ")
+                    .append("FROM reviews r ")
+                    .append("LEFT JOIN users u ON r.user_id = u.id ")
+                    .append("WHERE r.product_id = :productId ");
+
+            if (!forAdmin) {
+                sql.append("AND r.status LIKE '%active%' ");
+            }
+
+            if (ratingFilter > 0) {
+                sql.append("AND r.rating = :rating ");
+            }
+
+            sql.append("ORDER BY r.created_at DESC, r.id DESC LIMIT :limit OFFSET :offset");
+
+            Query query = handle.createQuery(sql.toString())
+                    .bind("productId", productId)
+                    .bind("limit", limit)
+                    .bind("offset", offset);
+
+            if (ratingFilter > 0) {
+                query.bind("rating", ratingFilter);
+            }
+
+            return query.mapToBean(Review.class).list();
         });
     }
 
     public void addReview(int productId, int userId, int rating, String comment) {
-        jdbi.withHandle(handle ->
-                handle.createUpdate("INSERT INTO reviews (product_id, user_id, rating, comment, created_at) VALUES (:productId, :userId, :rating, :comment, NOW())")
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO reviews (product_id, user_id, rating, content, created_at, status) VALUES (:productId, :userId, :rating, :content, NOW(), 'active')")
                         .bind("productId", productId)
                         .bind("userId", userId)
                         .bind("rating", rating)
-                        .bind("comment", comment)
+                        .bind("content", comment)
                         .execute()
         );
+    }
+
+    /* --- METHODS FOR PAGINATION --- */
+    public List<Review> getReviewsByPage(int offset, int limit, String keyword, String status) {
+        return jdbi.withHandle(handle -> {
+            StringBuilder sql = new StringBuilder(BASE_SELECT);
+            boolean hasWhere = false;
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                sql.append("WHERE (p.name LIKE :keyword OR u.name LIKE :keyword) ");
+                hasWhere = true;
+            }
+
+            if (status != null && !status.trim().isEmpty()) {
+                sql.append(hasWhere ? "AND " : "WHERE ");
+                sql.append("r.status = :status ");
+            }
+
+            sql.append("ORDER BY r.created_at DESC LIMIT :limit OFFSET :offset");
+
+            Query query = handle.createQuery(sql.toString());
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                query.bind("keyword", "%" + keyword.trim() + "%");
+            }
+            if (status != null && !status.trim().isEmpty()) {
+                query.bind("status", status);
+            }
+            query.bind("limit", limit);
+            query.bind("offset", offset);
+
+            return query.mapToBean(Review.class).list();
+        });
+    }
+
+    public int getTotalReviewCount(String keyword, String status) {
+        return jdbi.withHandle(handle -> {
+            StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM reviews r ");
+            sql.append("LEFT JOIN users u ON r.user_id = u.id ");
+            sql.append("LEFT JOIN products p ON r.product_id = p.id ");
+            boolean hasWhere = false;
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                sql.append("WHERE (p.name LIKE :keyword OR u.name LIKE :keyword) ");
+                hasWhere = true;
+            }
+
+            if (status != null && !status.trim().isEmpty()) {
+                sql.append(hasWhere ? "AND " : "WHERE ");
+                sql.append("r.status = :status ");
+            }
+
+            Query query = handle.createQuery(sql.toString());
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                query.bind("keyword", "%" + keyword.trim() + "%");
+            }
+            if (status != null && !status.trim().isEmpty()) {
+                query.bind("status", status);
+            }
+
+            return query.mapTo(Integer.class).one();
+        });
     }
 }

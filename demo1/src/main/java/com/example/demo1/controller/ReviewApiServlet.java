@@ -1,7 +1,7 @@
 package com.example.demo1.controller;
 
-import com.example.demo1.dao.ReviewDao;
 import com.example.demo1.model.Review;
+import com.example.demo1.service.ReviewService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.ServletException;
@@ -15,21 +15,19 @@ import java.util.List;
 @WebServlet(name = "ReviewApiServlet", value = "/api/reviews")
 public class ReviewApiServlet extends HttpServlet {
     private final Gson gson = new Gson();
+    private final ReviewService reviewService = new ReviewService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Lấy các tham số từ request
             int productId = Integer.parseInt(request.getParameter("productId"));
-            int ratingFilter = Integer.parseInt(request.getParameter("filter")); // 0 for all
+            int ratingFilter = Integer.parseInt(request.getParameter("filter"));
             int offset = Integer.parseInt(request.getParameter("offset"));
-            int limit = 5; // Luôn lấy 5 đánh giá mỗi lần
+            int limit = 5;
 
-            // Gọi DAO để lấy dữ liệu
-            ReviewDao reviewDao = new ReviewDao();
-            List<Review> reviews = reviewDao.getReviewsWithFilterAndPagination(productId, ratingFilter, limit, offset);
+            // ĐÃ SỬA: Gọi phương thức chỉ lấy các review của người dùng (status = 'active')
+            List<Review> reviews = reviewService.getReviewsForUser(productId, ratingFilter, limit, offset);
 
-            // Chuyển danh sách thành chuỗi JSON và gửi về client
             String jsonResponse = this.gson.toJson(reviews);
 
             response.setContentType("application/json");
