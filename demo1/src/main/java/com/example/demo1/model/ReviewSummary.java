@@ -3,50 +3,74 @@ package com.example.demo1.model;
 import java.util.*;
 
 public class ReviewSummary {
-    private int totalReviews;
-    private Map<String, Integer> starCounts; // Dùng String key
-    private Map<String, Double> starPercentages;
+    // SỬA: Dùng Key là String để JSP dễ lấy dữ liệu
+    private final Map<String, Integer> starCounts;
+    private final int totalReviews;
+    private final double averageRating;
 
-    public ReviewSummary(Map<Integer, Integer> rawCounts) {
+    // Constructor chính: Nhận dữ liệu từ DAO (Map<Integer, Integer>) và chuyển sang Map<String, Integer>
+    public ReviewSummary(Map<Integer, Integer> rawData) {
         this.starCounts = new HashMap<>();
-        this.starPercentages = new HashMap<>();
-
+        // Đảm bảo tất cả các mức sao (1-5) đều có giá trị, kể cả 0
         for (int i = 1; i <= 5; i++) {
-            int count = rawCounts.getOrDefault(i, 0);
-            this.starCounts.put(String.valueOf(i), count); // Lưu key là "1", "2"...
+            // Chuyển i thành String.valueOf(i)
+            this.starCounts.put(String.valueOf(i), rawData.getOrDefault(i, 0));
         }
+        this.totalReviews = calculateTotalReviews();
+        this.averageRating = calculateAverageRating();
+    }
 
-        this.totalReviews = rawCounts.values().stream().mapToInt(Integer::intValue).sum();
-
+    // Constructor rỗng (cho trường hợp null)
+    public ReviewSummary() {
+        this.starCounts = new HashMap<>();
         for (int i = 1; i <= 5; i++) {
-            double percent = (totalReviews > 0)
-                    ? (rawCounts.getOrDefault(i, 0) * 100.0 / totalReviews)
-                    : 0.0;
-            this.starPercentages.put(String.valueOf(i), percent);
+            this.starCounts.put(String.valueOf(i), 0);
         }
+        this.totalReviews = 0;
+        this.averageRating = 0.0;
+    }
+
+    private int calculateTotalReviews() {
+        return starCounts.values().stream().mapToInt(Integer::intValue).sum();
+    }
+
+    private double calculateAverageRating() {
+        if (totalReviews == 0) {
+            return 0.0;
+        }
+        double totalScore = 0;
+        for (Map.Entry<String, Integer> entry : starCounts.entrySet()) {
+            // Parse Key từ String về Int để tính điểm trung bình
+            totalScore += Integer.parseInt(entry.getKey()) * entry.getValue();
+        }
+        return totalScore / totalReviews;
+    }
+
+    // Getter trả về Map<String, Integer>
+    public Map<String, Integer> getStarCounts() {
+        return starCounts;
     }
 
     public int getTotalReviews() {
         return totalReviews;
     }
 
-    public void setTotalReviews(int totalReviews) {
-        this.totalReviews = totalReviews;
-    }
-
-    public Map<String, Integer> getStarCounts() {
-        return starCounts;
-    }
-
-    public void setStarCounts(Map<String, Integer> starCounts) {
-        this.starCounts = starCounts;
+    public double getAverageRating() {
+        return averageRating;
     }
 
     public Map<String, Double> getStarPercentages() {
-        return starPercentages;
-    }
-
-    public void setStarPercentages(Map<String, Double> starPercentages) {
-        this.starPercentages = starPercentages;
+        Map<String, Double> percentages = new HashMap<>();
+        if (totalReviews == 0) {
+            for (int i = 1; i <= 5; i++) {
+                percentages.put(String.valueOf(i), 0.0);
+            }
+            return percentages;
+        }
+        for (Map.Entry<String, Integer> entry : starCounts.entrySet()) {
+            double percentage = ((double) entry.getValue() / totalReviews) * 100;
+            percentages.put(entry.getKey(), percentage);
+        }
+        return percentages;
     }
 }
