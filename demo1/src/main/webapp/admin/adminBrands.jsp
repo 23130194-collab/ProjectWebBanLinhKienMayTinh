@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNova Admin - Thương hiệu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="admincss/adminBrands.css">
-    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="admincss/adminNotification.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminBrands.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
 </head>
 
 <body>
@@ -20,70 +21,26 @@
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="adminDashboard.jsp">
+        <a href="${contextPath}/admin/adminDashboard.jsp">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
-        <a href="adminDashboard.jsp" style="text-decoration: none;">
+        <a href="${contextPath}/admin/adminDashboard.jsp" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </a></div>
+        </a>
+    </div>
 
     <ul class="nav-menu">
-        <li class="nav-item">
-            <a href="adminDashboard.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
-                Dashboard
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="customersList.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
-                Khách hàng
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminCategories.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
-                Mục sản phẩm
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminBrands.html" class="nav-link active">
-                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
-                Thương hiệu
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminAttributes.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
-                Thuộc tính
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminProductList.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
-                Sản phẩm
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminHoaDon.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
-                Đơn hàng
-            </a>
-        </li>
+        <li class="nav-item"><a href="${contextPath}/admin/adminDashboard.jsp" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin-product-list" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
     </ul>
 
-    <!-- Logout Section -->
     <div class="logout-section">
-        <a href="../login.html" class="nav-link logout-link">
-            <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-            Đăng xuất
-        </a>
+        <a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a>
     </div>
 </aside>
 
@@ -93,64 +50,21 @@
             <i class="fa-solid fa-bell"></i>
             <span class="notification-badge">3</span>
         </button>
-
-        <!-- Thông báo -->
         <div class="notification-dropdown" id="notificationDropdown">
-            <div class="notification-header">
-                <h3>Thông báo</h3>
-            </div>
-
+            <div class="notification-header"><h3>Thông báo</h3></div>
             <div class="notification-list">
                 <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
+                    <div class="notification-icon" style="background: #5b86e5;"><i class="fa-solid fa-box-open"></i></div>
                     <div class="notification-content">
                         <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
                         <span class="notification-time">20 giây trước</span>
                     </div>
                 </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">20 phút trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-file-invoice"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">5 giờ trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">12 giờ trước</span>
-                    </div>
-                </div>
             </div>
-
-            <div class="notification-footer">
-                <a href="adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a>
-            </div>
+            <div class="notification-footer"><a href="${contextPath}/admin/adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a></div>
         </div>
         <div class="user-profile">
-            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
-                 alt="User Profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg" alt="User Profile">
         </div>
     </div>
 </header>
@@ -162,117 +76,169 @@
             <div>
                 <h1 class="page-title">Thương hiệu</h1>
                 <div class="breadcrumb">
-                    <a href="#" class="breadcrumb-link">Trang chủ</a>
+                    <a href="${contextPath}/admin/adminDashboard.jsp" class="breadcrumb-link">Trang chủ</a>
                     <span>/</span>
                     <span class="breadcrumb-current">Thương hiệu</span>
                 </div>
             </div>
-
-
         </div>
 
-        <!-- FORM NHẬP THÔNG TIN -->
-        <div class="brand-form">
+        <!-- Hiển thị thông báo -->
+        <c:if test="${not empty sessionScope.successMessage}">
+            <div class="alert alert-success">${sessionScope.successMessage}</div>
+            <c:remove var="successMessage" scope="session"/>
+        </c:if>
+        <c:if test="${not empty sessionScope.errorMessage}">
+            <div class="alert alert-danger">${sessionScope.errorMessage}</div>
+            <c:remove var="errorMessage" scope="session"/>
+        </c:if>
+        <c:if test="${not empty requestScope.errorMessage}">
+            <div class="alert alert-danger">${requestScope.errorMessage}</div>
+        </c:if>
 
-            <div class="form-group">
-                <label class="form-label">Tên thương hiệu mới</label>
-                <input type="text" placeholder="Nhập tên thương hiệu">
+        <form action="${contextPath}/admin/brands" method="post" id="brandForm" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="${brandToEdit.id}">
+
+            <div class="brand-form">
+                <div class="form-group">
+                    <label class="form-label">Tên thương hiệu</label>
+                    <input type="text" name="name" placeholder="Nhập tên thương hiệu" value="${brandToEdit.name}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Thứ tự hiển thị</label>
+                    <input type="number" name="displayOrder" placeholder="Nhập thứ tự" value="${brandToEdit != null ? brandToEdit.displayOrder : ''}" required min="1">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Trạng thái hoạt động</label>
+                    <div class="custom-select-wrapper">
+                        <select name="status">
+                            <option value="Hoạt động" ${brandToEdit.status == 'Hoạt động' ? 'selected' : ''}>Hoạt động</option>
+                            <option value="Ẩn" ${brandToEdit.status == 'Ẩn' ? 'selected' : ''}>Ẩn</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">Thứ tự hiển thị</label>
-                <input type="number" placeholder="Nhập thứ tự">
+            <div class="image-section">
+                <label class="form-label">Hình ảnh thương hiệu</label>
+                <div class="image-input-group">
+                    <input type="file" id="image-upload" name="logoFile" class="image-input-box">
+                </div>
+                <div class="image-input-group">
+                    <div class="url-input-group">
+                        <input type="text" id="image-url" name="logo" class="image-input-box" placeholder="https://example.com/image.png" value="${brandToEdit.logo}">
+                        <button type="submit" class="add-brand-submit">
+                            <c:choose>
+                                <c:when test="${not empty brandToEdit}">Cập nhật</c:when>
+                                <c:otherwise>Thêm thương hiệu</c:otherwise>
+                            </c:choose>
+                        </button>
+                        <c:if test="${not empty brandToEdit}">
+                            <a href="${contextPath}/admin/brands" class="cancel-btn">Hủy</a>
+                        </c:if>
+                    </div>
+
+                </div>
             </div>
-
-        </div>
-
-        <!-- HÌNH ẢNH -->
-        <div class="image-section">
-            <label class="form-label">Hình ảnh thương hiệu</label>
-            <div class="image-upload-box">
-                <i class="fa-solid fa-image"></i>
+            <c:set var="previewLogoUrl" value="${brandToEdit.logo}" />
+            <c:choose>
+                <c:when test="${not empty previewLogoUrl and previewLogoUrl.startsWith('http')}">
+                    <c:set var="finalPreviewUrl" value="${previewLogoUrl}" />
+                </c:when>
+                <c:when test="${not empty previewLogoUrl}">
+                    <c:set var="finalPreviewUrl" value="${contextPath}/${previewLogoUrl}" />
+                </c:when>
+                <c:otherwise>
+                    <c:set var="finalPreviewUrl" value="#" />
+                </c:otherwise>
+            </c:choose>
+            <img id="image-preview"
+                 src="${finalPreviewUrl}"
+                 alt="Image Preview"
+                 style="max-width: 200px; max-height: 200px; margin-top: 10px; display: ${not empty brandToEdit.logo ? 'block' : 'none'};"/>
+            <!-- Tìm kiếm -->
+            <div class="form-search-row">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input-brand" placeholder="Tìm kiếm thương hiệu" value="${keyword}">
+                </div>
             </div>
-        </div>
-
-        <!-- Nút + Tìm kiếm -->
-        <div class="form-search-row">
-
-            <button class="add-brand-submit">Thêm thương hiệu</button>
-
-            <div class="search-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" class="search-input-brand" placeholder="Tìm kiếm thương hiệu">
-            </div>
-
-        </div>
+        </form>
 
         <!-- Danh sách -->
         <div class="brand-table-container">
             <table class="brand-table">
                 <thead>
                 <tr>
-                    <th><input type="checkbox"></th>
+                    <th>STT</th>
                     <th>Hình ảnh</th>
                     <th>Tên thương hiệu</th>
-                    <th>Thứ tự</th>
+                    <th>Thứ tự hiển thị</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
                 </tr>
                 </thead>
-
                 <tbody>
-
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Intel_logo_2023.svg/330px-Intel_logo_2023.svg.png" width="55">
-                    </td>
-                    <td>Intel</td>
-                    <td>1</td>
-                    <td><span class="status status-active">Hoạt động</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn view"><i class="fa-solid fa-eye"></i></button>
-                            <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/AMD_Logo.svg/500px-AMD_Logo.svg.png" width="55">
-                    </td>
-                    <td>AMD</td>
-                    <td>2</td>
-                    <td><span class="status status-hidden">Ẩn</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn view"><i class="fa-solid fa-eye"></i></button>
-                            <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
+                <c:forEach var="brand" items="${brands}" varStatus="loop">
+                    <tr>
+                        <td>${(currentPage - 1) * 10 + loop.count}</td>
+                        <td>
+                            <c:set var="logoUrl" value="${brand.logo}" />
+                            <c:choose>
+                                <c:when test="${logoUrl.startsWith('http')}">
+                                    <img src="${logoUrl}" width="55" alt="${brand.name}" onerror="this.style.display='none'">
+                                </c:when>
+                                <c:when test="${not empty logoUrl}">
+                                    <img src="${contextPath}/${logoUrl}" width="55" alt="${brand.name}" onerror="this.style.display='none'">
+                                </c:when>
+                            </c:choose>
+                        </td>
+                        <td><c:out value="${brand.name}" /></td>
+                        <td><c:out value="${brand.displayOrder}" /></td>
+                        <td>
+                                <span class="status ${brand.status == 'Hoạt động' ? 'status-active' : 'status-hidden'}">
+                                    <c:out value="${brand.status}" />
+                                </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="${contextPath}/admin/brands?action=edit&id=${brand.id}" class="action-btn edit"><i class="fa-solid fa-pen"></i></a>
+                                <a href="${contextPath}/admin/brands?action=delete&id=${brand.id}" class="action-btn delete" onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này không?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
-
             </table>
         </div>
 
         <!-- Phân trang -->
-        <div class="pagination-container">
-            <button class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></button>
-            <div class="page-number active">1</div>
-            <div class="page-number">2</div>
-            <div class="page-number">...</div>
-            <div class="page-number">5</div>
-            <button class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
+        <c:if test="${totalPages > 1}">
+            <div class="pagination-container">
+                <c:if test="${currentPage > 1}">
+                    <a href="${contextPath}/admin/brands?page=${currentPage - 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
+                </c:if>
+                <c:forEach var="i" begin="1" end="${totalPages}">
+                    <a href="${contextPath}/admin/brands?page=${i}&keyword=${keyword}" class="page-number ${i == currentPage ? 'active' : ''}">${i}</a>
+                </c:forEach>
+                <c:if test="${currentPage < totalPages}">
+                    <a href="${contextPath}/admin/brands?page=${currentPage + 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
+                </c:if>
+            </div>
+        </c:if>
     </div>
 </main>
 </body>
-<script src="adminjs/adminNotification.js"></script>
-<script src="adminjs/adminProductList.js"></script>
+<script src="${contextPath}/admin/adminjs/adminNotification.js"></script>
+<script>
+    document.getElementById('searchInput').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            var keyword = this.value;
+            window.location.href = '${contextPath}/admin/brands?keyword=' + encodeURIComponent(keyword);
+        }
+    });
+</script>
 </html>

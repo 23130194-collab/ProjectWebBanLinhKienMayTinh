@@ -13,10 +13,11 @@ public class Product implements Serializable {
     private double old_price;
     private int stock;
     private String image;
+    private String status; // Thêm trường status
     private double discount_value;
     private double avg_rating;
 
-    public Product(int id, int category_id, int brand_id, String name, int discount_id, String description, double price, double old_price, int stock, String image) {
+    public Product(int id, int category_id, int brand_id, String name, int discount_id, String description, double price, double old_price, int stock, String image, String status) {
         this.id = id;
         this.category_id = category_id;
         this.brand_id = brand_id;
@@ -27,6 +28,7 @@ public class Product implements Serializable {
         this.old_price = old_price;
         this.stock = stock;
         this.image = image;
+        this.status = status;
     }
 
     public Product() {
@@ -108,6 +110,18 @@ public class Product implements Serializable {
         return image;
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     public double getDiscount_value() {
         return discount_value;
     }
@@ -123,9 +137,4 @@ public class Product implements Serializable {
     public void setAvg_rating(double avg_rating) {
         this.avg_rating = avg_rating;
     }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
 }

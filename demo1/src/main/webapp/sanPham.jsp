@@ -53,7 +53,7 @@
             <c:forEach items="${applicationScope.categoryList}" var="cat">
                 <a href="list-product?id=${cat.id}" class="category-item">
                         <%-- Thay thế icon bằng ảnh --%>
-                    <img src="${cat.icon}" class="category-icon" alt="${cat.name}">
+                    <img src="${cat.image}" class="category-icon" alt="${cat.name}">
                         ${cat.name}
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>

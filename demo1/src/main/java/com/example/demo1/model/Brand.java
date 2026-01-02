@@ -4,18 +4,13 @@ public class Brand {
     private int id;
     private String name;
     private String logo;
-    private int display_order;
-
-    public Brand(int id, String name, String logo, int display_order) {
-        this.id = id;
-        this.name = name;
-        this.logo = logo;
-        this.display_order = display_order;
-    }
+    private int displayOrder;
+    private String status;
 
     public Brand() {
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -40,11 +35,19 @@ public class Brand {
         this.logo = logo;
     }
 
-    public int getDisplay_order() {
-        return display_order;
+    public int getDisplayOrder() {
+        return displayOrder;
     }
 
-    public void setDisplay_order(int display_order) {
-        this.display_order = display_order;
+    public void setDisplayOrder(int displayOrder) {
+        this.displayOrder = displayOrder;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

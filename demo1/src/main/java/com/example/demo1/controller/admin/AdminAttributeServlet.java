@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AdminAttributeServlet", value = "/admin-attributes")
+@WebServlet(name = "AdminAttributeServlet", value = "/admin/attributes")
 public class AdminAttributeServlet extends HttpServlet {
     private AttributeService attributeService;
     private CategoryDao categoryDao;
@@ -37,7 +37,7 @@ public class AdminAttributeServlet extends HttpServlet {
                 request.setAttribute("attributeToEdit", attributeToEdit);
             } catch (NumberFormatException e) {
                 // Handle invalid ID
-                response.sendRedirect(request.getContextPath() + "/admin-attributes?error=invalid_id");
+                response.sendRedirect(request.getContextPath() + "/admin/attributes?error=invalid_id");
                 return;
             }
         }
@@ -76,7 +76,7 @@ public class AdminAttributeServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
-            response.sendRedirect(request.getContextPath() + "/admin-attributes");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes");
             return;
         }
 
@@ -92,12 +92,12 @@ public class AdminAttributeServlet extends HttpServlet {
                     deleteAttribute(request, response);
                     break;
                 default:
-                    response.sendRedirect(request.getContextPath() + "/admin-attributes");
+                    response.sendRedirect(request.getContextPath() + "/admin/attributes");
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/admin-attributes?error=true");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes?error=true");
         }
     }
 
@@ -149,9 +149,9 @@ public class AdminAttributeServlet extends HttpServlet {
         // 2. NẾU KHÔNG TRÙNG -> THÊM MỚI BÌNH THƯỜNG
         if (name != null && !name.trim().isEmpty()) {
             attributeService.createAttributeForCategory(name, status, categoryId, displayOrder, isFilterable);
-            response.sendRedirect(request.getContextPath() + "/admin-attributes?success=add");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes?success=add");
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin-attributes?error=name_required");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes?error=name_required");
         }
     }
 
@@ -165,9 +165,9 @@ public class AdminAttributeServlet extends HttpServlet {
 
         if (name != null && !name.trim().isEmpty()) {
             attributeService.updateAttributeAndCategoryLink(id, name, status, categoryId, displayOrder, isFilterable);
-            response.sendRedirect(request.getContextPath() + "/admin-attributes?success=update");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes?success=update");
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin-attributes?action=edit&id=" + id + "&error=name_required");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes?action=edit&id=" + id + "&error=name_required");
         }
     }
 
@@ -175,9 +175,9 @@ public class AdminAttributeServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             attributeService.deleteAttribute(id);
-            response.sendRedirect(request.getContextPath() + "/admin-attributes?success=delete");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes?success=delete");
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/admin-attributes?error=invalid_id");
+            response.sendRedirect(request.getContextPath() + "/admin/attributes?error=invalid_id");
         }
     }
 }

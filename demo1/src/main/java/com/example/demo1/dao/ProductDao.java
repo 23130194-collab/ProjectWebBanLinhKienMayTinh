@@ -4,6 +4,8 @@ import com.example.demo1.model.Product;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Query;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +17,7 @@ public class ProductDao {
         "FLOOR( (CASE WHEN d.discount_value > 0 THEN p.old_price * (1 - d.discount_value / 100) ELSE p.old_price END) / 10000 ) * 10000";
 
     private final String SELECT_PRODUCT_FIELDS =
-            "p.id, p.category_id, p.brand_id, p.name, p.discount_id, p.description, p.stock, p.image, p.created_at, " +
+            "p.id, p.category_id, p.brand_id, p.name, p.discount_id, p.description, p.stock, p.image, p.created_at, p.status, " +
             "p.old_price, " + // Giữ nguyên old_price là giá gốc
             "d.discount_value, " +
             "IFNULL(ROUND(AVG(r.rating), 1), 0) AS avg_rating, " +
@@ -153,11 +155,6 @@ public class ProductDao {
         );
     }
 
-    /**
-     * Đếm số lượng sản phẩm thuộc về một danh mục.
-     * @param categoryId ID của danh mục.
-     * @return Số lượng sản phẩm.
-     */
     public int countProductsByCategoryId(int categoryId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT COUNT(*) FROM products WHERE category_id = :categoryId")
@@ -165,5 +162,46 @@ public class ProductDao {
                         .mapTo(Integer.class)
                         .one()
         );
+    }
+
+    public int countProductsByBrandId(int brandId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM products WHERE brand_id = :brandId")
+                        .bind("brandId", brandId)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public List<Product> getFilteredProducts(Integer categoryId, String status) {
+        return jdbi.withHandle(handle -> {
+            StringBuilder sql = new StringBuilder("SELECT " + SELECT_PRODUCT_FIELDS +
+                    "FROM products p " +
+                    "LEFT JOIN discounts d ON p.discount_id = d.id " +
+                    "LEFT JOIN reviews r ON p.id = r.product_id ");
+
+            List<String> conditions = new ArrayList<>();
+            Map<String, Object> params = new HashMap<>();
+
+            if (categoryId != null) {
+                conditions.add("p.category_id = :categoryId");
+                params.put("categoryId", categoryId);
+            }
+
+            if (status != null && !status.isEmpty()) {
+                conditions.add("p.status = :status");
+                params.put("status", status);
+            }
+
+            if (!conditions.isEmpty()) {
+                sql.append("WHERE ").append(String.join(" AND ", conditions));
+            }
+
+            sql.append(" GROUP BY p.id");
+
+            Query query = handle.createQuery(sql.toString());
+            query.bindMap(params);
+            return query.mapToBean(Product.class).list();
+        });
     }
 }

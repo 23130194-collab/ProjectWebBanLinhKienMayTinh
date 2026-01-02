@@ -50,7 +50,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="adminBrands.jsp" class="nav-link">
+            <a href="brands" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
                 Thương hiệu
             </a>
@@ -64,7 +64,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="adminProductList.html" class="nav-link active">
+            <a href="admin-product-list" class="nav-link active">
                 <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
                 Sản phẩm
             </a>
@@ -80,7 +80,7 @@
 
     <!-- Logout Section -->
     <div class="logout-section">
-        <a href="../login.html" class="nav-link logout-link">
+        <a href="../logout" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
             Đăng xuất
         </a>
@@ -108,38 +108,6 @@
                     <div class="notification-content">
                         <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
                         <span class="notification-time">20 giây trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">20 phút trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-file-invoice"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">5 giờ trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">12 giờ trước</span>
                     </div>
                 </div>
             </div>
@@ -174,13 +142,27 @@
         </div>
 
         <div class="filter-bar">
-            <div class="product-tabs">
-                <button class="tab active">Tất cả</button>
-                <button class="tab">Đang bán</button>
-                <button class="tab">Hết hàng</button>
-                <button class="tab">Hết hàng</button>
-                <button class="tab">Ngừng bán</button>
-            </div>
+            <form action="admin-product-list" method="get" id="filterForm" class="filter-form">
+                <div class="filter-group">
+                    <label for="category-select">Danh mục:</label>
+                    <select name="categoryId" id="category-select" onchange="this.form.submit()">
+                        <option value="">Tất cả</option>
+                        <c:forEach var="category" items="${categories}">
+                            <option value="${category.id}" ${category.id == selectedCategoryId ? 'selected' : ''}>
+                                ${category.name}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="status-select">Trạng thái:</label>
+                    <select name="status" id="status-select" onchange="this.form.submit()">
+                        <option value="">Tất cả</option>
+                        <option value="Hoạt động" ${'Hoạt động' == selectedStatus ? 'selected' : ''}>Hoạt động</option>
+                        <option value="Ẩn" ${'Ẩn' == selectedStatus ? 'selected' : ''}>Ẩn</option>
+                    </select>
+                </div>
+            </form>
             <div class="search-wrapper">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" class="search-input-product" placeholder="Tìm sản phẩm...">
@@ -201,63 +183,40 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><input type="checkbox" class="row-check"></td>
-                    <td class="td-image">
-                        <div class="img-wrapper">
-                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/o/-/o-cung-di-dong-ssd-kingston-xs1000-usb-3-2-gen-2-den-1tb_2_.png"
-                                 alt="SP">
-                        </div>
-                    </td>
-                    <td class="td-name">
-                                <span class="product-name" title="Ổ cứng di động SSD Kingston XS1000 USB 3.2 Gen 2 1TB">
-                                    Ổ cứng di động SSD Kingston XS1000 USB 3.2 Gen 2 1TB
-                                </span>
-                    </td>
-                    <td class="td-price">
-                        <div class="price-group">
-                            <span class="current-price">2.090.000đ</span>
-                            <span class="old-price">2.390.000đ</span>
-                        </div>
-                    </td>
-                    <td><span class="stock-text">100</span></td>
-                    <td><span class="status status-selling">Đang bán</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn view" title="Xem"><i class="fa-solid fa-eye"></i></button>
-                            <button class="action-btn delete" title="Xóa"><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><input type="checkbox" class="row-check"></td>
-                    <td class="td-image">
-                        <div class="img-wrapper">
-                            <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_3_.png"
-                                 alt="SP">
-                        </div>
-                    </td>
-                    <td class="td-name">
-                        <span class="product-name">CPU Intel Core i5 12400F</span>
-                    </td>
-                    <td class="td-price">
-                        <div class="price-group">
-                            <span class="current-price">4.290.000đ</span>
-                            <span class="old-price">5.390.000đ</span>
-                        </div>
-                    </td>
-                    <td><span class="stock-text">5</span></td>
-                    <td><span class="status status-stopped">Hết hàng</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn edit"><i class="fa-solid fa-pen"></i></button>
-                            <button class="action-btn view"><i class="fa-solid fa-eye"></i></button>
-                            <button class="action-btn delete"><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
-                    </td>
-                </tr>
+                <c:forEach var="product" items="${productList}">
+                    <tr>
+                        <td><input type="checkbox" class="row-check"></td>
+                        <td class="td-image">
+                            <div class="img-wrapper">
+                                <img src="${pageContext.request.contextPath}/${product.image}" alt="${product.name}" onerror="this.src='https://i.postimg.cc/Hn4Jc3yj/logo-2.png';">
+                            </div>
+                        </td>
+                        <td class="td-name">
+                            <span class="product-name" title="${product.name}">${product.name}</span>
+                        </td>
+                        <td class="td-price">
+                            <div class="price-group">
+                                <span class="current-price"><fmt:formatNumber value="${product.price}" type="number" pattern="#,##0" />đ</span>
+                                <c:if test="${product.oldPrice > 0 && product.oldPrice > product.price}">
+                                    <span class="old-price"><fmt:formatNumber value="${product.oldPrice}" type="number" pattern="#,##0" />đ</span>
+                                </c:if>
+                            </div>
+                        </td>
+                        <td><span class="stock-text">${product.stock}</span></td>
+                        <td>
+                            <span class="status ${product.status == 'Hoạt động' ? 'status-selling' : 'status-stopped'}">
+                                ${product.status}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="edit-product?id=${product.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
+                                <a href="view-product?id=${product.id}" class="action-btn view" title="Xem"><i class="fa-solid fa-eye"></i></a>
+                                <a href="delete-product?id=${product.id}" class="action-btn delete" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa-solid fa-trash-can"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
