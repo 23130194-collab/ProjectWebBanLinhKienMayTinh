@@ -18,13 +18,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-@WebServlet(name = "AdminCategoryServlet", value = "/admin-categories")
+@WebServlet(name = "AdminCategoryServlet", value = "/admin/categories")
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
     maxFileSize = 1024 * 1024 * 10, // 10MB
     maxRequestSize = 1024 * 1024 * 50 // 50MB
 )
 public class AdminCategoryServlet extends HttpServlet {
+    private static final String SERVLET_PATH = "/admin/categories";
+    private static final String JSP_PATH = "/admin/adminCategories.jsp";
     private CategoryService categoryService = new CategoryService();
 
     @Override
@@ -71,7 +73,7 @@ public class AdminCategoryServlet extends HttpServlet {
         }
 
         request.setAttribute("categoryList", categoryList);
-        request.getRequestDispatcher("/admin/adminCategories.jsp").forward(request, response);
+        request.getRequestDispatcher(JSP_PATH).forward(request, response);
     }
 
     private void handleEditAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -101,7 +103,7 @@ public class AdminCategoryServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("errorMessage", "ID danh mục không hợp lệ.");
         }
-        response.sendRedirect(request.getContextPath() + "/admin-categories");
+        response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 
     private void handleInsertPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -134,7 +136,7 @@ public class AdminCategoryServlet extends HttpServlet {
             return;
         }
 
-        response.sendRedirect(request.getContextPath() + "/admin-categories");
+        response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 
     private void handleUpdatePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -168,7 +170,7 @@ public class AdminCategoryServlet extends HttpServlet {
             return;
         }
 
-        response.sendRedirect(request.getContextPath() + "/admin-categories");
+        response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 
     private String handleImageUpload(HttpServletRequest request) throws IOException, ServletException {

@@ -53,7 +53,7 @@
             <c:forEach items="${applicationScope.categoryList}" var="cat">
                 <a href="list-product?id=${cat.id}" class="category-item">
                         <%-- Thay thế icon bằng ảnh --%>
-                    <img src="${cat.icon}" class="category-icon" alt="${cat.name}">
+                    <img src="${cat.image}" class="category-icon" alt="${cat.name}">
                         ${cat.name}
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
@@ -279,60 +279,71 @@
                                 <div class="bar-fill"
                                      style="width: ${reviewSummary.starPercentages[starLevel.toString()]}%"></div>
                             </div>
-                            <span class="rating-count-label">${reviewSummary.starCounts[starLevel.toString()]} đánh giá</span>
+
+                            <span class="rating-count-label">
+                                ${reviewSummary.starCounts[starLevel.toString()]} đánh giá
+                            </span>
                         </div>
                     </c:forEach>
                 </div>
             </div>
 
             <div class="reviews-filter">
-                <input type="radio" name="review-filter" id="filter-all" class="filter-input" checked>
+                <input type="radio" name="review-filter" id="filter-all" class="filter-input" value="0" checked>
                 <label for="filter-all" class="filter-btn">Tất cả</label>
 
-                <input type="radio" name="review-filter" id="filter-5star" class="filter-input">
+                <input type="radio" name="review-filter" id="filter-5star" class="filter-input" value="5">
                 <label for="filter-5star" class="filter-btn">5 sao</label>
 
-                <input type="radio" name="review-filter" id="filter-4star" class="filter-input">
+                <input type="radio" name="review-filter" id="filter-4star" class="filter-input" value="4">
                 <label for="filter-4star" class="filter-btn">4 sao</label>
 
-                <input type="radio" name="review-filter" id="filter-3star" class="filter-input">
+                <input type="radio" name="review-filter" id="filter-3star" class="filter-input" value="3">
                 <label for="filter-3star" class="filter-btn">3 sao</label>
 
-                <input type="radio" name="review-filter" id="filter-2star" class="filter-input">
+                <input type="radio" name="review-filter" id="filter-2star" class="filter-input" value="2">
                 <label for="filter-2star" class="filter-btn">2 sao</label>
 
-                <input type="radio" name="review-filter" id="filter-1star" class="filter-input">
+                <input type="radio" name="review-filter" id="filter-1star" class="filter-input" value="1">
                 <label for="filter-1star" class="filter-btn">1 sao</label>
             </div>
 
+
+            <div style="color: red; font-weight: bold; margin: 10px 0;">
+                DEBUG: Tìm thấy ${reviews.size()} đánh giá trong list.
+            </div>
             <div class="reviews-list">
                 <c:forEach items="${reviews}" var="r">
                     <div class="review-item" data-rating="${r.rating}">
-                        <div class="reviewer-avatar">${r.user_name.substring(0,1)}</div>
+                        <div class="reviewer-avatar">
+                                ${(not empty r.userName and r.userName.length() > 0) ? r.userName.substring(0, 1) : 'U'}
+                        </div>
+
                         <div class="review-content">
-                            <div class="reviewer-name">${r.user_name}</div>
+                            <div class="reviewer-name">
+                                    ${not empty r.userName ? r.userName : 'Người dùng ẩn danh'}
+                            </div>
 
                             <div class="review-rating">
                                 <c:forEach var="i" begin="1" end="5">
                                     <i class="fa-solid fa-star ${r.rating >= i ? 'star-active' : 'star-grey'}"></i>
                                 </c:forEach>
-
                                 <span class="rating-label-text">
-                                    <c:choose>
-                                        <c:when test="${r.rating >= 5}">Tuyệt vời</c:when>
-                                        <c:when test="${r.rating >= 4}">Tốt</c:when>
-                                        <c:when test="${r.rating >= 3}">Bình thường</c:when>
-                                        <c:when test="${r.rating >= 2}">Bình thường</c:when>
-                                        <c:otherwise>Tệ</c:otherwise>
-                                    </c:choose>
-                                </span>
+                        <c:choose>
+                            <c:when test="${r.rating >= 5}">Tuyệt vời</c:when>
+                            <c:when test="${r.rating >= 4}">Tốt</c:when>
+                            <c:when test="${r.rating >= 3}">Bình thường</c:when>
+                            <c:when test="${r.rating >= 2}">Tệ</c:when>
+                            <c:otherwise>Rất tệ</c:otherwise>
+                        </c:choose>
+                    </span>
                             </div>
 
-                            <div class="review-text">${r.comment}</div>
+                            <div class="review-text">${r.content}</div>
 
                             <div class="review-time">
                                 <i class="fa-regular fa-clock"></i>
-                                Đánh giá đã đăng vào: <fmt:formatDate value="${r.created_at}" pattern="dd/MM/yyyy"/>
+                                Đánh giá đã đăng vào: <fmt:formatDate value="${r.createdAt}" pattern="dd/MM/yyyy"/>
                             </div>
                         </div>
                     </div>

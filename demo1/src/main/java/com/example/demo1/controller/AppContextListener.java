@@ -15,6 +15,7 @@ public class AppContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        try{
         ServletContext context = sce.getServletContext();
         CategoryService categoryService = new CategoryService();
         
@@ -22,6 +23,9 @@ public class AppContextListener implements ServletContextListener {
         List<Category> categoryList = categoryService.getActiveCategories();
 
         context.setAttribute("categoryList", categoryList);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

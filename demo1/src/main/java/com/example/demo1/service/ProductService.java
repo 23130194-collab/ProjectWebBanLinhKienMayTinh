@@ -66,7 +66,7 @@ public class ProductService {
 
         // 4. Sắp xếp danh sách ứng viên dựa trên điểm số giảm dần
         List<Product> sortedCandidates = candidates.stream()
-                .filter(p -> p.getId() != currentProduct.getId()) // Lọc lại để chắc chắn không chứa sản phẩm hiện tại
+                .filter(p -> p.getId() != currentProduct.getId())
                 .sorted(Comparator.comparing(productScores::get, Comparator.nullsLast(Comparator.reverseOrder())))
                 .collect(Collectors.toList());
 

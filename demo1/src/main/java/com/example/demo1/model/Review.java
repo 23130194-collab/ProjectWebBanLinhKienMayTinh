@@ -1,26 +1,26 @@
 package com.example.demo1.model;
-import java.sql.Timestamp;
-public class Review {
-    private int id;
-    private int product_id;
-    private int user_id;
-    private String user_name;
-    private int rating;
-    private String comment;
-    private Timestamp created_at;
 
-    public Review(int id, int product_id, int user_id, int rating, String comment, Timestamp created_at) {
-        this.id = id;
-        this.product_id = product_id;
-        this.user_id = user_id;
-        this.rating = rating;
-        this.comment = comment;
-        this.created_at = created_at;
-    }
+import java.io.Serializable;
+import java.util.Date;
+
+public class Review implements Serializable {
+    private int id;
+    private int userId;
+    private int productId;
+    private int rating;
+    private String content;
+    private Date createdAt;
+    private String status;
+
+    // Các trường bổ sung để hiển thị, không có trong bảng 'reviews'
+    private String userName;
+    private String productName;
+    private String productImage; // Thêm trường ảnh sản phẩm
 
     public Review() {
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -29,20 +29,20 @@ public class Review {
         this.id = id;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getRating() {
@@ -53,27 +53,51 @@ public class Review {
         this.rating = rating;
     }
 
-    public String getComment() {
-        return comment;
+    public String getContent() {
+        return content;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getStatus() {
+        return status;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 }
