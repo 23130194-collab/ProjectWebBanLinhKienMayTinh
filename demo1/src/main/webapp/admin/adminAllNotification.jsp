@@ -67,7 +67,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="adminHoaDon.jsp" class="nav-link">
+            <a href="adminOrders.jsp" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
                 Đơn hàng
             </a>
