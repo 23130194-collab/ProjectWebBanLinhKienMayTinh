@@ -15,11 +15,12 @@ public class User {
     private String status;
     private String updated_at;
     private Timestamp created_at;
+    private int orderCount;
 
 
     public User(int id, int role, String email, String password,
                 String name, String phone, String address, String gender,
-                String birthday, String status, Timestamp created_at, String updated_at) {
+                String birthday, String status, Timestamp created_at, String updated_at, int orderCount) {
         this.id = id;
         this.role = role;
         this.email = email;
@@ -32,6 +33,7 @@ public class User {
         this.status = status;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.orderCount = orderCount;
     }
 
     public User() {
@@ -131,5 +133,12 @@ public class User {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+    public int getOrderCount() {
+        return orderCount;
+    }
+
+    public void setOrderCount(int orderCount) {
+        this.orderCount = orderCount;
     }
 }
