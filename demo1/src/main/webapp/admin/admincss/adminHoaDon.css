@@ -1,43 +1,9 @@
-/* === MAIN CONTENT === */
-.main-content {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-340px);
-    width: 940px;
-    margin-top: 70px;
-    padding: 32px;
-    min-height: calc(100vh - 70px);
-    overflow-y: auto;
-    height: calc(100vh - 70px);
-}
-
-.content-area {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 .page-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1e293b;
     margin-bottom: 15px;
 }
 
 .breadcrumb {
-    color: #64748b;
-    font-size: 14px;
     margin-bottom: 15px;
-}
-
-.breadcrumb a {
-    color: #64748b;
-    text-decoration: none;
-}
-
-.breadcrumb a:hover {
-    color: #5b86e5;
 }
 
 /* === ORDER LIST TABLE === */
@@ -48,32 +14,31 @@
     margin-bottom: 16px;
 }
 
-.order-tools select,
-.order-tools input {
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-input {
+    width: 250px;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
-    padding: 6px 10px;
+    padding: 8px 12px;
     font-size: 14px;
-    color: #475569;
 }
 
-.order-tools input {
-    width: 220px;
-}
-
-.order-tools button {
-    background: #6366f1;
+.search-button {
+    background: #5b86e5;
     color: white;
     border: none;
     border-radius: 6px;
-    padding: 6px 14px;
+    padding: 8px 16px;
     cursor: pointer;
     font-size: 14px;
     transition: 0.3s;
 }
-
-.order-tools button:hover {
-    background: #4f46e5;
+.search-button:hover {
+    background: #4a6fcc;
 }
 
 table {
@@ -81,11 +46,15 @@ table {
     border-collapse: collapse;
     font-size: 14px;
     color: #334155;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
 }
 
 th, td {
     padding: 12px 16px;
-    text-align: left;
+    text-align: center;
     vertical-align: middle;
     border-bottom: 1px solid #e2e8f0;
 }
@@ -96,53 +65,57 @@ th {
     color: #475569;
 }
 
-td a {
+td a.order-code {
     color: #3b82f6;
     text-decoration: none;
     font-weight: 500;
 }
-
-.badge {
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    display: inline-block;
+td a.order-code:hover {
+    text-decoration: none !important;
 }
 
-.badge.paid { background: #dbeafe; color: #2563eb; }
-.badge.shipped { background: #d4fcdf; color: #1c702e; }
-.badge.processing { background: #fedbdb; color: #a81313; }
+.badge {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Trạng thái đơn hàng */
+.status-pending { background-color: #fffbeb; color: #b45309; } /* Vàng */
+.status-processing { background-color: #eff6ff; color: #2563eb; } /* Xanh dương */
+.status-shipped { background-color: #f0fdf4; color: #16a34a; } /* Xanh lá */
+.status-delivered { background-color: #f1f5f9; color: #475569; } /* Xám */
+.status-cancelled { background-color: #fee2e2; color: #dc2626; } /* Đỏ */
+
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
 
 .action-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 6px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
-    margin: 0 4px;
-    font-size: 14px;
+    transition: background-color 0.2s;
+    text-decoration: none; /* Thêm vào đây */
 }
 
-.action-btn.edit {
-    background: #dafce8;
-    color: #065f46;
+.action-btn:hover {
+    text-decoration: none; /* Thêm vào đây */
 }
 
-.action-btn.delete {
-    background: #fee2e2;
-    color: #b91c1c;
-}
+.action-btn.view { background: #e0f2fe; color: #0284c7; }
+.action-btn.delete { background: #fee2e2; color: #b91c1c; }
 
-.action-buttons {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    justify-content: center;
-}
 
 /* Pagination */
 .pagination-container {
@@ -171,23 +144,11 @@ td a {
     background-color: #f1f5f9;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-    .header {
-        left: 0;
-        transform: none;
-    }
-    .main-content {
-        left: 0;
-        transform: none;
-        width: 100%;
-        padding: 16px;
-    }
-    .search-box {
-        width: 200px;
-    }
+.ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    color: #64748b;
 }
