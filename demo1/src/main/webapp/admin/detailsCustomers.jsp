@@ -8,84 +8,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Admin - Thêm sản phẩm</title>
-    <link rel="stylesheet" href="admincss/customersList.css">
-    <link rel="stylesheet" href="admincss/detailsCustomers.css">
+    <title>TechNova Admin - Chi tiết khách hàng</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/customersList.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/detailsCustomers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="admincss/adminNotification.css">
-    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminNotification.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/headerAndSidebar.css">
+
 </head>
 
 <body>
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="adminDashboard.jsp">
+        <a href="${contextPath}/admin/dashboard">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
-        <a href="adminDashboard.jsp" style="text-decoration: none;">
+        <a href="${contextPath}/admin/dashboard" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </a></div>
-
-    <ul class="nav-menu">
-        <li class="nav-item">
-            <a href="adminDashboard.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
-                Dashboard
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="customersList.jsp" class="nav-link active">
-                <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
-                Khách hàng
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminCategories.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
-                Mục sản phẩm
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminBrands.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
-                Thương hiệu
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminAttributes.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
-                Thuộc tính
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminProductList.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
-                Sản phẩm
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="adminHoaDon.jsp" class="nav-link">
-                <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
-                Đơn hàng
-            </a>
-        </li>
-    </ul>
-
-    <!-- Logout Section -->
-    <div class="logout-section">
-        <a href="../login.html" class="nav-link logout-link">
-            <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-            Đăng xuất
         </a>
     </div>
+    <ul class="nav-menu">
+        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers active" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-images"></i></span>Banner</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-star"></i></span>Đánh giá</a></li>
+
+    </ul>
+    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
 </aside>
 
 <!-- Header -->
@@ -167,363 +123,224 @@
     <div class="content-area">
         <h1 class="page-title">Chi tiết khách hàng</h1>
         <div class="breadcrumb">
-            <a href="adminDashboard.jsp">Trang chủ</a> / <a href="customersList.jsp">Danh sách khách hàng</a> / <span>Chi tiết khách
-                    hàng</span>
+            <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp">Trang chủ</a> / <a href="${pageContext.request.contextPath}/admin/customers">Danh sách khách hàng</a> / <span>Chi tiết khách hàng</span>
         </div>
 
-        <!-- Khung Thông tin cá nhân -->
-        <section class="personal-info">
-            <!-- Khung hiển thị -->
-            <div class="info-card" id="infoView">
-                <div class="info-header">
-                    <h2>Thông tin cá nhân</h2>
-                    <button id="editBtn" class="update-btn">Cập nhật</button>
+        <%-- Thông báo thành công --%>
+        <c:if test="${not empty updateSuccess}">
+            <div class="alert-box success-message">
+                <span>${updateSuccess}</span>
+                <span class="close-btn">&times;</span> </div>
+        </c:if>
+
+        <%-- Thông báo lỗi --%>
+        <c:if test="${not empty updateError}">
+            <div class="alert-box error-message">
+                <span>${updateError}</span>
+                <span class="close-btn">&times;</span> </div>
+        </c:if>
+
+        <c:if test="${not empty customer}">
+            <!-- Khung Thông tin cá nhân -->
+            <section class="personal-info">
+                <!-- Khung hiển thị -->
+                <div class="info-card" id="infoView">
+                    <div class="info-header">
+                        <h2>Thông tin cá nhân</h2>
+                        <button id="editBtn" class="update-btn">Cập nhật</button>
+                    </div>
+
+                    <div class="info-body">
+                        <div class="info-row">
+                            <span>Họ và tên:</span>
+                            <p id="name">${customer.name}</p>
+                            <span>Số điện thoại:</span>
+                            <p id="phone">${customer.phone}</p>
+                        </div>
+                        <div class="info-row">
+                            <span>Giới tính:</span>
+                            <p id="gender">${customer.gender}</p>
+                            <span>Email:</span>
+                            <p id="email">${customer.email}</p>
+                        </div>
+                        <div class="info-row">
+                            <span>Ngày sinh:</span>
+                            <p id="dob">${customer.birthday}</p>
+                            <span>Địa chỉ:</span>
+                            <p id="address">${customer.address}</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="info-body">
-                    <div class="info-row">
-                        <span>Họ và tên:</span>
-                        <p id="name">Trịnh Trần Phương Tuấn</p>
-                        <span>Số điện thoại:</span>
-                        <p id="phone">+(84) 332 669 512</p>
+                <!-- Khung chỉnh sửa (ẩn lúc đầu) -->
+                <form action="${pageContext.request.contextPath}/admin/customer-detail" method="post" class="info-card hidden" id="infoForm">
+                    <input type="hidden" name="id" value="${customer.id}">
+                    <div class="info-header">
+                        <h2>Cập nhật thông tin</h2>
                     </div>
-                    <div class="info-row">
-                        <span>Giới tính:</span>
-                        <p id="gender">Nam</p>
-                        <span>Email:</span>
-                        <p id="email">phuongtuan@gmail.com</p>
+
+                    <div class="info-body">
+                        <div class="info-row">
+                            <span>Họ và tên:</span>
+                            <input type="text" id="inputName" name="name" value="${customer.name}">
+                            <span>Số điện thoại:</span>
+                            <input type="text" id="inputPhone" name="phone" value="${customer.phone}">
+                        </div>
+                        <div class="info-row">
+                            <span>Giới tính:</span>
+                            <select id="inputGender" name="gender">
+                                <option value="Nam" ${customer.gender == 'Nam' ? 'selected' : ''}>Nam</option>
+                                <option value="Nữ" ${customer.gender == 'Nữ' ? 'selected' : ''}>Nữ</option>
+                                <option value="Khác" ${customer.gender == 'Khác' ? 'selected' : ''}>Khác</option>
+                            </select>
+                            <span>Email:</span>
+                            <input type="email" id="inputEmail" name="email" value="${customer.email}">
+                        </div>
+                        <div class="info-row">
+                            <span>Ngày sinh:</span>
+                            <input type="date" id="inputDob" name="birthday" value="${customer.birthday}">
+                            <span>Địa chỉ:</span>
+                            <input type="text" id="inputAddress" name="address" value="${customer.address}">
+                        </div>
                     </div>
-                    <div class="info-row">
-                        <span>Ngày sinh:</span>
-                        <p id="dob">12/04/1997</p>
-                        <span>Địa chỉ:</span>
-                        <p id="address">123 Nguyễn Trãi, Q5, TP.HCM</p>
+
+                    <div class="info-actions">
+                        <button type="submit" id="saveBtn" class="save-btn">Lưu</button>
+                        <button type="button" id="cancelBtn" class="cancel-btn">Hủy</button>
                     </div>
+                </form>
+            </section>
+
+            <div class="customer-detail">
+                <div class="orders-section">
+                    <div class="orders-header">
+                        <h3>Lịch sử đơn hàng</h3>
+                    </div>
+
+                    <table class="orders-table">
+                        <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th> <th>Ngày đặt hàng</th>
+                            <th>Trạng thái</th>
+                            <th>Tổng tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:if test="${empty orderList}">
+                            <tr>
+                                <td colspan="4" style="text-align: center;">Khách hàng chưa có đơn hàng nào.</td>
+                            </tr>
+                        </c:if>
+
+                        <c:forEach var="order" items="${orderList}">
+                            <tr>
+                                <td>
+                                    <a href="${pageContext.request.contextPath}/admin/order-detail?id=${order.id}">
+                                        #${order.orderCode}
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <fmt:formatDate value="${order.createdAt}" pattern="dd/MM/yyyy HH:mm"/>
+                                </td>
+
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${order.orderStatus == 'Hoàn thành'}">
+                                            <span class="status completed">${order.orderStatus}</span>
+                                        </c:when>
+                                        <c:when test="${order.orderStatus == 'Đã hủy'}">
+                                            <span class="status canceled">${order.orderStatus}</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="status pending">${order.orderStatus}</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+
+                                <td>
+                                    <fmt:formatNumber value="${order.totalAmount}" type="currency" currencySymbol="đ"/>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
+                <c:if test="${totalPages > 1}">
+                    <div class="pagination-container">
+                            <%-- Nút Previous --%>
+                        <c:if test="${currentPage > 1}">
+                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${currentPage - 1}" class="pagination-btn">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </a>
+                        </c:if>
+
+                            <%-- Vòng lặp số trang --%>
+                        <c:forEach var="i" begin="1" end="${totalPages}">
+                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${i}"
+                               class="page-number ${i == currentPage ? 'active' : ''}">
+                                    ${i}
+                            </a>
+                        </c:forEach>
+
+                            <%-- Nút Next --%>
+                        <c:if test="${currentPage < totalPages}">
+                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${currentPage + 1}" class="pagination-btn">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        </c:if>
+                    </div>
+                </c:if>
             </div>
+        </c:if>
+        <c:if test="${empty customer}">
+            <p>Không tìm thấy khách hàng.</p>
+        </c:if>
 
-            <!-- Khung chỉnh sửa (ẩn lúc đầu) -->
-            <div class="info-card hidden" id="infoForm">
-                <div class="info-header">
-                    <h2>Cập nhật thông tin</h2>
-                </div>
 
-                <div class="info-body">
-                    <div class="info-row">
-                        <span>Họ và tên:</span>
-                        <input type="text" id="inputName" value="Nguyễn Võ Quang Minh">
-                        <span>Số điện thoại:</span>
-                        <input type="text" id="inputPhone" value="0978173770">
-                    </div>
-                    <div class="info-row">
-                        <span>Giới tính:</span>
-                        <select id="inputGender">
-                            <option>Nam</option>
-                            <option>Nữ</option>
-                            <option>Khác</option>
-                        </select>
-                        <span>Email:</span>
-                        <input type="email" id="inputEmail" value="minh@example.com">
-                    </div>
-                    <div class="info-row">
-                        <span>Ngày sinh:</span>
-                        <input type="date" id="inputDob" value="2005-11-18">
-                        <span>Địa chỉ:</span>
-                        <input type="text" id="inputAddress" value="123 Nguyễn Trãi, Q5, TP.HCM">
-                    </div>
-                </div>
-
-                <div class="info-actions">
-                    <button id="saveBtn" class="save-btn">Lưu</button>
-                    <button id="cancelBtn" class="cancel-btn">Hủy</button>
-                </div>
-            </div>
-        </section>
-
-        <div class="customer-detail">
-            <div class="orders-section">
-                <div class="orders-header">
-                    <h3>Tất cả đơn hàng</h3>
-                </div>
-
-                <table class="orders-table">
-                    <thead>
-                    <tr>
-                        <th>Mã đơn hàng</th>
-                        <th>Ngày đặt hàng</th>
-                        <th>Trạng thái đơn hàng</th>
-                        <th>Số sản phẩm</th>
-                        <th>Tổng tiền</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><a href="adminHoaDon.jsp">#1988001</a></td>
-                        <td>09/11/2025 at 4:55 pm</td>
-                        <td><span class="status pending">Đang xử lý</span></td>
-                        <td>6</td>
-                        <td>1.520.000đ</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">#80293</a></td>
-                        <td>22/12/2025 at 4:50 pm</td>
-                        <td><span class="status pending">Đang xử lý</span></td>
-                        <td>6</td>
-                        <td>1.985.000đ</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">#78621</a></td>
-                        <td>20/11/2024 at 4:50 pm</td>
-                        <td><span class="status completed">Đã hoàn thành</span></td>
-                        <td>10</td>
-                        <td>1.623.000đ</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">#78622</a></td>
-                        <td>15/11/2026 at 4:50 pm</td>
-                        <td><span class="status canceled">Đã hủy</span></td>
-                        <td>3</td>
-                        <td>1.120.000đ</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">#78623</a></td>
-                        <td>15/01/2026 at 4:50 pm</td>
-                        <td><span class="status completed">Đã hoàn thành</span></td>
-                        <td>1</td>
-                        <td>1.120.000đ</td>
-                    </tr>
-
-                    </tbody>
-                </table>
-
-                <div class="pagination-container">
-                    <button class="pagination-btn disabled">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                        </svg>
-                    </button>
-
-                    <a href="#" class="page-number active">1</a>
-                    <a href="#" class="page-number">2</a>
-                    <span class="ellipsis">...</span>
-                    <a href="#" class="page-number">5</a>
-
-                    <button class="pagination-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <section class="content">
-
-        <div class="section" id="favorites">
-            <!-- <h2>Sản phẩm yêu thích</h2> -->
-
-            <div class="favorite-grid">
-
-                <article class="product-card-fav">
-                    <div class="product-fav-thumb">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_251_3_.png"
-                             alt="CPU Intel Core i5 12400F">
-                    </div>
-                    <div class="product-fav-details">
-                        <h4 class="product-fav-title">CPU Intel Core i5 12400F</h4>
-                        <div class="product-fav-price">
-                            <span class="new-price">3.990.000₫</span>
-                            <span class="old-price">4.000.000₫</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-heart product-fav-heart"></i>
-                </article>
-
-                <article class="product-card-fav">
-                    <div class="product-fav-thumb">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
-                             alt="Mainboard MSI B760M Gaming WIFI DDR5">
-                    </div>
-                    <div class="product-fav-details">
-                        <h4 class="product-fav-title">Mainboard MSI B760M Gaming WIFI DDR5</h4>
-                        <div class="product-fav-price">
-                            <span class="new-price">2.990.000₫</span>
-                            <span class="old-price">3.190.000₫</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-heart product-fav-heart"></i>
-                </article>
-
-                <article class="product-card-fav">
-                    <div class="product-fav-thumb">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/mainboard-msi-pro-h610m-s-ddr4_1_.png"
-                             alt="Mainboard MSI Pro H610M-S DDR4">
-                    </div>
-                    <div class="product-fav-details">
-                        <h4 class="product-fav-title">Mainboard MSI Pro H610M-S DDR4</h4>
-                        <div class="product-fav-price">
-                            <span class="new-price">1.690.000₫</span>
-                            <span class="old-price">1.990.000₫</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-heart product-fav-heart"></i>
-                </article>
-
-                <article class="product-card-fav">
-                    <div class="product-fav-thumb">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_451.png"
-                             alt="Mainboard Asus Prime B760M-A DDR4">
-                    </div>
-                    <div class="product-fav-details">
-                        <h4 class="product-fav-title">Mainboard Asus Prime B760M-A DDR4</h4>
-                        <div class="product-fav-price">
-                            <span class="new-price">2.790.000₫</span>
-                            <span class="old-price">3.190.000₫</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-heart product-fav-heart"></i>
-                </article>
-
-            </div>
-        </div>
-
-    </section>
-
-    <section class="review-section">
-        <!-- <h2 class="review-title">Đánh giá sản phẩm</h2> -->
-
-        <table class="review-table">
-            <thead>
-            <tr>
-                <th>PRODUCT</th>
-                <th>RATING</th>
-                <th>REVIEW</th>
-                <th>STATUS</th>
-                <th>DATE</th>
-            </tr>
-            </thead>
-
-            <tbody>
-
-            <tr>
-                <td class="product-name">
-                    <a href="#">VGA Asus Prime Geforce RTX 5060 Ti 16GB...</a>
-                </td>
-
-                <td>
-                    <div class="rating-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star-half-stroke"></i>
-                    </div>
-                </td>
-
-                <td class="review-text">
-                    It's lovely, works right out of the box and has a number of useful functions.
-                </td>
-
-                <td>
-                    <span class="status success">Thành công</span>
-                </td>
-
-                <td class="date">Dec 9, 2:28PM</td>
-            </tr>
-
-            <tr>
-                <td class="product-name">
-                    <a href="#">Ổ cứng di động SSD Kingston XS1000 USB 3.2 Gen 2 1TB Đen</a>
-                </td>
-
-                <td class="rating-stars">
-                    <div class="rating-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star-half-stroke"></i>
-                    </div>
-                </td>
-
-                <td class="review-text">
-                    Exceptional smartwatch with a wealth of useful functions at an affordable price.
-                </td>
-
-                <td>
-                    <span class="status success">Thành công</span>
-                </td>
-
-                <td class="date">Dec 9, 2:28PM</td>
-            </tr>
-
-            <tr>
-                <td class="product-name">
-                    <a href="#">CPU Intel Core i7 12700F</a>
-                </td>
-
-                <td class="rating-stars">
-                    <div class="rating-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star-half-stroke"></i>
-                    </div>
-                </td>
-
-                <td class="review-text">
-                    Works well and feels good. Wish it had a wider diameter like a real wheel.
-                </td>
-
-                <td>
-                    <span class="status cancelled">Đã hủy</span>
-                </td>
-
-                <td class="date">Dec 4, 12:56 PM</td>
-            </tr>
-
-            <tr>
-                <td class="product-name">
-                    <a href="#">CPU Intel Core i9 14900KF</a>
-                </td>
-
-                <td class="rating-stars">
-                    <div class="rating-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star-half-stroke"></i>
-                    </div>
-                </td>
-
-                <td class="review-text">
-                    My son says these are the greatest he's ever tasted.
-                </td>
-
-                <td>
-                    <span class="status cancelled">Đã hủy</span>
-                </td>
-
-                <td class="date">Nov 28, 7:28 PM</td>
-            </tr>
-
-            </tbody>
-        </table>
-    </section>
-
-
 </main>
 
 </body>
-<script src="adminjs/adminHoaDon.js"></script>
-<script src="adminjs/adminNotification.js"></script>
-<script src="adminjs/adminUpdateCustomer.js"></script>
+<script src="${pageContext.request.contextPath}/admin/adminjs/adminHoaDon.js"></script>
+<script src="${pageContext.request.contextPath}/admin/adminjs/adminNotification.js"></script>
+<script src="${pageContext.request.contextPath}/admin/adminjs/adminUpdateCustomer.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Lấy tất cả các thông báo (cả success và error)
+        var alerts = document.querySelectorAll(".alert-box");
+
+        alerts.forEach(function(alertBox) {
+            // --- LOGIC 1: TỰ ĐỘNG TẮT SAU 5 GIÂY ---
+            var autoCloseTimer = setTimeout(function() {
+                closeAlert(alertBox);
+            }, 5000);
+
+            // --- LOGIC 2: BẤM NÚT X ĐỂ TẮT NGAY ---
+            var closeBtn = alertBox.querySelector(".close-btn");
+            if (closeBtn) {
+                closeBtn.addEventListener("click", function() {
+                    // Xóa hẹn giờ tự động (để tránh conflict)
+                    clearTimeout(autoCloseTimer);
+                    // Đóng ngay lập tức
+                    closeAlert(alertBox);
+                });
+            }
+        });
+
+        // Hàm dùng chung để làm mờ và xóa element
+        function closeAlert(box) {
+            if (box.style.display !== 'none') {
+                box.style.transition = "opacity 0.5s ease";
+                box.style.opacity = "0"; // Mờ dần
+
+                // Đợi 0.5s (500ms) cho mờ hẳn rồi mới xóa khỏi DOM
+                setTimeout(function() {
+                    box.remove();
+                }, 500);
+            }
+        }
+    });
+</script>
 
 </html>
