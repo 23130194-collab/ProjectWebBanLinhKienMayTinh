@@ -24,6 +24,18 @@ public class LoginController extends HttpServlet {
         User u = as.checkLogin(email, password);
 
         if (u != null) {
+            // --- BẮT ĐẦU PHẦN THÊM MỚI: KIỂM TRA KHÓA ---
+
+            // Giả sử quy ước trong Database: status = "Locked" là bị khóa
+            // (Nếu trong DB bạn lưu kiểu int 0/1 thì sửa code check tương ứng)
+            if ("Locked".equalsIgnoreCase(u.getStatus())) {
+                // 1. Báo lỗi ra trang login
+                request.setAttribute("error", "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin!");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+
+                // 2. QUAN TRỌNG: return ngay để không tạo Session bên dưới
+                return;
+            }
             HttpSession session = request.getSession();
             session.setAttribute("auth", u);
             response.sendRedirect("home.jsp");
