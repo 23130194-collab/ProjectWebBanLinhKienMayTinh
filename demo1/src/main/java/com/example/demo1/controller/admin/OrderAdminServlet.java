@@ -14,8 +14,8 @@ import java.io.IOException;
 @WebServlet(name = "OrderAdminServlet", value = "/admin/orders")
 public class OrderAdminServlet extends HttpServlet {
     private static final String SERVLET_PATH = "/admin/orders";
-    private static final String JSP_LIST_PATH = "/admin/adminHoaDon.jsp";
-    private static final String JSP_DETAIL_PATH = "/admin/adminChiTietHoaDon.jsp";
+    private static final String JSP_LIST_PATH = "/admin/adminOrders.jsp";
+    private static final String JSP_DETAIL_PATH = "/admin/adminOrderDetails.jsp";
     private final OrderService orderService = new OrderService();
     private static final int ORDERS_PER_PAGE = 10;
 
