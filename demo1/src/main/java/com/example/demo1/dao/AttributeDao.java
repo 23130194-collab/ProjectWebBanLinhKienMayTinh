@@ -1,43 +1,48 @@
 package com.example.demo1.dao;
 
 import com.example.demo1.model.Attribute;
+import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Query;
 
 import java.util.List;
 
-public class AttributeDao extends DatabaseDao {
+public class AttributeDao { // 1. Bỏ "extends DatabaseDao"
 
-public List<Attribute> getAttributes(String keyword, int limit, int offset) {
-    return get().withHandle(handle -> {
-        // SỬA: Thêm JOIN và lấy thêm cột categoryId, displayOrder
-        String sql = "SELECT a.id, a.name, a.status, " +
-                "       ca.category_id AS categoryId, " +
-                "       ca.display_order AS displayOrder " + // Quan trọng: Phải có alias AS đúng tên biến trong Java
-                "FROM attributes a " +
-                "LEFT JOIN category_attributes ca ON a.id = ca.attribute_id ";
+    // 2. Khai báo biến Jdbi
+    private final Jdbi jdbi = DatabaseDao.get();
 
-        boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
-        if (hasKeyword) {
-            sql += "WHERE a.name LIKE :keyword ";
-        }
+    public List<Attribute> getAttributes(String keyword, int limit, int offset) {
+        // 3. Thay "get()" bằng "jdbi"
+        return jdbi.withHandle(handle -> {
+            // SỬA: Thêm JOIN và lấy thêm cột categoryId, displayOrder
+            String sql = "SELECT a.id, a.name, a.status, " +
+                    "       ca.category_id AS categoryId, " +
+                    "       ca.display_order AS displayOrder " + // Quan trọng: Phải có alias AS đúng tên biến trong Java
+                    "FROM attributes a " +
+                    "LEFT JOIN category_attributes ca ON a.id = ca.attribute_id ";
 
-        // Sắp xếp
-        sql += "ORDER BY a.id DESC LIMIT :limit OFFSET :offset";
+            boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
+            if (hasKeyword) {
+                sql += "WHERE a.name LIKE :keyword ";
+            }
 
-        Query query = handle.createQuery(sql)
-                .bind("limit", limit)
-                .bind("offset", offset);
+            // Sắp xếp
+            sql += "ORDER BY a.id DESC LIMIT :limit OFFSET :offset";
 
-        if (hasKeyword) {
-            query.bind("keyword", "%" + keyword + "%");
-        }
+            Query query = handle.createQuery(sql)
+                    .bind("limit", limit)
+                    .bind("offset", offset);
 
-        return query.mapToBean(Attribute.class).list();
-    });
-}
+            if (hasKeyword) {
+                query.bind("keyword", "%" + keyword + "%");
+            }
+
+            return query.mapToBean(Attribute.class).list();
+        });
+    }
 
     public int countAttributes(String keyword) {
-        return get().withHandle(handle -> {
+        return jdbi.withHandle(handle -> {
             String sql = "SELECT COUNT(*) FROM attributes ";
             boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
             if (hasKeyword) {
@@ -55,7 +60,7 @@ public List<Attribute> getAttributes(String keyword, int limit, int offset) {
     }
 
     public Attribute getAttributeById(int id) {
-        return get().withHandle(handle ->
+        return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT a.id, a.name, a.status, ca.category_id as categoryId, ca.display_order as displayOrder, ca.is_filterable as isFilterable " +
                                 "FROM attributes a " +
                                 "LEFT JOIN category_attributes ca ON a.id = ca.attribute_id " +
@@ -67,34 +72,33 @@ public List<Attribute> getAttributes(String keyword, int limit, int offset) {
         );
     }
 
+    public int addAttributeAndReturnId(Attribute attribute) {
+        // Dùng inTransaction để đảm bảo: Cả 2 lệnh INSERT đều thành công, hoặc cả 2 đều thất bại
+        return jdbi.inTransaction(handle -> {
 
-public int addAttributeAndReturnId(Attribute attribute) {
-    // Dùng inTransaction để đảm bảo: Cả 2 lệnh INSERT đều thành công, hoặc cả 2 đều thất bại (không bị lưu thiếu)
-    return get().inTransaction(handle -> {
+            // BƯỚC 1: Lưu tên và trạng thái vào bảng cha (attributes)
+            int newAttrId = handle.createUpdate("INSERT INTO attributes (name, status) VALUES (:name, :status)")
+                    .bindBean(attribute)
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Integer.class)
+                    .one();
 
-        // BƯỚC 1: Lưu tên và trạng thái vào bảng cha (attributes)
-        int newAttrId = handle.createUpdate("INSERT INTO attributes (name, status) VALUES (:name, :status)")
-                .bindBean(attribute)
-                .executeAndReturnGeneratedKeys("id")
-                .mapTo(Integer.class)
-                .one();
+            // BƯỚC 2: Lưu danh mục và thứ tự vào bảng con (category_attributes)
+            // Kiểm tra xem người dùng có chọn danh mục không (categoryId > 0)
+            if (attribute.getCategoryId() > 0) {
+                handle.createUpdate("INSERT INTO category_attributes (attribute_id, category_id, display_order, is_filterable) " +
+                                "VALUES (:attrId, :categoryId, :displayOrder, :isFilterable)")
+                        .bind("attrId", newAttrId)      // ID vừa sinh ra ở bước 1
+                        .bindBean(attribute)            // Lấy các field categoryId, displayOrder từ object truyền vào
+                        .execute();
+            }
 
-        // BƯỚC 2: Lưu danh mục và thứ tự vào bảng con (category_attributes)
-        // Kiểm tra xem người dùng có chọn danh mục không (categoryId > 0)
-        if (attribute.getCategoryId() > 0) {
-            handle.createUpdate("INSERT INTO category_attributes (attribute_id, category_id, display_order, is_filterable) " +
-                            "VALUES (:attrId, :categoryId, :displayOrder, :isFilterable)")
-                    .bind("attrId", newAttrId)      // ID vừa sinh ra ở bước 1
-                    .bindBean(attribute)            // Lấy các field categoryId, displayOrder từ object truyền vào
-                    .execute();
-        }
-
-        return newAttrId;
-    });
-}
+            return newAttrId;
+        });
+    }
 
     public void updateAttribute(Attribute attribute) {
-        get().useHandle(handle ->
+        jdbi.useHandle(handle ->
                 handle.createUpdate("UPDATE attributes SET name = :name, status = :status WHERE id = :id")
                         .bindBean(attribute)
                         .execute()
@@ -102,7 +106,7 @@ public int addAttributeAndReturnId(Attribute attribute) {
     }
 
     public void deleteAttribute(int id) {
-        get().useHandle(handle ->
+        jdbi.useHandle(handle ->
                 handle.createUpdate("DELETE FROM attributes WHERE id = :id")
                         .bind("id", id)
                         .execute()
@@ -110,7 +114,7 @@ public int addAttributeAndReturnId(Attribute attribute) {
     }
 
     public boolean isAttributeExists(String name, int categoryId) {
-        return get().withHandle(handle -> {
+        return jdbi.withHandle(handle -> {
             String sql = "SELECT COUNT(*) FROM attributes a " +
                     "JOIN category_attributes ca ON a.id = ca.attribute_id " +
                     "WHERE a.name = :name AND ca.category_id = :categoryId";
