@@ -242,16 +242,18 @@
             <!-- Sản phẩm -->
             <div class="product-card" data-product="Core i5" data-generation="Intel thế hệ 12" data-socket="LGA 1700"
                  data-core="6">
-                <div class="discount-tag">
-                    <span class="discount-percent">-<fmt:formatNumber value="${p.discount_value}" pattern="#"/>%</span>
-                </div>
+                <c:if test="${p.discountValue > 0}">
+                    <div class="discount-tag">
+                        <span class="discount-percent">-<fmt:formatNumber value="${p.discountValue}" pattern="#"/>%</span>
+                    </div>
+                </c:if>
                 <a href="product-detail?id=${p.id}" class="product-link">
                     <img src="${p.image}" alt="${p.name}" class="product-image">
                     <h3 class="product-title">${p.name}</h3>
                     <div class="price-section">
                         <div class="current-price"><fmt:formatNumber value="${p.price}" pattern="#,###"/>đ</div>
-                        <c:if test="${p.discount_value > 0}">
-                            <div class="original-price"><fmt:formatNumber value="${p.old_price}" pattern="#,###"/>đ</div>
+                        <c:if test="${p.discountValue > 0}">
+                            <div class="original-price"><fmt:formatNumber value="${p.oldPrice}" pattern="#,###"/>đ</div>
                         </c:if>
                     </div>
                 </a>
@@ -260,10 +262,10 @@
                     <div class="action-item rating">
                         <div class="stars-container">
                             <div class="stars-outer">
-                                <div class="stars-inner" style="width: ${ (p.avg_rating * 1.0 / 5) * 100 }%;"></div>
+                                <div class="stars-inner" style="width: ${ (p.avgRating * 1.0 / 5) * 100 }%;"></div>
                             </div>
                         </div>
-                        <span class="rating-value"><fmt:formatNumber value="${p.avg_rating}" pattern="0.0"/></span>
+                        <span class="rating-value"><fmt:formatNumber value="${p.avgRating}" pattern="0.0"/></span>
                     </div>
 
                     <!-- Yêu thích -->

@@ -100,10 +100,10 @@
                     <div class="action-item rating">
                         <div class="stars-container">
                             <div class="stars-outer">
-                                <div class="stars-inner" style="width: ${ (p.avg_rating * 1.0 / 5) * 100 }%;"></div>
+                                <div class="stars-inner" style="width: ${ (p.avgRating * 1.0 / 5) * 100 }%;"></div>
                             </div>
                         </div>
-                        <span class="rating-value">${p.avg_rating}</span>
+                        <span class="rating-value">${p.avgRating}</span>
                     </div>
                 </div>
 
@@ -133,8 +133,8 @@
                 <div class="price-box">
                     <h4>Giá sản phẩm</h4>
                     <div class="price"><fmt:formatNumber value="${p.price}" pattern="#,###"/>đ</div>
-                    <c:if test="${p.discount_value > 0}">
-                        <div class="old-price"><fmt:formatNumber value="${p.old_price}" pattern="#,###"/>đ</div>
+                    <c:if test="${p.discountValue > 0}">
+                        <div class="old-price"><fmt:formatNumber value="${p.oldPrice}" pattern="#,###"/>đ</div>
                     </c:if>
                 </div>
 
@@ -167,8 +167,8 @@
                         <div class="spec-items">
                             <c:forEach items="${specs}" var="s">
                                 <div class="spec-item">
-                                    <span class="spec-label">${s.attribute_name}</span>
-                                    <span class="spec-value">${s.spec_value}</span>
+                                    <span class="spec-label">${s.attributeName}</span>
+                                    <span class="spec-value">${s.specValue}</span>
                                 </div>
                             </c:forEach>
                         </div>
@@ -202,9 +202,9 @@
             <div class="product-grid">
                 <c:forEach items="${relatedProducts}" var="rp">
                     <div class="product-card">
-                        <c:if test="${rp.discount_value > 0}">
+                        <c:if test="${rp.discountValue > 0}">
                             <div class="discount-tag">
-                                <span class="discount-percent">-<fmt:formatNumber value="${rp.discount_value}"
+                                <span class="discount-percent">-<fmt:formatNumber value="${rp.discountValue}"
                                                                                   pattern="#"/>%</span>
                             </div>
                         </c:if>
@@ -215,8 +215,8 @@
                             <div class="price-section">
                                 <div class="current-price"><fmt:formatNumber value="${rp.price}" pattern="#,###"/>đ
                                 </div>
-                                <c:if test="${rp.discount_value > 0}">
-                                    <div class="original-price"><fmt:formatNumber value="${rp.old_price}"
+                                <c:if test="${rp.discountValue > 0}">
+                                    <div class="original-price"><fmt:formatNumber value="${rp.oldPrice}"
                                                                                   pattern="#,###"/>đ
                                     </div>
                                 </c:if>
@@ -228,10 +228,10 @@
                                 <div class="stars-container">
                                     <div class="stars-outer">
                                         <div class="stars-inner"
-                                             style="width: ${ (rp.avg_rating * 1.0 / 5) * 100 }%;"></div>
+                                             style="width: ${ (rp.avgRating * 1.0 / 5) * 100 }%;"></div>
                                     </div>
                                 </div>
-                                <span class="rating-value"><fmt:formatNumber value="${rp.avg_rating}"
+                                <span class="rating-value"><fmt:formatNumber value="${rp.avgRating}"
                                                                              pattern="0.0"/></span>
                             </div>
                             <button class="action-item like-btn" title="Thêm vào yêu thích">
@@ -251,11 +251,11 @@
 
             <div class="reviews-summary">
                 <div class="overall-rating">
-                    <div class="rating-number">${p.avg_rating}<span>/5</span></div>
+                    <div class="rating-number">${p.avgRating}<span>/5</span></div>
 
                     <div class="rating-stars">
                         <div class="stars-outer">
-                            <div class="stars-inner" style="width: ${ (p.avg_rating * 1.0 / 5) * 100 }%;"></div>
+                            <div class="stars-inner" style="width: ${ (p.avgRating * 1.0 / 5) * 100 }%;"></div>
                         </div>
                     </div>
                     <div class="rating-count">${reviewSummary.totalReviews} lượt đánh giá</div>
@@ -430,15 +430,15 @@
             <div class="bottom-bar-right">
                 <div class="bottom-bar-price">
                     <div class="price-current"><fmt:formatNumber value="${p.price}" pattern="#,###"/>đ</div>
-                    <c:if test="${p.discount_value > 0}">
-                        <div class="price-old"><fmt:formatNumber value="${p.old_price}" pattern="#,###"/>đ</div>
+                    <c:if test="${p.discountValue > 0}">
+                        <div class="price-old"><fmt:formatNumber value="${p.oldPrice}" pattern="#,###"/>đ</div>
                     </c:if>
                 </div>
                 <button class="btn-buy-now js-buy-now"
                         data-id="${p.id}"
                         data-name="${p.name}"
                         data-price="${p.price}"
-                        data-old-price="${p.old_price}"
+                        data-old-price="${p.oldPrice}"
                         data-img="${p.image}">
                     MUA NGAY
                 </button>
@@ -447,7 +447,7 @@
                         data-id="${p.id}"
                         data-name="${p.name}"
                         data-price="${p.price}"
-                        data-old-price="${p.old_price}"
+                        data-old-price="${p.oldPrice}"
                         data-img="${p.image}">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </button>
