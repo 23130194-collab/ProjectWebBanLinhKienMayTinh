@@ -2,83 +2,76 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Admin - Upload Product</title>
-    <link rel="stylesheet" href="admincss/adminUploadProduct.css">
+    <title>TechNova Admin - Thêm sản phẩm</title>
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminUploadProduct.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="admincss/adminNotification.css">
-    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
 </head>
 <body>
 
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
-        <a href="adminDashboard.jsp">
+        <a href="${contextPath}/admin/adminDashboard.jsp">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
         </a>
-        <a href="adminDashboard.jsp" style="text-decoration: none;">
+        <a href="${contextPath}/admin/adminDashboard.jsp" style="text-decoration: none;">
             <span class="logo-text">TechNova</span>
-        </a></div>
-
+        </a>
+    </div>
     <ul class="nav-menu">
         <li class="nav-item">
-            <a href="adminDashboard.jsp" class="nav-link">
+            <a href="${contextPath}/admin/adminDashboard.jsp" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>
                 Dashboard
             </a>
         </li>
-
         <li class="nav-item">
-            <a href="customersList.jsp" class="nav-link">
+            <a href="${contextPath}/admin/customersList.jsp" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
                 Khách hàng
             </a>
         </li>
-
         <li class="nav-item">
-            <a href="adminCategories.jsp" class="nav-link">
+            <a href="${contextPath}/admin/adminCategories.jsp" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-list"></i></span>
                 Mục sản phẩm
             </a>
         </li>
-
         <li class="nav-item">
-            <a href="adminBrands.jsp" class="nav-link">
+            <a href="${contextPath}/admin/brands" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
                 Thương hiệu
             </a>
         </li>
-
         <li class="nav-item">
-            <a href="adminAttributes.jsp" class="nav-link">
+            <a href="${contextPath}/admin/adminAttributes.jsp" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>
                 Thuộc tính
             </a>
         </li>
-
         <li class="nav-item">
-            <a href="adminProductList.jsp" class="nav-link active">
+            <a href="${contextPath}/admin-product-list" class="nav-link active">
                 <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
                 Sản phẩm
             </a>
         </li>
-
         <li class="nav-item">
-            <a href="adminOrders.jsp" class="nav-link">
+            <a href="${contextPath}/admin/adminHoaDon.jsp" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
                 Đơn hàng
             </a>
         </li>
     </ul>
-
-    <!-- Logout Section -->
     <div class="logout-section">
-        <a href="../login.html" class="nav-link logout-link">
+        <a href="${contextPath}/logout" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
             Đăng xuất
         </a>
@@ -87,72 +80,26 @@
 
 <!-- Header -->
 <header class="header">
-    <div class="search-box">
-        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input type="text" class="search-input" placeholder="Tìm kiếm">
-    </div>
-
     <div class="header-actions">
         <button class="notification-btn" id="notificationBtn">
             <i class="fa-solid fa-bell"></i>
             <span class="notification-badge">3</span>
         </button>
-
-        <!-- Thông báo -->
         <div class="notification-dropdown" id="notificationDropdown">
-            <div class="notification-header">
-                <h3>Thông báo</h3>
-            </div>
-
+            <div class="notification-header"><h3>Thông báo</h3></div>
             <div class="notification-list">
                 <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
+                    <div class="notification-icon" style="background: #5b86e5;"><i class="fa-solid fa-box-open"></i></div>
                     <div class="notification-content">
                         <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
                         <span class="notification-time">20 giây trước</span>
                     </div>
                 </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng <strong>thành công!</strong></p>
-                        <span class="notification-time">20 phút trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-file-invoice"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 <strong>thành công!</strong></p>
-                        <span class="notification-time">5 giờ trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">12 giờ trước</span>
-                    </div>
-                </div>
             </div>
-
-            <div class="notification-footer">
-                <a href="#" class="see-all-link">Xem tất cả thông báo</a>
-            </div>
+            <div class="notification-footer"><a href="#" class="see-all-link">Xem tất cả thông báo</a></div>
         </div>
         <div class="user-profile">
-            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
-                 alt="User Profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg" alt="User Profile">
         </div>
     </div>
 </header>
@@ -162,38 +109,32 @@
     <div class="content-area">
         <h1 class="page-title">Thêm sản phẩm</h1>
         <div class="breadcrumb">
-            <a href="adminDashboard.jsp">Trang chủ</a> / <a href="adminProductList.jsp">Danh sách sản phẩm</a> / <span>Thêm sản phẩm</span>
+            <a href="${contextPath}/admin/adminDashboard.jsp">Trang chủ</a> / <a href="${contextPath}/admin-product-list">Danh sách sản phẩm</a> / <span>Thêm sản phẩm</span>
         </div>
 
-        <div class="upload-product-container">
+        <form action="${contextPath}/admin-upload-product" method="post" class="upload-product-container">
             <div class="form-section">
                 <div class="form-group">
                     <h3>Tên sản phẩm</h3>
-                    <input type="text" placeholder="Nhập tên sản phẩm" class="form-input">
+                    <input type="text" name="name" placeholder="Nhập tên sản phẩm" class="form-input" required>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <h3>Danh mục</h3>
-                        <select class="form-select">
-                            <option>Chọn danh mục</option>
-                            <option>CPU</option>
-                            <option>Mainboard</option>
-                            <option>RAM</option>
-                            <option>Ổ cứng</option>
-                            <option>Card màn hình</option>
-                            <option>Nguồn máy tính</option>
-                            <option>Tản nhiệt</option>
-                            <option>Case máy tính</option>
+                        <select class="form-select" name="categoryId" required>
+                            <option value="" disabled selected>Chọn danh mục</option>
+                            <c:forEach var="category" items="${categoryList}">
+                                <option value="${category.id}">${category.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
                         <h3>Thương hiệu</h3>
-                        <select class="form-select">
-                            <option>Chọn thương hiệu</option>
-                            <option>Asus</option>
-                            <option>MSI</option>
-                            <option>Gigabyte</option>
+                        <select class="form-select" name="brandId" required>
+                            <option value="" disabled selected>Chọn thương hiệu</option>
+                            <c:forEach var="brand" items="${brandList}">
+                                <option value="${brand.id}">${brand.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -201,64 +142,8 @@
 
             <div class="form-section">
                 <h3>Giới thiệu sản phẩm:</h3>
-                <div class="rich-text-editor">
-                    <div class="rte-toolbar">
-                        <div class="rte-group">
-                            <select class="rte-select"><option>Paragraph</option></select>
-                            <button><i class="fa-solid fa-bold"></i></button>
-                            <button><i class="fa-solid fa-italic"></i></button>
-                            <button><i class="fa-solid fa-underline"></i></button>
-                            <button><i class="fa-solid fa-strikethrough"></i></button>
-                            <button><i class="fa-solid fa-quote-right"></i></button>
-                            <button><i class="fa-solid fa-align-left"></i></button>
-                            <button><i class="fa-solid fa-align-center"></i></button>
-                            <button><i class="fa-solid fa-align-right"></i></button>
-                            <button><i class="fa-solid fa-link"></i></button>
-                            <button><i class="fa-solid fa-image"></i></button>
-                        </div>
-                        <button class="rte-close"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="rte-content" contenteditable="true">
-                    </div>
-                    <div class="rte-footer">
-                        <span>Word count: 0</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <div class="attribute-header">
-                    <h3>Thuộc tính</h3>
-                    <select class="form-select attribute-select">
-                        <option>Chọn thuộc tính</option>
-                        <option>Dung lượng</option>
-                        <option>Loại RAM</option>
-                        <option>Bus RAM</option>
-                    </select>
-                </div>
-
-                <div class="attribute-item">
-                    <div class="attr-top">
-                        <span class="attr-name">Thuộc tính 1:</span>
-                        <span class="attr-delete">Xóa <i class="fa-solid fa-chevron-down"></i></span>
-                    </div>
-                    <div class="attr-body">
-                        <div class="attr-row">
-                            <span class="attr-label">Tên:</span>
-                            <span class="attr-static-val">Giá trị</span>
-                        </div>
-                        <div class="attr-row">
-                            <span class="attr-label">Thuộc tính 1:</span>
-                            <input type="text" class="form-input" value="Giá trị">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="attribute-item">
-                    <div class="attr-top">
-                        <span class="attr-name">Thuộc tính 2:</span>
-                        <span class="attr-delete">Xóa <i class="fa-solid fa-chevron-left"></i></span>
-                    </div>
+                <div class="form-group">
+                    <textarea id="product-description" name="description" rows="15"></textarea>
                 </div>
             </div>
 
@@ -267,67 +152,166 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Giá gốc (VND)</label>
-                        <input type="text" placeholder="Nhập giá sản phẩm" class="form-input">
+                        <input type="text" name="oldPrice" placeholder="Nhập giá sản phẩm" class="form-input">
                     </div>
                     <div class="form-group">
                         <label>Giảm giá (%)</label>
-                        <input type="text" placeholder="Nhập giá trị giảm giá" class="form-input">
+                        <input type="text" name="discountValue" placeholder="Nhập giá trị giảm giá" class="form-input">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>Ngày bắt đầu giảm giá</label>
-                        <input type="text" placeholder="Từ DD-MM-YYYY" class="form-input">
+                        <input type="text" name="discountStart" placeholder="DD-MM-YYYY" class="form-input">
                     </div>
                     <div class="form-group">
                         <label>Ngày kết thúc giảm giá</label>
-                        <input type="text" placeholder="Đến DD-MM-YYYY" class="form-input">
+                        <input type="text" name="discountEnd" placeholder="DD-MM-YYYY" class="form-input">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Số lượng tồn kho</label>
-                    <input type="text" placeholder="Nhập số lượng sản phẩm" class="form-input">
+                    <input type="text" name="stock" placeholder="Nhập số lượng sản phẩm" class="form-input">
                 </div>
             </div>
 
             <div class="form-section">
-                <h3>Hình ảnh sản phẩm:</h3>
-                <div class="image-uploader-wrapper">
-                    <div class="image-upload-box">
-                        <i class="fa-solid fa-image"></i>
-                    </div>
-
-                    <div class="image-inputs">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label style="font-size: 13px; color: #4b5563; margin-bottom: 6px; display: block;">Thứ tự hiển thị</label>
-                            <input type="number" placeholder="Nhập thứ tự hiển thị" class="form-input" style="width: 220px;">
+                <h3>Hình ảnh sản phẩm</h3>
+                <div class="image-uploader">
+                    <div class="image-adder-group">
+                        <div class="form-group">
+                            <label for="image-url-input">URL hình ảnh</label>
+                            <input type="text" id="image-url-input" placeholder="https://example.com/image.png" class="form-input">
                         </div>
-                        <button class="btn-add-img">Thêm hình ảnh</button>
+                        <div class="form-group">
+                            <label for="image-order-input">Thứ tự</label>
+                            <input type="number" id="image-order-input" placeholder="1" class="form-input" style="width: 100px;">
+                        </div>
+                        <button type="button" id="btn-add-image" class="btn-add-img">Thêm</button>
                     </div>
-                </div>
+                    <p><i>Lưu ý: Chức năng tải file từ máy tính sẽ được cập nhật sau. Vui lòng sử dụng đường dẫn URL.</i></p>
 
-                <div class="image-thumbnails">
-                    <div class="thumb-item">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_265_1_.png" alt="img">
-                    </div>
-                    <div class="thumb-item">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/d/_/d_p.png" alt="img">
-                        <span class="remove-thumb"><i class="fa-solid fa-circle-xmark"></i></span>
-                    </div>
-                    <div class="thumb-item">
-                        <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/x/x/xxong.png" alt="img">
-                        <span class="remove-thumb"><i class="fa-solid fa-circle-xmark"></i></span>
+                    <div id="image-data-container" style="display: none;"></div>
+
+                    <div class="image-thumbnails" id="image-preview-container">
                     </div>
                 </div>
             </div>
+
 
             <div class="form-actions-footer">
-                <a href="adminProductList.jsp"><button class="btn-cancel">Hủy</button></a>
-                <a href="adminProductList.jsp"><button class="btn-complete">Hoàn thành</button></a>
+                <a href="${contextPath}/admin-product-list" class="btn-cancel">Hủy</a>
+                <button type="submit" class="btn-complete">Hoàn thành</button>
             </div>
-        </div>
+        </form>
     </div>
 </main>
-<script src="adminjs/adminNotification.js"></script>
+<script src="${contextPath}/admin/adminjs/adminNotification.js"></script>
+
+<script src="https://cdn.tiny.cloud/1/3ed7uep3wrojhgtffcu69d19t08h1k9sikr7x4myygwkmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Khởi tạo TinyMCE (giữ nguyên)
+        tinymce.init({
+            selector: '#product-description',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            language: 'vi',
+            height: 400,
+            menubar: false,
+            placeholder: 'Nhập mô tả chi tiết cho sản phẩm ở đây...'
+        });
+
+        // Image Uploader Logic (ĐÃ ĐƯỢC CẢI TIẾN)
+        const btnAddImage = document.getElementById('btn-add-image');
+        const imageUrlInput = document.getElementById('image-url-input');
+        const imageOrderInput = document.getElementById('image-order-input');
+        const previewContainer = document.getElementById('image-preview-container');
+        const dataContainer = document.getElementById('image-data-container');
+
+        btnAddImage.addEventListener('click', function() {
+            const imageUrl = imageUrlInput.value.trim();
+            const displayOrder = imageOrderInput.value.trim() || '0';
+
+            if (!imageUrl) {
+                alert('Vui lòng nhập URL hình ảnh.');
+                return;
+            }
+
+            const imageId = 'img-' + Date.now();
+
+            // 1. Tạo thẻ bao ngoài (wrapper)
+            const thumbItem = document.createElement('div');
+            thumbItem.classList.add('thumb-item');
+            thumbItem.setAttribute('data-image-id', imageId);
+
+            // 2. Tạo thẻ IMG bằng code (an toàn hơn dùng chuỗi HTML)
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl;
+            imgElement.alt = "Preview";
+
+            // Xử lý khi ảnh lỗi (quan trọng)
+            imgElement.onerror = function() {
+                this.onerror = null; // Tránh lặp vô hạn
+                this.src = 'https://placehold.co/100x100/e2e8f0/475569?text=Lỗi+Ảnh'; // Ảnh thay thế
+                // Hoặc bạn có thể dùng ảnh có sẵn trong project:
+                // this.src = '${contextPath}/assets/images/no-image.png';
+            };
+
+            // 3. Tạo nút xóa
+            const removeBtn = document.createElement('span');
+            removeBtn.className = 'remove-thumb';
+            removeBtn.innerHTML = '&times;';
+            removeBtn.title = 'Xóa ảnh này';
+
+            // 4. Tạo hiển thị thứ tự
+            const orderDiv = document.createElement('div');
+            orderDiv.className = 'thumb-order';
+            orderDiv.textContent = `Thứ tự: ${displayOrder}`;
+
+            // 5. Ghép lại
+            thumbItem.appendChild(imgElement);
+            thumbItem.appendChild(removeBtn);
+            thumbItem.appendChild(orderDiv);
+            previewContainer.appendChild(thumbItem);
+
+            // 6. Tạo hidden inputs để gửi về Server
+            const urlHiddenInput = document.createElement('input');
+            urlHiddenInput.type = 'hidden';
+            urlHiddenInput.name = 'imageUrls';
+            urlHiddenInput.value = imageUrl;
+            urlHiddenInput.setAttribute('data-image-id', imageId);
+
+            const orderHiddenInput = document.createElement('input');
+            orderHiddenInput.type = 'hidden';
+            orderHiddenInput.name = 'imageOrders';
+            orderHiddenInput.value = displayOrder;
+            orderHiddenInput.setAttribute('data-image-id', imageId);
+
+            dataContainer.appendChild(urlHiddenInput);
+            dataContainer.appendChild(orderHiddenInput);
+
+            // 7. Reset form
+            imageUrlInput.value = '';
+            imageUrlInput.focus();
+        });
+
+        // Xử lý xóa ảnh
+        previewContainer.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('remove-thumb')) {
+                const thumbItem = e.target.closest('.thumb-item');
+                if (thumbItem) {
+                    const imageId = thumbItem.getAttribute('data-image-id');
+                    thumbItem.remove(); // Xóa giao diện
+
+                    // Xóa dữ liệu ẩn
+                    const inputsToRemove = dataContainer.querySelectorAll(`[data-image-id="${imageId}"]`);
+                    inputsToRemove.forEach(input => input.remove());
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
