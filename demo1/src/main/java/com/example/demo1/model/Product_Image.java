@@ -2,15 +2,15 @@ package com.example.demo1.model;
 
 public class Product_Image {
     private int id;
-    private int product_id;
+    private int productId;
     private String image;
-    private int display_order;
+    private int displayOrder;
 
-    public Product_Image(int display_order, String image, int product_id, int id) {
-        this.display_order = display_order;
-        this.image = image;
-        this.product_id = product_id;
+    public Product_Image(int id, int productId, String image, int displayOrder) {
         this.id = id;
+        this.productId = productId;
+        this.image = image;
+        this.displayOrder = displayOrder;
     }
 
     public Product_Image() {
@@ -24,12 +24,12 @@ public class Product_Image {
         this.id = id;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getImage() {
@@ -40,11 +40,11 @@ public class Product_Image {
         this.image = image;
     }
 
-    public int getDisplay_order() {
-        return display_order;
+    public int getDisplayOrder() {
+        return displayOrder;
     }
 
-    public void setDisplay_order(int display_order) {
-        this.display_order = display_order;
+    public void setDisplayOrder(int displayOrder) {
+        this.displayOrder = displayOrder;
     }
 }
