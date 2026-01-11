@@ -2,16 +2,17 @@ package com.example.demo1.model;
 
 public class Product_Spec {
     private int id;
-    private int product_id;
-    private int attribute_id;
-    private String attribute_name;
-    private String spec_value;
+    private int productId;
+    private int attributeId;
+    private String attributeName;
+    private String specValue;
 
-    public Product_Spec(int id, int product_id, int attribute_id, String spec_value) {
+    public Product_Spec(int id, int productId, int attributeId, String attributeName, String specValue) {
         this.id = id;
-        this.product_id = product_id;
-        this.attribute_id = attribute_id;
-        this.spec_value = spec_value;
+        this.productId = productId;
+        this.attributeId = attributeId;
+        this.attributeName = attributeName;
+        this.specValue = specValue;
     }
 
     public Product_Spec() {
@@ -25,35 +26,35 @@ public class Product_Spec {
         this.id = id;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public int getAttribute_id() {
-        return attribute_id;
+    public int getAttributeId() {
+        return attributeId;
     }
 
-    public void setAttribute_id(int attribute_id) {
-        this.attribute_id = attribute_id;
+    public void setAttributeId(int attributeId) {
+        this.attributeId = attributeId;
     }
 
-    public String getSpec_value() {
-        return spec_value;
+    public String getAttributeName() {
+        return attributeName;
     }
 
-    public void setSpec_value(String spec_value) {
-        this.spec_value = spec_value;
+    public void setAttributeName(String attributeName) {
+        this.attributeName = attributeName;
     }
 
-    public String getAttribute_name() {
-        return attribute_name;
+    public String getSpecValue() {
+        return specValue;
     }
 
-    public void setAttribute_name(String attribute_name) {
-        this.attribute_name = attribute_name;
+    public void setSpecValue(String specValue) {
+        this.specValue = specValue;
     }
 }

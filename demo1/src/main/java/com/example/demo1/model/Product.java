@@ -4,36 +4,23 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
     private int id;
-    private int category_id;
-    private int brand_id;
+    private int categoryId;
+    private int brandId;
     private String name;
-    private int discount_id;
+    private int discountId;
     private String description;
     private double price;
-    private double old_price;
+    private double oldPrice;
     private int stock;
     private String image;
-    private String status; // Thêm trường status
-    private double discount_value;
-    private double avg_rating;
-
-    public Product(int id, int category_id, int brand_id, String name, int discount_id, String description, double price, double old_price, int stock, String image, String status) {
-        this.id = id;
-        this.category_id = category_id;
-        this.brand_id = brand_id;
-        this.name = name;
-        this.discount_id = discount_id;
-        this.description = description;
-        this.price = price;
-        this.old_price = old_price;
-        this.stock = stock;
-        this.image = image;
-        this.status = status;
-    }
+    private String status;
+    private double discountValue;
+    private double avgRating;
 
     public Product() {
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -42,20 +29,20 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public int getBrand_id() {
-        return brand_id;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBrand_id(int brand_id) {
-        this.brand_id = brand_id;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
     public String getName() {
@@ -66,12 +53,12 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public int getDiscount_id() {
-        return discount_id;
+    public int getDiscountId() {
+        return discountId;
     }
 
-    public void setDiscount_id(int discount_id) {
-        this.discount_id = discount_id;
+    public void setDiscountId(int discountId) {
+        this.discountId = discountId;
     }
 
     public String getDescription() {
@@ -90,12 +77,12 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public double getOld_price() {
-        return old_price;
+    public double getOldPrice() {
+        return oldPrice;
     }
 
-    public void setOld_price(double old_price) {
-        this.old_price = old_price;
+    public void setOldPrice(double oldPrice) {
+        this.oldPrice = oldPrice;
     }
 
     public int getStock() {
@@ -121,20 +108,20 @@ public class Product implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    public double getDiscount_value() {
-        return discount_value;
+
+    public double getDiscountValue() {
+        return discountValue;
     }
 
-    public void setDiscount_value(double discount_value) {
-        this.discount_value = discount_value;
+    public void setDiscountValue(double discountValue) {
+        this.discountValue = discountValue;
     }
 
-    public double getAvg_rating() {
-        return avg_rating;
+    public double getAvgRating() {
+        return avgRating;
     }
 
-    public void setAvg_rating(double avg_rating) {
-        this.avg_rating = avg_rating;
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
     }
 }
