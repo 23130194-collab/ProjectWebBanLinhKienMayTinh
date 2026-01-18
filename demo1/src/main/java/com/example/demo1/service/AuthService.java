@@ -10,7 +10,6 @@ public class AuthService {
     public User checkLogin(String email, String password) {
         User u = authDao.getUserByEmail(email);
         if (u != null && u.getPassword().equals(MD5.hash(password))) {
-            // Chỉ cho đăng nhập nếu tài khoản đã active
             if ("active".equalsIgnoreCase(u.getStatus())) {
                 u.setPassword(null);
                 return u;
@@ -27,7 +26,7 @@ public class AuthService {
         return authDao.getUserByEmail(email) != null;
     }
 
-    public void register(String name, String email, String hashedPassword, String token) {
-        authDao.insertUser(name, email, hashedPassword, token);
+    public void register(String name, String email, String hashedPassword) {
+        authDao.insertUser(name, email, hashedPassword);
     }
 }
