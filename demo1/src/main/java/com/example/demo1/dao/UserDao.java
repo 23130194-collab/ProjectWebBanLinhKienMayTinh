@@ -4,7 +4,6 @@ import com.example.demo1.model.User;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserDao {
     private Jdbi jdbi = DatabaseDao.get();
@@ -16,30 +15,14 @@ public class UserDao {
                 .stream().findFirst().orElse(null));
     }
 
-    public void insertUser(String name, String email, String password, String token) {
+    public void insertUser(String name, String email, String password) {
         jdbi.useHandle(h ->
-                h.createUpdate("INSERT INTO users(name, email, password, role, status, verification_token) VALUES (:name, :email, :password, :role, :status, :token)")
+                h.createUpdate("INSERT INTO users(name, email, password, role, status) VALUES (:name, :email, :password, :role, :status)")
                         .bind("name", name)
                         .bind("email", email)
                         .bind("password", password)
                         .bind("role", 0)
-                        .bind("status", "unverified")
-                        .bind("token", token)
-                        .execute()
-        );
-    }
-    
-    public Optional<User> findUserByToken(String token) {
-        return jdbi.withHandle(h -> h.createQuery("SELECT * FROM users WHERE verification_token = :token")
-                .bind("token", token)
-                .mapToBean(User.class)
-                .findFirst());
-    }
-
-    public void activateUser(int userId) {
-        jdbi.useHandle(h ->
-                h.createUpdate("UPDATE users SET status = 'active', verification_token = NULL WHERE id = :id")
-                        .bind("id", userId)
+                        .bind("status", "active") // Mặc định là active
                         .execute()
         );
     }
