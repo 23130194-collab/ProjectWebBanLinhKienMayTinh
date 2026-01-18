@@ -25,6 +25,23 @@ public class AdminProductListServlet extends HttpServlet {
         CategoryService cs = new CategoryService();
 
         try {
+            // Xử lý hành động xóa
+            String action = request.getParameter("action");
+            if ("delete".equals(action)) {
+                String productIdStr = request.getParameter("id");
+                if (productIdStr != null && !productIdStr.isEmpty()) {
+                    try {
+                        int productId = Integer.parseInt(productIdStr);
+                        ps.deleteProduct(productId);
+                        // Redirect để tránh thực hiện lại hành động xóa khi tải lại trang
+                        response.sendRedirect(request.getContextPath() + "/admin-product-list");
+                        return;
+                    } catch (NumberFormatException e) {
+                        System.err.println("Invalid product ID for deletion: " + productIdStr);
+                    }
+                }
+            }
+
             // Lấy danh sách tất cả các danh mục để hiển thị trong bộ lọc
             List<Category> allCategories = cs.getAllCategories();
 
@@ -84,6 +101,8 @@ public class AdminProductListServlet extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("errorMessage", "Lỗi khi tải danh sách sản phẩm: " + e.getMessage());
 //            request.getRequestDispatcher("/admin/error.jsp").forward(request, response);
+            request.getSession().setAttribute("errorMessage", "Không thể xóa sản phẩm. Lỗi: " + e.getMessage());
+            response.sendRedirect(request.getContextPath() + "/admin-product-list");
         }
     }
 
