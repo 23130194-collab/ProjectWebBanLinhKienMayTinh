@@ -1,15 +1,17 @@
 package com.example.demo1.dao;
 
 import com.example.demo1.model.Brand;
+import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Query;
 
 import java.util.List;
 
-public class BrandDao extends DatabaseDao {
+public class BrandDao {
+    private Jdbi jdbi = DatabaseDao.get();
 
     public List<Brand> getBrands(String keyword, int limit, int offset) {
-        return get().withHandle(handle -> {
-            String sql = "SELECT id, name, logo, display_order AS displayOrder, status FROM brands ";
+        return jdbi.withHandle(handle -> {
+            String sql = "SELECT id, name, logo, display_order, status FROM brands ";
             if (keyword != null && !keyword.trim().isEmpty()) {
                 sql += "WHERE name LIKE :keyword ";
             }
@@ -28,7 +30,7 @@ public class BrandDao extends DatabaseDao {
     }
 
     public int countBrands(String keyword) {
-        return get().withHandle(handle -> {
+        return jdbi.withHandle(handle -> {
             String sql = "SELECT COUNT(*) FROM brands ";
             if (keyword != null && !keyword.trim().isEmpty()) {
                 sql += "WHERE name LIKE :keyword ";
@@ -42,8 +44,8 @@ public class BrandDao extends DatabaseDao {
     }
 
     public Brand getBrandById(int id) {
-        return get().withHandle(handle ->
-                handle.createQuery("SELECT id, name, logo, display_order AS displayOrder, status FROM brands WHERE id = :id")
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT id, name, logo, display_order, status FROM brands WHERE id = :id")
                         .bind("id", id)
                         .mapToBean(Brand.class)
                         .findFirst()
@@ -52,15 +54,15 @@ public class BrandDao extends DatabaseDao {
     }
 
     public List<Brand> getAllBrands() {
-        return get().withHandle(handle ->
-                handle.createQuery("SELECT id, name, logo, display_order AS displayOrder, status FROM brands ORDER BY display_order ASC")
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT id, name, logo, display_order, status FROM brands ORDER BY display_order ASC")
                         .mapToBean(Brand.class)
                         .list()
         );
     }
 
     public List<Brand> getBrandsByCategoryId(int categoryId) {
-        return get().withHandle(handle ->
+        return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT DISTINCT b.id, b.name, b.logo, b.display_order, b.status " +
                                         "FROM brands b " +
@@ -75,7 +77,7 @@ public class BrandDao extends DatabaseDao {
     }
 
     public Brand getBrandByProductId(int productId) {
-        return get().withHandle(handle ->
+        return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT b.* FROM brands b JOIN products p ON p.brand_id = b.id WHERE p.id = :productId")
                         .bind("productId", productId)
                         .mapToBean(Brand.class)
@@ -85,7 +87,7 @@ public class BrandDao extends DatabaseDao {
     }
 
     public void addBrand(Brand brand) {
-        get().useHandle(handle ->
+        jdbi.useHandle(handle ->
                 handle.createUpdate("INSERT INTO brands (name, logo, display_order, status) VALUES (:name, :logo, :displayOrder, :status)")
                         .bindBean(brand)
                         .execute()
@@ -93,7 +95,7 @@ public class BrandDao extends DatabaseDao {
     }
 
     public void updateBrand(Brand brand) {
-        get().useHandle(handle ->
+        jdbi.useHandle(handle ->
                 handle.createUpdate("UPDATE brands SET name = :name, logo = :logo, display_order = :displayOrder, status = :status WHERE id = :id")
                         .bindBean(brand)
                         .execute()
@@ -101,9 +103,33 @@ public class BrandDao extends DatabaseDao {
     }
 
     public void deleteBrand(int id) {
-        get().useHandle(handle ->
+        jdbi.useHandle(handle ->
                 handle.createUpdate("DELETE FROM brands WHERE id = :id")
                         .bind("id", id)
+                        .execute()
+        );
+    }
+
+    public boolean isBrandNameExists(String name, Integer id) {
+        String sql = "SELECT COUNT(*) FROM brands WHERE name = :name";
+        if (id != null) {
+            sql += " AND id != :id";
+        }
+        final String finalSql = sql;
+        return jdbi.withHandle(handle -> {
+            Query query = handle.createQuery(finalSql);
+            query.bind("name", name);
+            if (id != null) {
+                query.bind("id", id);
+            }
+            return query.mapTo(Integer.class).one() > 0;
+        });
+    }
+
+    public void shiftDisplayOrders(int displayOrder) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE brands SET display_order = display_order + 1 WHERE display_order >= :displayOrder")
+                        .bind("displayOrder", displayOrder)
                         .execute()
         );
     }

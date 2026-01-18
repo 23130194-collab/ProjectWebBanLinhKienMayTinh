@@ -9,20 +9,20 @@ public class UserDao {
     private Jdbi jdbi = DatabaseDao.get();
 
     public User getUserByEmail(String email) {
-        return jdbi.withHandle( h -> h.createQuery( "select * from users where email = :email").bind("email", email)
-                .mapToBean(User.class).stream().findFirst().orElse(null));
+        return jdbi.withHandle(h -> h.createQuery("SELECT * FROM users WHERE email = :email")
+                .bind("email", email)
+                .mapToBean(User.class)
+                .stream().findFirst().orElse(null));
     }
 
     public void insertUser(String name, String email, String password) {
         jdbi.useHandle(h ->
-                h.createUpdate(
-                                "insert into users(name, email, password, role) " +
-                                        "values (:name, :email, :password, :role)"
-                        )
+                h.createUpdate("INSERT INTO users(name, email, password, role, status) VALUES (:name, :email, :password, :role, :status)")
                         .bind("name", name)
                         .bind("email", email)
                         .bind("password", password)
                         .bind("role", 0)
+                        .bind("status", "active") // Mặc định là active
                         .execute()
         );
     }

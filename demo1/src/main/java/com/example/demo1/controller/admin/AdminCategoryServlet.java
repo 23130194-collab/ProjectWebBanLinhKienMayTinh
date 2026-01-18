@@ -13,8 +13,6 @@ import jakarta.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -27,7 +25,7 @@ import java.util.List;
 public class AdminCategoryServlet extends HttpServlet {
     private static final String SERVLET_PATH = "/admin/categories";
     private static final String JSP_PATH = "/admin/adminCategories.jsp";
-    private CategoryService categoryService = new CategoryService();
+    private final CategoryService categoryService = new CategoryService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,11 +62,9 @@ public class AdminCategoryServlet extends HttpServlet {
         List<Category> categoryList;
 
         if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
-            // Trang admin luôn tìm kiếm trên TẤT CẢ danh mục
             categoryList = categoryService.searchCategories(searchKeyword);
             request.setAttribute("searchKeyword", searchKeyword);
         } else {
-            // Trang admin luôn hiển thị TẤT CẢ danh mục
             categoryList = categoryService.getAllCategories();
         }
 
@@ -111,31 +107,29 @@ public class AdminCategoryServlet extends HttpServlet {
         String displayOrderStr = request.getParameter("displayOrder");
         String status = request.getParameter("status");
 
-        String imagePath = handleImageUpload(request);
-
         if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Tên danh mục và thứ tự không được để trống!");
-            showCategoryList(request, response);
+            forwardWithData(request, response);
             return;
         }
+
+        if (categoryService.isCategoryNameExists(name, null)) {
+            request.setAttribute("errorMessage", "Tên danh mục '" + name + "' đã tồn tại.");
+            forwardWithData(request, response);
+            return;
+        }
+
+        String imagePath = handleImageUpload(request);
         if (imagePath == null) {
             request.setAttribute("errorMessage", "Vui lòng cung cấp hình ảnh cho danh mục!");
-            showCategoryList(request, response);
+            forwardWithData(request, response);
             return;
         }
 
-        try {
-            int displayOrder = Integer.parseInt(displayOrderStr);
-            categoryService.addCategory(name, displayOrder, imagePath, status);
-            request.getSession().setAttribute("successMessage", "Thêm danh mục mới thành công!");
-            refreshApplicationScopeCategories();
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errorMessage", "Lỗi khi thêm vào cơ sở dữ liệu.");
-            showCategoryList(request, response);
-            return;
-        }
-
+        int displayOrder = Integer.parseInt(displayOrderStr);
+        categoryService.addCategory(name, displayOrder, imagePath, status);
+        request.getSession().setAttribute("successMessage", "Thêm danh mục mới thành công!");
+        refreshApplicationScopeCategories();
         response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 
@@ -145,38 +139,36 @@ public class AdminCategoryServlet extends HttpServlet {
         String displayOrderStr = request.getParameter("displayOrder");
         String status = request.getParameter("status");
 
+        if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Tên danh mục và thứ tự không được để trống!");
+            forwardWithData(request, response);
+            return;
+        }
+
+        if (categoryService.isCategoryNameExists(name, categoryId)) {
+            request.setAttribute("errorMessage", "Tên danh mục '" + name + "' đã tồn tại.");
+            forwardWithData(request, response);
+            return;
+        }
+
         Category oldCategory = categoryService.getCategoryById(categoryId);
         String imagePath = handleImageUpload(request);
         if (imagePath == null) {
             imagePath = oldCategory.getImage();
         }
 
-        if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty()) {
-            request.setAttribute("errorMessage", "Tên danh mục và thứ tự không được để trống!");
-            showCategoryList(request, response);
-            return;
-        }
-
-        try {
-            int displayOrder = Integer.parseInt(displayOrderStr);
-            Category updatedCategory = new Category(categoryId, imagePath, name, displayOrder, status);
-            categoryService.updateCategory(updatedCategory);
-            request.getSession().setAttribute("successMessage", "Cập nhật danh mục thành công!");
-            refreshApplicationScopeCategories();
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errorMessage", "Lỗi khi cập nhật cơ sở dữ liệu.");
-            showCategoryList(request, response);
-            return;
-        }
-
+        int displayOrder = Integer.parseInt(displayOrderStr);
+        Category updatedCategory = new Category(categoryId, imagePath, name, displayOrder, status);
+        categoryService.updateCategory(updatedCategory);
+        request.getSession().setAttribute("successMessage", "Cập nhật danh mục thành công!");
+        refreshApplicationScopeCategories();
         response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 
     private String handleImageUpload(HttpServletRequest request) throws IOException, ServletException {
         String imageUrl = request.getParameter("imageUrl");
         Part filePart = request.getPart("imageFile");
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        String fileName = (filePart != null) ? Paths.get(filePart.getSubmittedFileName()).getFileName().toString() : "";
 
         if (filePart != null && fileName != null && !fileName.isEmpty()) {
             String realPath = getServletContext().getRealPath("/uploads");
@@ -193,8 +185,26 @@ public class AdminCategoryServlet extends HttpServlet {
     }
 
     private void refreshApplicationScopeCategories() {
-        // ĐÃ SỬA: Luôn làm mới applicationScope với danh sách các danh mục đang hoạt động
         List<Category> activeCategoryList = categoryService.getActiveCategories();
         getServletContext().setAttribute("categoryList", activeCategoryList);
+    }
+    
+    private void forwardWithData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String categoryIdStr = request.getParameter("categoryId");
+        Category category = new Category();
+        if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
+            category.setId(Integer.parseInt(categoryIdStr));
+        }
+        category.setName(request.getParameter("categoryName"));
+        try {
+            category.setDisplay_order(Integer.parseInt(request.getParameter("displayOrder")));
+        } catch (NumberFormatException e) {
+            // ignore
+        }
+        category.setStatus(request.getParameter("status"));
+        category.setImage(request.getParameter("imageUrl"));
+        
+        request.setAttribute("categoryToEdit", category);
+        showCategoryList(request, response);
     }
 }

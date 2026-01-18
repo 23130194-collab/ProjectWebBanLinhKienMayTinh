@@ -18,7 +18,6 @@
 
 <body>
 
-<!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
         <a href="${contextPath}/admin/dashboard">
@@ -78,7 +77,6 @@
             </div>
         </div>
 
-        <!-- Hiển thị thông báo (nếu có) -->
         <c:if test="${not empty sessionScope.successMessage}">
             <div class="alert alert-success"><c:out value="${sessionScope.successMessage}" escapeXml="false"/></div>
             <c:remove var="successMessage" scope="session"/>
@@ -91,8 +89,7 @@
             <div class="alert alert-danger"><c:out value="${requestScope.errorMessage}" escapeXml="false"/></div>
         </c:if>
 
-        <!-- Form thêm/sửa danh mục -->
-        <form action="${contextPath}/admin/categories" method="post" enctype="multipart/form-data" class="category-form" id="addCategoryForm">
+        <form action="${contextPath}/admin/categories" method="post" enctype="multipart/form-data" class="category-form" id="categoryForm">
             <c:if test="${not empty categoryToEdit}">
                 <input type="hidden" name="categoryId" value="${categoryToEdit.id}">
             </c:if>
@@ -103,7 +100,7 @@
                 </div>
                 <div class="input-group flex-1">
                     <label class="input-label">Thứ tự hiển thị</label>
-                    <input type="number" name="displayOrder" class="input-field" placeholder="Thứ tự" value="${categoryToEdit.display_order}">
+                    <input type="number" name="displayOrder" id="displayOrderInput" class="input-field" placeholder="Thứ tự" value="${categoryToEdit.display_order}">
                 </div>
                 <div class="input-group flex-1">
                     <label class="input-label">Trạng thái</label>
@@ -117,22 +114,19 @@
                 <div class="input-group flex-full">
                     <label class="input-label">Hình ảnh mục sản phẩm</label>
                     <input type="file" name="imageFile" class="input-field file-input">
-
                 </div>
             </div>
             <div class="form-row" style="align-items: center;">
-
                 <div class="input-group" style="flex: 1;">
                     <input type="text" name="imageUrl" class="input-field" placeholder="Hoặc dán đường dẫn hình ảnh mới tại đây" value="">
                 </div>
-
                 <div class="button-group" style="margin-left: 15px; width: auto;">
-                    <button type="submit" class="add-category-btn">
+                    <a href="#confirm-save-modal" class="add-category-btn">
                         <c:choose>
                             <c:when test="${not empty categoryToEdit}">Cập nhật</c:when>
                             <c:otherwise>Thêm danh mục</c:otherwise>
                         </c:choose>
-                    </button>
+                    </a>
                     <c:if test="${not empty categoryToEdit}">
                         <a href="${contextPath}/admin/categories" class="cancel-btn">Hủy</a>
                     </c:if>
@@ -141,25 +135,18 @@
             <c:if test="${not empty categoryToEdit.image}">
                 <div class="current-image-preview" style="margin-top: 10px; display: flex; align-items: center;">
                     <span style="font-size: 14px; color: #64748b; margin-right: 10px;">Ảnh hiện tại:</span>
-
                     <c:choose>
-                        <%-- Trường hợp 1: Ảnh là link online (bắt đầu bằng http) --%>
                         <c:when test="${categoryToEdit.image.startsWith('http')}">
-                            <img src="${categoryToEdit.image}" alt="Preview"
-                                 style="height: 40px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                            <img src="${categoryToEdit.image}" alt="Preview" style="height: 40px; border-radius: 4px; border: 1px solid #e2e8f0;">
                         </c:when>
-
-                        <%-- Trường hợp 2: Ảnh lưu trong server (local) --%>
                         <c:otherwise>
-                            <img src="${contextPath}/${categoryToEdit.image}" alt="Preview"
-                                 style="height: 40px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                            <img src="${contextPath}/${categoryToEdit.image}" alt="Preview" style="height: 40px; border-radius: 4px; border: 1px solid #e2e8f0;">
                         </c:otherwise>
                     </c:choose>
                 </div>
             </c:if>
         </form>
 
-        <!-- Form tìm kiếm -->
         <form action="${contextPath}/admin/categories" method="get" class="form-search-row" id="searchForm">
             <div class="search-wrapper">
                 <input type="text" name="searchKeyword" class="search-input-category" placeholder="Tìm kiếm mục sản phẩm..." value="${searchKeyword}">
@@ -167,7 +154,6 @@
             </div>
         </form>
 
-        <!-- Bảng danh mục -->
         <div class="category-table-container">
             <table class="category-table">
                 <thead>
@@ -210,7 +196,7 @@
                         <td>
                             <div class="action-buttons">
                                 <a href="${contextPath}/admin/categories?action=edit&id=${cat.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
-                                <a href="${contextPath}/admin/categories?action=delete&id=${cat.id}" class="action-btn delete" title="Xóa" onclick="return confirmDelete();"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="#confirm-delete-modal-${cat.id}" class="action-btn delete" title="Xóa"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -221,29 +207,30 @@
     </div>
 </main>
 
-<script>
-    function confirmDelete() {
-        return confirm("Bạn có chắc chắn muốn xóa danh mục này không?");
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        // Tự động ẩn thông báo
-        const alerts = document.querySelectorAll('.alert');
-        alerts.forEach(function(alert) {
-            setTimeout(function() {
-                alert.style.display = 'none';
-            }, 5000);
-        });
+<!-- Modals -->
+<c:forEach var="cat" items="${categoryList}">
+    <div id="confirm-delete-modal-${cat.id}" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Xác nhận xóa</h3>
+            <p>Bạn có chắc chắn muốn xóa danh mục "${cat.name}" không?</p>
+            <div class="modal-buttons">
+                <a href="#" class="modal-btn modal-cancel">Hủy</a>
+                <a href="${contextPath}/admin/categories?action=delete&id=${cat.id}" class="modal-btn modal-confirm">Xóa</a>
+            </div>
+        </div>
+    </div>
+</c:forEach>
 
-        // Xử lý nút tìm kiếm
-        const searchBtn = document.getElementById('searchBtn');
-        if(searchBtn) {
-            searchBtn.addEventListener('click', function(e) {
-                e.preventDefault(); // Ngăn thẻ <a> chuyển trang
-                document.getElementById('searchForm').submit(); // Submit form tìm kiếm
-            });
-        }
-    });
-</script>
+<div id="confirm-save-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận lưu</h3>
+        <p>Bạn có chắc chắn muốn lưu các thay đổi cho danh mục này không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel">Hủy</a>
+            <button type="submit" form="categoryForm" class="modal-btn modal-confirm">Lưu</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
