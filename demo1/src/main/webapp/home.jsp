@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN" />
 
 <!DOCTYPE html>
@@ -10,27 +12,26 @@
     <title>Trang chủ | TechNova</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/mucSanPham.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/thongBao.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mucSanPham.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/thongBao.css">
 </head>
 
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="home.jsp" class="logo">
+            <a href="${pageContext.request.contextPath}/home.jsp" class="logo">
                 <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
                 <span class="brand-name">TechNova</span>
             </a>
 
             <nav class="nav-links">
-                <a href="home.jsp" class="active">Trang chủ</a>
-                <a href="gioiThieu.jsp">Giới thiệu</a>
+                <a href="${pageContext.request.contextPath}/home.jsp" class="active">Trang chủ</a>
+                <a href="${pageContext.request.contextPath}/gioiThieu.jsp">Giới thiệu</a>
                 <a href="#" id="category-toggle">Danh mục</a>
-                <a href="lienHe.jsp">Liên hệ</a>
+                <a href="${pageContext.request.contextPath}/contact">Liên hệ</a>
             </nav>
 
             <div class="search-box">
@@ -39,34 +40,31 @@
             </div>
 
             <div class="header-actions">
-                <a href="cart.jsp" class="icon-btn" title="Giỏ hàng">
+                <a href="${pageContext.request.contextPath}/cart.jsp" class="icon-btn" title="Giỏ hàng">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
 
-                <a href="user.jsp" class="icon-btn" title="Tài khoản của bạn">
-                    <i class="fas fa-user"></i>
-                </a>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <a href="${pageContext.request.contextPath}/user" class="icon-btn" title="Tài khoản của bạn">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/login.jsp" class="icon-btn" title="Đăng nhập">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
             </div>
-
 
             <!-- Danh mục -->
             <div class="category-box" id="categoryBox">
-                <a href="cpu.jsp" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
-                        class="fa-solid fa-chevron-right"></i></a>
-                <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
-                        class="fa-solid fa-chevron-right"></i></a>
-                <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
-                        class="fa-solid fa-chevron-right"></i></a>
-                <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
-                        class="fa-solid fa-chevron-right"></i></a>
-                <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
-                        class="fa-solid fa-chevron-right"></i></a>
-                <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
-                        class="fa-solid fa-chevron-right"></i></a>
-                <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
-                        class="fa-solid fa-chevron-right"></i></a>
-                <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
-                        class="fa-solid fa-chevron-right"></i></a>
+                <c:forEach var="cat" items="${applicationScope.categoryList}">
+                    <a href="${pageContext.request.contextPath}/list-product?categoryId=${cat.id}" class="category-item">
+                        <i class="fa-solid fa-microchip"></i> ${cat.name} <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </c:forEach>
             </div>
         </div>
     </header>
@@ -79,22 +77,11 @@
             <div class="home-left">
                 <div class="content-category">
                     <h2>Sản phẩm</h2>
-                    <a href="cpu.jsp" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
-                            class="fa-solid fa-chevron-right"></i></a>
-                    <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard
-                        <i class="fa-solid fa-chevron-right"></i></a>
-                    <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
-                            class="fa-solid fa-chevron-right"></i></a>
-                    <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
-                            class="fa-solid fa-chevron-right"></i></a>
-                    <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn
-                        hình <i class="fa-solid fa-chevron-right"></i></a>
-                    <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
-                            class="fa-solid fa-chevron-right"></i></a>
-                    <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
-                            class="fa-solid fa-chevron-right"></i></a>
-                    <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
-                            class="fa-solid fa-chevron-right"></i></a>
+                    <c:forEach var="cat" items="${applicationScope.categoryList}">
+                        <a href="${pageContext.request.contextPath}/list-product?categoryId=${cat.id}" class="category-item">
+                            <i class="fa-solid fa-microchip"></i> ${cat.name} <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </c:forEach>
                 </div>
             </div>
 
@@ -153,7 +140,7 @@
                                     <div>Đơn hàng <b>#01214S2510002030</b> vừa được giao thành công.</div>
                                     <div class="notice-meta">
                                         <span>1 tuần trước</span>
-                                        <a class="notice-detail" href="user.jsp">Xem chi tiết</a>
+                                        <a class="notice-detail" href="${pageContext.request.contextPath}/user">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +151,7 @@
                                     <div>Đơn hàng <b>#01214S2510002030</b> vừa được giao thành công.</div>
                                     <div class="notice-meta">
                                         <span>1 tuần trước</span>
-                                        <a class="notice-detail" href="user.jsp">Xem chi tiết</a>
+                                        <a class="notice-detail" href="${pageContext.request.contextPath}/user">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +162,7 @@
                     </div>
 
 
-                    <a href="lienHe.html" class="suggest-item">
+                    <a href="${pageContext.request.contextPath}/contact" class="suggest-item">
                         <i class="fa-solid fa-phone-volume"></i> Liên hệ với chúng tôi
                         <i class="fa-solid fa-chevron-right"></i>
                     </a>
@@ -485,10 +472,10 @@
     </footer>
 
 
-    <script src="js/header.js"></script>
-    <script src="js/thongBao.js"></script>
-    <script src="js/flashSale.js"></script>
-    <script src="js/dualBannerSlideshow.js"></script>
+    <script src="${pageContext.request.contextPath}/js/header.js"></script>
+    <script src="${pageContext.request.contextPath}/js/thongBao.js"></script>
+    <script src="${pageContext.request.contextPath}/js/flashSale.js"></script>
+    <script src="${pageContext.request.contextPath}/js/dualBannerSlideshow.js"></script>
 
 
 

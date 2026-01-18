@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -8,73 +11,74 @@
     <title>Đơn hàng của tôi | TechNova</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/user.css">
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 
 </head>
 <body>
-<header class="header">
-    <div class="header-container">
-        <a href="home.jsp" class="logo">
-            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
-            <span class="brand-name">TechNova</span>
-        </a>
-
-        <nav class="nav-links">
-            <a href="home.jsp" class="active">Trang chủ</a>
-            <a href="gioiThieu.html">Giới thiệu</a>
-            <a href="#" id="category-toggle">Danh mục</a>
-            <a href="lienHe.html">Liên hệ</a>
-        </nav>
-
-        <div class="search-box">
-            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
-            <button><i class="fas fa-search"></i></button>
-        </div>
-
-        <div class="header-actions">
-            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
-                <i class="fas fa-shopping-cart"></i>
+    <header class="header">
+        <div class="header-container">
+            <a href="${pageContext.request.contextPath}/home.jsp" class="logo">
+                <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+                <span class="brand-name">TechNova</span>
             </a>
 
-            <a href="user.jsp" class="icon-btn" title="Tài khoản của bạn">
-                <i class="fas fa-user"></i>
-            </a>
-        </div>
+            <nav class="nav-links">
+                <a href="${pageContext.request.contextPath}/home.jsp">Trang chủ</a>
+                <a href="${pageContext.request.contextPath}/gioiThieu.jsp">Giới thiệu</a>
+                <a href="#" id="category-toggle">Danh mục</a>
+                <a href="${pageContext.request.contextPath}/contact">Liên hệ</a>
+            </nav>
 
-        <div class="category-box" id="categoryBox">
-            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
-                    class="fa-solid fa-chevron-right"></i></a>
+            <div class="search-box">
+                <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="header-actions">
+                <a href="${pageContext.request.contextPath}/cart.jsp" class="icon-btn" title="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <a href="${pageContext.request.contextPath}/user" class="icon-btn active" title="Tài khoản của bạn">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/login.jsp" class="icon-btn" title="Đăng nhập">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+
+            <!-- Danh mục -->
+            <div class="category-box" id="categoryBox">
+                <c:forEach var="cat" items="${applicationScope.categoryList}">
+                    <a href="${pageContext.request.contextPath}/list-product?categoryId=${cat.id}" class="category-item">
+                        <i class="fa-solid fa-microchip"></i> ${cat.name} <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </c:forEach>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 <div class="overlay" id="overlay"></div>
 <div class="container">
     <div class="top-card" role="region" aria-label="thông tin tài khoản">
         <div class="profile">
 
             <div class="summary-card">
-                <div class="summary-left">
-                    <div class="reviewer-avatar">N</div>
-                    <div class="summary-info">
-                        <div class="summary-name">Nguyễn Võ Quang Minh</div>
-                        <div class="summary-phone">0123456789</div>
+                <c:if test="${not empty sessionScope.user}">
+                    <div class="summary-left">
+                        <div class="reviewer-avatar">${sessionScope.user.name.substring(0,1)}</div>
+                        <div class="summary-info">
+                            <div class="summary-name">${sessionScope.user.name}</div>
+                            <div class="summary-phone">${sessionScope.user.phone}</div>
+                        </div>
                     </div>
-                </div>
+                </c:if>
 
                 <div class="summary-divider"></div>
 
@@ -110,26 +114,24 @@
 
         <aside class="side" aria-label="menu">
             <nav class="menu" aria-label="menu chính">
-                <a href="user.html" class="menu-item active" data-target="orders">
+                <a href="${pageContext.request.contextPath}/user" class="menu-item active" data-target="orders">
                     <i class="fa-solid fa-list icon"></i>
                     <span class="label">Đơn hàng của tôi</span>
                 </a>
 
-                <a href="sanPhamYeuThich.html" class="menu-item" data-target="favorites">
+                <a href="#" class="menu-item" data-target="favorites">
                     <i class="fa-regular fa-heart icon"></i>
                     <span class="label">Sản phẩm yêu thích</span>
                 </a>
 
-                <a href="thongTinTaiKhoan.html" class="menu-item" data-target="account">
+                <a href="#" class="menu-item" data-target="account">
                     <i class="fa-regular fa-user icon"></i>
                     <span class="label">Thông tin tài khoản</span>
                 </a>
 
-                <a href="index.html" class="menu-item" data-target="account">
+                <a href="${pageContext.request.contextPath}/logout" class="menu-item" data-target="account">
                     <i class="fa-solid fa-right-from-bracket icon"></i>
-                    <a href="logout">
-                        <span class="label">Đăng xuất</span>
-                    </a>
+                    <span class="label">Đăng xuất</span>
                 </a>
             </nav>
         </aside>
@@ -137,22 +139,22 @@
 
             <div class="section active" id="orders">
                 <div class="tabs" role="tablist" aria-label="lọc đơn hàng">
-                    <a href="user.html">
+                    <a href="user.jsp">
                         <div class="tab active">Tất cả</div>
                     </a>
-                    <a href="choXacNhan.html">
+                    <a href="choXacNhan.jsp">
                         <div class="tab">Chờ xác nhận</div>
                     </a>
-                    <a href="daXacNhan.html">
+                    <a href="daXacNhan.jsp">
                         <div class="tab">Đã xác nhận</div>
                     </a>
-                    <a href="dangVanChuyen.html">
+                    <a href="dangVanChuyen.jsp">
                         <div class="tab">Đang vận chuyển</div>
                     </a>
-                    <a href="daGiaoHang.html">
+                    <a href="daGiaoHang.jsp">
                         <div class="tab">Đã giao hàng</div>
                     </a>
-                    <a href="daHuy.html">
+                    <a href="daHuy.jsp">
                         <div class="tab">Đã huỷ</div>
                     </a>
                 </div>
@@ -173,7 +175,7 @@
                             <div class="status-pill pending">Chờ xác nhận</div>
                             <div class="muted">Tổng thanh toán:</div>
                             <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+                            <a class="small-link" href="chiTietDonHang.jsp">Xem chi tiết ></a>
 
                         </div>
                     </article>
@@ -191,7 +193,7 @@
                             <div class="status-pill confirmed">Đã xác nhận</div>
                             <div class="muted">Tổng thanh toán:</div>
                             <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+                            <a class="small-link" href="chiTietDonHang.jsp">Xem chi tiết ></a>
 
                         </div>
                     </article>
@@ -209,7 +211,7 @@
                             <div class="status-pill shipping">Đang vận chuyển</div>
                             <div class="muted">Tổng thanh toán:</div>
                             <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+                            <a class="small-link" href="chiTietDonHang.jsp">Xem chi tiết ></a>
 
                         </div>
                     </article>
@@ -227,7 +229,7 @@
                             <div class="status-pill delivered">Đã giao hàng</div>
                             <div class="muted">Tổng thanh toán:</div>
                             <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+                            <a class="small-link" href="chiTietDonHang.jsp">Xem chi tiết ></a>
 
                         </div>
                     </article>
@@ -245,7 +247,7 @@
                             <div class="status-pill cancelled">Đã hủy</div>
                             <div class="muted">Tổng thanh toán:</div>
                             <div class="total">2.990.000₫</div>
-                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+                            <a class="small-link" href="chiTietDonHang.jsp">Xem chi tiết ></a>
 
                         </div>
                     </article>
@@ -258,6 +260,6 @@
 
 </div>
 
-<script src="js/header.js"></script>
+<script src="${pageContext.request.contextPath}/js/header.js"></script>
 </body>
 </html>
