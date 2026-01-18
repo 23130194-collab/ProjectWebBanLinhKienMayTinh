@@ -32,14 +32,12 @@ public class AttributeService {
     }
 
     public void updateAttributeAndCategoryLink(int attributeId, String name, String status, int categoryId, int displayOrder, int isFilterable) {
-        // 1. Update the attribute itself
         Attribute attribute = new Attribute();
         attribute.setId(attributeId);
         attribute.setName(name);
         attribute.setStatus(status);
         attributeDao.updateAttribute(attribute);
 
-        // 2. Update the link
         Category_Attribute categoryAttribute = new Category_Attribute();
         categoryAttribute.setAttribute_id(attributeId);
         categoryAttribute.setCategory_id(categoryId);
@@ -48,12 +46,12 @@ public class AttributeService {
         categoryAttributeDao.updateCategoryAttribute(categoryAttribute);
     }
 
-    public List<Attribute> getAttributes(String keyword, int limit, int offset) {
-        return attributeDao.getAttributes(keyword, limit, offset);
+    public List<Attribute> getAttributes(String keyword, int categoryId, int limit, int offset) {
+        return attributeDao.getAttributes(keyword, categoryId, limit, offset);
     }
 
-    public int countAttributes(String keyword) {
-        return attributeDao.countAttributes(keyword);
+    public int countAttributes(String keyword, int categoryId) {
+        return attributeDao.countAttributes(keyword, categoryId);
     }
 
     public void deleteAttribute(int attributeId) {
@@ -65,13 +63,23 @@ public class AttributeService {
         return attributeDao.getAttributeById(id);
     }
 
-    public AttributePage getPaginatedAttributes(String keyword, int limit, int offset) {
-        List<Attribute> attributes = attributeDao.getAttributes(keyword, limit, offset);
-        int totalAttributes = attributeDao.countAttributes(keyword);
+    public AttributePage getPaginatedAttributes(String keyword, int categoryId, int limit, int offset) {
+        List<Attribute> attributes = attributeDao.getAttributes(keyword, categoryId, limit, offset);
+
+        int totalAttributes = attributeDao.countAttributes(keyword, categoryId);
+
         return new AttributePage(attributes, totalAttributes);
     }
 
     public boolean isAttributeExists(String name, int categoryId) {
         return attributeDao.isAttributeExists(name, categoryId);
+    }
+
+    public boolean isDisplayOrderExists(int categoryId, int displayOrder, int excludeAttributeId) {
+        return attributeDao.isDisplayOrderExists(categoryId, displayOrder, excludeAttributeId);
+    }
+
+    public void shiftDisplayOrders(int categoryId, int fromOrder) {
+        attributeDao.shiftDisplayOrders(categoryId, fromOrder);
     }
 }
