@@ -101,40 +101,26 @@ public class AdminBrandController extends HttpServlet {
         String logoUrl = request.getParameter("logo");
         Part filePart = request.getPart("logoFile");
         String fileName = (filePart != null) ? Paths.get(filePart.getSubmittedFileName()).getFileName().toString() : "";
-        boolean isNew = (idParam == null || idParam.isEmpty());
+        
+        Integer id = (idParam != null && !idParam.isEmpty()) ? Integer.parseInt(idParam) : null;
+        boolean isNew = (id == null);
 
         // --- VALIDATION ---
-        boolean hasImage = !fileName.isEmpty() || (logoUrl != null && !logoUrl.trim().isEmpty());
-        if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty() || (isNew && !hasImage)) {
-            request.setAttribute("errorMessage", "Thêm thất bại: Vui lòng điền đầy đủ tất cả các trường, bao gồm cả hình ảnh.");
-            
-            Brand brand = new Brand();
-            if (!isNew) {
-                brand.setId(Integer.parseInt(idParam));
-            }
-            brand.setName(name);
-            brand.setStatus(request.getParameter("status"));
-            brand.setLogo(logoUrl);
-            try {
-                brand.setDisplayOrder(Integer.parseInt(displayOrderStr));
-            } catch (NumberFormatException e) {
-                // Bỏ qua nếu nhập sai
-            }
-            request.setAttribute("brandToEdit", brand);
-            
-            listBrands(request, response);
+        if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Vui lòng điền đầy đủ tên và thứ tự hiển thị.");
+            forwardWithData(request, response);
             return;
         }
-        // --- END VALIDATION ---
 
+        if (brandService.isBrandNameExists(name, id)) {
+            request.setAttribute("errorMessage", "Tên thương hiệu '" + name + "' đã tồn tại. Vui lòng chọn tên khác.");
+            forwardWithData(request, response);
+            return;
+        }
+        
         Brand brand;
         if (!isNew) {
-            brand = brandService.getBrandById(Integer.parseInt(idParam));
-            if (brand == null) {
-                request.getSession().setAttribute("errorMessage", "Lỗi: Thương hiệu bạn đang cố cập nhật không tồn tại hoặc đã bị xóa.");
-                response.sendRedirect(request.getContextPath() + SERVLET_PATH);
-                return;
-            }
+            brand = brandService.getBrandById(id);
         } else {
             brand = new Brand();
         }
@@ -147,8 +133,12 @@ public class AdminBrandController extends HttpServlet {
             String filePath = EXTERNAL_UPLOAD_DIR + File.separator + fileName;
             filePart.write(filePath);
             brand.setLogo(DB_UPLOAD_DIR + "/" + fileName);
-        } else {
+        } else if (logoUrl != null && !logoUrl.trim().isEmpty()) {
             brand.setLogo(logoUrl);
+        } else if (isNew) {
+            request.setAttribute("errorMessage", "Vui lòng cung cấp hình ảnh cho thương hiệu mới.");
+            forwardWithData(request, response);
+            return;
         }
 
         brandService.saveBrand(brand);
@@ -168,5 +158,23 @@ public class AdminBrandController extends HttpServlet {
             request.getSession().setAttribute("errorMessage", "ID thương hiệu không hợp lệ.");
         }
         response.sendRedirect(request.getContextPath() + SERVLET_PATH);
+    }
+
+    private void forwardWithData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idParam = request.getParameter("id");
+        Brand brand = new Brand();
+        if (idParam != null && !idParam.isEmpty()) {
+            brand.setId(Integer.parseInt(idParam));
+        }
+        brand.setName(request.getParameter("name"));
+        brand.setStatus(request.getParameter("status"));
+        brand.setLogo(request.getParameter("logo"));
+        try {
+            brand.setDisplayOrder(Integer.parseInt(request.getParameter("displayOrder")));
+        } catch (NumberFormatException e) {
+            // ignore
+        }
+        request.setAttribute("brandToEdit", brand);
+        listBrands(request, response);
     }
 }
