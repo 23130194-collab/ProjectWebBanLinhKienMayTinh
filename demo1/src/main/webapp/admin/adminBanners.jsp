@@ -129,9 +129,19 @@
             <c:remove var="message" scope="session"/>
         </c:if>
 
-        <form action="${contextPath}/admin/banners" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="action" value="${not empty bannerToEdit ? 'update' : 'create'}">
-            <c:if test="${not empty bannerToEdit}">
+        <c:if test="${not empty errorMessage}">
+            <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
+                <span>${errorMessage}</span>
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+            <c:remove var="message" scope="session"/>
+        </c:if>
+
+        <form id="bannerForm" action="${contextPath}/admin/banners" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="force" value="false">
+            <input type="hidden" name="action" value="${(not empty bannerToEdit && bannerToEdit.id > 0) ? 'update' : 'create'}">
+
+            <c:if test="${not empty bannerToEdit && bannerToEdit.id > 0}">
                 <input type="hidden" name="id" value="${bannerToEdit.id}">
             </c:if>
 
@@ -161,14 +171,17 @@
 
                 <div class="form-group col-span-2">
                     <label>Vị trí hiển thị</label>
-                    <select name="position">
+                    <select name="position" required>
                         <option value="">-- Chọn vị trí --</option>
+
                         <option value="Trang chủ" ${bannerToEdit.position == 'Trang chủ' ? 'selected' : ''}>Trang chủ</option>
-                        <option value="Slider Chính" ${bannerToEdit.position == 'Slider Chính' ? 'selected' : ''}>Slider Chính</option>
-                        <option value="CPU" ${bannerToEdit.position == 'CPU' ? 'selected' : ''}>Danh mục CPU</option>
-                        <option value="VGA" ${bannerToEdit.position == 'VGA' ? 'selected' : ''}>Danh mục VGA</option>
-                        <option value="RAM" ${bannerToEdit.position == 'RAM' ? 'selected' : ''}>Danh mục RAM</option>
-                        <option value="Sidebar" ${bannerToEdit.position == 'Sidebar' ? 'selected' : ''}>Sidebar (Cột bên)</option>
+
+                        <c:forEach var="category" items="${categories}">
+                            <option value="${category.id}"
+                                ${String.valueOf(category.id) == bannerToEdit.position ? 'selected' : ''}>
+                                    ${category.name}
+                            </option>
+                        </c:forEach>
                     </select>
                 </div>
 
@@ -200,10 +213,11 @@
                     </div>
 
                     <button type="submit" class="btn-add-banner">
-                        <i ></i> ${not empty bannerToEdit ? 'Cập Nhật' : 'Thêm Banner mới'}
+                        <i class="fa-solid ${not empty bannerToEdit && bannerToEdit.id > 0 ? 'fa-save' : 'fa-plus'}"></i>
+                        ${(not empty bannerToEdit && bannerToEdit.id > 0) ? 'Cập Nhật' : 'Thêm Banner mới'}
                     </button>
 
-                    <c:if test="${not empty bannerToEdit}">
+                    <c:if test="${not empty bannerToEdit && bannerToEdit.id > 0}">
                         <a href="${contextPath}/admin/banners" class="btn-add-banner" style="background: #334155; text-decoration: none; display: flex; align-items: center; justify-content: center;">
                             <i class="fa-solid fa-xmark" style="margin-right: 7px;"></i> Hủy
                         </a>
@@ -213,11 +227,30 @@
         </form>
 
         <form action="${contextPath}/admin/banners" method="get">
-            <div class="form-search-row">
-                <div class="search-wrapper">
+            <div class="form-search-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+
+                <select name="filterPosition" onchange="this.form.submit()"
+                        style="height: 45px; padding: 0 15px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; cursor: pointer; color: #4b5563; min-width: 200px; background-color: white;">
+                    <option value="">-- Tất cả vị trí --</option>
+
+                    <option value="Trang chủ" ${filterPosition == 'Trang chủ' ? 'selected' : ''}>Trang chủ</option>
+
+                    <c:forEach var="cat" items="${categories}">
+                        <option value="${cat.id}" ${String.valueOf(cat.id) == filterPosition ? 'selected' : ''}>
+                                ${cat.name}
+                        </option>
+                    </c:forEach>
+                </select>
+
+                <div class="search-wrapper" style="flex: 1; margin-bottom: 0;">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" name="keyword" class="search-input" placeholder="Tìm kiếm banner..." value="${param.keyword}">
+                    <input type="text" name="keyword" class="search-input"
+                           placeholder="Tìm kiếm banner..."
+                           value="${param.keyword}"
+                           style="width: 100%; height: 45px;">
                 </div>
+
+                <button type="submit" style="display:none;"></button>
             </div>
         </form>
 
@@ -267,15 +300,28 @@
         <!-- Phân trang -->
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
+
                 <c:if test="${currentPage > 1}">
-                    <a href="${contextPath}/admin/banners?page=${currentPage - 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
+                    <a href="${contextPath}/admin/banners?page=${currentPage - 1}&keyword=${keyword}&filterPosition=${filterPosition}"
+                       class="pagination-btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
                 </c:if>
+
                 <c:forEach var="i" begin="1" end="${totalPages}">
-                    <a href="${contextPath}/admin/banners?page=${i}&keyword=${keyword}" class="page-number ${i == currentPage ? 'active' : ''}">${i}</a>
+                    <a href="${contextPath}/admin/banners?page=${i}&keyword=${keyword}&filterPosition=${filterPosition}"
+                       class="page-number ${i == currentPage ? 'active' : ''}">
+                            ${i}
+                    </a>
                 </c:forEach>
+
                 <c:if test="${currentPage < totalPages}">
-                    <a href="${contextPath}/admin/banners?page=${currentPage + 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="${contextPath}/admin/banners?page=${currentPage + 1}&keyword=${keyword}&filterPosition=${filterPosition}"
+                       class="pagination-btn">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
                 </c:if>
+
             </div>
         </c:if>
     </div>
@@ -295,6 +341,19 @@
                     }, 500);
                 }
             }, 5000);
+        }
+
+        // Logic for display order conflict confirmation
+        const confirmReplace = '<c:out value="${confirmReplaceOrder}" />';
+        if (confirmReplace === 'true') {
+            const message = '<c:out value="${conflictMessage}" />';
+            if (confirm(message)) {
+                const form = document.getElementById('bannerForm');
+                if (form) {
+                    form.querySelector('input[name="force"]').value = 'true';
+                    form.submit();
+                }
+            }
         }
     });
 </script>
