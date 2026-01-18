@@ -45,7 +45,6 @@ public class OrderAdminServlet extends HttpServlet {
         if ("updateStatus".equals(action)) {
             updateOrderStatus(request, response);
         } else {
-            // Mặc định là tìm kiếm
             listOrders(request, response);
         }
     }
@@ -92,7 +91,6 @@ public class OrderAdminServlet extends HttpServlet {
             } else {
                 request.getSession().setAttribute("errorMessage", "Cập nhật trạng thái thất bại.");
             }
-            // Chuyển hướng lại trang chi tiết để xem kết quả
             response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?action=view&id=" + orderId);
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("errorMessage", "ID đơn hàng không hợp lệ.");

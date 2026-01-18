@@ -2,15 +2,13 @@ package com.example.demo1.dao;
 
 import com.example.demo1.model.Category;
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.statement.Query;
 
 import java.util.List;
 
 public class CategoryDao {
     private Jdbi jdbi = DatabaseDao.get();
 
-    /**
-     * Lấy TẤT CẢ danh mục (dành cho trang Admin).
-     */
     public List<Category> getAll() {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT id, name, display_order, image, status FROM categories ORDER BY display_order")
@@ -19,9 +17,6 @@ public class CategoryDao {
         );
     }
 
-    /**
-     * Lấy các danh mục đang HOẠT ĐỘNG (dành cho trang User).
-     */
     public List<Category> getActiveCategories() {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT id, name, display_order, image, status FROM categories WHERE status = 'active' ORDER BY display_order")
@@ -72,6 +67,30 @@ public class CategoryDao {
         jdbi.withHandle(handle ->
                 handle.createUpdate("DELETE FROM categories WHERE id = :id")
                         .bind("id", id)
+                        .execute()
+        );
+    }
+
+    public boolean isCategoryNameExists(String name, Integer id) {
+        String sql = "SELECT COUNT(*) FROM categories WHERE name = :name";
+        if (id != null) {
+            sql += " AND id != :id";
+        }
+        final String finalSql = sql;
+        return jdbi.withHandle(handle -> {
+            Query query = handle.createQuery(finalSql);
+            query.bind("name", name);
+            if (id != null) {
+                query.bind("id", id);
+            }
+            return query.mapTo(Integer.class).one() > 0;
+        });
+    }
+
+    public void shiftDisplayOrders(int displayOrder) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE categories SET display_order = display_order + 1 WHERE display_order >= :displayOrder")
+                        .bind("displayOrder", displayOrder)
                         .execute()
         );
     }

@@ -176,19 +176,39 @@ input[type="file"].image-input-box {
 }
 .search-input-brand {
     width: 100%;
-    padding: 10px 15px 10px 38px;
+    height: 40px;
+    padding: 10px 45px 10px 15px;
     border-radius: 8px;
     border: 1px solid #e2e8f0;
+    outline: none;
     box-sizing: border-box;
-    height: 40px;
     font-size: 14px;
+    transition: all 0.2s;
 }
-.search-icon {
+.search-input-brand:focus {
+    border-color: #5b86e5;
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.15);
+}
+
+.search-icon-btn {
     position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.2s, color 0.2s;
+    background: none;
+    border: none;
+}
+.search-icon-btn:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
 }
 
 
@@ -260,12 +280,72 @@ input[type="file"].image-input-box {
     background-color: #f8d7da;
     border-color: #f5c2c7;
 }
-.error-message { /* Giữ lại để tương thích với tên cũ nếu có */
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
-    padding: 15px;
+
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+.modal-overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #1e293b;
+}
+
+.modal-content p {
     margin-bottom: 20px;
+    font-size: 15px;
+    color: #475569;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-btn {
+    padding: 10px 25px;
     border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
     font-size: 14px;
+}
+
+.modal-cancel {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.modal-confirm {
+    background-color: #ef4444;
+    color: white;
 }
