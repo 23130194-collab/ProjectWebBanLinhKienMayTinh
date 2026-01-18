@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <a href="adminUploadProduct.jsp" class="add-product-btn" title="Thêm sản phẩm mới">
+            <a href="${contextPath}/admin-upload-product" class="add-product-btn" title="Thêm sản phẩm mới">
                 <i class="fa-solid fa-plus"></i>
             </a>
         </div>
@@ -216,15 +216,18 @@
                                 <c:when test="${product.status == 'active'}">
                                     <span class="status status-active">Hoạt động</span>
                                 </c:when>
+                                <c:when test="${product.status == 'inactive'}">
+                                    <span class="status status-hidden">Ẩn</span>
+                                </c:when>
                                 <c:otherwise>
-                                    <span class="status status-hidden">Đã ẩn</span>
+                                    <span class="status status-other">${product.status}</span>
                                 </c:otherwise>
                             </c:choose>
                         </td>
                         <td>
                             <div class="action-buttons">
-                                <a href="edit-product?id=${product.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
-                                <a href="delete-product?id=${product.id}" class="action-btn delete" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="${contextPath}/admin-upload-product?id=${product.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
+                                <a href="${contextPath}/admin-product-list?action=delete&id=${product.id}" class="action-btn delete" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
                         </td>
                     </tr>

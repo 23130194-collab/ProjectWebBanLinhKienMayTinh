@@ -1,6 +1,7 @@
 package com.example.demo1.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class Product implements Serializable {
     private int id;
@@ -16,6 +17,8 @@ public class Product implements Serializable {
     private String status;
     private double discountValue;
     private double avgRating;
+    private Timestamp discountStart;
+    private Timestamp discountEnd;
 
     public Product() {
     }
@@ -123,5 +126,21 @@ public class Product implements Serializable {
 
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
+    }
+
+    public Timestamp getDiscountStart() {
+        return discountStart;
+    }
+
+    public void setDiscountStart(Timestamp discountStart) {
+        this.discountStart = discountStart;
+    }
+
+    public Timestamp getDiscountEnd() {
+        return discountEnd;
+    }
+
+    public void setDiscountEnd(Timestamp discountEnd) {
+        this.discountEnd = discountEnd;
     }
 }

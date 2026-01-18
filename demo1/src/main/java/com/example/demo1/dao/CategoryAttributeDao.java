@@ -24,6 +24,21 @@ public class CategoryAttributeDao {
         );
     }
 
+    public List<Attribute> getAllAttributesByCategoryId(int categoryId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT a.id, a.name, a.status, ca.display_order, ca.is_filterable " +
+                                        "FROM attributes a " +
+                                        "JOIN category_attributes ca ON a.id = ca.attribute_id " +
+                                        "WHERE ca.category_id = :categoryId AND a.status = 'active' " + // BỎ is_filterable = 1
+                                        "ORDER BY ca.display_order ASC"
+                        )
+                        .bind("categoryId", categoryId)
+                        .mapToBean(Attribute.class)
+                        .list()
+        );
+    }
+
     public void addCategoryAttribute(Category_Attribute ca) {
         jdbi.useHandle(handle ->
                 handle.createUpdate(

@@ -18,6 +18,8 @@ public class ProductDao {
             "p.id, p.category_id AS categoryId, p.brand_id AS brandId, p.name, p.discount_id AS discountId, p.description, p.stock, p.image, p.created_at, p.status, " +
             "p.old_price AS oldPrice, p.price, " +
             "d.discount_value AS discountValue, " +
+            "d.start_time AS discountStart, " +
+            "d.end_time AS discountEnd, " +
             "IFNULL(ROUND(AVG(r.rating), 1), 0) AS avgRating ";
 
     // Helper class to hold query parts
@@ -164,6 +166,21 @@ public class ProductDao {
                         .findOne()
         ).orElse(null);
     }
+    public Product getById(int productId, String status) {
+        String sql = "SELECT " + SELECT_PRODUCT_FIELDS +
+                "FROM products p " +
+                "LEFT JOIN discounts d ON p.discount_id = d.id " +
+                "LEFT JOIN reviews r ON p.id = r.product_id " +
+                "WHERE p.id = :id AND p.status = :status " +
+                "GROUP BY p.id";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", productId)
+                        .bind("status", status)
+                        .mapToBean(Product.class)
+                        .findOne()
+        ).orElse(null);
+    }
 
     public List<Product> getRelatedProducts(int categoryId, int currentProductId, int limit, int offset) {
         return jdbi.withHandle(handle ->
@@ -205,9 +222,34 @@ public class ProductDao {
 
             return handle.createUpdate(sql)
                     .bindBean(product)
-                    .executeAndReturnGeneratedKeys("id") // Lấy ID tự tăng vừa tạo
+                    .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class)
                     .one();
         });
+    }
+
+    public void update(Product product) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE products SET " +
+                                "category_id = :categoryId, " +
+                                "brand_id = :brandId, " +
+                                "name = :name, " +
+                                "description = :description, " +
+                                "stock = :stock, " +
+                                "old_price = :oldPrice, " +
+                                "price = :price, " +
+                                "discount_id = :discountId, " +
+                                "status = :status, " +
+                                "image = :image " +
+                                "WHERE id = :id")
+                        .bindBean(product)
+                        .execute());
+    }
+
+    public void delete(int productId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM products WHERE id = :id")
+                        .bind("id", productId)
+                        .execute());
     }
 }

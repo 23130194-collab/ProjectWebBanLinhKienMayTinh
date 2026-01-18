@@ -11,4 +11,8 @@ public class CategoryAttributeService {
     public List<Attribute> getFilterableAttributesByCategoryId(int categoryId) {
         return dao.getFilterableAttributesByCategoryId(categoryId);
     }
+
+    public List<Attribute> getAllAttributesByCategoryId(int categoryId) {
+        return dao.getAllAttributesByCategoryId(categoryId);
+    }
 }
