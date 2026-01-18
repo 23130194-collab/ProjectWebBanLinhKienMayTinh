@@ -46,4 +46,22 @@ public class Product_SpecDao {
                         .list()
         );
     }
+
+    public void insertProductSpec(int productId, int attributeId, String specValue) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO product_specs (product_id, attribute_id, spec_value) VALUES (:pid, :aid, :val)")
+                        .bind("pid", productId)
+                        .bind("aid", attributeId)
+                        .bind("val", specValue)
+                        .execute()
+        );
+    }
+
+    public void deleteProductSpecs(int productId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM product_specs WHERE product_id = :productId")
+                        .bind("productId", productId)
+                        .execute()
+        );
+    }
 }

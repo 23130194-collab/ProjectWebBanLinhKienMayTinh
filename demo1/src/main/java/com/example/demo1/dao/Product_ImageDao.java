@@ -38,4 +38,12 @@ public class Product_ImageDao {
             batch.execute();
         });
     }
+
+    public void deleteImagesByProductId(int productId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM product_images WHERE product_id = :productId")
+                        .bind("productId", productId)
+                        .execute()
+        );
+    }
 }

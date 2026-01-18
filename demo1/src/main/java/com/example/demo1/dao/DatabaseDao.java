@@ -22,7 +22,15 @@ public class DatabaseDao {
             try {
                 // Tạo MySQL DataSource
                 MysqlDataSource ds = new MysqlDataSource();
-                ds.setURL("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE);
+//                ds.setURL("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE);
+                String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE
+                        + "?useUnicode=true"
+                        + "&characterEncoding=UTF-8"
+                        + "&useSSL=false"
+                        + "&serverTimezone=UTC"
+                        + "&allowPublicKeyRetrieval=true";
+
+                ds.setURL(url);
                 ds.setUser(DB_USER);
                 ds.setPassword(DB_PASSWORD);
                 ds.setUseSSL(false);
