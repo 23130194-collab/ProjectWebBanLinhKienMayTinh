@@ -181,7 +181,7 @@
                 <%-- Vòng lặp duyệt danh sách customerList được gửi từ Controller --%>
                 <c:forEach var="u" items="${customerList}" varStatus="status">
                     <tr>
-                        <td style="text-align: center;">${status.index + 1}</td>
+                        <td style="text-align: center;">${(currentPage - 1) * 5 + status.index + 1}</td>
 
                         <td>
                             <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${u.id}" class="customer-link">
