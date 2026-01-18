@@ -32,7 +32,7 @@ public class ProductController extends HttpServlet {
             ProductService ps = new ProductService();
             ReviewService rs = new ReviewService();
 
-            Product p = ps.getProduct(id);
+            Product p = ps.getPublicProduct(id);
 
             if (p == null) {
                 response.sendRedirect("error.jsp"); // Hoặc một trang 404 tùy chỉnh
@@ -67,7 +67,7 @@ public class ProductController extends HttpServlet {
             // Bắt tất cả các lỗi khác để tránh màn hình trắng
             e.printStackTrace(); // In lỗi ra console log của server
             request.setAttribute("errorMessage", "Đã có lỗi xảy ra khi tải trang sản phẩm.");
-            request.getRequestDispatcher("/error.jsp").forward(request, response); // Chuyển đến trang lỗi chung
+//            request.getRequestDispatcher("/error.jsp").forward(request, response); // Chuyển đến trang lỗi chung
         }
     }
 

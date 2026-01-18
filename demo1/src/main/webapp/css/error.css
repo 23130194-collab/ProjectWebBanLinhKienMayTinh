@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #4a4a4a;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.error-icon img {
+    width: 120px; /* Điều chỉnh kích thước icon */
+    margin-bottom: 20px;
+}
+
+.message {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.sub-message {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.btn-product {
+    display: inline-block;
+    background-color: #d70018; /* Màu đỏ đặc trưng */
+    color: white;
+    text-decoration: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.btn-product:hover {
+    background-color: #a50012;
+}
+
+.hotline {
+    font-size: 15px;
+    color: #444;
+}
+
+.hotline aria-label, .hotline a {
+    color: #d70018;
+    text-decoration: none;
+    font-weight: bold;
+}

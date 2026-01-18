@@ -6,27 +6,29 @@ import org.jdbi.v3.core.statement.Query;
 
 import java.util.List;
 
-public class AttributeDao { // 1. Bỏ "extends DatabaseDao"
+public class AttributeDao {
 
-    // 2. Khai báo biến Jdbi
     private final Jdbi jdbi = DatabaseDao.get();
 
-    public List<Attribute> getAttributes(String keyword, int limit, int offset) {
-        // 3. Thay "get()" bằng "jdbi"
+    public List<Attribute> getAttributes(String keyword, int categoryId, int limit, int offset) {
         return jdbi.withHandle(handle -> {
-            // SỬA: Thêm JOIN và lấy thêm cột categoryId, displayOrder
             String sql = "SELECT a.id, a.name, a.status, " +
                     "       ca.category_id AS categoryId, " +
-                    "       ca.display_order AS displayOrder " + // Quan trọng: Phải có alias AS đúng tên biến trong Java
+                    "       ca.display_order AS displayOrder " +
                     "FROM attributes a " +
-                    "LEFT JOIN category_attributes ca ON a.id = ca.attribute_id ";
+                    "LEFT JOIN category_attributes ca ON a.id = ca.attribute_id " +
+                    "WHERE 1=1 ";
 
             boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
+
             if (hasKeyword) {
-                sql += "WHERE a.name LIKE :keyword ";
+                sql += " AND a.name LIKE :keyword ";
             }
 
-            // Sắp xếp
+            if (categoryId > 0) {
+                sql += " AND ca.category_id = :categoryId ";
+            }
+
             sql += "ORDER BY a.id DESC LIMIT :limit OFFSET :offset";
 
             Query query = handle.createQuery(sql)
@@ -37,7 +39,40 @@ public class AttributeDao { // 1. Bỏ "extends DatabaseDao"
                 query.bind("keyword", "%" + keyword + "%");
             }
 
+            if (categoryId > 0) {
+                query.bind("categoryId", categoryId);
+            }
+
             return query.mapToBean(Attribute.class).list();
+        });
+    }
+
+    public int countAttributes(String keyword, int categoryId) {
+        return jdbi.withHandle(handle -> {
+            String sql = "SELECT COUNT(*) FROM attributes a " +
+                    "LEFT JOIN category_attributes ca ON a.id = ca.attribute_id " +
+                    "WHERE 1=1 ";
+
+            boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
+            if (hasKeyword) {
+                sql += " AND a.name LIKE :keyword ";
+            }
+
+            if (categoryId > 0) {
+                sql += " AND ca.category_id = :categoryId ";
+            }
+
+            Query query = handle.createQuery(sql);
+
+            if (hasKeyword) {
+                query.bind("keyword", "%" + keyword + "%");
+            }
+
+            if (categoryId > 0) {
+                query.bind("categoryId", categoryId);
+            }
+
+            return query.mapTo(Integer.class).one();
         });
     }
 
@@ -73,23 +108,18 @@ public class AttributeDao { // 1. Bỏ "extends DatabaseDao"
     }
 
     public int addAttributeAndReturnId(Attribute attribute) {
-        // Dùng inTransaction để đảm bảo: Cả 2 lệnh INSERT đều thành công, hoặc cả 2 đều thất bại
         return jdbi.inTransaction(handle -> {
-
-            // BƯỚC 1: Lưu tên và trạng thái vào bảng cha (attributes)
             int newAttrId = handle.createUpdate("INSERT INTO attributes (name, status) VALUES (:name, :status)")
                     .bindBean(attribute)
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class)
                     .one();
 
-            // BƯỚC 2: Lưu danh mục và thứ tự vào bảng con (category_attributes)
-            // Kiểm tra xem người dùng có chọn danh mục không (categoryId > 0)
             if (attribute.getCategoryId() > 0) {
                 handle.createUpdate("INSERT INTO category_attributes (attribute_id, category_id, display_order, is_filterable) " +
                                 "VALUES (:attrId, :categoryId, :displayOrder, :isFilterable)")
-                        .bind("attrId", newAttrId)      // ID vừa sinh ra ở bước 1
-                        .bindBean(attribute)            // Lấy các field categoryId, displayOrder từ object truyền vào
+                        .bind("attrId", newAttrId)
+                        .bindBean(attribute)
                         .execute();
             }
 
@@ -125,7 +155,37 @@ public class AttributeDao { // 1. Bỏ "extends DatabaseDao"
                     .mapTo(Integer.class)
                     .one();
 
-            return count > 0; // Trả về true nếu đã tồn tại
+            return count > 0;
         });
+    }
+
+    public boolean isDisplayOrderExists(int categoryId, int displayOrder, int excludeAttributeId) {
+        return jdbi.withHandle(handle -> {
+            String sql = "SELECT COUNT(*) FROM category_attributes " +
+                    "WHERE category_id = :categoryId AND display_order = :displayOrder";
+
+            if (excludeAttributeId > 0) {
+                sql += " AND attribute_id != :excludeId";
+            }
+
+            int count = handle.createQuery(sql)
+                    .bind("categoryId", categoryId)
+                    .bind("displayOrder", displayOrder)
+                    .bind("excludeId", excludeAttributeId)
+                    .mapTo(Integer.class)
+                    .one();
+
+            return count > 0;
+        });
+    }
+
+    public void shiftDisplayOrders(int categoryId, int fromOrder) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE category_attributes SET display_order = display_order + 1 " +
+                                "WHERE category_id = :categoryId AND display_order >= :fromOrder")
+                        .bind("categoryId", categoryId)
+                        .bind("fromOrder", fromOrder)
+                        .execute()
+        );
     }
 }

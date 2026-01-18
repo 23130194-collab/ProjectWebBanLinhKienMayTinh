@@ -80,7 +80,7 @@ public class ListProductController extends HttpServlet {
             }
 
             // Lấy sản phẩm cho trang hiện tại
-            ProductPage productPage = ps.filterAndSortProducts(categoryId, brandId, specFilters, sortOrder, currentPage, PRODUCTS_PER_PAGE);
+            ProductPage productPage = ps.filterAndSortProducts(categoryId, "active", null, brandId, specFilters, sortOrder, currentPage, PRODUCTS_PER_PAGE);
             List<Product> productList = productPage.getProducts();
             int totalProducts = productPage.getTotalProducts();
             int totalPages = (int) Math.ceil((double) totalProducts / PRODUCTS_PER_PAGE);

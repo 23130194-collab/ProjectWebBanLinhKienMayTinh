@@ -1,6 +1,8 @@
 package com.example.demo1.dao;
 
 import com.example.demo1.model.Product;
+import com.example.demo1.model.ProductPage;
+import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Query;
 
@@ -10,105 +12,144 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductDao {
-    private Jdbi jdbi = DatabaseDao.get();
+    private final Jdbi jdbi = DatabaseDao.get();
 
-    // Định nghĩa các trường cần lấy, bao gồm cả việc tính toán giá động
-    private final String DYNAMIC_PRICE_SQL =
-        "FLOOR( (CASE WHEN d.discount_value > 0 THEN p.old_price * (1 - d.discount_value / 100) ELSE p.old_price END) / 10000 ) * 10000";
+    private static final String SELECT_PRODUCT_FIELDS =
+            "p.id, p.category_id AS categoryId, p.brand_id AS brandId, p.name, p.discount_id AS discountId, p.description, p.stock, p.image, p.created_at, p.status, " +
+            "p.old_price AS oldPrice, p.price, " +
+            "d.discount_value AS discountValue, " +
+            "d.start_time AS discountStart, " +
+            "d.end_time AS discountEnd, " +
+            "IFNULL(ROUND(AVG(r.rating), 1), 0) AS avgRating ";
 
-    private final String SELECT_PRODUCT_FIELDS =
-            "p.id, p.category_id, p.brand_id, p.name, p.discount_id, p.description, p.stock, p.image, p.created_at, p.status, " +
-            "p.old_price, " + // Giữ nguyên old_price là giá gốc
-            "d.discount_value, " +
-            "IFNULL(ROUND(AVG(r.rating), 1), 0) AS avg_rating, " +
-            // Tính toán giá bán cuối cùng (price) dựa trên old_price và discount
-            DYNAMIC_PRICE_SQL + " AS price ";
+    // Helper class to hold query parts
+    private static class QueryParts {
+        String whereSql;
+        String joinSql;
+        Map<String, Object> params;
 
-    private String buildSubQueryForFilter(int categoryId, Integer brandId, Map<Integer, List<String>> specFilters) {
-        StringBuilder subQuerySql = new StringBuilder("SELECT p.id FROM products p ");
-        if (specFilters != null && !specFilters.isEmpty()) {
-            subQuerySql.append("JOIN product_specs ps ON p.id = ps.product_id ");
+        QueryParts(String whereSql, String joinSql, Map<String, Object> params) {
+            this.whereSql = whereSql;
+            this.joinSql = joinSql;
+            this.params = params;
         }
-        subQuerySql.append("WHERE p.category_id = :categoryId ");
+    }
 
+    private QueryParts buildQueryParts(Integer categoryId, String status, String keyword, Integer brandId, Map<Integer, List<String>> specFilters) {
+        StringBuilder whereSql = new StringBuilder(" WHERE 1=1 ");
+        Map<String, Object> params = new HashMap<>();
+        String joinSql = "";
+
+        if (specFilters != null && !specFilters.isEmpty()) {
+            joinSql = " JOIN product_specs ps ON p.id = ps.product_id ";
+        }
+
+        if (categoryId != null) {
+            whereSql.append(" AND p.category_id = :categoryId");
+            params.put("categoryId", categoryId);
+        }
+        if (status != null && !status.isEmpty()) {
+            whereSql.append(" AND p.status = :status");
+            params.put("status", status);
+        }
+        if (keyword != null && !keyword.isEmpty()) {
+            whereSql.append(" AND p.name LIKE :keyword");
+            params.put("keyword", "%" + keyword + "%");
+        }
         if (brandId != null) {
-            subQuerySql.append("AND p.brand_id = :brandId ");
+            whereSql.append(" AND p.brand_id = :brandId");
+            params.put("brandId", brandId);
         }
 
         if (specFilters != null && !specFilters.isEmpty()) {
-            subQuerySql.append("AND (");
+            StringBuilder specConditions = new StringBuilder();
             int i = 0;
-            for (Integer attrId : specFilters.keySet()) {
-                if (i > 0) subQuerySql.append(" OR ");
-                subQuerySql.append("(ps.attribute_id = ").append(attrId)
-                           .append(" AND ps.spec_value IN (<values_").append(attrId).append(">))");
+            for (Map.Entry<Integer, List<String>> entry : specFilters.entrySet()) {
+                if (i > 0) specConditions.append(" OR ");
+                String paramName = "spec_values_" + entry.getKey();
+                specConditions.append("(ps.attribute_id = ").append(entry.getKey())
+                        .append(" AND ps.spec_value IN (<").append(paramName).append(">))");
                 i++;
             }
-            subQuerySql.append(") ");
+            whereSql.append(" AND (").append(specConditions).append(")");
         }
 
-        subQuerySql.append("GROUP BY p.id ");
-
-        if (specFilters != null && !specFilters.isEmpty()) {
-            subQuerySql.append("HAVING COUNT(DISTINCT ps.attribute_id) = ").append(specFilters.size());
-        }
-        return subQuerySql.toString();
+        return new QueryParts(whereSql.toString(), joinSql, params);
     }
 
-    private void bindFilterParams(Query query, int categoryId, Integer brandId, Map<Integer, List<String>> specFilters) {
-        query.bind("categoryId", categoryId);
-        if (brandId != null) {
-            query.bind("brandId", brandId);
-        }
-        if (specFilters != null && !specFilters.isEmpty()) {
+    private int countTotalProducts(Handle handle, QueryParts parts, Map<Integer, List<String>> specFilters) {
+        String countSql = "SELECT COUNT(DISTINCT p.id) FROM products p " + parts.joinSql + parts.whereSql;
+        Query queryCount = handle.createQuery(countSql).bindMap(parts.params);
+
+        if (specFilters != null) {
             for (Map.Entry<Integer, List<String>> entry : specFilters.entrySet()) {
-                query.bindList("values_" + entry.getKey(), entry.getValue());
+                queryCount.bindList("spec_values_" + entry.getKey(), entry.getValue());
             }
         }
+        return queryCount.mapTo(Integer.class).one();
     }
 
-    public int countFilteredProducts(int categoryId, Integer brandId, Map<Integer, List<String>> specFilters) {
-        return jdbi.withHandle(handle -> {
-            String subQuery = buildSubQueryForFilter(categoryId, brandId, specFilters);
-            String countSql = "SELECT COUNT(*) FROM (" + subQuery + ") as filtered_products";
-            Query query = handle.createQuery(countSql);
-            bindFilterParams(query, categoryId, brandId, specFilters);
-            return query.mapTo(Integer.class).one();
-        });
+    private List<Product> getProductsForPage(Handle handle, QueryParts parts, Map<Integer, List<String>> specFilters, String sortOrder, int page, int pageSize) {
+        StringBuilder dataSql = new StringBuilder("SELECT " + SELECT_PRODUCT_FIELDS + " FROM products p ");
+        dataSql.append(" LEFT JOIN discounts d ON p.discount_id = d.id ");
+        dataSql.append(" LEFT JOIN reviews r ON p.id = r.product_id ");
+        dataSql.append(parts.joinSql).append(parts.whereSql);
+        dataSql.append(" GROUP BY p.id ");
+
+        if (specFilters != null && !specFilters.isEmpty()) {
+            dataSql.append(" HAVING COUNT(DISTINCT ps.attribute_id) = ").append(specFilters.size());
+        }
+
+        appendOrderBy(dataSql, sortOrder);
+
+        dataSql.append(" LIMIT :limit OFFSET :offset");
+
+        Query queryData = handle.createQuery(dataSql.toString())
+                .bindMap(parts.params)
+                .bind("limit", pageSize)
+                .bind("offset", (page - 1) * pageSize);
+
+        if (specFilters != null) {
+            for (Map.Entry<Integer, List<String>> entry : specFilters.entrySet()) {
+                queryData.bindList("spec_values_" + entry.getKey(), entry.getValue());
+            }
+        }
+
+        return queryData.mapToBean(Product.class).list();
     }
 
-    public List<Product> filterAndSortProducts(int categoryId, Integer brandId, Map<Integer, List<String>> specFilters, String sortOrder, int limit, int offset) {
+    private void appendOrderBy(StringBuilder sql, String sortOrder) {
+        String orderBy;
+        switch (sortOrder) {
+            case "price_asc":
+                orderBy = " ORDER BY p.price ASC, p.id ASC ";
+                break;
+            case "price_desc":
+                orderBy = " ORDER BY p.price DESC, p.id DESC ";
+                break;
+            case "name_asc":
+                orderBy = " ORDER BY p.name ASC, p.id ASC ";
+                break;
+            case "popular":
+            default:
+                orderBy = " ORDER BY p.created_at DESC, p.id DESC ";
+                break;
+        }
+        sql.append(orderBy);
+    }
+
+    public ProductPage filterAndSortProducts(Integer categoryId, String status, String keyword, Integer brandId, Map<Integer, List<String>> specFilters, String sortOrder, int page, int pageSize) {
         return jdbi.withHandle(handle -> {
-            String subQuery = buildSubQueryForFilter(categoryId, brandId, specFilters);
+            QueryParts queryParts = buildQueryParts(categoryId, status, keyword, brandId, specFilters);
 
-            StringBuilder finalSql = new StringBuilder("SELECT " + SELECT_PRODUCT_FIELDS +
-                              "FROM products p " +
-                              "LEFT JOIN discounts d ON p.discount_id = d.id " +
-                              "LEFT JOIN reviews r ON p.id = r.product_id " +
-                              "WHERE p.id IN (").append(subQuery).append(") " +
-                              "GROUP BY p.id ");
+            int totalProducts = countTotalProducts(handle, queryParts, specFilters);
 
-            switch (sortOrder) {
-                case "price_asc":
-                    finalSql.append("ORDER BY price ASC, p.id ASC ");
-                    break;
-                case "price_desc":
-                    finalSql.append("ORDER BY price DESC, p.id DESC ");
-                    break;
-                case "popular":
-                default:
-                    finalSql.append("ORDER BY p.created_at ASC, p.id ASC ");
-                    break;
+            List<Product> products = new ArrayList<>();
+            if (totalProducts > 0) {
+                products = getProductsForPage(handle, queryParts, specFilters, sortOrder, page, pageSize);
             }
 
-            finalSql.append("LIMIT :limit OFFSET :offset");
-
-            Query query = handle.createQuery(finalSql.toString());
-            bindFilterParams(query, categoryId, brandId, specFilters);
-            query.bind("limit", limit);
-            query.bind("offset", offset);
-
-            return query.mapToBean(Product.class).list();
+            return new ProductPage(products, totalProducts);
         });
     }
 
@@ -121,6 +162,21 @@ public class ProductDao {
                                 "WHERE p.id = :id " +
                                 "GROUP BY p.id")
                         .bind("id", productId)
+                        .mapToBean(Product.class)
+                        .findOne()
+        ).orElse(null);
+    }
+    public Product getById(int productId, String status) {
+        String sql = "SELECT " + SELECT_PRODUCT_FIELDS +
+                "FROM products p " +
+                "LEFT JOIN discounts d ON p.discount_id = d.id " +
+                "LEFT JOIN reviews r ON p.id = r.product_id " +
+                "WHERE p.id = :id AND p.status = :status " +
+                "GROUP BY p.id";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", productId)
+                        .bind("status", status)
                         .mapToBean(Product.class)
                         .findOne()
         ).orElse(null);
@@ -144,64 +200,56 @@ public class ProductDao {
                         .list()
         );
     }
-
-    public int countRelatedProducts(int categoryId, int currentProductId) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT COUNT(*) FROM products WHERE category_id = :categoryId AND id != :currentProductId")
-                        .bind("categoryId", categoryId)
-                        .bind("currentProductId", currentProductId)
-                        .mapTo(Integer.class)
-                        .one()
-        );
-    }
-
-    public int countProductsByCategoryId(int categoryId) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT COUNT(*) FROM products WHERE category_id = :categoryId")
-                        .bind("categoryId", categoryId)
-                        .mapTo(Integer.class)
-                        .one()
-        );
-    }
-
+    
     public int countProductsByBrandId(int brandId) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT COUNT(*) FROM products WHERE brand_id = :brandId")
-                        .bind("brandId", brandId)
-                        .mapTo(Integer.class)
-                        .one()
-        );
+        return jdbi.withHandle(handle -> {
+            QueryParts queryParts = buildQueryParts(null, null, null, brandId, null);
+            return countTotalProducts(handle, queryParts, null);
+        });
+    }
+    
+    public int countProductsByCategoryId(int categoryId) {
+        return jdbi.withHandle(handle -> {
+            QueryParts queryParts = buildQueryParts(categoryId, null, null, null, null);
+            return countTotalProducts(handle, queryParts, null);
+        });
     }
 
-    public List<Product> getFilteredProducts(Integer categoryId, String status) {
-        return jdbi.withHandle(handle -> {
-            StringBuilder sql = new StringBuilder("SELECT " + SELECT_PRODUCT_FIELDS +
-                    "FROM products p " +
-                    "LEFT JOIN discounts d ON p.discount_id = d.id " +
-                    "LEFT JOIN reviews r ON p.id = r.product_id ");
+    public int addProductAndReturnId(Product product) {
+        return jdbi.inTransaction(handle -> {
+            String sql = "INSERT INTO products (category_id, brand_id, name, description, stock, old_price, price, discount_id, status, image) " +
+                    "VALUES (:categoryId, :brandId, :name, :description, :stock, :oldPrice, :price, :discountId, :status, :image)";
 
-            List<String> conditions = new ArrayList<>();
-            Map<String, Object> params = new HashMap<>();
-
-            if (categoryId != null) {
-                conditions.add("p.category_id = :categoryId");
-                params.put("categoryId", categoryId);
-            }
-
-            if (status != null && !status.isEmpty()) {
-                conditions.add("p.status = :status");
-                params.put("status", status);
-            }
-
-            if (!conditions.isEmpty()) {
-                sql.append("WHERE ").append(String.join(" AND ", conditions));
-            }
-
-            sql.append(" GROUP BY p.id");
-
-            Query query = handle.createQuery(sql.toString());
-            query.bindMap(params);
-            return query.mapToBean(Product.class).list();
+            return handle.createUpdate(sql)
+                    .bindBean(product)
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Integer.class)
+                    .one();
         });
+    }
+
+    public void update(Product product) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE products SET " +
+                                "category_id = :categoryId, " +
+                                "brand_id = :brandId, " +
+                                "name = :name, " +
+                                "description = :description, " +
+                                "stock = :stock, " +
+                                "old_price = :oldPrice, " +
+                                "price = :price, " +
+                                "discount_id = :discountId, " +
+                                "status = :status, " +
+                                "image = :image " +
+                                "WHERE id = :id")
+                        .bindBean(product)
+                        .execute());
+    }
+
+    public void delete(int productId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM products WHERE id = :id")
+                        .bind("id", productId)
+                        .execute());
     }
 }

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNova Admin - Danh sách sản phẩm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="admincss/adminProductList.css">
-    <link rel="stylesheet" href="admincss/headerAndSidebar.css">
-    <link rel="stylesheet" href="admincss/adminNotification.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminProductList.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
 </head>
 
 <body>
@@ -50,7 +51,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="brands" class="nav-link">
+            <a href="${contextPath}/admin/brands" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>
                 Thương hiệu
             </a>
@@ -64,14 +65,14 @@
         </li>
 
         <li class="nav-item">
-            <a href="admin-product-list" class="nav-link active">
+            <a href="${contextPath}/admin-product-list" class="nav-link active">
                 <span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>
                 Sản phẩm
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="adminOrders.jsp" class="nav-link">
+            <a href="adminHoaDon.jsp" class="nav-link">
                 <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>
                 Đơn hàng
             </a>
@@ -80,7 +81,7 @@
 
     <!-- Logout Section -->
     <div class="logout-section">
-        <a href="../logout" class="nav-link logout-link">
+        <a href="${contextPath}/logout" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
             Đăng xuất
         </a>
@@ -136,44 +137,52 @@
                 </div>
             </div>
 
-            <a href="adminUploadProduct.jsp" class="add-product-btn" title="Thêm sản phẩm mới">
+            <a href="${contextPath}/admin-upload-product" class="add-product-btn" title="Thêm sản phẩm mới">
                 <i class="fa-solid fa-plus"></i>
             </a>
         </div>
 
         <div class="filter-bar">
-            <form action="admin-product-list" method="get" id="filterForm" class="filter-form">
-                <div class="filter-group">
-                    <label for="category-select">Danh mục:</label>
-                    <select name="categoryId" id="category-select" onchange="this.form.submit()">
-                        <option value="">Tất cả</option>
-                        <c:forEach var="category" items="${categories}">
-                            <option value="${category.id}" ${category.id == selectedCategoryId ? 'selected' : ''}>
-                                ${category.name}
-                            </option>
-                        </c:forEach>
-                    </select>
+            <form action="${contextPath}/admin-product-list" method="get" id="filterForm" class="filter-left">
+                <div class="filter-item">
+                    <div class="select-wrapper">
+                        <select name="categoryId" id="category-select" onchange="this.form.submit()">
+                            <option value="">Tất cả danh mục</option>
+                            <c:forEach var="category" items="${categories}">
+                                <option value="${category.id}" ${category.id == selectedCategoryId ? 'selected' : ''}>
+                                        ${category.name}
+                                </option>
+                            </c:forEach>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label for="status-select">Trạng thái:</label>
-                    <select name="status" id="status-select" onchange="this.form.submit()">
-                        <option value="">Tất cả</option>
-                        <option value="Hoạt động" ${'Hoạt động' == selectedStatus ? 'selected' : ''}>Hoạt động</option>
-                        <option value="Ẩn" ${'Ẩn' == selectedStatus ? 'selected' : ''}>Ẩn</option>
-                    </select>
+
+                <div class="filter-item">
+                    <div class="select-wrapper">
+                        <select name="status" id="status-select" onchange="this.form.submit()">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="active" ${'active' == selectedStatus ? 'selected' : ''}>Hoạt động</option>
+                            <option value="inactive" ${'inactive' == selectedStatus ? 'selected' : ''}>Ẩn</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+                <div class="search-wrapper">
+                    <input type="text" name="keyword" class="search-input-product" placeholder="Tìm kiếm sản phẩm..." value="${selectedKeyword}">
+                    <button class="search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
             </form>
-            <div class="search-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" class="search-input-product" placeholder="Tìm sản phẩm...">
-            </div>
+
         </div>
 
         <div class="product-table-container">
             <table class="product-table">
                 <thead>
                 <tr>
-                    <th style="width: 50px;"><input type="checkbox" id="selectAllProducts"></th>
+                    <th style="width: 50px;">STT</th>
                     <th style="width: 100px;">Hình ảnh</th>
                     <th style="width: 170px">Sản phẩm</th>
                     <th style="width: 125px;">Giá bán</th>
@@ -183,12 +192,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="product" items="${productList}">
+                <c:forEach var="product" items="${productList}" varStatus="loop">
                     <tr>
-                        <td><input type="checkbox" class="row-check"></td>
-                        <td class="td-image">
+                        <td>${(currentPage - 1) * itemsPerPage + loop.index + 1}</td>                        <td class="td-image">
                             <div class="img-wrapper">
-                                <img src="${pageContext.request.contextPath}/${product.image}" alt="${product.name}" onerror="this.src='https://i.postimg.cc/Hn4Jc3yj/logo-2.png';">
+                                <img src="${product.image}" alt="${product.name}" onerror="this.src='https.i.postimg.cc/Hn4Jc3yj/logo-2.png';">
                             </div>
                         </td>
                         <td class="td-name">
@@ -204,15 +212,22 @@
                         </td>
                         <td><span class="stock-text">${product.stock}</span></td>
                         <td>
-                            <span class="status ${product.status == 'Hoạt động' ? 'status-selling' : 'status-stopped'}">
-                                ${product.status}
-                            </span>
+                            <c:choose>
+                                <c:when test="${product.status == 'active'}">
+                                    <span class="status status-active">Hoạt động</span>
+                                </c:when>
+                                <c:when test="${product.status == 'inactive'}">
+                                    <span class="status status-hidden">Ẩn</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="status status-other">${product.status}</span>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                         <td>
                             <div class="action-buttons">
-                                <a href="edit-product?id=${product.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
-                                <a href="view-product?id=${product.id}" class="action-btn view" title="Xem"><i class="fa-solid fa-eye"></i></a>
-                                <a href="delete-product?id=${product.id}" class="action-btn delete" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="${contextPath}/admin-upload-product?id=${product.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
+                                <a href="${contextPath}/admin-product-list?action=delete&id=${product.id}" class="action-btn delete" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -221,18 +236,50 @@
             </table>
         </div>
 
-        <div class="pagination-container">
-            <button class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></button>
-            <a href="#" class="page-number active">1</a>
-            <a href="#" class="page-number">2</a>
-            <span class="ellipsis">...</span>
-            <a href="#" class="page-number">5</a>
-            <button class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
+        <%-- Phần Pagination --%>
+        <c:if test="${totalPages > 1}">
+            <div class="pagination-container">
+                    <%-- Nút Trang Trước --%>
+                <c:url var="prevUrl" value="/admin-product-list">
+                    <c:param name="page" value="${currentPage - 1}" />
+                    <c:if test="${not empty selectedCategoryId}"><c:param name="categoryId" value="${selectedCategoryId}" /></c:if>
+                    <c:if test="${not empty selectedStatus}"><c:param name="status" value="${selectedStatus}" /></c:if>
+                    <c:if test="${not empty selectedKeyword}"><c:param name="keyword" value="${selectedKeyword}" /></c:if>
+                    <c:if test="${not empty selectedSort}"><c:param name="sort" value="${selectedSort}" /></c:if>
+                </c:url>
+                <a href="${currentPage > 1 ? prevUrl : '#'}" class="pagination-btn ${currentPage == 1 ? 'disabled' : ''}">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+
+                    <%-- Các Nút Số Trang --%>
+                <c:forEach begin="1" end="${totalPages}" var="i">
+                    <c:url var="pageUrl" value="/admin-product-list">
+                        <c:param name="page" value="${i}" />
+                        <c:if test="${not empty selectedCategoryId}"><c:param name="categoryId" value="${selectedCategoryId}" /></c:if>
+                        <c:if test="${not empty selectedStatus}"><c:param name="status" value="${selectedStatus}" /></c:if>
+                        <c:if test="${not empty selectedKeyword}"><c:param name="keyword" value="${selectedKeyword}" /></c:if>
+                        <c:if test="${not empty selectedSort}"><c:param name="sort" value="${selectedSort}" /></c:if>
+                    </c:url>
+                    <a href="${pageUrl}" class="page-number ${currentPage == i ? 'active' : ''}">${i}</a>
+                </c:forEach>
+
+                    <%-- Nút Trang Sau (Làm tương tự nút trước) --%>
+                <c:url var="nextUrl" value="/admin-product-list">
+                    <c:param name="page" value="${currentPage + 1}" />
+                    <c:if test="${not empty selectedCategoryId}"><c:param name="categoryId" value="${selectedCategoryId}" /></c:if>
+                    <c:if test="${not empty selectedStatus}"><c:param name="status" value="${selectedStatus}" /></c:if>
+                    <c:if test="${not empty selectedKeyword}"><c:param name="keyword" value="${selectedKeyword}" /></c:if>
+                    <c:if test="${not empty selectedSort}"><c:param name="sort" value="${selectedSort}" /></c:if>
+                </c:url>
+                <a href="${currentPage < totalPages ? nextUrl : '#'}" class="pagination-btn ${currentPage == totalPages ? 'disabled' : ''}">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </c:if>
 
     </div>
 </main>
 </body>
-<script src="adminjs/adminNotification.js"></script>
-<script src="adminjs/adminProductList.js"></script>
+<script src="${contextPath}/admin/adminjs/adminNotification.js"></script>
+<script src="${contextPath}/admin/adminjs/adminProductList.js"></script>
 </html>

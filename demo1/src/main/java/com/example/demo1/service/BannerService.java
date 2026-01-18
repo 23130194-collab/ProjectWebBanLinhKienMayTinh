@@ -72,7 +72,6 @@ public class BannerService {
                     finalImage = "data:" + filePart.getContentType() + ";base64," + base64Content;
                 }
             }
-            // If no file is uploaded, use the link
             if (finalImage == null && linkUrl != null && !linkUrl.trim().isEmpty()) {
                 finalImage = linkUrl.trim();
             }
@@ -86,11 +85,23 @@ public class BannerService {
         return bannerDao.getBannersByPosition(position);
     }
 
-    public List<Banner> getBanners(String keyword, int limit, int offset) {
-        return bannerDao.getBanners(keyword, limit, offset);
+    public List<Banner> getBanners(String keyword, String position, int limit, int offset) {
+        return bannerDao.getBanners(keyword, position, limit, offset);
     }
 
-    public int countBanners(String keyword) {
-        return bannerDao.countBanners(keyword);
+    public int countBanners(String keyword, String position) {
+        return bannerDao.countBanners(keyword, position);
+    }
+
+    public boolean isNameExists(String name, String position, int excludeId) {
+        return bannerDao.isNameExists(name, position, excludeId);
+    }
+
+    public boolean isDisplayOrderExists(String position, int displayOrder, int excludeId) {
+        return bannerDao.isDisplayOrderExists(position, displayOrder, excludeId);
+    }
+
+    public void shiftDisplayOrders(String position, int fromOrder) {
+        bannerDao.shiftDisplayOrders(position, fromOrder);
     }
 }
