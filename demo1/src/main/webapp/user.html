@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Đơn hàng của tôi | TechNova</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/header.css">
+
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <a href="home.html" class="logo">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
+            <span class="brand-name">TechNova</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="home.html" class="active">Trang chủ</a>
+            <a href="gioiThieu.html">Giới thiệu</a>
+            <a href="#" id="category-toggle">Danh mục</a>
+            <a href="lienHe.html">Liên hệ</a>
+        </nav>
+
+        <div class="search-box">
+            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+
+        <div class="category-box" id="categoryBox">
+            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
+                    class="fa-solid fa-chevron-right"></i></a>
+            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
+                    class="fa-solid fa-chevron-right"></i></a>
+        </div>
+    </div>
+</header>
+<div class="overlay" id="overlay"></div>
+<div class="container">
+    <div class="top-card" role="region" aria-label="thông tin tài khoản">
+        <div class="profile">
+
+            <div class="summary-card">
+                <div class="summary-left">
+                    <div class="reviewer-avatar">N</div>
+                    <div class="summary-info">
+                        <div class="summary-name">Nguyễn Võ Quang Minh</div>
+                        <div class="summary-phone">0123456789</div>
+                    </div>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-cart-shopping" style="color: #ff0000;"></i>
+                    </div>
+                    <div class="summary-text">
+                        <div class="summary-count">5</div>
+                        <div class="summary-label">Tổng số đơn hàng đã mua</div>
+                    </div>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-sack-dollar" style="color: #74C0FC;"></i>
+                    </div>
+                    <div class="summary-text">
+                        <div class="summary-count">2.265.000₫</div>
+                        <div class="summary-small">Tổng tiền tích lũy</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="main">
+
+        <aside class="side" aria-label="menu">
+            <nav class="menu" aria-label="menu chính">
+                <a href="user.html" class="menu-item active" data-target="orders">
+                    <i class="fa-solid fa-list icon"></i>
+                    <span class="label">Đơn hàng của tôi</span>
+                </a>
+
+                <a href="sanPhamYeuThich.html" class="menu-item" data-target="favorites">
+                    <i class="fa-regular fa-heart icon"></i>
+                    <span class="label">Sản phẩm yêu thích</span>
+                </a>
+
+                <a href="thongTinTaiKhoan.html" class="menu-item" data-target="account">
+                    <i class="fa-regular fa-user icon"></i>
+                    <span class="label">Thông tin tài khoản</span>
+                </a>
+
+                <a href="index.html" class="menu-item" data-target="account">
+                    <i class="fa-solid fa-right-from-bracket icon"></i>
+                    <span class="label">Đăng xuất</span>
+                </a>
+            </nav>
+        </aside>
+        <section class="content">
+
+            <div class="section active" id="orders">
+                <div class="tabs" role="tablist" aria-label="lọc đơn hàng">
+                    <a href="user.html">
+                        <div class="tab active">Tất cả</div>
+                    </a>
+                    <a href="choXacNhan.html">
+                        <div class="tab">Chờ xác nhận</div>
+                    </a>
+                    <a href="daXacNhan.html">
+                        <div class="tab">Đã xác nhận</div>
+                    </a>
+                    <a href="dangVanChuyen.html">
+                        <div class="tab">Đang vận chuyển</div>
+                    </a>
+                    <a href="daGiaoHang.html">
+                        <div class="tab">Đã giao hàng</div>
+                    </a>
+                    <a href="daHuy.html">
+                        <div class="tab">Đã huỷ</div>
+                    </a>
+                </div>
+
+
+                <div class="orders" id="orders-list">
+
+                    <article class="order" data-status="pending">
+                        <div class="thumb"><img
+                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                alt=""></div>
+                        <div class="details">
+                            <div class="meta">Đơn hàng: <strong>#001</strong> • Ngày đặt hàng: 01/11/2025</div>
+                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
+                            <div class="price">3.190.000₫</div>
+                        </div>
+                        <div class="right">
+                            <div class="status-pill pending">Chờ xác nhận</div>
+                            <div class="muted">Tổng thanh toán:</div>
+                            <div class="total">2.990.000₫</div>
+                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+
+                        </div>
+                    </article>
+
+                    <article class="order" data-status="confirmed">
+                        <div class="thumb"><img
+                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                alt=""></div>
+                        <div class="details">
+                            <div class="meta">Đơn hàng: <strong>#002</strong> • Ngày đặt hàng: 29/10/2025</div>
+                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
+                            <div class="price">3.190.000₫</div>
+                        </div>
+                        <div class="right">
+                            <div class="status-pill confirmed">Đã xác nhận</div>
+                            <div class="muted">Tổng thanh toán:</div>
+                            <div class="total">2.990.000₫</div>
+                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+
+                        </div>
+                    </article>
+
+                    <article class="order" data-status="shipping">
+                        <div class="thumb"><img
+                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                alt=""></div>
+                        <div class="details">
+                            <div class="meta">Đơn hàng: <strong>#003</strong> • Ngày đặt hàng: 28/10/2025</div>
+                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
+                            <div class="price">3.190.000₫</div>
+                        </div>
+                        <div class="right">
+                            <div class="status-pill shipping">Đang vận chuyển</div>
+                            <div class="muted">Tổng thanh toán:</div>
+                            <div class="total">2.990.000₫</div>
+                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+
+                        </div>
+                    </article>
+
+                    <article class="order" data-status="delivered">
+                        <div class="thumb"><img
+                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                alt=""></div>
+                        <div class="details">
+                            <div class="meta">Đơn hàng: <strong>#004</strong> • Ngày đặt hàng: 27/10/2025</div>
+                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
+                            <div class="price">3.190.000₫</div>
+                        </div>
+                        <div class="right">
+                            <div class="status-pill delivered">Đã giao hàng</div>
+                            <div class="muted">Tổng thanh toán:</div>
+                            <div class="total">2.990.000₫</div>
+                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+
+                        </div>
+                    </article>
+
+                    <article class="order" data-status="cancelled">
+                        <div class="thumb"><img
+                                src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_303_1_4.png"
+                                alt=""></div>
+                        <div class="details">
+                            <div class="meta">Đơn hàng: <strong>#005</strong> • Ngày đặt hàng: 25/10/2025</div>
+                            <div class="title">Mainboard MSI B760M Gaming WIFI DDR5</div>
+                            <div class="price">3.190.000₫</div>
+                        </div>
+                        <div class="right">
+                            <div class="status-pill cancelled">Đã hủy</div>
+                            <div class="muted">Tổng thanh toán:</div>
+                            <div class="total">2.990.000₫</div>
+                            <a class="small-link" href="chiTietDonHang.html">Xem chi tiết ></a>
+
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+</div>
+
+<script src="js/header.js"></script>
+</body>
+</html>
