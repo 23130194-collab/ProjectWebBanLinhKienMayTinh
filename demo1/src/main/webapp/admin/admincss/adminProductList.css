@@ -75,59 +75,129 @@ body {
     transform: translateY(-1px);
 }
 
-/* Filter Bar */
+/* Container chính của thanh filter */
 .filter-bar {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px; /* Bo tròn góc */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Đổ bóng nhẹ tạo chiều sâu */
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 15px;
+    align-items: center;
+    margin-bottom: 25px;
+    border: 1px solid #edf2f9;
 }
 
-.product-tabs {
+/* Phần bên trái chứa các dropdown */
+.filter-left {
     display: flex;
-    gap: 10px;
+    gap: 15px; /* Khoảng cách giữa 2 bộ lọc */
+    align-items: center;
+    width: 100%;
 }
 
-.tab {
-    padding: 8px 16px;
-    border: none;
-    background: white;
-    border-radius: 8px;
-    color: #64748b;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 14px;
+.filter-item {
+    display: flex;
+    flex-direction: column; /* Label nằm trên, select nằm dưới */
+    gap: 8px;
 }
 
-.tab.active, .tab:hover {
-    background: #5b86e5;
-    color: white;
+.filter-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b; /* Màu chữ xám hiện đại */
 }
 
-/* Search Input Custom */
-.search-wrapper {
+.filter-label i {
+    margin-right: 5px;
+    color: #5b86e5; /* Màu icon xanh */
+}
+
+/* Tùy chỉnh Select box */
+.select-wrapper {
     position: relative;
+    width: 200px; /* Độ rộng cố định cho đẹp */
 }
-.search-wrapper .search-icon {
+
+.select-wrapper select {
+    width: 100%;
+    appearance: none; /* Xóa mũi tên mặc định của trình duyệt */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi click hoặc hover vào select */
+.select-wrapper select:hover {
+    border-color: #cbd5e1;
+    background-color: #fff;
+}
+
+.select-wrapper select:focus {
+    outline: none;
+    border-color: #5b86e5; /* Viền xanh khi focus */
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.15); /* Hiệu ứng glow */
+    background-color: #fff;
+}
+
+/* Icon mũi tên custom cho select */
+.select-arrow {
     position: absolute;
-    left: 12px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 0.8rem;
     color: #94a3b8;
+    pointer-events: none; /* Để click xuyên qua icon vào select */
 }
-.search-input-product {
-    padding: 10px 15px 10px 35px;
+
+/* Phần ô tìm kiếm bên phải */
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    outline: none;
-    width: 250px;
-    font-size: 14px;
+    padding: 5px 5px 5px 15px;
+    transition: all 0.3s ease;
+    width: 300px;
+    height: 42px; /* Chiều cao khớp với select box */
+    margin-left: auto;
 }
-.search-input-product:focus {
+
+.search-wrapper:focus-within {
     border-color: #5b86e5;
-    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.1);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.15);
+}
+
+.search-input-product {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 0.95rem;
+    color: #334155;
+}
+
+.search-btn {
+    background: transparent;
+    border: none;
+    color: #5b86e5;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.search-btn:hover {
+    background-color: rgba(91, 134, 229, 0.1);
 }
 
 .product-table-container {
@@ -181,10 +251,11 @@ body {
     background-color: #f8fafc;
 }
 
-/* 1. Checkbox */
-.product-table td:first-child { text-align: center; }
-.row-check, #selectAllProducts {
-    width: 16px; height: 16px; cursor: pointer; accent-color: #5b86e5;
+/* 1. STT Column */
+.product-table td:first-child {
+    text-align: center;
+    font-weight: 600;
+    color: #64748b;
 }
 
 /* 2. Image Column */
@@ -260,9 +331,9 @@ body {
     text-align: center;
     min-width: 90px;
 }
-.status-selling { background: #dcfce7; color: #15803d; }
-.status-stopped { background: #fee2e2; color: #b91c1c; }
-.status-hidden { background: #f1f5f9; color: #64748b; }
+.status-active { background: #dcfce7; color: #15803d; }
+.status-hidden { background: #fee2e2; color: #b91c1c; }
+
 
 /* 7. Actions Column */
 .action-buttons {
@@ -276,6 +347,7 @@ body {
     border: none; border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; transition: all 0.2s; font-size: 13px;
+    text-decoration: none;
 }
 
 .action-btn.edit { background: #e0f2fe; color: #0284c7; }
