@@ -8,13 +8,14 @@ import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 public class OrderDao {
     private Jdbi jdbi = DatabaseDao.get();
 
     public List<Order> getAllOrders(int page, int pageSize) {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders ORDER BY created_at DESC LIMIT :limit OFFSET :offset")
+                handle.createQuery("SELECT * FROM orders ORDER BY order_code DESC LIMIT :limit OFFSET :offset")
                         .bind("limit", pageSize)
                         .bind("offset", (page - 1) * pageSize)
                         .mapToBean(Order.class)
@@ -105,7 +106,7 @@ public class OrderDao {
     public List<Order> searchOrders(String keyword, int page, int pageSize) {
         String searchKeyword = "%" + keyword + "%";
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT * FROM orders WHERE order_code LIKE :keyword ORDER BY created_at DESC LIMIT :limit OFFSET :offset")
+                handle.createQuery("SELECT * FROM orders WHERE order_code LIKE :keyword ORDER BY order_code DESC LIMIT :limit OFFSET :offset")
                         .bind("keyword", searchKeyword)
                         .bind("limit", pageSize)
                         .bind("offset", (page - 1) * pageSize)
@@ -124,17 +125,15 @@ public class OrderDao {
         );
     }
     public List<Order> getOrdersByUserId(int userId) {
-        // Query lấy dữ liệu theo user_id
         String sql = "SELECT * FROM orders WHERE user_id = :userId ORDER BY created_at DESC";
 
         return jdbi.withHandle(h ->
                 h.createQuery(sql)
                         .bind("userId", userId)
-                        .mapToBean(Order.class) // Tự động map order_code -> orderCode, total_amount -> totalAmount
+                        .mapToBean(Order.class)
                         .list()
         );
     }
-    // 1. Hàm đếm tổng số đơn hàng của user (để tính số trang)
     public int countOrdersByUserId(int userId) {
         String sql = "SELECT COUNT(*) FROM orders WHERE user_id = :userId";
         return jdbi.withHandle(h ->
@@ -145,7 +144,6 @@ public class OrderDao {
         );
     }
 
-    // 2. Hàm lấy danh sách đơn hàng có Phân trang (Limit, Offset)
     public List<Order> getOrdersByUserIdPaging(int userId, int limit, int offset) {
         String sql = "SELECT * FROM orders WHERE user_id = :userId ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
 
@@ -156,6 +154,24 @@ public class OrderDao {
                         .bind("offset", offset)
                         .mapToBean(Order.class)
                         .list()
+        );
+    }
+
+    public boolean isOrderCodeExists(String orderCode) {
+        String sql = "SELECT COUNT(*) FROM orders WHERE order_code = :orderCode";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("orderCode", orderCode)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+    }
+
+    public Optional<String> findLatestOrderCode() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT order_code FROM orders ORDER BY order_code DESC LIMIT 1")
+                        .mapTo(String.class)
+                        .findFirst()
         );
     }
 }

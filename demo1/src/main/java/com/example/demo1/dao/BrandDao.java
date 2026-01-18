@@ -109,4 +109,28 @@ public class BrandDao {
                         .execute()
         );
     }
+
+    public boolean isBrandNameExists(String name, Integer id) {
+        String sql = "SELECT COUNT(*) FROM brands WHERE name = :name";
+        if (id != null) {
+            sql += " AND id != :id";
+        }
+        final String finalSql = sql;
+        return jdbi.withHandle(handle -> {
+            Query query = handle.createQuery(finalSql);
+            query.bind("name", name);
+            if (id != null) {
+                query.bind("id", id);
+            }
+            return query.mapTo(Integer.class).one() > 0;
+        });
+    }
+
+    public void shiftDisplayOrders(int displayOrder) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE brands SET display_order = display_order + 1 WHERE display_order >= :displayOrder")
+                        .bind("displayOrder", displayOrder)
+                        .execute()
+        );
+    }
 }
