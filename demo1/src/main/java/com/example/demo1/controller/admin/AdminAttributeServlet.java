@@ -27,29 +27,23 @@ public class AdminAttributeServlet extends HttpServlet {
         this.categoryDao = new CategoryDao();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-
-        // Handle edit request
-        if ("edit".equals(action)) {
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                Attribute attributeToEdit = attributeService.getAttributeById(id);
-                request.setAttribute("attributeToEdit", attributeToEdit);
-            } catch (NumberFormatException e) {
-                // Handle invalid ID
-                response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?error=invalid_id");
-                return;
-            }
-        }
-
-        // Always load categories for the form
+    private void loadPageData(HttpServletRequest request) {
         List<Category> categories = categoryDao.getAll();
         request.setAttribute("categories", categories);
 
-        // Always load the list of attributes for the table
         String keyword = request.getParameter("keyword");
+
+        int filterCategoryId = 0;
+        String filterParam = request.getParameter("filterCategoryId");
+
+        if (filterParam != null && !filterParam.isEmpty()) {
+            try {
+                filterCategoryId = Integer.parseInt(filterParam);
+            } catch (NumberFormatException e) {
+                filterCategoryId = 0;
+            }
+        }
+
         int page = 1;
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
             try {
@@ -61,8 +55,10 @@ public class AdminAttributeServlet extends HttpServlet {
         int limit = 10;
         int offset = (page - 1) * limit;
 
-        List<Attribute> attributes = attributeService.getAttributes(keyword, limit, offset);
-        int totalAttributes = attributeService.countAttributes(keyword);
+        List<Attribute> attributes = attributeService.getAttributes(keyword, filterCategoryId, limit, offset);
+
+        int totalAttributes = attributeService.countAttributes(keyword, filterCategoryId);
+
         int totalPages = (int) Math.ceil((double) totalAttributes / limit);
 
         request.setAttribute("attributes", attributes);
@@ -70,6 +66,23 @@ public class AdminAttributeServlet extends HttpServlet {
         request.setAttribute("currentPage", page);
         request.setAttribute("keyword", keyword);
 
+        request.setAttribute("filterCategoryId", filterCategoryId);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if ("edit".equals(action)) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                Attribute attributeToEdit = attributeService.getAttributeById(id);
+                request.setAttribute("attributeToEdit", attributeToEdit);
+            } catch (NumberFormatException e) {
+                response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?error=invalid_id");
+                return;
+            }
+        }
+        loadPageData(request);
         request.getRequestDispatcher(JSP_PATH).forward(request, response);
     }
 
@@ -109,46 +122,39 @@ public class AdminAttributeServlet extends HttpServlet {
         int categoryId = Integer.parseInt(request.getParameter("category_id"));
         int displayOrder = Integer.parseInt(request.getParameter("display_order"));
         int isFilterable = (request.getParameter("is_filterable") != null) ? 1 : 0;
+        boolean force = "true".equals(request.getParameter("force"));
 
-        // 1. KIỂM TRA TỒN TẠI
         if (attributeService.isAttributeExists(name, categoryId)) {
-            // --- XỬ LÝ KHI BỊ TRÙNG ---
-
-            // A. Báo lỗi
             request.setAttribute("errorMessage", "Thuộc tính '" + name + "' đã tồn tại trong danh mục này!");
-
-            // B. Giữ lại giá trị cũ để người dùng không phải nhập lại
             request.setAttribute("oldName", name);
             request.setAttribute("oldStatus", status);
             request.setAttribute("oldCategoryId", categoryId);
             request.setAttribute("oldDisplayOrder", displayOrder);
             request.setAttribute("oldIsFilterable", isFilterable);
-
-            // C. LOAD LẠI DỮ LIỆU CHO TRANG (Copy logic từ doGet)
-            // Cần load lại Categories để đổ vào thẻ <select>
-            List<Category> categories = categoryDao.getAll();
-            request.setAttribute("categories", categories);
-
-            // Cần load lại danh sách Attributes để hiện cái bảng bên dưới
-            String keyword = request.getParameter("keyword");
-            int page = 1; // Mặc định về trang 1 khi lỗi
-            int limit = 10;
-            int offset = (page - 1) * limit;
-
-            List<Attribute> attributes = attributeService.getAttributes(keyword, limit, offset);
-            int totalAttributes = attributeService.countAttributes(keyword);
-            int totalPages = (int) Math.ceil((double) totalAttributes / limit);
-
-            request.setAttribute("attributes", attributes);
-            request.setAttribute("totalPages", totalPages);
-            request.setAttribute("currentPage", page);
-
-            // D. Forward lại về trang JSP (Không dùng sendRedirect)
+            loadPageData(request);
             request.getRequestDispatcher(JSP_PATH).forward(request, response);
             return;
         }
 
-        // 2. NẾU KHÔNG TRÙNG -> THÊM MỚI BÌNH THƯỜNG
+        if (!force && attributeService.isDisplayOrderExists(categoryId, displayOrder, 0)) {
+            request.setAttribute("confirmReplaceOrder", true);
+
+            request.setAttribute("conflictMessage", "Thứ tự hiển thị " + displayOrder + " đã tồn tại. Bạn có muốn chèn vào và đẩy các mục cũ xuống không?");
+
+            request.setAttribute("oldName", name);
+            request.setAttribute("oldStatus", status);
+            request.setAttribute("oldCategoryId", categoryId);
+            request.setAttribute("oldDisplayOrder", displayOrder);
+            request.setAttribute("oldIsFilterable", isFilterable);
+            loadPageData(request);
+            request.getRequestDispatcher(JSP_PATH).forward(request, response);
+            return;
+        }
+
+        if (force) {
+            attributeService.shiftDisplayOrders(categoryId, displayOrder);
+        }
+
         if (name != null && !name.trim().isEmpty()) {
             attributeService.createAttributeForCategory(name, status, categoryId, displayOrder, isFilterable);
             response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?success=add");
@@ -157,13 +163,36 @@ public class AdminAttributeServlet extends HttpServlet {
         }
     }
 
-    private void updateAttribute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void updateAttribute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String status = request.getParameter("status");
         int categoryId = Integer.parseInt(request.getParameter("category_id"));
         int displayOrder = Integer.parseInt(request.getParameter("display_order"));
         int isFilterable = (request.getParameter("is_filterable") != null) ? 1 : 0;
+        boolean force = "true".equals(request.getParameter("force"));
+
+        if (!force && attributeService.isDisplayOrderExists(categoryId, displayOrder, id)) {
+            request.setAttribute("confirmReplaceOrder", true);
+            request.setAttribute("conflictMessage", "Thứ tự hiển thị " + displayOrder + " đã tồn tại. Bạn có muốn chèn vào và đẩy các mục cũ xuống không?");
+
+            Attribute tempAttr = new Attribute();
+            tempAttr.setId(id);
+            tempAttr.setName(name);
+            tempAttr.setStatus(status);
+            tempAttr.setCategoryId(categoryId);
+            tempAttr.setDisplayOrder(displayOrder);
+            tempAttr.setIsFilterable(isFilterable);
+            request.setAttribute("attributeToEdit", tempAttr);
+
+            loadPageData(request);
+            request.getRequestDispatcher(JSP_PATH).forward(request, response);
+            return;
+        }
+
+        if (force) {
+            attributeService.shiftDisplayOrders(categoryId, displayOrder);
+        }
 
         if (name != null && !name.trim().isEmpty()) {
             attributeService.updateAttributeAndCategoryLink(id, name, status, categoryId, displayOrder, isFilterable);
