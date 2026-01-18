@@ -53,49 +53,104 @@ public class BannerDao {
         );
     }
 
-    public List<Banner> getBanners(String keyword, int limit, int offset) {
-        String sql = "SELECT * FROM banners ";
-        if (keyword != null && !keyword.isEmpty()) {
-            sql += "WHERE name LIKE :keyword ";
+    public List<Banner> getBanners(String keyword, String position, int limit, int offset) {
+        String sql = "SELECT * FROM banners WHERE 1=1 ";
+
+        boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
+        boolean hasPosition = position != null && !position.trim().isEmpty();
+
+        if (hasKeyword) {
+            sql += " AND name LIKE :keyword ";
         }
-        sql += "ORDER BY display_order ASC LIMIT :limit OFFSET :offset";
+        if (hasPosition) {
+            sql += " AND position = :position ";
+        }
+
+        sql += "ORDER BY id DESC LIMIT :limit OFFSET :offset";
 
         final String finalSql = sql;
         return jdbi.withHandle(handle -> {
-            if (keyword != null && !keyword.isEmpty()) {
-                return handle.createQuery(finalSql)
-                        .bind("limit", limit)
-                        .bind("offset", offset)
-                        .bind("keyword", "%" + keyword + "%")
-                        .mapToBean(Banner.class)
-                        .list();
-            } else {
-                return handle.createQuery(finalSql)
-                        .bind("limit", limit)
-                        .bind("offset", offset)
-                        .mapToBean(Banner.class)
-                        .list();
+            var query = handle.createQuery(finalSql)
+                    .bind("limit", limit)
+                    .bind("offset", offset);
+
+            if (hasKeyword) {
+                query.bind("keyword", "%" + keyword + "%");
             }
+            if (hasPosition) {
+                query.bind("position", position);
+            }
+
+            return query.mapToBean(Banner.class).list();
         });
     }
 
-    public int countBanners(String keyword) {
-        String sql = "SELECT COUNT(*) FROM banners ";
-        if (keyword != null && !keyword.isEmpty()) {
-            sql += "WHERE name LIKE :keyword";
+    public int countBanners(String keyword, String position) {
+        String sql = "SELECT COUNT(*) FROM banners WHERE 1=1 ";
+
+        boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
+        boolean hasPosition = position != null && !position.trim().isEmpty();
+
+        if (hasKeyword) {
+            sql += " AND name LIKE :keyword ";
         }
+        if (hasPosition) {
+            sql += " AND position = :position ";
+        }
+
         final String finalSql = sql;
         return jdbi.withHandle(handle -> {
-            if (keyword != null && !keyword.isEmpty()) {
-                return handle.createQuery(finalSql)
-                        .bind("keyword", "%" + keyword + "%")
-                        .mapTo(Integer.class)
-                        .one();
-            } else {
-                return handle.createQuery(finalSql)
-                        .mapTo(Integer.class)
-                        .one();
+            var query = handle.createQuery(finalSql);
+
+            if (hasKeyword) {
+                query.bind("keyword", "%" + keyword + "%");
             }
+            if (hasPosition) {
+                query.bind("position", position);
+            }
+
+            return query.mapTo(Integer.class).one();
         });
+    }
+
+    public boolean isNameExists(String name, String position, int excludeId) {
+        return jdbi.withHandle(handle -> {
+            String sql = "SELECT COUNT(*) FROM banners WHERE name = :name";
+            if (excludeId > 0) {
+                sql += " AND id != :id";
+            }
+            var query = handle.createQuery(sql)
+                    .bind("name", name);
+            if (excludeId > 0) {
+                query.bind("id", excludeId);
+            }
+            return query.mapTo(Integer.class).one() > 0;
+        });
+    }
+
+    public boolean isDisplayOrderExists(String position, int displayOrder, int excludeId) {
+        return jdbi.withHandle(handle -> {
+            String sql = "SELECT COUNT(*) FROM banners WHERE position = :position AND display_order = :displayOrder";
+            if (excludeId > 0) {
+                sql += " AND id != :id";
+            }
+            var query = handle.createQuery(sql)
+                    .bind("position", position)
+                    .bind("displayOrder", displayOrder);
+            if (excludeId > 0) {
+                query.bind("id", excludeId);
+            }
+            return query.mapTo(Integer.class).one() > 0;
+        });
+    }
+
+    public void shiftDisplayOrders(String position, int fromOrder) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE banners SET display_order = display_order + 1 " +
+                                "WHERE position = :position AND display_order >= :fromOrder")
+                        .bind("position", position)
+                        .bind("fromOrder", fromOrder)
+                        .execute()
+        );
     }
 }

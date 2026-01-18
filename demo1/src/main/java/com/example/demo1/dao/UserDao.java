@@ -1,4 +1,3 @@
-
 package com.example.demo1.dao;
 
 import com.example.demo1.model.User;
@@ -37,9 +36,7 @@ public class UserDao {
         );
     }
 
-    // Thêm hàm này để lấy danh sách user
     public List<User> getAllUsers() {
-        // This query assumes you have an 'orders' table with a 'user_id' column.
         String sql = "SELECT u.*, COUNT(o.id) AS orderCount " +
                 "FROM users u " +
                 "LEFT JOIN orders o ON u.id = o.user_id " +
@@ -52,7 +49,6 @@ public class UserDao {
                             .list()
             );
         } catch (Exception e) {
-            // Fallback query if the 'orders' table doesn't exist or causes an error
             return jdbi.withHandle(h ->
                     h.createQuery("SELECT * FROM users ORDER BY created_at DESC")
                             .mapToBean(User.class)
@@ -88,16 +84,14 @@ public class UserDao {
         );
     }
 
-    // 1. Hàm đếm tổng số khách hàng (để tính Total Pages)
     public int countAllUsers() {
         return jdbi.withHandle(h ->
-                h.createQuery("SELECT COUNT(*) FROM users") // Hoặc WHERE role = 0 nếu chỉ đếm khách hàng
+                h.createQuery("SELECT COUNT(*) FROM users")
                         .mapTo(Integer.class)
                         .one()
         );
     }
 
-    // 2. Hàm lấy danh sách có phân trang (LIMIT, OFFSET)
     public List<User> getUsersPaging(int limit, int offset) {
         return jdbi.withHandle(h ->
                 h.createQuery("SELECT * FROM users ORDER BY created_at DESC LIMIT :limit OFFSET :offset")
@@ -108,7 +102,6 @@ public class UserDao {
         );
     }
 
-    //Cập nhật để mở/khóa
     public void updateUserStatus(int userId, String newStatus) {
         jdbi.useHandle(h ->
                 h.createUpdate("UPDATE users SET status = :status WHERE id = :id")
@@ -118,7 +111,6 @@ public class UserDao {
         );
     }
 
-    // Hàm lấy status hiện tại (để biết đang khóa hay đang mở mà đảo ngược lại)
     public String getUserStatus(int userId) {
         return jdbi.withHandle(h ->
                 h.createQuery("SELECT status FROM users WHERE id = :id")
@@ -128,7 +120,6 @@ public class UserDao {
         );
     }
 
-    // 1. Hàm đếm có lọc status
     public int countUsersByStatus(String status) {
         String sql = "SELECT COUNT(*) FROM users";
         boolean hasFilter = status != null && !status.equals("all");
@@ -145,28 +136,21 @@ public class UserDao {
         });
     }
 
-    // Trong file UserDao.java
-
     public List<User> getUsersPaging(int limit, int offset, String status) {
-        // 1. Xây dựng câu SQL có JOIN để đếm đơn hàng
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT u.*, COUNT(o.id) as orderCount "); // Đếm số đơn hàng và gán vào alias orderCount
+        sql.append("SELECT u.*, COUNT(o.id) as orderCount ");
         sql.append("FROM users u ");
-        sql.append("LEFT JOIN orders o ON u.id = o.user_id "); // Kết nối bảng users với orders (LEFT JOIN để lấy cả user chưa có đơn)
+        sql.append("LEFT JOIN orders o ON u.id = o.user_id ");
 
-        // 2. Xử lý bộ lọc trạng thái
         boolean hasFilter = status != null && !status.equals("all");
         if (hasFilter) {
-            // Lưu ý: Dùng u.status vì bảng users được đặt tên giả là 'u'
             sql.append("WHERE u.status = :status ");
         }
 
-        // 3. Gom nhóm và Sắp xếp
-        sql.append("GROUP BY u.id "); // Bắt buộc phải Group By ID thì mới đếm đúng từng người
+        sql.append("GROUP BY u.id ");
         sql.append("ORDER BY u.created_at DESC LIMIT :limit OFFSET :offset");
 
-        // 4. Thực thi
         return jdbi.withHandle(h -> {
             var query = h.createQuery(sql.toString())
                     .bind("limit", limit)
@@ -176,9 +160,7 @@ public class UserDao {
                 query.bind("status", status);
             }
 
-            // JDBI sẽ tự động map cột 'orderCount' trong SQL vào thuộc tính 'orderCount' trong Model User
             return query.mapToBean(User.class).list();
         });
     }
 }
-
