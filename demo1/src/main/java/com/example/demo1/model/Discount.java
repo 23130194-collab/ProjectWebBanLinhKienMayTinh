@@ -1,16 +1,18 @@
 package com.example.demo1.model;
 
+import java.sql.Timestamp;
+
 public class Discount {
     private int id;
-    private double discount_value;
-    private String start_time;
-    private String end_time;
+    private double discountValue;
+    private Timestamp startTime;
+    private Timestamp endTime;
 
-    public Discount(int id, double discount_value, String start_time, String end_time) {
+    public Discount(int id, double discountValue, Timestamp startTime, Timestamp endTime) {
         this.id = id;
-        this.discount_value = discount_value;
-        this.start_time = start_time;
-        this.end_time = end_time;
+        this.discountValue = discountValue;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public Discount() {
@@ -24,27 +26,27 @@ public class Discount {
         this.id = id;
     }
 
-    public double getDiscount_value() {
-        return discount_value;
+    public double getDiscountValue() {
+        return discountValue;
     }
 
-    public void setDiscount_value(double discount_value) {
-        this.discount_value = discount_value;
+    public void setDiscountValue(double discountValue) {
+        this.discountValue = discountValue;
     }
 
-    public String getStart_time() {
-        return start_time;
+    public Timestamp getStartTime() {
+        return startTime;
     }
 
-    public void setStart_time(String start_time) {
-        this.start_time = start_time;
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
     }
 
-    public String getEnd_time() {
-        return end_time;
+    public Timestamp getEndTime() {
+        return endTime;
     }
 
-    public void setEnd_time(String end_time) {
-        this.end_time = end_time;
+    public void setEndTime(Timestamp endTime) {
+        this.endTime = endTime;
     }
 }
