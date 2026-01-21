@@ -3,6 +3,8 @@ package com.example.demo1.dao;
 import com.example.demo1.model.User;
 import org.jdbi.v3.core.Jdbi;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class UserDao {
@@ -15,23 +17,52 @@ public class UserDao {
                 .stream().findFirst().orElse(null));
     }
 
-    public void insertUser(String name, String email, String password) {
+    public void insertUser(String name, String email, String password, String otp, Timestamp otpExpiry) {
         jdbi.useHandle(h ->
-                h.createUpdate("INSERT INTO users(name, email, password, role, status) VALUES (:name, :email, :password, :role, :status)")
+                h.createUpdate("INSERT INTO users(name, email, password, role, status, otp_code, otp_expiry) VALUES (:name, :email, :password, :role, :status, :otp_code, :otp_expiry)")
                         .bind("name", name)
                         .bind("email", email)
                         .bind("password", password)
                         .bind("role", 0)
-                        .bind("status", "active") // Mặc định là active
+                        .bind("status", "unverified")
+                        .bind("otp_code", otp)
+                        .bind("otp_expiry", otpExpiry)
                         .execute()
         );
     }
 
-    public void updatePassword(String email, String password) {
+    public void activateUser(int userId) {
         jdbi.useHandle(h ->
-                h.createUpdate("UPDATE users SET password = :password WHERE email = :email")
-                        .bind("password", password)
+                h.createUpdate("UPDATE users SET status = 'active', otp_code = NULL, otp_expiry = NULL WHERE id = :id")
+                        .bind("id", userId)
+                        .execute()
+        );
+    }
+
+    public void updateOtp(String email, String otp, Timestamp otpExpiry) {
+        jdbi.useHandle(h ->
+                h.createUpdate("UPDATE users SET otp_code = :otp_code, otp_expiry = :otp_expiry WHERE email = :email")
+                        .bind("otp_code", otp)
+                        .bind("otp_expiry", otpExpiry)
                         .bind("email", email)
+                        .execute()
+        );
+    }
+
+    public void updatePassword(String email, String password, Timestamp updatedAt) {
+        jdbi.useHandle(h ->
+                h.createUpdate("UPDATE users SET password = :password, password_updated_at = :updatedAt, otp_code = NULL, otp_expiry = NULL WHERE email = :email")
+                        .bind("password", password)
+                        .bind("updatedAt", updatedAt)
+                        .bind("email", email)
+                        .execute()
+        );
+    }
+
+    public void updateUser(User user) {
+        jdbi.useHandle(h ->
+                h.createUpdate("UPDATE users SET name = :name, email = :email, phone = :phone, address = :address, gender = :gender, birthday = :birthday WHERE id = :id")
+                        .bindBean(user)
                         .execute()
         );
     }
@@ -73,14 +104,6 @@ public class UserDao {
                         .stream()
                         .findFirst()
                         .orElse(null)
-        );
-    }
-
-    public void updateUser(User user) {
-        jdbi.useHandle(h ->
-                h.createUpdate("UPDATE users SET name = :name, email = :email, phone = :phone, address = :address, gender = :gender, birthday = :birthday WHERE id = :id")
-                        .bindBean(user)
-                        .execute()
         );
     }
 
