@@ -19,6 +19,7 @@ public class Product implements Serializable {
     private double avgRating;
     private Timestamp discountStart;
     private Timestamp discountEnd;
+    private int soldQuantity;
 
     public Product() {
     }
@@ -142,5 +143,13 @@ public class Product implements Serializable {
 
     public void setDiscountEnd(Timestamp discountEnd) {
         this.discountEnd = discountEnd;
+    }
+
+    public int getSoldQuantity() {
+        return soldQuantity;
+    }
+
+    public void setSoldQuantity(int soldQuantity) {
+        this.soldQuantity = soldQuantity;
     }
 }
