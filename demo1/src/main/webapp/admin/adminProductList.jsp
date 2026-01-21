@@ -18,7 +18,6 @@
 
 <body>
 
-<!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
         <a href="adminDashboard.jsp">
@@ -79,7 +78,6 @@
         </li>
     </ul>
 
-    <!-- Logout Section -->
     <div class="logout-section">
         <a href="${contextPath}/logout" class="nav-link logout-link">
             <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
@@ -95,22 +93,12 @@
             <span class="notification-badge">3</span>
         </button>
 
-        <!-- Thông báo -->
         <div class="notification-dropdown" id="notificationDropdown">
             <div class="notification-header">
                 <h3>Thông báo</h3>
             </div>
 
             <div class="notification-list">
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">20 giây trước</span>
-                    </div>
-                </div>
             </div>
 
             <div class="notification-footer">
@@ -195,10 +183,10 @@
                 <c:forEach var="product" items="${productList}" varStatus="loop">
                     <tr>
                         <td>${(currentPage - 1) * itemsPerPage + loop.index + 1}</td>                        <td class="td-image">
-                            <div class="img-wrapper">
-                                <img src="${product.image}" alt="${product.name}" onerror="this.src='https.i.postimg.cc/Hn4Jc3yj/logo-2.png';">
-                            </div>
-                        </td>
+                        <div class="img-wrapper">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='https.i.postimg.cc/Hn4Jc3yj/logo-2.png';">
+                        </div>
+                    </td>
                         <td class="td-name">
                             <span class="product-name" title="${product.name}">${product.name}</span>
                         </td>
@@ -227,7 +215,7 @@
                         <td>
                             <div class="action-buttons">
                                 <a href="${contextPath}/admin-upload-product?id=${product.id}" class="action-btn edit" title="Sửa"><i class="fa-solid fa-pen"></i></a>
-                                <a href="${contextPath}/admin-product-list?action=delete&id=${product.id}" class="action-btn delete" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="#confirm-delete-modal-${product.id}" class="action-btn delete" title="Xoá sản phẩm"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -236,10 +224,9 @@
             </table>
         </div>
 
-        <%-- Phần Pagination --%>
+
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
-                    <%-- Nút Trang Trước --%>
                 <c:url var="prevUrl" value="/admin-product-list">
                     <c:param name="page" value="${currentPage - 1}" />
                     <c:if test="${not empty selectedCategoryId}"><c:param name="categoryId" value="${selectedCategoryId}" /></c:if>
@@ -251,7 +238,6 @@
                     <i class="fa-solid fa-chevron-left"></i>
                 </a>
 
-                    <%-- Các Nút Số Trang --%>
                 <c:forEach begin="1" end="${totalPages}" var="i">
                     <c:url var="pageUrl" value="/admin-product-list">
                         <c:param name="page" value="${i}" />
@@ -263,7 +249,6 @@
                     <a href="${pageUrl}" class="page-number ${currentPage == i ? 'active' : ''}">${i}</a>
                 </c:forEach>
 
-                    <%-- Nút Trang Sau (Làm tương tự nút trước) --%>
                 <c:url var="nextUrl" value="/admin-product-list">
                     <c:param name="page" value="${currentPage + 1}" />
                     <c:if test="${not empty selectedCategoryId}"><c:param name="categoryId" value="${selectedCategoryId}" /></c:if>
@@ -279,7 +264,19 @@
 
     </div>
 </main>
+
+<c:forEach var="product" items="${productList}">
+    <div id="confirm-delete-modal-${product.id}" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Xác nhận xoá sản phẩm</h3>
+            <p>Bạn có chắc chắn muốn xoá sản phẩm "${product.name}" không?</p>
+            <div class="modal-buttons">
+                <a href="#" class="modal-btn modal-cancel">Hủy</a>
+                <a href="${contextPath}/admin-product-list?action=delete&id=${product.id}" class="modal-btn modal-confirm">Đồng ý</a>
+            </div>
+        </div>
+    </div>
+</c:forEach>
+
 </body>
-<script src="${contextPath}/admin/adminjs/adminNotification.js"></script>
-<script src="${contextPath}/admin/adminjs/adminProductList.js"></script>
 </html>
