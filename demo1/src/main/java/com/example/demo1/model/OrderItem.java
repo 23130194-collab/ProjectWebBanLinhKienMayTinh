@@ -6,76 +6,39 @@ public class OrderItem {
     private int productId;
     private int quantity;
     private double originalPrice;
-    private double discountPercentage; // Đã đổi từ unitPrice
+    private double unitPrice;
     private String productName;
 
     public OrderItem() {
     }
 
-    // Getters and Setters
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public int getOrderId() {
-        return orderId;
-    }
+    public int getOrderId() { return orderId; }
+    public void setOrderId(int orderId) { this.orderId = orderId; }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
+    public int getProductId() { return productId; }
+    public void setProductId(int productId) { this.productId = productId; }
 
-    public int getProductId() {
-        return productId;
-    }
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+    public double getOriginalPrice() { return originalPrice; }
+    public void setOriginalPrice(double originalPrice) { this.originalPrice = originalPrice; }
 
-    public int getQuantity() {
-        return quantity;
-    }
+    public double getUnitPrice() { return unitPrice; }
+    public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public String getProductName() { return productName; }
+    public void setProductName(String productName) { this.productName = productName; }
 
-    public double getOriginalPrice() {
-        return originalPrice;
-    }
+    public double getTotal() { return this.unitPrice * this.quantity; }
 
-    public void setOriginalPrice(double originalPrice) {
-        this.originalPrice = originalPrice;
-    }
 
     public double getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public void setDiscountPercentage(double discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    // Phương thức tiện ích để tính giá sau khi giảm
-    public double getUnitPrice() {
-        return originalPrice * (1 - discountPercentage / 100);
-    }
-
-    // Phương thức tiện ích để tính tổng tiền cho mục này
-    public double getTotal() {
-        return getUnitPrice() * quantity;
+        if (originalPrice == 0) return 0;
+        return ((originalPrice - unitPrice) / originalPrice) * 100;
     }
 }
