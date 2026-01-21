@@ -187,14 +187,31 @@
             </form>
         </div>
 
-        <!-- SEARCH -->
-        <div class="top-actions">
-             <form action="${contextPath}/admin/attributes" method="get" class="search-wrapper">
-                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" name="keyword" class="search-input-brand" placeholder="Tìm kiếm thuộc tính" value="${keyword}">
+        <!-- SEARCH & FILTER - NEW -->
+        <form action="${contextPath}/admin/attributes" method="get">
+            <div class="form-search-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+
+                <select name="filterCategoryId" onchange="this.form.submit()"
+                        style="height: 45px; padding: 0 15px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; cursor: pointer; color: #4b5563; min-width: 200px; background-color: white;">
+                    <option value="0">-- Tất cả danh mục --</option>
+                    <c:forEach var="cat" items="${categories}">
+                        <option value="${cat.id}" ${cat.id == filterCategoryId ? 'selected' : ''}>
+                                ${cat.name}
+                        </option>
+                    </c:forEach>
+                </select>
+
+                <div class="search-wrapper" style="flex: 1; margin-bottom: 0;">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" name="keyword" class="search-input"
+                           placeholder="Tìm kiếm thuộc tính..."
+                           value="${keyword}"
+                           style="width: 100%; height: 45px;">
+                </div>
+
                 <button type="submit" style="display:none;"></button>
-            </form>
-        </div>
+            </div>
+        </form>
 
         <!-- TABLE -->
         <div class="table-container">
@@ -246,16 +263,28 @@
         <!-- Phân trang -->
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
-                <c:if test="${currentPage > 1}">
-                    <a href="${contextPath}/admin/attributes?page=${currentPage - 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
-                </c:if>
-                <c:forEach var="i" begin="1" end="${totalPages}">
-                    <a href="${contextPath}/admin/attributes?page=${i}&keyword=${keyword}" class="page-number ${currentPage == i ? 'active' : ''}">${i}</a>
 
-                </c:forEach>
-                <c:if test="${currentPage < totalPages}">
-                    <a href="${contextPath}/admin/attributes?page=${currentPage + 1}&keyword=${keyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
+                <c:if test="${currentPage > 1}">
+                    <a href="${contextPath}/admin/attributes?page=${currentPage - 1}&keyword=${keyword}&filterCategoryId=${filterCategoryId}"
+                       class="pagination-btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
                 </c:if>
+
+                <c:forEach var="i" begin="1" end="${totalPages}">
+                    <a href="${contextPath}/admin/attributes?page=${i}&keyword=${keyword}&filterCategoryId=${filterCategoryId}"
+                       class="page-number ${currentPage == i ? 'active' : ''}">
+                            ${i}
+                    </a>
+                </c:forEach>
+
+                <c:if test="${currentPage < totalPages}">
+                    <a href="${contextPath}/admin/attributes?page=${currentPage + 1}&keyword=${keyword}&filterCategoryId=${filterCategoryId}"
+                       class="pagination-btn">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </c:if>
+
             </div>
         </c:if>
 
@@ -273,6 +302,43 @@
                 }, 500);
             }, 5000);
         });
+    });
+</script>
+
+<input type="hidden" name="force" id="forceInput" value="false">
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Kiểm tra biến flag từ server
+        var needConfirm = ${confirmReplaceOrder != null ? confirmReplaceOrder : 'false'};
+        var message = "${conflictMessage}";
+
+        if (needConfirm) {
+            // Hiện hộp thoại Confirm
+            if (confirm(message)) {
+                // NGƯỜI DÙNG BẤM OK (THAY THẾ)
+
+                // 1. Tìm cái form đang nhập
+                var form = document.querySelector('form[action$="/admin/attributes"]');
+
+                // 2. Set cờ force = true
+                var forceInput = form.querySelector('input[name="force"]');
+                if (!forceInput) { // Tạo nếu chưa có
+                    forceInput = document.createElement("input");
+                    forceInput.type = "hidden";
+                    forceInput.name = "force";
+                    form.appendChild(forceInput);
+                }
+                forceInput.value = "true";
+
+                // 3. Submit lại form ngay lập tức
+                form.submit();
+            } else {
+                // NGƯỜI DÙNG BẤM CANCEL (HỦY)
+                // Không làm gì cả, giữ nguyên màn hình để người dùng nhập lại số khác
+                // Dữ liệu đã được giữ lại nhờ hàm keepFormData ở Servlet
+            }
+        }
     });
 </script>
 

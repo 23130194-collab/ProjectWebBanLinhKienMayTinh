@@ -16,7 +16,7 @@ public class ProductDao {
 
     private static final String SELECT_PRODUCT_FIELDS =
             "p.id, p.category_id AS categoryId, p.brand_id AS brandId, p.name, p.discount_id AS discountId, p.description, p.stock, p.image, p.created_at, p.status, " +
-            "p.old_price AS oldPrice, p.price, " +
+            "p.old_price AS oldPrice, p.price, " + "p.sold_quantity AS soldQuantity, " +
             "d.discount_value AS discountValue, " +
             "d.start_time AS discountStart, " +
             "d.end_time AS discountEnd, " +
@@ -131,8 +131,9 @@ public class ProductDao {
                 orderBy = " ORDER BY p.name ASC, p.id ASC ";
                 break;
             case "popular":
+                orderBy = " ORDER BY p.sold_quantity DESC, p.id DESC ";
             default:
-                orderBy = " ORDER BY p.created_at DESC, p.id DESC ";
+                orderBy = " ORDER BY p.sold_quantity DESC, p.created_at DESC, p.id DESC ";
                 break;
         }
         sql.append(orderBy);
@@ -141,6 +142,10 @@ public class ProductDao {
     public ProductPage filterAndSortProducts(Integer categoryId, String status, String keyword, Integer brandId, Map<Integer, List<String>> specFilters, String sortOrder, int page, int pageSize) {
         return jdbi.withHandle(handle -> {
             QueryParts queryParts = buildQueryParts(categoryId, status, keyword, brandId, specFilters);
+
+            if ("popular".equals(sortOrder)) {
+                queryParts.whereSql += " AND p.sold_quantity > 0 ";
+            }
 
             int totalProducts = countTotalProducts(handle, queryParts, specFilters);
 
@@ -251,5 +256,24 @@ public class ProductDao {
                 handle.createUpdate("DELETE FROM products WHERE id = :id")
                         .bind("id", productId)
                         .execute());
+    }
+
+    // Thêm hàm này vào trong class ProductDao
+    public List<Product> getRandomProducts(int limit) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM products WHERE status = 'active' ORDER BY RAND() LIMIT :limit")
+                        .bind("limit", limit)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
+    public void incrementSoldQuantity(int productId, int quantity) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE products SET sold_quantity = sold_quantity + :qty WHERE id = :id")
+                        .bind("qty", quantity)
+                        .bind("id", productId)
+                        .execute()
+        );
     }
 }

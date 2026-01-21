@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Order {
     private int id;
     private int userId;
+    private Integer recipientInfoId;
     private String orderCode;
     private String orderStatus;
     private double subprice;
@@ -14,7 +15,7 @@ public class Order {
     private double totalAmount;
     private String notes;
     private Timestamp createdAt;
-    private LocalDateTime updatedAt; // Đã thêm lại
+    private LocalDateTime updatedAt;
 
     public Order() {
     }
@@ -34,6 +35,14 @@ public class Order {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public Integer getRecipientInfoId() {
+        return recipientInfoId;
+    }
+
+    public void setRecipientInfoId(Integer recipientInfoId) {
+        this.recipientInfoId = recipientInfoId;
     }
 
     public String getOrderCode() {

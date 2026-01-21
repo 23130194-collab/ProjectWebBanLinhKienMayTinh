@@ -1,5 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.example.demo1.model.CartItem" %>
+
+<%
+    // Tính tổng số lượng sản phẩm trong giỏ
+    int totalQuantity = 0;
+    Map<Integer, CartItem> cart = (Map<Integer, CartItem>) session.getAttribute("cart");
+    if (cart != null) {
+        for (CartItem item : cart.values()) {
+            totalQuantity += item.getQuantity();
+        }
+    }
+%>
 
 <header class="header">
     <div class="header-container">
@@ -21,8 +34,12 @@
         </div>
 
         <div class="header-actions">
-            <a href="${pageContext.request.contextPath}/cart.jsp" class="icon-btn" title="Giỏ hàng">
+            <a href="${pageContext.request.contextPath}/AddCart?action=view" class="icon-btn cart-btn-wrapper" title="Giỏ hàng">
                 <i class="fas fa-shopping-cart"></i>
+
+                <% if (totalQuantity > 0) { %>
+                <span class="cart-badge"><%= totalQuantity %></span>
+                <% } %>
             </a>
 
             <c:choose>

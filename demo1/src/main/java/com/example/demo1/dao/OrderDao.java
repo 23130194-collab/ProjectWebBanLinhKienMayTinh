@@ -1,13 +1,11 @@
 package com.example.demo1.dao;
 
-import com.example.demo1.model.Order;
-import com.example.demo1.model.OrderDetail;
-import com.example.demo1.model.OrderItem;
-import com.example.demo1.model.User;
+import com.example.demo1.model.*;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class OrderDao {
@@ -57,10 +55,27 @@ public class OrderDao {
         );
     }
 
+//    public List<OrderItem> getOrderItemsByOrderId(int orderId) {
+//        String query = "SELECT od.id, od.order_id, od.product_id, od.quantity, od.original_price, od.discount_percentage, p.name as productName " +
+//                "FROM order_details od JOIN products p ON od.product_id = p.id " +
+//                "WHERE od.order_id = :orderId";
+//        return jdbi.withHandle(handle -> {
+//            handle.registerRowMapper(BeanMapper.factory(OrderItem.class));
+//            return handle.createQuery(query)
+//                    .bind("orderId", orderId)
+//                    .mapTo(OrderItem.class)
+//                    .list();
+//        });
+//    }
+
+    // Trong file OrderDao.java
+
     public List<OrderItem> getOrderItemsByOrderId(int orderId) {
-        String query = "SELECT od.id, od.order_id, od.product_id, od.quantity, od.original_price, od.discount_percentage, p.name as productName " +
-                       "FROM order_details od JOIN products p ON od.product_id = p.id " +
-                       "WHERE od.order_id = :orderId";
+        String query = "SELECT od.id, od.order_id, od.product_id, od.quantity, " +
+                "od.original_price, od.unit_price, p.name as productName " +
+                "FROM order_details od JOIN products p ON od.product_id = p.id " +
+                "WHERE od.order_id = :orderId";
+
         return jdbi.withHandle(handle -> {
             handle.registerRowMapper(BeanMapper.factory(OrderItem.class));
             return handle.createQuery(query)
@@ -72,7 +87,7 @@ public class OrderDao {
 
     public boolean updateOrderStatus(int orderId, String status) {
         int updatedRows = jdbi.withHandle(handle ->
-                handle.createUpdate("UPDATE orders SET order_status = :status, updated_at = NOW() WHERE id = :orderId")
+                handle.createUpdate("UPDATE orders SET order_status = :status WHERE id = :orderId")
                         .bind("status", status)
                         .bind("orderId", orderId)
                         .execute()
@@ -82,7 +97,7 @@ public class OrderDao {
 
     public void updateOrderTotals(int orderId, double subprice, double discountAmount, double totalAmount) {
         jdbi.withHandle(handle ->
-                handle.createUpdate("UPDATE orders SET subprice = :subprice, discount_amount = :discountAmount, total_amount = :totalAmount, updated_at = NOW() WHERE id = :orderId")
+                handle.createUpdate("UPDATE orders SET subprice = :subprice, discount_amount = :discountAmount, total_amount = :totalAmount WHERE id = :orderId")
                         .bind("orderId", orderId)
                         .bind("subprice", subprice)
                         .bind("discountAmount", discountAmount)
@@ -124,6 +139,7 @@ public class OrderDao {
                         .one()
         );
     }
+
     public List<Order> getOrdersByUserId(int userId) {
         String sql = "SELECT * FROM orders WHERE user_id = :userId ORDER BY created_at DESC";
 
@@ -134,6 +150,7 @@ public class OrderDao {
                         .list()
         );
     }
+
     public int countOrdersByUserId(int userId) {
         String sql = "SELECT COUNT(*) FROM orders WHERE user_id = :userId";
         return jdbi.withHandle(h ->
@@ -173,5 +190,55 @@ public class OrderDao {
                         .mapTo(String.class)
                         .findFirst()
         );
+    }
+
+    public boolean createOrder(Order order, RecipientInfo recipient, Map<Integer, CartItem> cart) {
+        return jdbi.inTransaction(handle -> {
+            try {
+                int recipientId = handle.createUpdate("INSERT INTO recipient_info (full_name, phone, email, province, district, address_detail) " +
+                                "VALUES (:fullName, :phone, :email, :province, :district, :addressDetail)")
+                        .bind("fullName", recipient.getFullName())
+                        .bind("phone", recipient.getPhone())
+                        .bind("email", recipient.getEmail())
+                        .bind("province", recipient.getProvince())
+                        .bind("district", recipient.getDistrict())
+                        .bind("addressDetail", recipient.getAddress())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Integer.class).one();
+
+                int orderId = handle.createUpdate("INSERT INTO orders (user_id, recipient_info_id, order_code, order_status, subprice, discount_amount, shipping_fee, total_amount) " +
+                                "VALUES (:userId, :recipientId, :orderCode, :status, :subprice, :discountAmount, :shippingFee, :total)")
+                        .bind("userId", order.getUserId())
+                        .bind("recipientId", recipientId)
+                        .bind("orderCode", order.getOrderCode())
+                        .bind("status", order.getOrderStatus())
+                        .bind("subprice", order.getSubprice())
+                        .bind("discountAmount", order.getDiscountAmount())
+                        .bind("shippingFee", order.getShippingFee())
+                        .bind("total", order.getTotalAmount())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Integer.class).one();
+
+                for (CartItem item : cart.values()) {
+                    double originalPrice = item.getProduct().getOldPrice();
+                    if (originalPrice == 0) {
+                        originalPrice = item.getProduct().getPrice();
+                    }
+
+                    handle.createUpdate("INSERT INTO order_details (order_id, product_id, quantity, unit_price, original_price) " +
+                                    "VALUES (:orderId, :productId, :quantity, :price, :originalPrice)")
+                            .bind("orderId", orderId)
+                            .bind("productId", item.getProduct().getId())
+                            .bind("quantity", item.getQuantity())
+                            .bind("price", item.getProduct().getPrice())
+                            .bind("originalPrice", originalPrice)
+                            .execute();
+                }
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        });
     }
 }

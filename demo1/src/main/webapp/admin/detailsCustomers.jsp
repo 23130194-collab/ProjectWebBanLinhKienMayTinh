@@ -220,7 +220,8 @@
                     <table class="orders-table">
                         <thead>
                         <tr>
-                            <th>Mã đơn hàng</th> <th>Ngày đặt hàng</th>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày đặt hàng</th>
                             <th>Trạng thái</th>
                             <th>Tổng tiền</th>
                         </tr>
@@ -235,7 +236,7 @@
                         <c:forEach var="order" items="${orderList}">
                             <tr>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/admin/order-detail?id=${order.id}">
+                                    <a href="${pageContext.request.contextPath}/admin/orders?action=view&id=${order.id}">
                                         #${order.orderCode}
                                     </a>
                                 </td>
