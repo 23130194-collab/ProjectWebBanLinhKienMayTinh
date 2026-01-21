@@ -208,5 +208,38 @@ header.header {
     width: 20px;
     height: 20px;
     object-fit: contain;
-    margin-right: 8px; /* Tạo khoảng cách với tên danh mục */
+    margin-right: 8px;
+}
+
+.cart-btn-wrapper {
+    position: relative;
+    overflow: visible !important;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    background-color: #ffffff;
+    color: #ff3366;
+    border: 2px solid #ff3366;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 11px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.cart-btn-wrapper:hover .cart-badge {
+    background-color: #ff3366;
+    color: #ffffff;
+    border-color: #ffffff;
 }
