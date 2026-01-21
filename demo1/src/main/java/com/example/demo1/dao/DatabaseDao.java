@@ -27,14 +27,14 @@ public class DatabaseDao {
                         + "?useUnicode=true"
                         + "&characterEncoding=UTF-8"
                         + "&useSSL=false"
-                        + "&serverTimezone=UTC"
+                        + "&serverTimezone=Asia/Ho_Chi_Minh"
                         + "&allowPublicKeyRetrieval=true";
 
                 ds.setURL(url);
                 ds.setUser(DB_USER);
                 ds.setPassword(DB_PASSWORD);
                 ds.setUseSSL(false);
-                ds.setServerTimezone("UTC");
+                ds.setServerTimezone("Asia/Ho_Chi_Minh");
                 ds.setAllowPublicKeyRetrieval(true);
 
                 // Tạo JDBI instance
