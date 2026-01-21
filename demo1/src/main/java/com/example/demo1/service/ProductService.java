@@ -154,4 +154,21 @@ public class ProductService {
     public ProductPage filterAndSortProducts(Integer categoryId, String status, String keyword, Integer brandId, Map<Integer, List<String>> specFilters, String sortOrder, int page, int pageSize) {
         return pdao.filterAndSortProducts(categoryId, status, keyword, brandId, specFilters, sortOrder, page, pageSize);
     }
+
+    public List<Product> getRandomProducts(int limit) {
+        List<Product> products = pdao.getRandomProducts(limit);
+
+        for (Product p : products) {
+            ReviewSummary summary = getReviewSummary(p.getId());
+            p.setAvgRating(summary.getAverageRating());
+
+            if (p.getOldPrice() > p.getPrice()) {
+                double diff = p.getOldPrice() - p.getPrice();
+                double percent = (diff / p.getOldPrice()) * 100;
+                p.setDiscountValue(percent);
+            }
+        }
+
+        return products;
+    }
 }
