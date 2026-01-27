@@ -8,7 +8,7 @@ public class Product implements Serializable {
     private int categoryId;
     private int brandId;
     private String name;
-    private int discountId;
+    private Integer discountId;
     private String description;
     private double price;
     private double oldPrice;
@@ -20,11 +20,11 @@ public class Product implements Serializable {
     private Timestamp discountStart;
     private Timestamp discountEnd;
     private int soldQuantity;
+    private boolean favorite;
 
     public Product() {
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -57,11 +57,11 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public int getDiscountId() {
+    public Integer getDiscountId() {
         return discountId;
     }
 
-    public void setDiscountId(int discountId) {
+    public void setDiscountId(Integer discountId) {
         this.discountId = discountId;
     }
 
@@ -151,5 +151,13 @@ public class Product implements Serializable {
 
     public void setSoldQuantity(int soldQuantity) {
         this.soldQuantity = soldQuantity;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

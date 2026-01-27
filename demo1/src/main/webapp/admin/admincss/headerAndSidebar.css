@@ -106,7 +106,6 @@ body {
     justify-content: center;
 }
 
-/* Logout Section */
 .logout-section {
     padding: 12px;
     border-top: 1px solid #e8e8e8;
@@ -122,7 +121,6 @@ body {
     color: #dc2626 !important;
 }
 
-/* Header */
 .header {
     position: fixed;
     top: 0;
@@ -233,7 +231,6 @@ body {
     object-fit: cover;
 }
 
-/* Main Content */
 .main-content {
     position: fixed;
     left: 50%;
@@ -246,7 +243,6 @@ body {
     height: calc(100vh - 70px);
 }
 
-/* Đây là nơi bạn sẽ thêm nội dung của mình */
 .content-area {
     background: #fff;
     border-radius: 12px;
@@ -258,13 +254,13 @@ body {
     font-size: 28px;
     font-weight: 700;
     color: #1e293b;
-    margin-bottom: 15px; /* Đã cập nhật */
+    margin-bottom: 15px;
 }
 
 .breadcrumb {
     color: #64748b;
     font-size: 14px;
-    margin-bottom: 15px; /* Đã thêm */
+    margin-bottom: 15px;
 }
 
 .breadcrumb a {
@@ -276,7 +272,6 @@ body {
     color: #5b86e5;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
