@@ -8,10 +8,10 @@ public class OrderItem {
     private double originalPrice;
     private double unitPrice;
     private String productName;
+    private String productImage;
 
     public OrderItem() {
     }
-
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -41,4 +41,11 @@ public class OrderItem {
         if (originalPrice == 0) return 0;
         return ((originalPrice - unitPrice) / originalPrice) * 100;
     }
+    public String getProductImage() {
+        return productImage;
+    }
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
 }
