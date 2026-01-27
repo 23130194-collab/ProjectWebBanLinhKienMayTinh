@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OrderDetail {
     private Order order;
-    private User customer; // Giả sử bạn có một lớp User
+    private User customer;
     private List<OrderItem> items;
 
     public OrderDetail() {
@@ -16,7 +16,6 @@ public class OrderDetail {
         this.items = items;
     }
 
-    // Getters and Setters
     public Order getOrder() {
         return order;
     }

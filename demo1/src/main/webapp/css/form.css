@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
@@ -170,7 +169,7 @@ a:hover {
     margin-top: 20px;
 }
 
-.social-login button {
+.social-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -186,9 +185,10 @@ a:hover {
     cursor: pointer;
     transition: all 0.3s ease;
     width: 190px;
+    text-decoration: none !important;
 }
 
-.social-login button:hover {
+.social-btn:hover {
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
 }

@@ -27,7 +27,7 @@
                 <button type="submit" class="login-btn">Gửi mã xác nhận</button>
             </form>
             <div style="text-align: center; margin-top: 20px;">
-                <a href="login.jsp">Quay lại đăng nhập</a>
+                <a href="login">Quay lại đăng nhập</a>
             </div>
         </div>
     </div>

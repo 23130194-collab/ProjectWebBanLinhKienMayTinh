@@ -14,19 +14,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/headerAndSidebar.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminOrderDetails.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminNotification.css">
-    <style>
-        .alert { padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 8px; font-size: 15px; }
-        .alert-success { color: #0f5132; background-color: #d1e7dd; border-color: #badbcc; }
-        .alert-danger { color: #842029; background-color: #f8d7da; border-color: #f5c2c7; }
-        .current-status-badge { margin-bottom: 15px; }
-        .current-status-badge .badge { font-size: 14px; padding: 8px 15px; }
-    </style>
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminModal.css">
 </head>
 <body>
 
 <aside class="sidebar">
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp" style="text-decoration: none;">
+        <a href="${pageContext.request.contextPath}/admin/adminDashboard" style="text-decoration: none;">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
             <span class="logo-text">TechNova</span>
         </a>
@@ -44,22 +38,63 @@
 
     </ul>
     <div class="logout-section">
-        <a href="${pageContext.request.contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a>
+        <a href="${pageContext.request.contextPath}/logout" class="nav-link logout-link" id="logoutLink"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a>
     </div>
 </aside>
 
 <header class="header">
     <div class="header-actions">
-        <button class="notification-btn" id="notificationBtn"><i class="fa-solid fa-bell"></i><span class="notification-badge">3</span></button>
+        <button class="notification-btn" id="notificationBtn">
+            <i class="fa-solid fa-bell"></i>
+            <c:if test="${adminUnreadCount > 0}">
+                <span class="notification-badge">${adminUnreadCount}</span>
+            </c:if>
+        </button>
         <div class="notification-dropdown" id="notificationDropdown">
-            <div class="notification-header"><h3>Thông báo</h3></div>
-            <div class="notification-list"></div>
-            <div class="notification-footer"><a href="#">Xem tất cả</a></div>
+            <div class="notification-header">
+                <h3>Thông báo</h3>
+            </div>
+
+            <div class="notification-list">
+                <c:if test="${empty adminNotiList}">
+                    <p style="padding: 10px; text-align: center;">Không có thông báo mới</p>
+                </c:if>
+
+                <c:forEach var="noti" items="${adminNotiList}">
+                    <div class="notification-item ${noti.isRead == 0 ? 'unread' : ''}"
+                         onclick="window.location.href='${contextPath}/admin/mark-read?id=${noti.id}&target=' + encodeURIComponent('${noti.link}')">
+
+                        <div class="notification-icon">
+                            <c:choose>
+                                <c:when test="${noti.content.toLowerCase().contains('hủy')}">
+                                    <i class="fa-solid fa-circle-xmark" style="color: #4c4747;;"></i>
+                                </c:when>
+                                <c:when test="${noti.content.toLowerCase().contains('mới')}">
+                                    <i class="fa-solid fa-cart-shopping" style="color: #4c4747;"></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="fa-solid fa-bell" style="color: #4c4747;;"></i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">${noti.content}</p>
+                            <span class="notification-time">${noti.createdAt}</span>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <div class="notification-footer">
+                <a href="adminAllNotification.jsp" class="see-all-link">Đóng</a>
+            </div>
         </div>
         <div class="user-profile">
-            <img src="https://i.postimg.cc/520657yN/profile.jpg" alt="User Profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
+                 alt="User Profile">
         </div>
     </div>
+
 </header>
 
 <main class="main-content">
@@ -69,11 +104,17 @@
         </a>
 
         <c:if test="${not empty sessionScope.successMessage}">
-            <div class="alert alert-success">${sessionScope.successMessage}</div>
+            <div class="alert alert-success">
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                ${sessionScope.successMessage}
+            </div>
             <c:remove var="successMessage" scope="session"/>
         </c:if>
         <c:if test="${not empty sessionScope.errorMessage}">
-            <div class="alert alert-danger">${sessionScope.errorMessage}</div>
+            <div class="alert alert-danger">
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                ${sessionScope.errorMessage}
+            </div>
             <c:remove var="errorMessage" scope="session"/>
         </c:if>
 
@@ -122,7 +163,7 @@
                 </div>
 
                 <section class="order-status-section">
-                    <form action="${pageContext.request.contextPath}/admin/orders" method="post" class="status-update-container">
+                    <form action="${pageContext.request.contextPath}/admin/orders" method="post" class="status-update-container" id="updateStatusForm">
                         <input type="hidden" name="action" value="updateStatus">
                         <input type="hidden" name="orderId" value="${orderDetail.order.id}">
                         <label for="orderStatus">Cập nhật trạng thái:</label>
@@ -133,7 +174,7 @@
                             <option value="Đã giao" ${orderDetail.order.orderStatus == 'Đã giao' ? 'selected' : ''}>Đã giao</option>
                             <option value="Đã hủy" ${orderDetail.order.orderStatus == 'Đã hủy' ? 'selected' : ''}>Đã hủy</option>
                         </select>
-                        <button type="submit" class="update-status-btn">Cập nhật</button>
+                        <a href="#confirm-status-update-modal" class="update-status-btn open-modal-btn">Cập nhật</a>
                     </form>
                 </section>
 
@@ -187,6 +228,101 @@
         </c:if>
     </div>
 </main>
-<script src="${pageContext.request.contextPath}/admin/adminjs/adminNotification.js"></script>
+
+<div id="confirm-status-update-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận cập nhật trạng thái</h3>
+        <p>Bạn có chắc chắn muốn cập nhật trạng thái đơn hàng này không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel">Hủy</a>
+            <button type="submit" form="updateStatusForm" class="modal-btn modal-confirm">Cập nhật</button>
+        </div>
+    </div>
+</div>
+
+<div id="logoutConfirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận đăng xuất</h3>
+        <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel" id="cancelLogout">Hủy</a>
+            <a href="${contextPath}/logout" class="modal-btn modal-confirm">Đăng xuất</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            setTimeout(function() {
+                alert.style.opacity = '0';
+                setTimeout(function() {
+                    alert.style.display = 'none';
+                }, 500);
+            }, 5000);
+        });
+
+        document.querySelectorAll('.open-modal-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const modalId = this.getAttribute('href');
+                document.querySelector(modalId).classList.add('show');
+            });
+        });
+
+        document.querySelectorAll('.modal-cancel').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                this.closest('.modal-overlay').classList.remove('show');
+            });
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(event) {
+                if (event.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+        });
+
+        const notificationBtn = document.getElementById("notificationBtn");
+        const notificationDropdown = document.getElementById("notificationDropdown");
+        if(notificationBtn) {
+            notificationBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle("show");
+            });
+        }
+        document.addEventListener("click", function (e) {
+            if (notificationDropdown && !notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+                notificationDropdown.classList.remove("show");
+            }
+        });
+
+        const logoutLink = document.getElementById('logoutLink');
+        const logoutConfirmModal = document.getElementById('logoutConfirmModal');
+        const cancelLogoutBtn = document.getElementById('cancelLogout');
+        if(logoutLink) {
+            logoutLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.add('show');
+            });
+        }
+        if(cancelLogoutBtn) {
+            cancelLogoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.remove('show');
+            });
+        }
+        if(logoutConfirmModal) {
+            logoutConfirmModal.addEventListener('click', function (e) {
+                if (e.target === logoutConfirmModal) {
+                    logoutConfirmModal.classList.remove('show');
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

@@ -59,10 +59,6 @@ public class OrderService {
         orderDao.updateOrderTotals(orderId, subprice, discountAmount, totalAmount);
     }
 
-    public boolean deleteOrder(int orderId) {
-        return orderDao.deleteOrder(orderId);
-    }
-
     public boolean isOrderCodeExists(String orderCode) {
         return orderDao.isOrderCodeExists(orderCode);
     }

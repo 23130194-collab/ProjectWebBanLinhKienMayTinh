@@ -55,7 +55,13 @@ public class LoginController extends HttpServlet {
             
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            response.sendRedirect("home");
+
+
+            if (user.getRole() == 1) {
+                response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/home");
+            }
         } else {
             User existingUser = as.getUserByEmail(email);
             if (existingUser != null && "Locked".equalsIgnoreCase(existingUser.getStatus())) {

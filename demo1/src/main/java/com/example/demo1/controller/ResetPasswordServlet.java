@@ -32,7 +32,7 @@ public class ResetPasswordServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
 
         if (email == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
@@ -57,6 +57,6 @@ public class ResetPasswordServlet extends HttpServlet {
 
         session.removeAttribute("user_can_reset_password");
         session.setAttribute("successMessage", "Đổi mật khẩu thành công! Vui lòng đăng nhập lại.");
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 }

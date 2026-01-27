@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="vi_VN" />
+<fmt:setLocale value="vi_VN"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -9,10 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNova Admin - Danh sách khách hàng</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/customersList.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/customersList.css?v=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminNotification.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/headerAndSidebar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminModal.css">
 </head>
 
 <body>
@@ -27,85 +29,76 @@
         </a>
     </div>
     <ul class="nav-menu">
-        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-images"></i></span>Banner</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-star"></i></span>Đánh giá</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link active"><span class="nav-icon"><i
+                class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-images"></i></span>Banner</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-star"></i></span>Đánh giá</a></li>
 
     </ul>
-    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
+    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link" id="logoutLink"><span class="nav-icon"><i
+            class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
 </aside>
 
 <!-- Header -->
 <header class="header">
-    <div class="search-box">
-        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input type="text" class="search-input" placeholder="Tìm kiếm">
-    </div>
-
     <div class="header-actions">
         <button class="notification-btn" id="notificationBtn">
             <i class="fa-solid fa-bell"></i>
-            <span class="notification-badge">3</span>
+            <c:if test="${adminUnreadCount > 0}">
+                <span class="notification-badge">${adminUnreadCount}</span>
+            </c:if>
         </button>
-
-        <!-- Thông báo -->
         <div class="notification-dropdown" id="notificationDropdown">
             <div class="notification-header">
                 <h3>Thông báo</h3>
             </div>
 
             <div class="notification-list">
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">20 giây trước</span>
-                    </div>
-                </div>
+                <c:if test="${empty adminNotiList}">
+                    <p style="padding: 10px; text-align: center;">Không có thông báo mới</p>
+                </c:if>
 
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">20 phút trước</span>
-                    </div>
-                </div>
+                <c:forEach var="noti" items="${adminNotiList}">
+                    <div class="notification-item ${noti.isRead == 0 ? 'unread' : ''}"
+                         onclick="window.location.href='${contextPath}/admin/mark-read?id=${noti.id}&target=' + encodeURIComponent('${noti.link}')">
 
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-file-invoice"></i>
+                        <div class="notification-icon">
+                            <c:choose>
+                                <c:when test="${noti.content.toLowerCase().contains('hủy')}">
+                                    <i class="fa-solid fa-circle-xmark" style="color: #4c4747;;"></i>
+                                </c:when>
+                                <c:when test="${noti.content.toLowerCase().contains('mới')}">
+                                    <i class="fa-solid fa-cart-shopping" style="color: #4c4747;"></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="fa-solid fa-bell" style="color: #4c4747;;"></i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">${noti.content}</p>
+                            <span class="notification-time">${noti.createdAt}</span>
+                        </div>
                     </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">5 giờ trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">12 giờ trước</span>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
 
             <div class="notification-footer">
-                <a href="adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a>
+                <a href="adminAllNotification.jsp" class="see-all-link">Đóng</a>
             </div>
         </div>
         <div class="user-profile">
@@ -113,6 +106,7 @@
                  alt="User Profile">
         </div>
     </div>
+
 </header>
 
 <!-- Main Content -->
@@ -120,9 +114,6 @@
     <div class="content-area">
         <div class="page-header">
             <h1 class="page-title">Danh sách khách hàng</h1>
-            <a href="${pageContext.request.contextPath}/admin/adminThemKhachHang.jsp" class="add-customer-btn">
-                <i class="fa-solid fa-user-plus"></i> Thêm khách hàng
-            </a>
         </div>
 
         <div class="breadcrumb">
@@ -131,32 +122,43 @@
             <span class="breadcrumb-current">Danh sách khách hàng</span>
         </div>
 
-        <div class="filter-section" style="margin-top: 15px; margin-bottom: 15px;">
-            <form action="${contextPath}/admin/customers" method="get">
-<%--                <label for="statusSelect" style="font-weight: bold; margin-right: 10px;">Lọc theo trạng thái:</label>--%>
+        <c:if test="${not empty sessionScope.successMessage}">
+            <div class="alert alert-success">
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    ${sessionScope.successMessage}
+            </div>
+            <c:remove var="successMessage" scope="session"/>
+        </c:if>
+        <c:if test="${not empty sessionScope.errorMessage}">
+            <div class="alert alert-danger">
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    ${sessionScope.errorMessage}
+            </div>
+            <c:remove var="errorMessage" scope="session"/>
+        </c:if>
 
-                <select name="status" id="statusSelect" onchange="this.form.submit()"
-                        style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; min-width: 150px;">
+        <div class="filter-section">
+            <form action="${contextPath}/admin/customers" method="get" class="filter-form">
 
+                <select name="status" id="statusSelect" onchange="this.form.submit()" class="filter-select">
                     <option value="all" ${param.status == 'all' || empty param.status ? 'selected' : ''}>
-                        -- Tất cả --
+                        Tất cả trạng thái
                     </option>
-
-                    <option value="Active" ${param.status == 'Active' ? 'selected' : ''}>
+                    <option value="active" ${param.status == 'active' ? 'selected' : ''}>
                         Đang hoạt động
                     </option>
-
-                    <option value="Locked" ${param.status == 'Locked' ? 'selected' : ''}>
+                    <option value="locked" ${param.status == 'locked' ? 'selected' : ''}>
                         Đã khóa
                     </option>
                 </select>
 
-                <%-- Giữ lại từ khóa tìm kiếm nếu đang tìm --%>
-                <input type="hidden" name="keyword" value="${param.keyword}">
+                <div class="search-wrapper">
+                    <input type="text" name="keyword" class="search-input-customer" placeholder="Tìm kiếm khách hàng..."
+                           value="${keyword}">
+                    <button type="submit" class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
             </form>
         </div>
-
-
 
         <div class="customer-list">
             <table class="customer-table">
@@ -171,20 +173,19 @@
                 </tr>
                 </thead>
                 <tbody id="customerTableBody">
-                <%-- Kiểm tra nếu danh sách rỗng thì hiện thông báo --%>
                 <c:if test="${empty customerList}">
                     <tr>
                         <td colspan="6" style="text-align: center;">Không có dữ liệu khách hàng nào trong Database.</td>
                     </tr>
                 </c:if>
 
-                <%-- Vòng lặp duyệt danh sách customerList được gửi từ Controller --%>
                 <c:forEach var="u" items="${customerList}" varStatus="status">
                     <tr>
                         <td style="text-align: center;">${(currentPage - 1) * 5 + status.index + 1}</td>
 
                         <td>
-                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${u.id}" class="customer-link">
+                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${u.id}"
+                               class="customer-link">
                                 <div class="reviewer-avatar">
                                         ${u.name != null ? u.name.substring(0, 1).toUpperCase() : "?"}
                                 </div>
@@ -199,35 +200,28 @@
                         <td>
                             <fmt:formatDate value="${u.created_at}" pattern="dd/MM/yyyy"/>
                         </td>
-
-<%--                        <td>--%>
-<%--                            <div class="action-buttons">--%>
-<%--                                <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${u.id}" class="action-btn edit" title="Sửa">--%>
-<%--                                    <i class="fa-solid fa-pen"></i>--%>
-<%--                                </a>--%>
-<%--                                <a href="#" class="action-btn delete" title="Khóa" onclick="return confirm('Bạn có chắc muốn khóa user này?')">--%>
-<%--                                    <i class="fa-solid fa-lock"></i>--%>
-<%--                                </a>--%>
-<%--                            </div>--%>
-<%--                        </td>--%>
                         <td>
                             <div class="action-buttons">
-                                <a href="${contextPath}/admin/customer-detail?id=${u.id}" class="action-btn edit" title="Sửa">
-                                    <i class="fa-solid fa-pen"></i>
+                                <a href="${contextPath}/admin/customer-detail?id=${u.id}" class="action-btn edit"
+                                   title="Xem">
+                                    <i class="fa-solid fa-eye"></i>
                                 </a>
 
-                                <a href="${contextPath}/admin/lock-customer?id=${u.id}"
+                                <a href="#"
                                    class="action-btn delete"
                                    style="background-color: ${u.status == 'Locked' ? '#fee2e2' : '#e0f2fe'};
                                            color: ${u.status == 'Locked' ? '#b91c1c' : '#0284c7'};"
                                    title="${u.status == 'Locked' ? 'Mở khóa' : 'Khóa tài khoản'}"
-                                   onclick="return confirm('Bạn có chắc muốn ${u.status == 'Locked' ? 'mở khóa' : 'khóa'} tài khoản này?')">
+
+                                   onclick="openLockModal(event, '${contextPath}/admin/lock-customer?id=${u.id}', '${u.status}')">
 
                                     <c:choose>
                                         <c:when test="${u.status == 'Locked'}">
-                                            <i class="fa-solid fa-lock"></i> </c:when>
+                                            <i class="fa-solid fa-lock"></i>
+                                        </c:when>
                                         <c:otherwise>
-                                            <i class="fa-solid fa-lock-open"></i> </c:otherwise>
+                                            <i class="fa-solid fa-lock-open"></i>
+                                        </c:otherwise>
                                     </c:choose>
                                 </a>
                             </div>
@@ -240,14 +234,13 @@
             <c:if test="${totalPages > 1}">
                 <div class="pagination-container">
 
-                        <%-- Nút Previous --%>
                     <c:if test="${currentPage > 1}">
-                        <a href="${contextPath}/admin/customers?page=${currentPage - 1}&keyword=${keyword}&status=${param.status}" class="pagination-btn">
+                        <a href="${contextPath}/admin/customers?page=${currentPage - 1}&keyword=${keyword}&status=${param.status}"
+                           class="pagination-btn">
                             <i class="fa-solid fa-chevron-left"></i>
                         </a>
                     </c:if>
 
-                        <%-- Các số trang --%>
                     <c:forEach var="i" begin="1" end="${totalPages}">
                         <a href="${contextPath}/admin/customers?page=${i}&keyword=${keyword}&status=${param.status}"
                            class="page-number ${currentPage == i ? 'active' : ''}">
@@ -255,17 +248,127 @@
                         </a>
                     </c:forEach>
 
-                        <%-- Nút Next --%>
                     <c:if test="${currentPage < totalPages}">
-                        <a href="${contextPath}/admin/customers?page=${currentPage + 1}&keyword=${keyword}&status=${param.status}" class="pagination-btn">
+                        <a href="${contextPath}/admin/customers?page=${currentPage + 1}&keyword=${keyword}&status=${param.status}"
+                           class="pagination-btn">
                             <i class="fa-solid fa-chevron-right"></i>
                         </a>
                     </c:if>
 
-                </div> </c:if>
+                </div>
+            </c:if>
         </div>
     </div>
 </main>
+<div id="lockConfirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="lockModalTitle">Xác nhận</h3>
+        <p id="lockModalMessage">Nội dung xác nhận...</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel" id="cancelLockBtn">Hủy</a>
+            <a href="#" class="modal-btn modal-confirm" id="confirmLockBtn">Đồng ý</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openLockModal(event, actionUrl, currentStatus) {
+        event.preventDefault();
+
+        const lockModal = document.getElementById('lockConfirmModal');
+        const confirmLockBtn = document.getElementById('confirmLockBtn');
+        const lockModalTitle = document.getElementById('lockModalTitle');
+        const lockModalMessage = document.getElementById('lockModalMessage');
+
+        confirmLockBtn.href = actionUrl;
+
+        if (currentStatus === 'Locked') {
+            lockModalTitle.innerText = "Xác nhận mở khóa";
+            lockModalMessage.innerText = "Bạn có chắc chắn muốn mở khóa tài khoản này? Họ sẽ có thể đăng nhập lại.";
+            confirmLockBtn.style.backgroundColor = "#0284c7";
+            confirmLockBtn.innerText = "Mở khóa";
+        } else {
+            lockModalTitle.innerText = "Xác nhận khóa tài khoản";
+            lockModalMessage.innerText = "Bạn có chắc chắn muốn khóa tài khoản này? Họ sẽ không thể đăng nhập hệ thống.";
+            confirmLockBtn.style.backgroundColor = "#ef4444";
+            confirmLockBtn.innerText = "Khóa ngay";
+        }
+
+        lockModal.classList.add('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const notiBtn = document.getElementById("notificationBtn");
+        const notiDropdown = document.getElementById("notificationDropdown");
+
+        if (notiBtn && notiDropdown) {
+            notiBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                notiDropdown.classList.toggle("show");
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!notiDropdown.contains(e.target) && !notiBtn.contains(e.target)) {
+                    notiDropdown.classList.remove("show");
+                }
+            });
+        }
+
+        const lockModal = document.getElementById('lockConfirmModal');
+        const cancelLockBtn = document.getElementById('cancelLockBtn');
+
+        if (cancelLockBtn) {
+            cancelLockBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                lockModal.classList.remove('show');
+            });
+        }
+
+        if (lockModal) {
+            lockModal.addEventListener('click', function (e) {
+                if (e.target === lockModal) {
+                    lockModal.classList.remove('show');
+                }
+            });
+        }
+    });
+</script>
+<div id="logoutConfirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận đăng xuất</h3>
+        <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel" id="cancelLogout">Hủy</a>
+            <a href="${contextPath}/logout" class="modal-btn modal-confirm">Đăng xuất</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLink = document.getElementById('logoutLink');
+        const logoutConfirmModal = document.getElementById('logoutConfirmModal');
+        const cancelLogoutBtn = document.getElementById('cancelLogout');
+
+        if (logoutLink && logoutConfirmModal && cancelLogoutBtn) {
+            logoutLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.add('show');
+            });
+
+            cancelLogoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.remove('show');
+            });
+
+            logoutConfirmModal.addEventListener('click', function(e) {
+                if (e.target === logoutConfirmModal) {
+                    logoutConfirmModal.classList.remove('show');
+                }
+            });
+        }
+    });
+</script>
 </body>
-<script src="${pageContext.request.contextPath}/admin/adminjs/adminNotification.js"></script>
 </html>

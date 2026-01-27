@@ -14,7 +14,6 @@ public class AttributePage {
         this.totalAttributes = totalAttributes;
     }
 
-    // Getters
     public List<Attribute> getAttributes() {
         return attributes;
     }
@@ -23,7 +22,6 @@ public class AttributePage {
         return totalAttributes;
     }
 
-    // Setters
     public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
     }

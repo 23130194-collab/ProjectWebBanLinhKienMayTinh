@@ -16,11 +16,9 @@
             <div class="login-form">
                 <h2>Thay đổi mật khẩu</h2>
                 <p>Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác.</p>
-
                 <c:if test="${not empty requestScope.general_error}">
                     <div class="error-message-general">${requestScope.general_error}</div>
                 </c:if>
-
                 <form action="${pageContext.request.contextPath}/change-password" method="post">
                     <div class="input-group ${not empty requestScope.oldPassword_error ? 'has-error' : ''}">
                         <input type="password" name="oldPassword" placeholder="Mật khẩu cũ" class="${not empty requestScope.oldPassword_error ? 'input-error' : ''}" required>
@@ -43,7 +41,7 @@
                     <button type="submit" class="login-btn">Lưu thay đổi</button>
                 </form>
                 <div style="text-align: center; margin-top: 20px;">
-                    <a href="${pageContext.request.contextPath}/thongTinTaiKhoan.jsp">Quay lại</a>
+                    <a href="${pageContext.request.contextPath}/account">Quay lại</a>
                 </div>
             </div>
         </div>

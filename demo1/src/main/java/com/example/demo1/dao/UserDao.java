@@ -143,32 +143,43 @@ public class UserDao {
         );
     }
 
-    public int countUsersByStatus(String status) {
-        String sql = "SELECT COUNT(*) FROM users";
-        boolean hasFilter = status != null && !status.equals("all");
+    public int countCustomersByFilter(String status, String keyword) {
+        StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM users WHERE role = 0");
 
-        if (hasFilter) {
-            sql += " WHERE status = :status";
+        boolean hasStatus = status != null && !status.equals("all");
+        boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
+
+        if (hasStatus) {
+            sql.append(" AND status = :status");
+        }
+        if (hasKeyword) {
+            sql.append(" AND (name LIKE :keyword OR email LIKE :keyword)");
         }
 
-        String finalSql = sql;
         return jdbi.withHandle(h -> {
-            var q = h.createQuery(finalSql);
-            if (hasFilter) q.bind("status", status);
-            return q.mapTo(Integer.class).one();
+            var query = h.createQuery(sql.toString());
+            if (hasStatus) query.bind("status", status);
+            if (hasKeyword) query.bind("keyword", "%" + keyword + "%");
+            return query.mapTo(Integer.class).one();
         });
     }
 
-    public List<User> getUsersPaging(int limit, int offset, String status) {
+    public List<User> getCustomersPaging(int limit, int offset, String status, String keyword) {
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT u.*, COUNT(o.id) as orderCount ");
         sql.append("FROM users u ");
         sql.append("LEFT JOIN orders o ON u.id = o.user_id ");
+        sql.append("WHERE u.role = 0 ");
 
-        boolean hasFilter = status != null && !status.equals("all");
-        if (hasFilter) {
-            sql.append("WHERE u.status = :status ");
+        boolean hasStatus = status != null && !status.equals("all");
+        boolean hasKeyword = keyword != null && !keyword.trim().isEmpty();
+
+        if (hasStatus) {
+            sql.append("AND u.status = :status ");
+        }
+        if (hasKeyword) {
+            sql.append("AND (u.name LIKE :keyword OR u.email LIKE :keyword) ");
         }
 
         sql.append("GROUP BY u.id ");
@@ -179,11 +190,23 @@ public class UserDao {
                     .bind("limit", limit)
                     .bind("offset", offset);
 
-            if (hasFilter) {
+            if (hasStatus) {
                 query.bind("status", status);
+            }
+
+            if (hasKeyword) {
+                query.bind("keyword", "%" + keyword + "%");
             }
 
             return query.mapToBean(User.class).list();
         });
+    }
+
+    public int getTotalCustomersCount() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM users WHERE role = 0")
+                        .mapTo(Integer.class)
+                        .one()
+        );
     }
 }

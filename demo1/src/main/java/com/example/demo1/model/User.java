@@ -1,10 +1,15 @@
 package com.example.demo1.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
 public class User {
-    private int id;
+    @SerializedName("id")
+    private String socialId;
+
+    private int userId;
     private int role;
     private String email;
     private String password;
@@ -24,13 +29,28 @@ public class User {
     public User() {
     }
 
-    // Getters và Setters
+    public String getSocialId() {
+        return socialId;
+    }
+
+    public void setSocialId(String socialId) {
+        this.socialId = socialId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public int getId() {
-        return id;
+        return getUserId();
     }
 
     public void setId(int id) {
-        this.id = id;
+        setUserId(id);
     }
 
     public int getRole() {
