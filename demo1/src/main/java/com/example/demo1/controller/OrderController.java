@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "OrderController", urlPatterns = {"/user", "/my-orders", "/order-detail", "/account"})
+@WebServlet(name = "OrderController", urlPatterns = {"/my-orders", "/order-detail", "/account"})
 public class OrderController extends HttpServlet {
 
     @Override
@@ -145,4 +145,5 @@ public class OrderController extends HttpServlet {
         }
         response.sendRedirect(request.getContextPath() + "/my-orders");
     }
+
 }
