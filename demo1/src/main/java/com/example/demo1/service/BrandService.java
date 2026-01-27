@@ -35,12 +35,10 @@ public class BrandService {
 
     public void saveBrand(Brand brand) {
         jdbi.useTransaction(handle -> {
-            // Dọn đường cho vị trí mới
             handle.createUpdate("UPDATE brands SET display_order = display_order + 1 WHERE display_order >= :displayOrder")
                     .bind("displayOrder", brand.getDisplayOrder())
                     .execute();
 
-            // Thêm mới hoặc cập nhật
             if (brand.getId() == 0) {
                 handle.createUpdate("INSERT INTO brands (name, logo, display_order, status) VALUES (:name, :logo, :displayOrder, :status)")
                         .bindBean(brand)
@@ -54,7 +52,6 @@ public class BrandService {
     }
 
     public boolean deleteBrand(int id) {
-        // Kiểm tra xem thương hiệu có đang được sử dụng bởi sản phẩm nào không
         int productCount = productDao.countProductsByBrandId(id);
         if (productCount > 0) {
             return false;
