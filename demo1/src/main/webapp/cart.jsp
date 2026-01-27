@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <%@ page import="java.util.Map" %>
 <%@ page import="com.example.demo1.model.CartItem" %>
@@ -16,27 +18,34 @@
     <title>Giỏ hàng | TechNova</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
 </head>
 
 <body>
 <header class="header">
     <div class="header-container">
-        <a href="home.html" class="logo">
-            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="logo">
+        <a href="${pageContext.request.contextPath}/home" class="logo">
+            <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
             <span class="brand-name">TechNova</span>
         </a>
+
         <nav class="nav-links">
-            <a href="home.html" class="active">Trang chủ</a>
-            <a href="gioiThieu.html">Giới thiệu</a>
+            <a href="${pageContext.request.contextPath}/home" class="active">Trang chủ</a>
+            <a href="${pageContext.request.contextPath}/gioiThieu.jsp">Giới thiệu</a>
             <a href="#" id="category-toggle">Danh mục</a>
-            <a href="lienHe.html">Liên hệ</a>
+            <a href="${pageContext.request.contextPath}/contact">Liên hệ</a>
         </nav>
+
         <div class="search-box">
-            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
-            <button><i class="fas fa-search"></i></button>
+            <form action="search" method="get" id="searchForm" style="display: flex; width: 100%;">
+                <input type="text" name="keyword" id="searchInput"
+                       placeholder="Bạn muốn mua gì hôm nay?" autocomplete="off">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div id="suggestion-box" class="suggestion-box" style="display:none;"></div>
         </div>
+
         <div class="header-actions">
 
             <%
@@ -56,39 +65,57 @@
                 <% } %>
             </a>
 
-            <a href="user.html" class="icon-btn" title="Tài khoản của bạn">
-                <i class="fas fa-user"></i>
-            </a>
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="${pageContext.request.contextPath}/user" class="icon-btn" title="Tài khoản của bạn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/login" class="icon-btn" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </c:otherwise>
+            </c:choose>
         </div>
 
         <!-- Danh mục -->
         <div class="category-box" id="categoryBox">
-            <a href="cpu.html" class="category-item"><i class="fa-solid fa-microchip"></i> CPU <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="mainboard.html" class="category-item"><i class="fa-solid fa-diagram-project"></i> Mainboard <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="ram.html" class="category-item"><i class="fa-solid fa-memory"></i> RAM <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="oCung.html" class="category-item"><i class="fa-solid fa-hard-drive"></i> Ổ cứng <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="cardManHinh.html" class="category-item"><i class="fa-solid fa-gauge-high"></i> Card màn hình <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="psu.html" class="category-item"><i class="fa-solid fa-plug"></i> Nguồn máy tính <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="tanNhiet.html" class="category-item"><i class="fa-solid fa-fan"></i> Tản nhiệt <i
-                    class="fa-solid fa-chevron-right"></i></a>
-            <a href="case.html" class="category-item"><i class="fa-solid fa-computer"></i> Case máy tính <i
-                    class="fa-solid fa-chevron-right"></i></a>
+            <c:forEach items="${applicationScope.categoryList}" var="cat">
+                <a href="list-product?id=${cat.id}" class="category-item">
+                    <c:set var="imageSrc" value="${cat.image}"/>
+                    <c:choose>
+                        <c:when test="${fn:startsWith(imageSrc, 'http')}">
+                            <img src="${imageSrc}" class="category-icon" alt="${cat.name}">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${pageContext.request.contextPath}/${imageSrc}" class="category-icon" alt="${cat.name}">
+                        </c:otherwise>
+                    </c:choose>
+                        ${cat.name}
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </c:forEach>
         </div>
     </div>
 </header>
-<!-- Overlay nền mờ -->
 <div class="overlay" id="overlay"></div>
 
 <div class="app-container">
     <div class="header-cart">
         <span></span>
     </div>
+
+    <c:if test="${not empty sessionScope.cartError}">
+        <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 15px; margin: 10px 15px; border: 1px solid #f5c6cb; border-radius: 5px; position: relative;">
+                ${sessionScope.cartError}
+            <span class="close-btn" onclick="this.parentElement.style.display='none';"
+                  style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); cursor: pointer; font-weight: bold; font-size: 20px;">
+                &times;
+            </span>
+        </div>
+        <c:remove var="cartError" scope="session"/>
+    </c:if>
 
     <div class="cart-content">
 
