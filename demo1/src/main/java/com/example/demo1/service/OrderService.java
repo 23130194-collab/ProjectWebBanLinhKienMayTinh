@@ -7,6 +7,7 @@ import com.example.demo1.model.OrderItem;
 import com.example.demo1.model.OrderPage;
 
 import java.util.List;
+import java.util.Optional;
 
 public class OrderService {
     private final OrderDao orderDao = new OrderDao();
@@ -32,19 +33,17 @@ public class OrderService {
     public boolean updateOrderStatus(int orderId, String status) {
         boolean success = orderDao.updateOrderStatus(orderId, status);
         if (success) {
-            // Sau khi cập nhật trạng thái, TỰ ĐỘNG TÍNH TOÁN VÀ ĐỒNG BỘ LẠI TỔNG TIỀN
             recalculateAndSyncOrderTotals(orderId);
         }
         return success;
     }
 
-    // PHƯƠNG THỨC MỚI ĐỂ TÍNH TOÁN VÀ ĐỒNG BỘ
     public void recalculateAndSyncOrderTotals(int orderId) {
         List<OrderItem> items = orderDao.getOrderItemsByOrderId(orderId);
         Order order = orderDao.getOrderById(orderId);
 
         if (order == null || items == null) {
-            return; // Không tìm thấy đơn hàng hoặc sản phẩm
+            return;
         }
 
         double subprice = 0;
@@ -57,11 +56,27 @@ public class OrderService {
 
         double totalAmount = subprice - discountAmount + order.getShippingFee();
 
-        // Gọi DAO để cập nhật vào database
         orderDao.updateOrderTotals(orderId, subprice, discountAmount, totalAmount);
     }
 
     public boolean deleteOrder(int orderId) {
         return orderDao.deleteOrder(orderId);
+    }
+
+    public boolean isOrderCodeExists(String orderCode) {
+        return orderDao.isOrderCodeExists(orderCode);
+    }
+
+    public String generateNextOrderCode() {
+        Optional<String> latestOrderCodeOpt = orderDao.findLatestOrderCode();
+        if (latestOrderCodeOpt.isEmpty()) {
+            return "#11110";
+        }
+
+        String latestOrderCode = latestOrderCodeOpt.get();
+        String numberPart = latestOrderCode.substring(1);
+        int nextNumber = Integer.parseInt(numberPart) + 1;
+        
+        return "#" + String.format("%05d", nextNumber);
     }
 }

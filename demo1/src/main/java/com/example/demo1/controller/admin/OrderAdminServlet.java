@@ -1,7 +1,7 @@
 package com.example.demo1.controller.admin;
 
-import com.example.demo1.model.OrderDetail;
-import com.example.demo1.model.OrderPage;
+import com.example.demo1.dao.ProductDao;
+import com.example.demo1.model.*;
 import com.example.demo1.service.OrderService;
 
 import jakarta.servlet.ServletException;
@@ -10,6 +10,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import com.example.demo1.dao.NotificationDao;
+import com.example.demo1.dao.OrderDao;
 
 @WebServlet(name = "OrderAdminServlet", value = "/admin/orders")
 public class OrderAdminServlet extends HttpServlet {
@@ -45,7 +49,6 @@ public class OrderAdminServlet extends HttpServlet {
         if ("updateStatus".equals(action)) {
             updateOrderStatus(request, response);
         } else {
-            // Mặc định là tìm kiếm
             listOrders(request, response);
         }
     }
@@ -87,12 +90,38 @@ public class OrderAdminServlet extends HttpServlet {
         try {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             String status = request.getParameter("orderStatus");
+
             if (orderService.updateOrderStatus(orderId, status)) {
+                OrderDao orderDao = new OrderDao();
+                NotificationDao notiDao = new NotificationDao();
+                ProductDao productDao = new ProductDao();
+
+                Order order = orderDao.getOrderById(orderId);
+
+                if (order != null) {
+                    if ("Đã giao".equals(status)) {
+                        List<OrderItem> items = orderDao.getOrderItemsByOrderId(orderId);
+                        if (items != null) {
+                            for (OrderItem item : items) {
+                                productDao.incrementSoldQuantity(item.getProductId(), item.getQuantity());
+                            }
+                        }
+                    }
+
+                    try {
+                        String content = "Đơn hàng #" + order.getOrderCode() + " đã cập nhật trạng thái: " + status;
+                        String link = "user";
+                        Notification noti = new Notification(order.getUserId(), content, link);
+                        notiDao.insert(noti);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 request.getSession().setAttribute("successMessage", "Cập nhật trạng thái thành công!");
             } else {
                 request.getSession().setAttribute("errorMessage", "Cập nhật trạng thái thất bại.");
             }
-            // Chuyển hướng lại trang chi tiết để xem kết quả
             response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?action=view&id=" + orderId);
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("errorMessage", "ID đơn hàng không hợp lệ.");

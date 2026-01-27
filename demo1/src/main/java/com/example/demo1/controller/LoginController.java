@@ -1,12 +1,15 @@
 package com.example.demo1.controller;
 
+import com.example.demo1.model.User;
 import com.example.demo1.service.AuthService;
+import com.example.demo1.util.DataValidator;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import com.example.demo1.model.User;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
@@ -20,27 +23,47 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        Map<String, String> errors = new HashMap<>();
+        
+
+        request.setAttribute("email_value", email);
+
+
+        if (!DataValidator.isEmailValid(email)) {
+            errors.put("email", "Định dạng email không hợp lệ.");
+        }
+        if (!DataValidator.isPasswordValid(password)) {
+            errors.put("password", "Mật khẩu không đúng định dạng.");
+        }
+
+        if (!errors.isEmpty()) {
+            request.setAttribute("errors", errors);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
+
         AuthService as = new AuthService();
-        User u = as.checkLogin(email, password);
+        User user = as.checkLogin(email, password);
 
-        if (u != null) {
-            // --- BẮT ĐẦU PHẦN THÊM MỚI: KIỂM TRA KHÓA ---
+        if (user != null) {
 
-            // Giả sử quy ước trong Database: status = "Locked" là bị khóa
-            // (Nếu trong DB bạn lưu kiểu int 0/1 thì sửa code check tương ứng)
-            if ("Locked".equalsIgnoreCase(u.getStatus())) {
-                // 1. Báo lỗi ra trang login
-                request.setAttribute("error", "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-
-                // 2. QUAN TRỌNG: return ngay để không tạo Session bên dưới
+            if ("unverified".equalsIgnoreCase(user.getStatus())) {
+                request.getSession().setAttribute("email_for_verification", email);
+                response.sendRedirect(request.getContextPath() + "/verify.jsp");
                 return;
             }
+            
             HttpSession session = request.getSession();
-            session.setAttribute("auth", u);
-            response.sendRedirect("home.jsp");
+            session.setAttribute("user", user);
+            response.sendRedirect("home");
         } else {
-            request.setAttribute("error", "Email hoặc Password không hợp lệ!");
+            User existingUser = as.getUserByEmail(email);
+            if (existingUser != null && "Locked".equalsIgnoreCase(existingUser.getStatus())) {
+                errors.put("general", "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin!");
+            } else {
+                errors.put("general", "Email hoặc mật khẩu không hợp lệ!");
+            }
+            request.setAttribute("errors", errors);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

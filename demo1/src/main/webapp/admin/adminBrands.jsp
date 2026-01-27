@@ -18,7 +18,6 @@
 
 <body>
 
-<!-- Sidebar -->
 <aside class="sidebar">
     <div class="logo">
         <a href="${contextPath}/admin/dashboard">
@@ -55,15 +54,7 @@
         </button>
         <div class="notification-dropdown" id="notificationDropdown">
             <div class="notification-header"><h3>Thông báo</h3></div>
-            <div class="notification-list">
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;"><i class="fa-solid fa-box-open"></i></div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">20 giây trước</span>
-                    </div>
-                </div>
-            </div>
+            <div class="notification-list"></div>
             <div class="notification-footer"><a href="${contextPath}/admin/notifications" class="see-all-link">Xem tất cả thông báo</a></div>
         </div>
         <div class="user-profile">
@@ -72,7 +63,6 @@
     </div>
 </header>
 
-<!--Main content-->
 <main class="main-content">
     <div class="content-area">
         <div class="page-header">
@@ -86,7 +76,6 @@
             </div>
         </div>
 
-        <!-- Hiển thị thông báo -->
         <c:if test="${not empty sessionScope.successMessage}">
             <div class="alert alert-success">${sessionScope.successMessage}</div>
             <c:remove var="successMessage" scope="session"/>
@@ -130,17 +119,16 @@
                 <div class="image-input-group">
                     <div class="url-input-group">
                         <input type="text" id="image-url" name="logo" class="image-input-box" placeholder="https://example.com/image.png" value="${brandToEdit.logo}">
-                        <button type="submit" class="add-brand-submit">
+                        <a href="#confirm-save-modal" class="add-brand-submit">
                             <c:choose>
                                 <c:when test="${not empty brandToEdit}">Cập nhật</c:when>
                                 <c:otherwise>Thêm thương hiệu</c:otherwise>
                             </c:choose>
-                        </button>
+                        </a>
                         <c:if test="${not empty brandToEdit}">
                             <a href="${contextPath}/admin/brands" class="cancel-btn">Hủy</a>
                         </c:if>
                     </div>
-
                 </div>
             </div>
             <c:set var="previewLogoUrl" value="${brandToEdit.logo}" />
@@ -155,20 +143,17 @@
                     <c:set var="finalPreviewUrl" value="#" />
                 </c:otherwise>
             </c:choose>
-            <img id="image-preview"
-                 src="${finalPreviewUrl}"
-                 alt="Image Preview"
-                 style="max-width: 200px; max-height: 200px; margin-top: 10px; display: ${not empty brandToEdit.logo ? 'block' : 'none'};"/>
-            <!-- Tìm kiếm -->
-            <div class="form-search-row">
-                <div class="search-wrapper">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="searchInput" class="search-input-brand" placeholder="Tìm kiếm thương hiệu" value="${keyword}">
-                </div>
+            <img id="image-preview" src="${finalPreviewUrl}" alt="Image Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px; display: ${not empty brandToEdit.logo ? 'block' : 'none'};"/>
+        </form>
+
+        <!-- Form tìm kiếm -->
+        <form action="${contextPath}/admin/brands" method="get" class="form-search-row">
+            <div class="search-wrapper">
+                <input type="text" name="keyword" class="search-input-brand" placeholder="Tìm kiếm thương hiệu..." value="${keyword}">
+                <button type="submit" class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </form>
 
-        <!-- Danh sách -->
         <div class="brand-table-container">
             <table class="brand-table">
                 <thead>
@@ -199,16 +184,14 @@
                         <td><c:out value="${brand.name}" /></td>
                         <td><c:out value="${brand.displayOrder}" /></td>
                         <td>
-                                <span class="status ${brand.status == 'Hoạt động' ? 'status-active' : 'status-hidden'}">
-                                    <c:out value="${brand.status}" />
-                                </span>
+                            <span class="status ${brand.status == 'Hoạt động' ? 'status-active' : 'status-hidden'}">
+                                <c:out value="${brand.status}" />
+                            </span>
                         </td>
                         <td>
                             <div class="action-buttons">
                                 <a href="${contextPath}/admin/brands?action=edit&id=${brand.id}" class="action-btn edit"><i class="fa-solid fa-pen"></i></a>
-                                <a href="${contextPath}/admin/brands?action=delete&id=${brand.id}" class="action-btn delete" onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này không?')">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
+                                <a href="#confirm-delete-modal-${brand.id}" class="action-btn delete"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -217,7 +200,6 @@
             </table>
         </div>
 
-        <!-- Phân trang -->
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
                 <c:if test="${currentPage > 1}">
@@ -233,15 +215,31 @@
         </c:if>
     </div>
 </main>
+
+<!-- Modals -->
+<c:forEach var="brand" items="${brands}">
+    <div id="confirm-delete-modal-${brand.id}" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Xác nhận xóa</h3>
+            <p>Bạn có chắc chắn muốn xóa thương hiệu "${brand.name}" không?</p>
+            <div class="modal-buttons">
+                <a href="#" class="modal-btn modal-cancel">Hủy</a>
+                <a href="${contextPath}/admin/brands?action=delete&id=${brand.id}" class="modal-btn modal-confirm">Xóa</a>
+            </div>
+        </div>
+    </div>
+</c:forEach>
+
+<div id="confirm-save-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận lưu</h3>
+        <p>Bạn có chắc chắn muốn lưu các thay đổi này không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel">Hủy</a>
+            <button type="submit" form="brandForm" class="modal-btn modal-confirm">Lưu</button>
+        </div>
+    </div>
+</div>
+
 </body>
-<script src="${contextPath}/admin/adminjs/adminNotification.js"></script>
-<script>
-    document.getElementById('searchInput').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            var keyword = this.value;
-            window.location.href = '${contextPath}/admin/brands?keyword=' + encodeURIComponent(keyword);
-        }
-    });
-</script>
 </html>

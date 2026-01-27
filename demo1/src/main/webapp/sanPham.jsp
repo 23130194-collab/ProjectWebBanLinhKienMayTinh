@@ -146,8 +146,9 @@
                 </div>
 
                 <div class="buy-box">
-                    <a href="cart.jsp" class="btn-buy" role="button">MUA NGAY</a>
-                    <a href="cart.jsp" class="btn-cart" role="button">
+                    <a href="AddCart?action=buyNow&id=${p.id}" class="btn-buy" role="button">MUA NGAY</a>
+
+                    <a href="AddCart?action=add&id=${p.id}" class="btn-cart" role="button">
                         <i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng
                     </a>
                 </div>
