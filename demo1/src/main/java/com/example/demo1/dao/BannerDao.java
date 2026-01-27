@@ -46,7 +46,7 @@ public class BannerDao {
 
     public List<Banner> getBannersByPosition(String position) {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT * FROM banners WHERE position = :position ORDER BY display_order ASC")
+                handle.createQuery("SELECT * FROM banners WHERE position = :position AND NOW() BETWEEN start_time AND end_time ORDER BY display_order ASC")
                         .bind("position", position)
                         .mapToBean(Banner.class)
                         .list()
