@@ -183,4 +183,11 @@ public class ReviewDao {
             return query.mapTo(Integer.class).one();
         });
     }
+
+    public void deleteByProductId(int productId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("DELETE FROM reviews WHERE product_id = :productId")
+                        .bind("productId", productId)
+                        .execute());
+    }
 }
