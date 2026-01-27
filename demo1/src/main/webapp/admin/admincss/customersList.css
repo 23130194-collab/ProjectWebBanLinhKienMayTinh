@@ -1,10 +1,7 @@
-/* ======================
-   CUSTOMER TABLE STYLES
-   ====================== */
 .customer-table th:first-child,
 .customer-table td:first-child {
     text-align: center;
-    width: 60px; /* Điều chỉnh độ rộng tùy ý */
+    width: 60px;
 }
 .customer-list {
     margin-top: 30px;
@@ -58,7 +55,6 @@
     color: #5b86e5;
 }
 
-/* Action Buttons */
 .action-btn {
     display: inline-flex;
     align-items: center;
@@ -94,7 +90,6 @@
     text-decoration: none;
 }
 
-/* Responsive Table */
 @media (max-width: 768px) {
     .customer-table th,
     .customer-table td {
@@ -126,7 +121,6 @@
     flex-shrink: 0;
 }
 
-/* ====== PAGE HEADER ====== */
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -151,9 +145,6 @@
 .add-customer-btn:hover {
     background-color: #6b82f6;
 }
-
-
-/* PHÂN TRANG (PAGINATION) */
 
 .ellipsis {
     color: #999;
@@ -184,4 +175,152 @@
 
 .pagination-container a, .pagination-container a:hover {
     text-decoration: none;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 10000000;
+}
+
+.modal-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-confirm {
+    background-color: #ef4444;
+    color: white;
+}
+
+.modal-cancel {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.filter-section {
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filter-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    min-width: 180px;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    color: #1e293b;
+}
+
+.filter-select:focus {
+    border-color: #5b86e5;
+}
+
+.form-search-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+.search-wrapper {
+    position: relative;
+    width: 320px;
+}
+.search-input-customer {
+    width: 100%;
+    height: 40px;
+    padding: 10px 45px 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.search-input-customer:focus {
+    border-color: #5b86e5;
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.15);
+}
+
+.search-icon-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.2s, color 0.2s;
+    background: none;
+    border: none;
+}
+.search-icon-btn:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+@media (max-width: 600px) {
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        max-width: 100%;
+    }
 }

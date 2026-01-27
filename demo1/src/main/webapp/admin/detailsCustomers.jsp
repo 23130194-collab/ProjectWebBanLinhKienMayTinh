@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="vi_VN" />
+<fmt:setLocale value="vi_VN"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -15,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/adminNotification.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/admincss/headerAndSidebar.css">
-
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminModal.css">
 </head>
 
 <body>
@@ -30,85 +31,76 @@
         </a>
     </div>
     <ul class="nav-menu">
-        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/customers active" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-images"></i></span>Banner</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-star"></i></span>Đánh giá</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link active"><span class="nav-icon"><i
+                class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-images"></i></span>Banner</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-star"></i></span>Đánh giá</a></li>
 
     </ul>
-    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
+    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link" id="logoutLink"><span
+            class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
 </aside>
 
 <!-- Header -->
 <header class="header">
-    <div class="search-box">
-        <span class="search-icon nav-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input type="text" class="search-input" placeholder="Tìm kiếm">
-    </div>
-
     <div class="header-actions">
         <button class="notification-btn" id="notificationBtn">
             <i class="fa-solid fa-bell"></i>
-            <span class="notification-badge">3</span>
+            <c:if test="${adminUnreadCount > 0}">
+                <span class="notification-badge">${adminUnreadCount}</span>
+            </c:if>
         </button>
-
-        <!-- Thông báo -->
         <div class="notification-dropdown" id="notificationDropdown">
             <div class="notification-header">
                 <h3>Thông báo</h3>
             </div>
 
             <div class="notification-list">
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">20 giây trước</span>
-                    </div>
-                </div>
+                <c:if test="${empty adminNotiList}">
+                    <p style="padding: 10px; text-align: center;">Không có thông báo mới</p>
+                </c:if>
 
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm tài khoản khách hàng vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">20 phút trước</span>
-                    </div>
-                </div>
+                <c:forEach var="noti" items="${adminNotiList}">
+                    <div class="notification-item ${noti.isRead == 0 ? 'unread' : ''}"
+                         onclick="window.location.href='${contextPath}/admin/mark-read?id=${noti.id}&target=' + encodeURIComponent('${noti.link}')">
 
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-file-invoice"></i>
+                        <div class="notification-icon">
+                            <c:choose>
+                                <c:when test="${noti.content.toLowerCase().contains('hủy')}">
+                                    <i class="fa-solid fa-circle-xmark" style="color: #4c4747;;"></i>
+                                </c:when>
+                                <c:when test="${noti.content.toLowerCase().contains('mới')}">
+                                    <i class="fa-solid fa-cart-shopping" style="color: #4c4747;"></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="fa-solid fa-bell" style="color: #4c4747;;"></i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">${noti.content}</p>
+                            <span class="notification-time">${noti.createdAt}</span>
+                        </div>
                     </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã cập nhật hóa đơn #1988001 vào hệ thống <strong>thành
-                            công!</strong></p>
-                        <span class="notification-time">5 giờ trước</span>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">12 giờ trước</span>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
 
             <div class="notification-footer">
-                <a href="adminAllNotification.jsp" class="see-all-link">Xem tất cả thông báo</a>
+                <a href="adminAllNotification.jsp" class="see-all-link">Đóng</a>
             </div>
         </div>
         <div class="user-profile">
@@ -116,6 +108,7 @@
                  alt="User Profile">
         </div>
     </div>
+
 </header>
 
 <!-- Main Content -->
@@ -123,33 +116,16 @@
     <div class="content-area">
         <h1 class="page-title">Chi tiết khách hàng</h1>
         <div class="breadcrumb">
-            <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp">Trang chủ</a> / <a href="${pageContext.request.contextPath}/admin/customers">Danh sách khách hàng</a> / <span>Chi tiết khách hàng</span>
+            <a href="${pageContext.request.contextPath}/admin/adminDashboard">Trang chủ</a> / <a
+                href="${pageContext.request.contextPath}/admin/customers">Danh sách khách hàng</a> / <span>Chi tiết khách hàng</span>
         </div>
 
-        <%-- Thông báo thành công --%>
-        <c:if test="${not empty updateSuccess}">
-            <div class="alert-box success-message">
-                <span>${updateSuccess}</span>
-                <span class="close-btn">&times;</span> </div>
-        </c:if>
-
-        <%-- Thông báo lỗi --%>
-        <c:if test="${not empty updateError}">
-            <div class="alert-box error-message">
-                <span>${updateError}</span>
-                <span class="close-btn">&times;</span> </div>
-        </c:if>
-
         <c:if test="${not empty customer}">
-            <!-- Khung Thông tin cá nhân -->
             <section class="personal-info">
-                <!-- Khung hiển thị -->
                 <div class="info-card" id="infoView">
                     <div class="info-header">
                         <h2>Thông tin cá nhân</h2>
-                        <button id="editBtn" class="update-btn">Cập nhật</button>
                     </div>
-
                     <div class="info-body">
                         <div class="info-row">
                             <span>Họ và tên:</span>
@@ -171,44 +147,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Khung chỉnh sửa (ẩn lúc đầu) -->
-                <form action="${pageContext.request.contextPath}/admin/customer-detail" method="post" class="info-card hidden" id="infoForm">
-                    <input type="hidden" name="id" value="${customer.id}">
-                    <div class="info-header">
-                        <h2>Cập nhật thông tin</h2>
-                    </div>
-
-                    <div class="info-body">
-                        <div class="info-row">
-                            <span>Họ và tên:</span>
-                            <input type="text" id="inputName" name="name" value="${customer.name}">
-                            <span>Số điện thoại:</span>
-                            <input type="text" id="inputPhone" name="phone" value="${customer.phone}">
-                        </div>
-                        <div class="info-row">
-                            <span>Giới tính:</span>
-                            <select id="inputGender" name="gender">
-                                <option value="Nam" ${customer.gender == 'Nam' ? 'selected' : ''}>Nam</option>
-                                <option value="Nữ" ${customer.gender == 'Nữ' ? 'selected' : ''}>Nữ</option>
-                                <option value="Khác" ${customer.gender == 'Khác' ? 'selected' : ''}>Khác</option>
-                            </select>
-                            <span>Email:</span>
-                            <input type="email" id="inputEmail" name="email" value="${customer.email}">
-                        </div>
-                        <div class="info-row">
-                            <span>Ngày sinh:</span>
-                            <input type="date" id="inputDob" name="birthday" value="${customer.birthday}">
-                            <span>Địa chỉ:</span>
-                            <input type="text" id="inputAddress" name="address" value="${customer.address}">
-                        </div>
-                    </div>
-
-                    <div class="info-actions">
-                        <button type="submit" id="saveBtn" class="save-btn">Lưu</button>
-                        <button type="button" id="cancelBtn" class="cancel-btn">Hủy</button>
-                    </div>
-                </form>
             </section>
 
             <div class="customer-detail">
@@ -237,7 +175,7 @@
                             <tr>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/admin/orders?action=view&id=${order.id}">
-                                        #${order.orderCode}
+                                            ${order.orderCode}
                                     </a>
                                 </td>
 
@@ -269,14 +207,13 @@
                 </div>
                 <c:if test="${totalPages > 1}">
                     <div class="pagination-container">
-                            <%-- Nút Previous --%>
                         <c:if test="${currentPage > 1}">
-                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${currentPage - 1}" class="pagination-btn">
+                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${currentPage - 1}"
+                               class="pagination-btn">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </a>
                         </c:if>
 
-                            <%-- Vòng lặp số trang --%>
                         <c:forEach var="i" begin="1" end="${totalPages}">
                             <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${i}"
                                class="page-number ${i == currentPage ? 'active' : ''}">
@@ -284,9 +221,9 @@
                             </a>
                         </c:forEach>
 
-                            <%-- Nút Next --%>
                         <c:if test="${currentPage < totalPages}">
-                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${currentPage + 1}" class="pagination-btn">
+                            <a href="${pageContext.request.contextPath}/admin/customer-detail?id=${customer.id}&page=${currentPage + 1}"
+                               class="pagination-btn">
                                 <i class="fa-solid fa-chevron-right"></i>
                             </a>
                         </c:if>
@@ -302,46 +239,61 @@
     </div>
 </main>
 
-</body>
+
 <script src="${pageContext.request.contextPath}/admin/adminjs/adminHoaDon.js"></script>
-<script src="${pageContext.request.contextPath}/admin/adminjs/adminNotification.js"></script>
-<script src="${pageContext.request.contextPath}/admin/adminjs/adminUpdateCustomer.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // 1. Lấy tất cả các thông báo (cả success và error)
-        var alerts = document.querySelectorAll(".alert-box");
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("notificationBtn");
+        const dropdown = document.getElementById("notificationDropdown");
 
-        alerts.forEach(function(alertBox) {
-            // --- LOGIC 1: TỰ ĐỘNG TẮT SAU 5 GIÂY ---
-            var autoCloseTimer = setTimeout(function() {
-                closeAlert(alertBox);
-            }, 5000);
-
-            // --- LOGIC 2: BẤM NÚT X ĐỂ TẮT NGAY ---
-            var closeBtn = alertBox.querySelector(".close-btn");
-            if (closeBtn) {
-                closeBtn.addEventListener("click", function() {
-                    // Xóa hẹn giờ tự động (để tránh conflict)
-                    clearTimeout(autoCloseTimer);
-                    // Đóng ngay lập tức
-                    closeAlert(alertBox);
-                });
-            }
+        btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            dropdown.classList.toggle("show");
         });
 
-        // Hàm dùng chung để làm mờ và xóa element
-        function closeAlert(box) {
-            if (box.style.display !== 'none') {
-                box.style.transition = "opacity 0.5s ease";
-                box.style.opacity = "0"; // Mờ dần
-
-                // Đợi 0.5s (500ms) cho mờ hẳn rồi mới xóa khỏi DOM
-                setTimeout(function() {
-                    box.remove();
-                }, 500);
+        document.addEventListener("click", function (e) {
+            if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+                dropdown.classList.remove("show");
             }
+        });
+    });
+</script>
+<div id="logoutConfirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận đăng xuất</h3>
+        <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel" id="cancelLogout">Hủy</a>
+            <a href="${contextPath}/logout" class="modal-btn modal-confirm">Đăng xuất</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logoutLink = document.getElementById('logoutLink');
+        const logoutConfirmModal = document.getElementById('logoutConfirmModal');
+        const cancelLogoutBtn = document.getElementById('cancelLogout');
+
+        if (logoutLink && logoutConfirmModal && cancelLogoutBtn) {
+            logoutLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.add('show');
+            });
+
+            cancelLogoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.remove('show');
+            });
+
+            logoutConfirmModal.addEventListener('click', function (e) {
+                if (e.target === logoutConfirmModal) {
+                    logoutConfirmModal.classList.remove('show');
+                }
+            });
         }
     });
 </script>
+</body>
 
 </html>

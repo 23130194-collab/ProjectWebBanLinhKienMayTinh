@@ -5,21 +5,15 @@ import com.example.demo1.model.Banner;
 import com.example.demo1.model.Category;
 import com.example.demo1.service.BannerService;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet(name = "AdminBannerController", value = "/admin/banners")
-@MultipartConfig(
-        fileSizeThreshold = 1024 * 1024 * 2,
-        maxFileSize = 1024 * 1024 * 10,
-        maxRequestSize = 1024 * 1024 * 50
-)
 public class AdminBannerController extends HttpServlet {
 
     private final BannerService bannerService = new BannerService();
@@ -104,9 +98,27 @@ public class AdminBannerController extends HttpServlet {
         String endTime = request.getParameter("end_time");
         String position = request.getParameter("position");
         String imageLink = request.getParameter("image");
-        Part filePart = request.getPart("imageFile");
         int displayOrder = 1;
         try { displayOrder = Integer.parseInt(request.getParameter("display_order")); } catch (Exception e) {}
+
+        // Time validation
+        try {
+            LocalDate startDate = LocalDate.parse(startTime);
+            LocalDate endDate = LocalDate.parse(endTime);
+            if (endDate.isBefore(startDate)) {
+                request.setAttribute("errorMessage", "Thời gian kết thúc phải sau thời gian bắt đầu.");
+                keepFormData(request, id, name, startTime, endTime, position, displayOrder, imageLink);
+                loadPageData(request);
+                request.getRequestDispatcher("/admin/adminBanners.jsp").forward(request, response);
+                return;
+            }
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Định dạng thời gian không hợp lệ.");
+            keepFormData(request, id, name, startTime, endTime, position, displayOrder, imageLink);
+            loadPageData(request);
+            request.getRequestDispatcher("/admin/adminBanners.jsp").forward(request, response);
+            return;
+        }
 
         boolean force = "true".equals(request.getParameter("force"));
 
@@ -150,10 +162,10 @@ public class AdminBannerController extends HttpServlet {
 
         boolean success = false;
         if ("create".equals(action)) {
-            success = bannerService.createBanner(name, startTime, endTime, position, displayOrder, filePart, imageLink);
+            success = bannerService.createBanner(name, startTime, endTime, position, displayOrder, null, imageLink);
             if(success) request.getSession().setAttribute("message", "Thêm banner thành công!");
         } else if ("update".equals(action)) {
-            success = bannerService.updateBanner(id, name, startTime, endTime, position, displayOrder, filePart, imageLink);
+            success = bannerService.updateBanner(id, name, startTime, endTime, position, displayOrder, null, imageLink);
             if(success) request.getSession().setAttribute("message", "Cập nhật banner thành công!");
         }
 

@@ -17,22 +17,18 @@ public class LockCustomerController extends HttpServlet {
                 int id = Integer.parseInt(idStr);
                 UserDao userDao = new UserDao();
 
-                // 1. Kiểm tra trạng thái hiện tại
                 String currentStatus = userDao.getUserStatus(id);
 
-                // 2. Đảo ngược trạng thái
-                String newStatus = "Active"; // Mặc định là mở
+                String newStatus = "Active";
                 String msg = "Đã mở khóa tài khoản!";
 
                 if (currentStatus == null || currentStatus.equalsIgnoreCase("Active")) {
-                    newStatus = "Locked"; // Nếu đang mở thì khóa lại
+                    newStatus = "Locked";
                     msg = "Đã khóa tài khoản thành công!";
                 }
 
-                // 3. Cập nhật xuống DB
                 userDao.updateUserStatus(id, newStatus);
 
-                // 4. Thông báo
                 request.getSession().setAttribute("updateSuccess", msg);
 
             } catch (Exception e) {
@@ -41,7 +37,6 @@ public class LockCustomerController extends HttpServlet {
             }
         }
 
-        // Quay lại trang danh sách
         response.sendRedirect(request.getContextPath() + "/admin/customers");
     }
 }

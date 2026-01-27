@@ -7,7 +7,6 @@ public class Attribute {
     private int categoryId;
     private int displayOrder;
     private int isFilterable;
-    // -----------------------------------------
 
     public Attribute() {
     }
@@ -60,5 +59,4 @@ public class Attribute {
     public void setIsFilterable(int isFilterable) {
         this.isFilterable = isFilterable;
     }
-    // ---------------------------------------------
 }
