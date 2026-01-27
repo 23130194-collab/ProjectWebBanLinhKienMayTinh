@@ -37,7 +37,7 @@ public class VerifyServlet extends HttpServlet {
 
         if (email == null || otpFlow == null || otp == null || otp.trim().isEmpty()) {
             request.setAttribute("error", "Phiên làm việc đã hết hạn hoặc dữ liệu không hợp lệ. Vui lòng thử lại.");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/login").forward(request, response);
             return;
         }
 
@@ -45,14 +45,13 @@ public class VerifyServlet extends HttpServlet {
 
         if (user != null && user.getOtpCode() != null && user.getOtpCode().equals(otp)) {
             if (user.getOtpExpiry() != null && user.getOtpExpiry().after(new Timestamp(System.currentTimeMillis()))) {
-                // OTP hợp lệ, xử lý tùy theo luồng
                 session.removeAttribute("email_for_verification");
                 session.removeAttribute("otp_flow");
 
                 if ("registration".equals(otpFlow)) {
                     authService.activateUser(user.getId());
                     session.setAttribute("successMessage", "Tài khoản của bạn đã được kích hoạt thành công! Vui lòng đăng nhập.");
-                    response.sendRedirect(request.getContextPath() + "/login.jsp");
+                    response.sendRedirect(request.getContextPath() + "/login");
                 } else if ("reset_password".equals(otpFlow)) {
                     session.setAttribute("user_can_reset_password", email);
                     response.sendRedirect(request.getContextPath() + "/matKhauMoi.jsp");

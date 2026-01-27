@@ -40,7 +40,7 @@
             </div>
 
             <div class="remember">
-                <a href="forgot.jsp">Quên mật khẩu?</a>
+                <a href="${pageContext.request.contextPath}/forgot-password">Quên mật khẩu?</a>
             </div>
 
             <button type="submit" class="login-btn">Đăng nhập</button>
@@ -51,18 +51,14 @@
         </div>
 
         <div class="social-login">
-            <button type="button" class="google">
+            <a href="${pageContext.request.contextPath}/login-google-handler" class="social-btn google">
                 <img src="https://i.postimg.cc/52XY45D7/z7179766768017-0600811c9c5ce7a039bb0715af80295b.jpg" alt="Google logo">
                 Google
-            </button>
-            <button type="button" class="facebook">
-                <img src="https://i.postimg.cc/rsBv3Xyx/facebook.png" alt="Facebook logo">
-                Facebook
-            </button>
+            </a>
         </div>
 
         <div class="signup">
-            <p>Chưa có tài khoản? <a href="signup.jsp">Đăng ký ngay</a></p>
+            <p>Chưa có tài khoản? <a href="${pageContext.request.contextPath}/signup">Đăng ký ngay</a></p>
         </div>
     </div>
 </div>

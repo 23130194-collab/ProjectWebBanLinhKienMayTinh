@@ -4,35 +4,19 @@ import com.example.demo1.model.Brand;
 import com.example.demo1.model.BrandPage;
 import com.example.demo1.service.BrandService;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 @WebServlet(name = "AdminBrandController", value = "/admin/brands")
-@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 15)
 public class AdminBrandController extends HttpServlet {
     private static final String SERVLET_PATH = "/admin/brands";
     private static final String JSP_PATH = "/admin/adminBrands.jsp";
     private final BrandService brandService = new BrandService();
-    private static final String EXTERNAL_UPLOAD_DIR = System.getProperty("user.home") + File.separator + "web_uploads";
-    private static final String DB_UPLOAD_DIR = "uploads";
     private static final int BRANDS_PER_PAGE = 10;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        File uploadDir = new File(EXTERNAL_UPLOAD_DIR);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs();
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -99,13 +83,10 @@ public class AdminBrandController extends HttpServlet {
         String name = request.getParameter("name");
         String displayOrderStr = request.getParameter("displayOrder");
         String logoUrl = request.getParameter("logo");
-        Part filePart = request.getPart("logoFile");
-        String fileName = (filePart != null) ? Paths.get(filePart.getSubmittedFileName()).getFileName().toString() : "";
         
         Integer id = (idParam != null && !idParam.isEmpty()) ? Integer.parseInt(idParam) : null;
         boolean isNew = (id == null);
 
-        // --- VALIDATION ---
         if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Vui lòng điền đầy đủ tên và thứ tự hiển thị.");
             forwardWithData(request, response);
@@ -129,11 +110,7 @@ public class AdminBrandController extends HttpServlet {
         brand.setStatus(request.getParameter("status"));
         brand.setDisplayOrder(Integer.parseInt(displayOrderStr));
 
-        if (!fileName.isEmpty()) {
-            String filePath = EXTERNAL_UPLOAD_DIR + File.separator + fileName;
-            filePart.write(filePath);
-            brand.setLogo(DB_UPLOAD_DIR + "/" + fileName);
-        } else if (logoUrl != null && !logoUrl.trim().isEmpty()) {
+        if (logoUrl != null && !logoUrl.trim().isEmpty()) {
             brand.setLogo(logoUrl);
         } else if (isNew) {
             request.setAttribute("errorMessage", "Vui lòng cung cấp hình ảnh cho thương hiệu mới.");
@@ -172,7 +149,6 @@ public class AdminBrandController extends HttpServlet {
         try {
             brand.setDisplayOrder(Integer.parseInt(request.getParameter("displayOrder")));
         } catch (NumberFormatException e) {
-            // ignore
         }
         request.setAttribute("brandToEdit", brand);
         listBrands(request, response);
