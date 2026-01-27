@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 public class PasswordValidator {
 
     // ^                 : Bắt đầu chuỗi
-    // (?=.*[0-9])       : Phải chứa ít nhất một chữ số
-    // (?=.*[a-z])       : Phải chứa ít nhất một chữ thường
-    // (?=.*[A-Z])       : Phải chứa ít nhất một chữ hoa
-    // (?=.*[@#$%^&+=!]) : Phải chứa ít nhất một ký tự đặc biệt trong danh sách
-    // (?=\\S+$)         : Không có khoảng trắng
-    // .{8,}             : Độ dài ít nhất 8 ký tự
+    // (?=.*[0-9])       : Phải có ít nhất một chữ số
+    // (?=.*[a-z])       : Phải có ít nhất một chữ viết thường
+    // (?=.*[A-Z])       : Phải có ít nhất một chữ in hoa
+    // (?=.*[@#$%^&+=!]) : Phải có ít nhất một ký tự đặc biệt
+    // (?=\\S+$)         : Không được có khoảng trắng
+    // .{8,}             : Có độ dài ít nhất phải là 8 ký tự
     // $                 : Kết thúc chuỗi
     private static final String PASSWORD_PATTERN =
             "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
