@@ -13,12 +13,11 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Lấy session hiện tại, không tạo mới nếu không có
+        HttpSession session = request.getSession(false);
         if (session != null) {
             session.removeAttribute("user");
-            session.invalidate(); // Hủy toàn bộ session
+            session.invalidate();
         }
-        // Chuyển hướng về trang chủ
         response.sendRedirect(request.getContextPath() + "/home.jsp");
     }
 }
