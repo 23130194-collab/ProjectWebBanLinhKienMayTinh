@@ -3,34 +3,29 @@ package com.example.demo1.controller;
 import com.example.demo1.model.Category;
 import com.example.demo1.service.CategoryService;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.annotation.WebListener;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 
 import java.util.List;
 
-@WebListener
-public class AppContextListener implements ServletContextListener {
+@WebServlet(name = "AppContextListenerServlet", urlPatterns = "/load-initial-data", loadOnStartup = 1)
+public class CategoryServlet extends HttpServlet {
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
         try{
-        ServletContext context = sce.getServletContext();
-        CategoryService categoryService = new CategoryService();
-        
-        // ĐÃ SỬA: Chỉ lấy các danh mục đang hoạt động để hiển thị cho người dùng
-        List<Category> categoryList = categoryService.getActiveCategories();
+            ServletContext context = getServletContext();
+            CategoryService categoryService = new CategoryService();
+            
+            List<Category> categoryList = categoryService.getActiveCategories();
 
-        context.setAttribute("categoryList", categoryList);
+            context.setAttribute("categoryList", categoryList);
         }catch(Exception e){
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        // Không cần làm gì ở đây
-    }
 }
-
