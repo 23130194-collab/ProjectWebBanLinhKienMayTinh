@@ -34,9 +34,6 @@ public class OrderAdminServlet extends HttpServlet {
             case "view":
                 viewOrder(request, response);
                 break;
-            case "delete":
-                deleteOrder(request, response);
-                break;
             default:
                 listOrders(request, response);
                 break;
@@ -90,16 +87,17 @@ public class OrderAdminServlet extends HttpServlet {
         try {
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             String status = request.getParameter("orderStatus");
+            OrderDao orderDao = new OrderDao();
+            boolean success = false;
 
-            if (orderService.updateOrderStatus(orderId, status)) {
-                OrderDao orderDao = new OrderDao();
-                NotificationDao notiDao = new NotificationDao();
-                ProductDao productDao = new ProductDao();
-
-                Order order = orderDao.getOrderById(orderId);
-
-                if (order != null) {
-                    if ("Đã giao".equals(status)) {
+            if ("Đã hủy".equals(status)) {
+                success = orderDao.cancelOrder(orderId);
+            } else {
+                success = orderService.updateOrderStatus(orderId, status);
+                if (success) {
+                    Order order = orderDao.getOrderById(orderId);
+                    if (order != null && "Đã giao".equals(status)) {
+                        ProductDao productDao = new ProductDao();
                         List<OrderItem> items = orderDao.getOrderItemsByOrderId(orderId);
                         if (items != null) {
                             for (OrderItem item : items) {
@@ -107,17 +105,22 @@ public class OrderAdminServlet extends HttpServlet {
                             }
                         }
                     }
+                }
+            }
 
+            if (success) {
+                Order order = orderDao.getOrderById(orderId);
+                if (order != null) {
                     try {
-                        String content = "Đơn hàng #" + order.getOrderCode() + " đã cập nhật trạng thái: " + status;
+                        NotificationDao notiDao = new NotificationDao();
+                        String content = "Đơn hàng " + order.getOrderCode() + " đã cập nhật trạng thái: " + status;
                         String link = "user";
-                        Notification noti = new Notification(order.getUserId(), content, link);
+                        Notification noti = new Notification(order.getUserId(), content, link, 0);
                         notiDao.insert(noti);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-
                 request.getSession().setAttribute("successMessage", "Cập nhật trạng thái thành công!");
             } else {
                 request.getSession().setAttribute("errorMessage", "Cập nhật trạng thái thất bại.");
@@ -127,19 +130,5 @@ public class OrderAdminServlet extends HttpServlet {
             request.getSession().setAttribute("errorMessage", "ID đơn hàng không hợp lệ.");
             response.sendRedirect(request.getContextPath() + SERVLET_PATH);
         }
-    }
-
-    private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            if (orderService.deleteOrder(id)) {
-                request.getSession().setAttribute("successMessage", "Xóa đơn hàng thành công!");
-            } else {
-                request.getSession().setAttribute("errorMessage", "Xóa đơn hàng thất bại.");
-            }
-        } catch (NumberFormatException e) {
-            request.getSession().setAttribute("errorMessage", "ID đơn hàng không hợp lệ.");
-        }
-        response.sendRedirect(request.getContextPath() + SERVLET_PATH);
     }
 }
