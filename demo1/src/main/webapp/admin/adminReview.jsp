@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN"/>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
     <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
     <link rel="stylesheet" href="${contextPath}/admin/admincss/adminReview.css?v=2.5">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminModal.css">
 </head>
 
 <body>
@@ -27,23 +28,83 @@
         </a>
     </div>
     <ul class="nav-menu">
-        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-images"></i></span>Banner</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-star"></i></span>Đánh giá</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-images"></i></span>Banner</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link active"><span class="nav-icon"><i
+                class="fa-solid fa-star"></i></span>Đánh giá</a></li>
     </ul>
     <div class="logout-section">
-        <a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a>
+        <a href="${contextPath}/logout" class="nav-link logout-link" id="logoutLink"><span class="nav-icon"><i
+                class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a>
     </div>
 </aside>
 
 <header class="header">
-    <%-- Header content --%>
+    <div class="header-actions">
+        <button class="notification-btn" id="notificationBtn">
+            <i class="fa-solid fa-bell"></i>
+            <c:if test="${adminUnreadCount > 0}">
+                <span class="notification-badge">${adminUnreadCount}</span>
+            </c:if>
+        </button>
+        <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-header">
+                <h3>Thông báo</h3>
+            </div>
+
+            <div class="notification-list">
+                <c:if test="${empty adminNotiList}">
+                    <p style="padding: 10px; text-align: center;">Không có thông báo mới</p>
+                </c:if>
+
+                <c:forEach var="noti" items="${adminNotiList}">
+                    <div class="notification-item ${noti.isRead == 0 ? 'unread' : ''}"
+                         onclick="window.location.href='${contextPath}/admin/mark-read?id=${noti.id}&target=' + encodeURIComponent('${noti.link}')">
+
+                        <div class="notification-icon">
+                            <c:choose>
+                                <c:when test="${noti.content.toLowerCase().contains('hủy')}">
+                                    <i class="fa-solid fa-circle-xmark" style="color: #4c4747;;"></i>
+                                </c:when>
+                                <c:when test="${noti.content.toLowerCase().contains('mới')}">
+                                    <i class="fa-solid fa-cart-shopping" style="color: #4c4747;"></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="fa-solid fa-bell" style="color: #4c4747;;"></i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">${noti.content}</p>
+                            <span class="notification-time">${noti.createdAt}</span>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <div class="notification-footer">
+                <a href="${contextPath}/admin/notifications" class="see-all-link">Đóng</a>
+            </div>
+        </div>
+        <div class="user-profile">
+            <img src="https://www.shutterstock.com/image-vector/admin-icon-strategy-collection-thin-600nw-2307398667.jpg"
+                 alt="User Profile">
+        </div>
+    </div>
 </header>
 
 <main class="main-content">
@@ -69,9 +130,8 @@
             <c:remove var="errorMessage" scope="session"/>
         </c:if>
 
-        <!-- FORM CHỈNH SỬA -->
         <c:if test="${not empty reviewToEdit}">
-            <form action="${contextPath}/admin/reviews" method="post" class="review-form">
+            <form id="reviewForm" action="${contextPath}/admin/reviews" method="post" class="review-form">
                 <input type="hidden" name="action" value="update">
                 <input type="hidden" name="reviewId" value="${reviewToEdit.id}">
                 <input type="hidden" name="page" value="${currentPage}">
@@ -79,46 +139,67 @@
                 <input type="hidden" name="statusFilter" value="${selectedStatus}">
                 <div class="form-columns">
                     <div class="form-column-left">
-                        <div class="form-group"><label class="form-label">Sản phẩm</label><input type="text" class="form-control" value="${reviewToEdit.productName}" readonly></div>
-                        <div class="form-group"><label class="form-label">Nội dung</label><textarea class="form-control content-area" rows="6" readonly>${reviewToEdit.content}</textarea></div>
+                        <div class="form-group"><label class="form-label">Sản phẩm</label><input type="text"
+                                                                                                 class="form-control"
+                                                                                                 value="${reviewToEdit.productName}"
+                                                                                                 readonly></div>
+                        <div class="form-group"><label class="form-label">Nội dung</label><textarea
+                                class="form-control content-area" rows="6" readonly>${reviewToEdit.content}</textarea>
+                        </div>
                     </div>
                     <div class="form-column-right">
-                        <div class="form-group"><label class="form-label">Người dùng</label><input type="text" class="form-control" value="${reviewToEdit.userName}" readonly></div>
-                        <div class="form-group"><label class="form-label">Điểm</label><input type="number" class="form-control" value="${reviewToEdit.rating}" readonly></div>
-                        <div class="form-group"><label class="form-label">Thời gian</label><input type="text" class="form-control" value="<fmt:formatDate value='${reviewToEdit.createdAt}' pattern='HH:mm dd/MM/yyyy'/>" readonly></div>
+                        <div class="form-group"><label class="form-label">Người dùng</label><input type="text"
+                                                                                                   class="form-control"
+                                                                                                   value="${reviewToEdit.userName}"
+                                                                                                   readonly></div>
+                        <div class="form-group"><label class="form-label">Điểm</label><input type="number"
+                                                                                             class="form-control"
+                                                                                             value="${reviewToEdit.rating}"
+                                                                                             readonly></div>
+                        <div class="form-group"><label class="form-label">Thời gian</label><input type="text"
+                                                                                                  class="form-control"
+                                                                                                  value="<fmt:formatDate value='${reviewToEdit.createdAt}' pattern='HH:mm dd/MM/yyyy'/>"
+                                                                                                  readonly></div>
                         <div class="form-group">
                             <label class="form-label">Trạng thái</label>
                             <select name="status" class="form-control">
-                                <option value="active" ${reviewToEdit.status.trim().equalsIgnoreCase('active') ? 'selected' : ''}>Hoạt động</option>
-                                <option value="hidden" ${reviewToEdit.status.trim().equalsIgnoreCase('hidden') ? 'selected' : ''}>Ẩn</option>
+                                <option value="active" ${reviewToEdit.status.trim().equalsIgnoreCase('active') ? 'selected' : ''}>
+                                    Hoạt động
+                                </option>
+                                <option value="hidden" ${reviewToEdit.status.trim().equalsIgnoreCase('hidden') ? 'selected' : ''}>
+                                    Ẩn
+                                </option>
                             </select>
                         </div>
                         <div class="form-buttons">
-                            <button type="submit" class="btn btn-primary">Cập nhật</button>
-                            <a href="${contextPath}/admin/reviews?page=${currentPage}&status=${selectedStatus}&searchKeyword=${searchKeyword}" class="btn btn-secondary">Hủy</a>
+                            <a href="#" id="save-button" class="btn btn-primary">Cập nhật</a>
+                            <a href="${contextPath}/admin/reviews?page=${currentPage}&status=${selectedStatus}&searchKeyword=${searchKeyword}"
+                               class="btn btn-secondary">Hủy</a>
                         </div>
                     </div>
                 </div>
             </form>
         </c:if>
 
-        <!-- BỘ LỌC VÀ TÌM KIẾM -->
         <div class="filter-bar">
             <div class="filter-tabs">
-                <a href="${contextPath}/admin/reviews?status=all&searchKeyword=${searchKeyword}" class="tab ${empty selectedStatus or selectedStatus == 'all' ? 'active' : ''}">Tất cả</a>
-                <a href="${contextPath}/admin/reviews?status=active&searchKeyword=${searchKeyword}" class="tab ${selectedStatus == 'active' ? 'active' : ''}">Hoạt động</a>
-                <a href="${contextPath}/admin/reviews?status=hidden&searchKeyword=${searchKeyword}" class="tab ${selectedStatus == 'hidden' ? 'active' : ''}">Ẩn</a>
+                <a href="${contextPath}/admin/reviews?status=all&searchKeyword=${searchKeyword}"
+                   class="tab ${empty selectedStatus or selectedStatus == 'all' ? 'active' : ''}">Tất cả</a>
+                <a href="${contextPath}/admin/reviews?status=active&searchKeyword=${searchKeyword}"
+                   class="tab ${selectedStatus == 'active' ? 'active' : ''}">Hoạt động</a>
+                <a href="${contextPath}/admin/reviews?status=hidden&searchKeyword=${searchKeyword}"
+                   class="tab ${selectedStatus == 'hidden' ? 'active' : ''}">Ẩn</a>
             </div>
             <form action="${contextPath}/admin/reviews" method="get" class="search-form">
                 <div class="search-wrapper">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" name="searchKeyword" id="searchInput" class="search-input" placeholder="Tìm theo tên sản phẩm, người dùng..." value="${searchKeyword}">
+                    <input type="text" name="searchKeyword" id="searchInput" class="search-input-review"
+                           placeholder="Tìm theo tên sản phẩm, người dùng..." value="${searchKeyword}">
+                    <button type="submit" class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                     <input type="hidden" name="status" value="${selectedStatus}">
                 </div>
             </form>
         </div>
 
-        <!-- BẢNG DỮ LIỆU -->
         <div class="table-container">
             <table class="review-table">
                 <thead>
@@ -134,125 +215,156 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="review" items="${reviewList}" varStatus="loop">
-                        <tr>
-                            <td>${(currentPage - 1) * 10 + loop.count}</td>
-                            <td class="col-product">
-                                <span class="truncate-text" title="${review.productName}">${review.productName}</span>
-                            </td>
-                            <td>${review.userName}</td>
-                            <td><span class="rating-star">${review.rating} <i class="fa-solid fa-star"></i></span></td>
-                            <td class="col-content text-left">
-                                <span class="truncate-text" title="${review.content}">${review.content}</span>
-                            </td>
-                            <td><fmt:formatDate value="${review.createdAt}" pattern="HH:mm dd/MM/yyyy"/></td>
-                            <td>
-                                <c:choose>
-                                    <c:when test="${review.status.trim().equalsIgnoreCase('active')}">
-                                        <span class="status status-active">Hoạt động</span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span class="status status-hidden">Ẩn</span>
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                            <td class="col-actions">
-                                <div class="action-buttons">
-                                    <a href="${contextPath}/admin/reviews?action=edit&id=${review.id}&page=${currentPage}&status=${selectedStatus}&searchKeyword=${searchKeyword}" class="action-btn edit" title="Sửa trạng thái"><i class="fa-solid fa-pen"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                <c:forEach var="review" items="${reviewList}" varStatus="loop">
+                    <tr>
+                        <td>${(currentPage - 1) * 10 + loop.count}</td>
+                        <td class="col-product">
+                            <span class="truncate-text" title="${review.productName}">${review.productName}</span>
+                        </td>
+                        <td>${review.userName}</td>
+                        <td><span class="rating-star">${review.rating} <i class="fa-solid fa-star"></i></span></td>
+                        <td class="col-content text-left">
+                            <span class="truncate-text" title="${review.content}">${review.content}</span>
+                        </td>
+                        <td><fmt:formatDate value="${review.createdAt}" pattern="HH:mm dd/MM/yyyy"/></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${review.status.trim().equalsIgnoreCase('active')}">
+                                    <span class="status status-active">Hoạt động</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="status status-hidden">Ẩn</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                <a href="${contextPath}/admin/reviews?action=edit&id=${review.id}&page=${currentPage}&status=${selectedStatus}&searchKeyword=${searchKeyword}"
+                                   class="action-btn edit" title="Sửa trạng thái"><i class="fa-solid fa-pen"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
 
-        <!-- PHÂN TRANG -->
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
                 <c:if test="${currentPage > 1}">
-                    <a href="${contextPath}/admin/reviews?page=${currentPage - 1}&status=${selectedStatus}&searchKeyword=${searchKeyword}" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
+                    <a href="${contextPath}/admin/reviews?page=${currentPage - 1}&status=${selectedStatus}&searchKeyword=${searchKeyword}"
+                       class="pagination-btn"><i class="fa-solid fa-chevron-left"></i></a>
                 </c:if>
                 <c:forEach var="i" begin="1" end="${totalPages}">
-                    <a href="${contextPath}/admin/reviews?page=${i}&status=${selectedStatus}&searchKeyword=${searchKeyword}" class="page-number ${i == currentPage ? 'active' : ''}">${i}</a>
+                    <a href="${contextPath}/admin/reviews?page=${i}&status=${selectedStatus}&searchKeyword=${searchKeyword}"
+                       class="page-number ${i == currentPage ? 'active' : ''}">${i}</a>
                 </c:forEach>
                 <c:if test="${currentPage < totalPages}">
-                    <a href="${contextPath}/admin/reviews?page=${currentPage + 1}&status=${selectedStatus}&searchKeyword=${searchKeyword}" class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="${contextPath}/admin/reviews?page=${currentPage + 1}&status=${selectedStatus}&searchKeyword=${searchKeyword}"
+                       class="pagination-btn"><i class="fa-solid fa-chevron-right"></i></a>
                 </c:if>
             </div>
         </c:if>
     </div>
 </main>
 
-<!-- MODAL HIỂN THỊ NỘI DUNG -->
-<div id="contentModal" class="modal-overlay">
+<div id="confirm-save-modal" class="modal-overlay">
     <div class="modal-content">
-        <button class="modal-close-btn">&times;</button>
-        <div class="modal-header" id="modalHeader"></div>
-        <div class="modal-body" id="modalBody"></div>
+        <h3>Xác nhận lưu</h3>
+        <p>Bạn có chắc chắn muốn lưu các thay đổi này không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel" id="cancel-save">Hủy</a>
+            <button type="submit" form="reviewForm" class="modal-btn modal-confirm">Lưu</button>
+        </div>
     </div>
 </div>
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Tự động ẩn thông báo
+    document.addEventListener('DOMContentLoaded', function () {
+        const saveBtn = document.getElementById('save-button');
+        const confirmSaveModal = document.getElementById('confirm-save-modal');
+        const cancelSaveBtn = document.getElementById('cancel-save');
+
+        if (saveBtn && confirmSaveModal && cancelSaveBtn) {
+            saveBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                confirmSaveModal.classList.add('show');
+            });
+
+            cancelSaveBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                confirmSaveModal.classList.remove('show');
+            });
+
+            confirmSaveModal.addEventListener('click', function (e) {
+                if (e.target === confirmSaveModal) {
+                    confirmSaveModal.classList.remove('show');
+                }
+            });
+        }
+
         const alerts = document.querySelectorAll('.alert');
-        alerts.forEach(function(alert) {
-            setTimeout(function() {
+        alerts.forEach(function (alert) {
+            setTimeout(function () {
                 alert.style.display = 'none';
             }, 5000);
-        });
-
-        // Xử lý tìm kiếm bằng phím Enter
-        const searchInput = document.getElementById('searchInput');
-        if(searchInput) {
-            searchInput.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                    this.form.submit();
-                }
-            });
-        }
-
-        // Xử lý Modal hiển thị nội dung
-        const modal = document.getElementById('contentModal');
-        const modalHeader = document.getElementById('modalHeader');
-        const modalBody = document.getElementById('modalBody');
-        const table = document.querySelector('.review-table');
-
-        if (table) {
-            table.addEventListener('click', function(event) {
-                const target = event.target;
-                if (target.classList.contains('truncate-text')) {
-                    const content = target.getAttribute('title');
-                    // Xác định xem đó là tên sản phẩm hay nội dung
-                    if (target.closest('.col-product')) {
-                        modalHeader.textContent = 'Tên sản phẩm';
-                    } else if (target.closest('.col-content')) {
-                        modalHeader.textContent = 'Nội dung đánh giá';
-                    } else {
-                        modalHeader.textContent = 'Chi tiết';
-                    }
-                    modalBody.textContent = content;
-                    modal.classList.add('visible');
-                }
-            });
-        }
-
-        // Đóng modal
-        function closeModal() {
-            modal.classList.remove('visible');
-        }
-
-        modal.querySelector('.modal-close-btn').addEventListener('click', closeModal);
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal();
-            }
         });
     });
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("notificationBtn");
+        const dropdown = document.getElementById("notificationDropdown");
+
+        btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            dropdown.classList.toggle("show");
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+                dropdown.classList.remove("show");
+            }
+        });
+    });
+</script>
+<div id="logoutConfirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận đăng xuất</h3>
+        <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel" id="cancelLogout">Hủy</a>
+            <a href="${contextPath}/logout" class="modal-btn modal-confirm">Đăng xuất</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logoutLink = document.getElementById('logoutLink');
+        const logoutConfirmModal = document.getElementById('logoutConfirmModal');
+        const cancelLogoutBtn = document.getElementById('cancelLogout');
+
+        if (logoutLink && logoutConfirmModal && cancelLogoutBtn) {
+            logoutLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.add('show');
+            });
+
+            cancelLogoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.remove('show');
+            });
+
+            logoutConfirmModal.addEventListener('click', function (e) {
+                if (e.target === logoutConfirmModal) {
+                    logoutConfirmModal.classList.remove('show');
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
