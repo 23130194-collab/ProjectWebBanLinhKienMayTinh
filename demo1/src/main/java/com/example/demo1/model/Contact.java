@@ -18,7 +18,6 @@ public class Contact {
         this.content = content;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }

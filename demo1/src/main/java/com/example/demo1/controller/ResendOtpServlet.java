@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @WebServlet(name = "ResendOtpServlet", value = "/resend-otp")
 public class ResendOtpServlet extends HttpServlet {
 
-    private static final long OTP_RESEND_COOLDOWN = 60 * 1000; // 60 giây
+    private static final long OTP_RESEND_COOLDOWN = 60 * 1000;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class ResendOtpServlet extends HttpServlet {
         String email = (String) session.getAttribute("email_for_verification");
 
         if (email == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
