@@ -17,7 +17,6 @@ body {
     padding: 0 16px;
 }
 
-/* BREADCRUMB */
 .breadcrumb {
     font-size: 14px;
     margin: 16px 0;
@@ -33,7 +32,6 @@ body {
     color: #aaa;
 }
 
-/* BANNERS */
 .banners-container {
     display: flex;
     gap: 16px;
@@ -50,33 +48,24 @@ body {
     max-width: calc(50% - 8px);
     border-radius: 10px;
 
-    /* QUAN TRỌNG CHO SLIDESHOW VÀ KÉO THẢ */
     position: relative;
-    /* Cho vị trí các nút nav và overflow */
     overflow: hidden;
-    /* Ẩn các slide bị trượt ra ngoài */
     cursor: grab;
-    /* Con trỏ tay kéo */
-}
 
-/* Wrapper chứa các slide */
+}
 .slides-wrapper {
     display: flex;
     width: 100%;
-    /* Sẽ được set lại bằng JS, hoặc tự co dãn 100% * số slide */
     transition: transform 0.5s ease-in-out;
-    /* Hiệu ứng chuyển động mượt */
 }
 
 .banner-img {
-    /* Đảm bảo mỗi slide chiếm đúng 100% chiều rộng container cha */
     min-width: 100%;
     height: auto;
     display: block;
     border-radius: 10px;
 }
 
-/* --- Navigation Buttons (Mũi tên điều hướng) --- */
 .slider-nav {
     position: absolute;
     top: 50%;
@@ -104,7 +93,6 @@ body {
     right: 10px;
 }
 
-/* --- Dots Navigation (Dấu chấm điều hướng) --- */
 .dots-container {
     position: absolute;
     bottom: 10px;
@@ -130,14 +118,12 @@ body {
     border-radius: 5px;
 }
 
-/* PAGE TITLE */
 .page-title {
     font-size: 20px;
     margin: 20px 0;
     font-weight: bold;
 }
 
-/* BRAND FILTER */
 .brand-filter {
     display: flex;
     gap: 12px;
@@ -165,13 +151,11 @@ body {
     object-fit: contain;
 }
 
-/* --- Brand Filter Active State --- */
 .brand-logo.active {
     border-color: #007bff;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
-/* FILTER TOGGLE BUTTON */
 .filter-toggle-container {
     margin-bottom: 16px;
 }
@@ -195,7 +179,6 @@ body {
     background: #f8f9fa;
 }
 
-/* FILTER SECTION */
 .filter-section {
     display: none;
     flex-wrap: wrap;
@@ -258,7 +241,6 @@ body {
     font-weight: bold;
 }
 
-/* Action Bar */
 .action-bar {
     width: 100%;
     margin-top: 10px;
@@ -300,7 +282,6 @@ body {
     background: #0056b3;
 }
 
-/* Responsive Filter */
 @media (max-width: 768px) {
     .option-group {
         flex: 0 0 100%;
@@ -323,7 +304,6 @@ body {
     }
 }
 
-/* --- Applied Filters --- */
 .applied-filters-container {
     display: flex;
     align-items: center;
@@ -371,7 +351,6 @@ body {
     opacity: 1;
 }
 
-/* Sắp xếp theo */
 .sort-wrapper {
     display: flex;
     align-items: center;
@@ -415,7 +394,6 @@ body {
     text-decoration: none;
 }
 
-/* Hiển thị sản phẩm 5 sản phẩm một hàng */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -423,7 +401,6 @@ body {
     margin-top: 20px;
 }
 
-/* Responsive cho grid */
 @media (max-width: 1200px) {
     .product-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -510,7 +487,6 @@ body {
     -webkit-box-orient: vertical;
 }
 
-/* Price */
 .price-section {
     display: flex;
     align-items: baseline;
@@ -544,7 +520,6 @@ body {
     font-size: 14px;
 }
 
-/* Mỗi item */
 .action-item {
     display: flex;
     align-items: center;
@@ -563,7 +538,6 @@ body {
     background: #f8f8f8;
 }
 
-/* === ĐÁNH GIÁ === */
 .rating {
     gap: 4px;
     padding: 4px 0;
@@ -582,30 +556,25 @@ body {
     color: #ffc107;
 }
 
-/* Đảm bảo các ngôi sao nằm ngang hàng */
 .stars {
     display: flex;
     align-items: center;
 }
 
-/* Màu vàng cho phần sao ĐẠT được */
 .star-highlight {
     color: #ffc107;
 }
 
-/* Màu xám cho phần sao KHÔNG đạt (nền bên trong) */
 .star-base {
-    color: #e0e0e0; /* Màu xám nhạt đặc trưng */
+    color: #e0e0e0;
 }
 
-/* Căn chỉnh cho khu vực chứa sao */
 .stars {
     display: flex;
     align-items: center;
-    gap: 2px; /* Khoảng cách nhỏ giữa các sao */
+    gap: 2px;
 }
 
-/* Định dạng kích thước cho bộ stack (dùng cho sao nửa) */
 .fa-stack {
     width: 14px;
     height: 14px;
@@ -620,9 +589,9 @@ body {
     margin-left: 2px;
 }
 
-/* === YÊU THÍCH === */
 .like-btn {
     color: #a19f9f;
+    text-decoration: none;
 }
 
 .like-btn i {
@@ -630,33 +599,32 @@ body {
     transition: color 0.2s;
 }
 
-/* Hover */
 .like-btn:hover,
 .like-btn:hover i,
 .like-btn:hover .action-label {
-    color: #db1d32;
+    color: #d70018;
 }
 
-/* Khi được click (focus) → đỏ + trái tim đầy */
 .like-btn:focus,
 .like-btn:focus i,
 .like-btn:focus .action-label {
-    color: #db1d32;
+    color: #d70018;
     outline: none;
 }
 
 .like-btn:focus i {
-    font-weight: 900; /* fa-solid */
+    font-weight: 900;
 }
 
-/* PHÂN TRANG (PAGINATION) */
+.like-btn .fa-solid.fa-heart {
+    color: #d70018;
+}
+
 .pagination-container {
     display: flex;
     justify-content: center;
-    /* Căn giữa thanh phân trang */
     align-items: center;
     margin: 60px 0;
-    /* Khoảng cách trên/dưới so với nội dung */
     gap: 8px;
 }
 
@@ -691,7 +659,6 @@ body {
     cursor: not-allowed;
 }
 
-/* Số trang */
 .page-number {
     border: 1px solid #ccc;
     color: #333;
@@ -703,11 +670,9 @@ body {
 
 .page-number.active {
     background-color: #d32f2f;
-    /* Màu đỏ nổi bật cho trang hiện tại */
     color: white;
     border-color: #d32f2f;
     pointer-events: none;
-    /* Không cho phép click vào trang hiện tại */
 }
 
 .ellipsis {
@@ -715,48 +680,39 @@ body {
     padding: 0 4px;
 }
 
-/*
- * ===================================================================
- * == CSS CHO HỆ THỐNG HIỂN THỊ SAO ĐÁNH GIÁ CHÍNH XÁC ==
- * ===================================================================
- */
 
-/* Container cho sao ở thẻ sản phẩm */
 .product-card .action-item.rating .stars-container {
-    font-size: 14px; /* Kích thước sao nhỏ hơn */
+    font-size: 14px;
     position: relative;
     vertical-align: middle;
 }
 
-/* Lớp chứa các ngôi sao nền (màu xám) */
 .stars-outer {
     position: relative;
     display: block;
 }
 
-/* Lớp chứa các ngôi sao phủ (màu vàng), nằm đè lên lớp nền */
 .stars-inner {
     position: absolute;
     top: 0;
     left: 0;
     white-space: nowrap;
     overflow: hidden;
-    width: 0; /* Mặc định là 0, sẽ được set bằng inline style từ JSP */
+    width: 0;
 }
 
-/* Sử dụng pseudo-element ::before để vẽ các icon ngôi sao */
 .stars-outer::before {
     content: "\f005 \f005 \f005 \f005 \f005";
     font-family: "Font Awesome 6 Free";
-    font-weight: 900; /* solid */
-    color: #ccc; /* Màu xám cho nền */
+    font-weight: 900;
+    color: #ccc;
     letter-spacing: 3px;
 }
 
 .stars-inner::before {
     content: "\f005 \f005 \f005 \f005 \f005";
     font-family: "Font Awesome 6 Free";
-    font-weight: 900; /* solid */
-    color: #ffc107; /* Màu vàng cho lớp phủ */
+    font-weight: 900;
+    color: #ffc107;
     letter-spacing: 3px;
 }
