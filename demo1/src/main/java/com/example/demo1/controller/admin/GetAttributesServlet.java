@@ -25,10 +25,8 @@ public class GetAttributesServlet extends HttpServlet {
         try {
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 
-            // Lấy danh sách thuộc tính dựa trên Category ID
             List<Attribute> attributes = categoryAttributeService.getAllAttributesByCategoryId(categoryId);
 
-            // Chuyển List thành JSON thủ công (để không phụ thuộc thư viện ngoài)
             StringBuilder json = new StringBuilder("[");
             for (int i = 0; i < attributes.size(); i++) {
                 Attribute attr = attributes.get(i);
