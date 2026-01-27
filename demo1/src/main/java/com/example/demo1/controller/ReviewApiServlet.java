@@ -25,7 +25,6 @@ public class ReviewApiServlet extends HttpServlet {
             int offset = Integer.parseInt(request.getParameter("offset"));
             int limit = 5;
 
-            // ĐÃ SỬA: Gọi phương thức chỉ lấy các review của người dùng (status = 'active')
             List<Review> reviews = reviewService.getReviewsForUser(productId, ratingFilter, limit, offset);
 
             String jsonResponse = this.gson.toJson(reviews);
