@@ -50,7 +50,7 @@ public class Product_SpecDao {
         );
     }
 
-    public void deleteProductSpecs(int productId) {
+    public void deleteByProductId(int productId) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("DELETE FROM product_specs WHERE product_id = :productId")
                         .bind("productId", productId)

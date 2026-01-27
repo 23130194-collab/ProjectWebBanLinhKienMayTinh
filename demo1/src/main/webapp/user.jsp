@@ -61,7 +61,7 @@
 
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/user" class="icon-btn" title="Tài khoản của bạn">
+                    <a href="${pageContext.request.contextPath}/my-orders" class="icon-btn" title="Tài khoản của bạn">
                         <i class="fas fa-user"></i>
                     </a>
                 </c:when>
