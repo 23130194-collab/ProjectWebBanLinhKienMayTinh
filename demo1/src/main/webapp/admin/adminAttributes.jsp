@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="vi_VN"/>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${contextPath}/admin/admincss/adminAttributes.css">
     <link rel="stylesheet" href="${contextPath}/admin/admincss/headerAndSidebar.css">
     <link rel="stylesheet" href="${contextPath}/admin/admincss/adminNotification.css">
+    <link rel="stylesheet" href="${contextPath}/admin/admincss/adminModal.css">
 
 </head>
 
@@ -29,47 +30,75 @@
         </a>
     </div>
     <ul class="nav-menu">
-        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-users"></i></span>Khách hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link active"><span class="nav-icon"><i class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-images"></i></span>Banner</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
-        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link"><span class="nav-icon"><i class="fa-solid fa-star"></i></span>Đánh giá</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/dashboard" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-border-all"></i></span>Dashboard</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/customers" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-users"></i></span>Khách hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/categories" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-list"></i></span>Mục sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/brands" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-certificate"></i></span>Thương hiệu</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/attributes" class="nav-link active"><span class="nav-icon"><i
+                class="fa-solid fa-sliders"></i></span>Thuộc tính</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/banners" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-images"></i></span>Banner</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/products" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-box-open"></i></span>Sản phẩm</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/orders" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-clipboard-list"></i></span>Đơn hàng</a></li>
+        <li class="nav-item"><a href="${contextPath}/admin/reviews" class="nav-link"><span class="nav-icon"><i
+                class="fa-solid fa-star"></i></span>Đánh giá</a></li>
 
     </ul>
-    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
+    <div class="logout-section"><a href="${contextPath}/logout" class="nav-link logout-link" id="logoutLink"><span
+            class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>Đăng xuất</a></div>
 </aside>
 
 <header class="header">
     <div class="header-actions">
         <button class="notification-btn" id="notificationBtn">
             <i class="fa-solid fa-bell"></i>
-            <span class="notification-badge">3</span>
+            <c:if test="${adminUnreadCount > 0}">
+                <span class="notification-badge">${adminUnreadCount}</span>
+            </c:if>
         </button>
-
-        <!-- Thông báo -->
         <div class="notification-dropdown" id="notificationDropdown">
             <div class="notification-header">
                 <h3>Thông báo</h3>
             </div>
 
             <div class="notification-list">
-                <div class="notification-item">
-                    <div class="notification-icon" style="background: #5b86e5;">
-                        <i class="fa-solid fa-box-open"></i>
+                <c:if test="${empty adminNotiList}">
+                    <p style="padding: 10px; text-align: center;">Không có thông báo mới</p>
+                </c:if>
+
+                <c:forEach var="noti" items="${adminNotiList}">
+                    <div class="notification-item ${noti.isRead == 0 ? 'unread' : ''}"
+                         onclick="window.location.href='${contextPath}/admin/mark-read?id=${noti.id}&target=' + encodeURIComponent('${noti.link}')">
+
+                        <div class="notification-icon">
+                            <c:choose>
+                                <c:when test="${noti.content.toLowerCase().contains('hủy')}">
+                                    <i class="fa-solid fa-circle-xmark" style="color: #4c4747;;"></i>
+                                </c:when>
+                                <c:when test="${noti.content.toLowerCase().contains('mới')}">
+                                    <i class="fa-solid fa-cart-shopping" style="color: #4c4747;"></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="fa-solid fa-bell" style="color: #4c4747;;"></i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-text">${noti.content}</p>
+                            <span class="notification-time">${noti.createdAt}</span>
+                        </div>
                     </div>
-                    <div class="notification-content">
-                        <p class="notification-text">Đã thêm sản phẩm vào hệ thống <strong>thành công!</strong></p>
-                        <span class="notification-time">20 giây trước</span>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
 
             <div class="notification-footer">
-                <a href="${contextPath}/admin/notifications" class="see-all-link">Xem tất cả thông báo</a>
+                <a href="${contextPath}/admin/notifications" class="see-all-link">Đóng</a>
             </div>
         </div>
         <div class="user-profile">
@@ -88,7 +117,6 @@
             <span class="breadcrumb-current">Thuộc tính</span>
         </div>
 
-        <%--HIỂN THỊ THÔNG BÁO --%>
         <c:if test="${not empty param.success}">
             <div class="alert alert-success">
                 <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -116,12 +144,10 @@
                     ${errorMessage}
             </div>
         </c:if>
-        <%-- KẾT THÚC KHỐI THÔNG BÁO --%>
 
 
-        <!-- FORM SECTION -->
         <div class="form-section">
-            <form method="post" action="${contextPath}/admin/attributes">
+            <form method="post" action="${contextPath}/admin/attributes" id="attributeForm">
                 <input type="hidden" name="action" value="${not empty attributeToEdit ? 'update' : 'add'}">
                 <input type="hidden" name="id" value="${attributeToEdit.id}">
 
@@ -149,7 +175,8 @@
                 <div class="form-row second-row">
                     <div class="form-item">
                         <label class="form-label">Thứ tự hiển thị</label>
-                        <input type="number" name="display_order" placeholder="Nhập thứ tự" value="${not empty oldDisplayOrder ? oldDisplayOrder : (not empty attributeToEdit ? attributeToEdit.displayOrder : '')}"
+                        <input type="number" name="display_order" placeholder="Nhập thứ tự"
+                               value="${not empty oldDisplayOrder ? oldDisplayOrder : (not empty attributeToEdit ? attributeToEdit.displayOrder : '')}"
                                min="1" required>
                     </div>
 
@@ -162,24 +189,27 @@
                     <div class="form-item">
                         <label class="form-label">Trạng thái</label>
                         <select name="status" required>
-                            <option value="active" ${attributeToEdit.status == 'active' ? 'selected' : ''}>Hoạt động</option>
-                            <option value="inactive" ${attributeToEdit.status == 'inactive' ? 'selected' : ''}>Ẩn</option>
+                            <option value="active" ${attributeToEdit.status == 'active' ? 'selected' : ''}>Hoạt động
+                            </option>
+                            <option value="inactive" ${attributeToEdit.status == 'inactive' ? 'selected' : ''}>Ẩn
+                            </option>
                         </select>
                     </div>
 
 
-                    <div class="form-item buttons-row" style="display: flex; flex-direction: row; gap: 8px; margin-left: auto;">
+                    <div class="form-item buttons-row"
+                         style="display: flex; flex-direction: row; gap: 8px; margin-left: auto;">
                         <c:choose>
                             <c:when test="${not empty attributeToEdit}">
-                                <button type="submit" class="btn-update">
+                                <a href="#confirm-save-modal" class="btn-update open-modal-btn">
                                     <i class="fa-solid fa-save"></i> Cập nhật
-                                </button>
+                                </a>
                                 <a href="${contextPath}/admin/attributes" class="btn-cancel">Hủy</a>
                             </c:when>
                             <c:otherwise>
-                                <button type="submit" class="btn-add">
+                                <a href="#confirm-save-modal" class="btn-add open-modal-btn">
                                     <i class="fa-solid fa-plus"></i> Thêm thuộc tính
-                                </button>
+                                </a>
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -187,13 +217,12 @@
             </form>
         </div>
 
-        <!-- SEARCH & FILTER - NEW -->
         <form action="${contextPath}/admin/attributes" method="get">
             <div class="form-search-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
 
                 <select name="filterCategoryId" onchange="this.form.submit()"
                         style="height: 45px; padding: 0 15px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; cursor: pointer; color: #4b5563; min-width: 200px; background-color: white;">
-                    <option value="0">-- Tất cả danh mục --</option>
+                    <option value="0">Tất cả danh mục</option>
                     <c:forEach var="cat" items="${categories}">
                         <option value="${cat.id}" ${cat.id == filterCategoryId ? 'selected' : ''}>
                                 ${cat.name}
@@ -202,18 +231,14 @@
                 </select>
 
                 <div class="search-wrapper" style="flex: 1; margin-bottom: 0;">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" name="keyword" class="search-input"
+                    <input type="text" name="keyword" class="search-input-attribute"
                            placeholder="Tìm kiếm thuộc tính..."
-                           value="${keyword}"
-                           style="width: 100%; height: 45px;">
+                           value="${keyword}">
+                    <button type="submit" class="search-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-
-                <button type="submit" style="display:none;"></button>
             </div>
         </form>
 
-        <!-- TABLE -->
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -242,16 +267,14 @@
                         <td>${attr.displayOrder}</td>
                         <td>
                             <span class="badge ${attr.status == 'active' ? 'active-status' : 'inactive-status'}">
-                                ${attr.status == 'active' ? 'Hoạt động' : 'Ẩn'}
+                                    ${attr.status == 'active' ? 'Hoạt động' : 'Ẩn'}
                             </span>
                         </td>
                         <td class="actions">
-                            <a href="${contextPath}/admin/attributes?action=edit&id=${attr.id}" class="btn-edit"><i class="fa-solid fa-pen"></i></a>
-                            <form action="${contextPath}/admin/attributes" method="post" style="display:inline;" onsubmit="return confirm('Bạn có chắc chắn muốn xóa thuộc tính này không?');">
-                                <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="id" value="${attr.id}">
-                                <button type="submit" class="btn-delete"><i class="fa-solid fa-trash"></i></button>
-                            </form>
+                            <a href="${contextPath}/admin/attributes?action=edit&id=${attr.id}" class="btn-edit"><i
+                                    class="fa-solid fa-pen"></i></a>
+                            <a href="#confirm-delete-modal-${attr.id}" class="btn-delete open-modal-btn"><i
+                                    class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -259,8 +282,6 @@
             </table>
         </div>
 
-
-        <!-- Phân trang -->
         <c:if test="${totalPages > 1}">
             <div class="pagination-container">
 
@@ -287,60 +308,137 @@
 
             </div>
         </c:if>
-
     </div>
 </main>
 
+<div id="confirm-save-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận lưu</h3>
+        <p>Bạn có chắc chắn muốn lưu các thay đổi này không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel">Hủy</a>
+            <button type="submit" form="attributeForm" class="modal-btn modal-confirm">Lưu</button>
+        </div>
+    </div>
+</div>
+
+<c:forEach var="attr" items="${attributes}">
+    <div id="confirm-delete-modal-${attr.id}" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Xác nhận xóa</h3>
+            <p>Bạn có chắc chắn muốn xóa thuộc tính "${attr.name}" không?</p>
+            <div class="modal-buttons">
+                <a href="#" class="modal-btn modal-cancel">Hủy</a>
+                <form action="${contextPath}/admin/attributes" method="post" style="display:inline;">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="id" value="${attr.id}">
+                    <button type="submit" class="modal-btn modal-confirm">Xóa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</c:forEach>
+
+<div id="logoutConfirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Xác nhận đăng xuất</h3>
+        <p>Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?</p>
+        <div class="modal-buttons">
+            <a href="#" class="modal-btn modal-cancel" id="cancelLogout">Hủy</a>
+            <a href="${contextPath}/logout" class="modal-btn modal-confirm">Đăng xuất</a>
+        </div>
+    </div>
+</div>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const alerts = document.querySelectorAll('.alert');
-        alerts.forEach(function(alert) {
-            setTimeout(function() {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.alert').forEach(function (alert) {
+            setTimeout(function () {
                 alert.style.opacity = '0';
-                setTimeout(function() {
+                setTimeout(function () {
                     alert.style.display = 'none';
                 }, 500);
             }, 5000);
         });
-    });
-</script>
 
-<input type="hidden" name="force" id="forceInput" value="false">
+        document.querySelectorAll('.open-modal-btn').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                const modalId = this.getAttribute('href');
+                document.querySelector(modalId).classList.add('show');
+            });
+        });
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Kiểm tra biến flag từ server
+        document.querySelectorAll('.modal-cancel').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                this.closest('.modal-overlay').classList.remove('show');
+            });
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function (event) {
+                if (event.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+        });
+
         var needConfirm = ${confirmReplaceOrder != null ? confirmReplaceOrder : 'false'};
         var message = "${conflictMessage}";
-
         if (needConfirm) {
-            // Hiện hộp thoại Confirm
             if (confirm(message)) {
-                // NGƯỜI DÙNG BẤM OK (THAY THẾ)
-
-                // 1. Tìm cái form đang nhập
                 var form = document.querySelector('form[action$="/admin/attributes"]');
-
-                // 2. Set cờ force = true
                 var forceInput = form.querySelector('input[name="force"]');
-                if (!forceInput) { // Tạo nếu chưa có
+                if (!forceInput) {
                     forceInput = document.createElement("input");
                     forceInput.type = "hidden";
                     forceInput.name = "force";
                     form.appendChild(forceInput);
                 }
                 forceInput.value = "true";
-
-                // 3. Submit lại form ngay lập tức
                 form.submit();
-            } else {
-                // NGƯỜI DÙNG BẤM CANCEL (HỦY)
-                // Không làm gì cả, giữ nguyên màn hình để người dùng nhập lại số khác
-                // Dữ liệu đã được giữ lại nhờ hàm keepFormData ở Servlet
             }
+        }
+
+        const notificationBtn = document.getElementById("notificationBtn");
+        const notificationDropdown = document.getElementById("notificationDropdown");
+        if (notificationBtn) {
+            notificationBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle("show");
+            });
+        }
+        document.addEventListener("click", function (e) {
+            if (notificationDropdown && !notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+                notificationDropdown.classList.remove("show");
+            }
+        });
+
+        const logoutLink = document.getElementById('logoutLink');
+        const logoutConfirmModal = document.getElementById('logoutConfirmModal');
+        const cancelLogoutBtn = document.getElementById('cancelLogout');
+
+        if (logoutLink && logoutConfirmModal && cancelLogoutBtn) {
+            logoutLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.add('show');
+            });
+        }
+        if (cancelLogoutBtn) {
+            cancelLogoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                logoutConfirmModal.classList.remove('show');
+            });
+        }
+        if (logoutConfirmModal) {
+            logoutConfirmModal.addEventListener('click', function (e) {
+                if (e.target === logoutConfirmModal) {
+                    logoutConfirmModal.classList.remove('show');
+                }
+            });
         }
     });
 </script>
-
 </body>
 </html>
