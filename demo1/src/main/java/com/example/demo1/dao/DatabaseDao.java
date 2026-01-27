@@ -4,25 +4,18 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.StatementException;
 public class DatabaseDao {
-    // Thông tin kết nối
     private static final String HOST = "localhost";
     private static final String PORT = "3306";
     private static final String DATABASE = "webgroup24";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
-    // Singleton JDBI instance
     private static Jdbi jdbi = null;
 
-    /**
-     * Tạo và trả về JDBI instance
-     */
     public static Jdbi get() {
         if (jdbi == null) {
             try {
-                // Tạo MySQL DataSource
                 MysqlDataSource ds = new MysqlDataSource();
-//                ds.setURL("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE);
                 String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE
                         + "?useUnicode=true"
                         + "&characterEncoding=UTF-8"
@@ -37,7 +30,6 @@ public class DatabaseDao {
                 ds.setServerTimezone("Asia/Ho_Chi_Minh");
                 ds.setAllowPublicKeyRetrieval(true);
 
-                // Tạo JDBI instance
                 jdbi = Jdbi.create(ds);
 
                 System.out.println("Kết nối JDBI MySQL thành công!");
@@ -49,16 +41,11 @@ public class DatabaseDao {
         return jdbi;
     }
 
-    /**
-     * Test connection
-     */
     public static void main(String[] args) {
-        // Test kết nối
         Jdbi jdbi = DatabaseDao.get();
 
         if (jdbi != null) {
             try {
-                // Test query
                 jdbi.withHandle(handle -> {
                     String result = handle.createQuery("SELECT 'Hello JDBI!' as message")
                             .mapTo(String.class)
@@ -69,11 +56,11 @@ public class DatabaseDao {
 
                 System.out.println("Test kết nối JDBI thành công!");
             } catch (StatementException e) {
-                System.err.println("Lỗi thực thi query!");
+                System.err.println("Lỗi query!");
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Test kết nối JDBI thất bại!");
+            System.out.println("Kết nối JDBI thất bại!");
         }
     }
 }
