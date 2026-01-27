@@ -1,6 +1,9 @@
+<%@ page import="com.example.demo1.model.CartItem" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <fmt:setLocale value="vi_VN"/>
 
 <!DOCTYPE html>
@@ -18,27 +21,79 @@
 <body>
 <header class="header">
     <div class="header-container">
-        <a href="home.jsp" class="logo">
+        <a href="${pageContext.request.contextPath}/home" class="logo">
             <img src="https://i.postimg.cc/Hn4Jc3yj/logo-2.png" alt="TechNova Logo">
             <span class="brand-name">TechNova</span>
         </a>
+
         <nav class="nav-links">
-            <a href="home.jsp" class="active">Trang chủ</a>
-            <a href="gioiThieu.jsp">Giới thiệu</a>
+            <a href="${pageContext.request.contextPath}/home" class="active">Trang chủ</a>
+            <a href="${pageContext.request.contextPath}/gioiThieu.jsp">Giới thiệu</a>
             <a href="#" id="category-toggle">Danh mục</a>
-            <a href="lienHe.jsp">Liên hệ</a>
+            <a href="${pageContext.request.contextPath}/contact">Liên hệ</a>
         </nav>
+
         <div class="search-box">
-            <input type="text" placeholder="Bạn muốn mua gì hôm nay?">
-            <button><i class="fas fa-search"></i></button>
+            <form action="search" method="get" id="searchForm" style="display: flex; width: 100%;">
+                <input type="text" name="keyword" id="searchInput"
+                       placeholder="Bạn muốn mua gì hôm nay?" autocomplete="off">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div id="suggestion-box" class="suggestion-box" style="display:none;"></div>
         </div>
+
         <div class="header-actions">
-            <a href="AddCart?action=view" class="icon-btn" title="Giỏ hàng">
+
+            <%
+                int totalQuantity = 0;
+                Map<Integer, CartItem> cart = (Map<Integer, CartItem>) session.getAttribute("cart");
+
+                if (cart != null) {
+                    totalQuantity = cart.size();
+                }
+            %>
+
+            <a href="${pageContext.request.contextPath}/AddCart?action=view" class="icon-btn cart-btn-wrapper"
+               title="Giỏ hàng">
                 <i class="fas fa-shopping-cart"></i>
+
+                <% if (totalQuantity > 0) { %>
+                <span class="cart-badge"><%= totalQuantity %></span>
+                <% } %>
             </a>
-            <a href="user.jsp" class="icon-btn" title="Tài khoản của bạn">
-                <i class="fas fa-user"></i>
-            </a>
+
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="${pageContext.request.contextPath}/user" class="icon-btn" title="Tài khoản của bạn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/login" class="icon-btn" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+        <!-- Danh mục -->
+        <div class="category-box" id="categoryBox">
+            <c:forEach items="${applicationScope.categoryList}" var="cat">
+                <a href="list-product?id=${cat.id}" class="category-item">
+                    <c:set var="imageSrc" value="${cat.image}"/>
+                    <c:choose>
+                        <c:when test="${fn:startsWith(imageSrc, 'http')}">
+                            <img src="${imageSrc}" class="category-icon" alt="${cat.name}">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${pageContext.request.contextPath}/${imageSrc}" class="category-icon"
+                                 alt="${cat.name}">
+                        </c:otherwise>
+                    </c:choose>
+                        ${cat.name}
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </c:forEach>
         </div>
     </div>
 </header>
@@ -55,10 +110,10 @@
                 <span>Thông tin</span>
             </div>
 
-            <c:set var="totalOldPrice" value="0" />
+            <c:set var="totalOldPrice" value="0"/>
             <c:forEach items="${sessionScope.cart}" var="entry">
                 <c:set var="item" value="${entry.value}"/>
-                <c:set var="totalOldPrice" value="${totalOldPrice + (item.product.oldPrice * item.quantity)}" />
+                <c:set var="totalOldPrice" value="${totalOldPrice + (item.product.oldPrice * item.quantity)}"/>
 
                 <div class="product-box">
                     <img src="${item.product.image}" alt="${item.product.name}">
