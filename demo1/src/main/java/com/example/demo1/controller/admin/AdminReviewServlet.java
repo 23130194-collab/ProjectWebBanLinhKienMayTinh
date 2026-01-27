@@ -53,7 +53,7 @@ public class AdminReviewServlet extends HttpServlet {
             try {
                 currentPage = Integer.parseInt(pageStr);
             } catch (NumberFormatException e) {
-                currentPage = 1; // Fallback to page 1 if param is invalid
+                currentPage = 1;
             }
         }
 
@@ -83,7 +83,6 @@ public class AdminReviewServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("errorMessage", "ID đánh giá không hợp lệ.");
         }
-        // Call showReviewList to repopulate the list and show the form
         showReviewList(request, response);
     }
 
@@ -101,10 +100,9 @@ public class AdminReviewServlet extends HttpServlet {
             e.printStackTrace();
             request.getSession().setAttribute("errorMessage", "Lỗi khi cập nhật đánh giá.");
         }
-        // Redirect back to the list, preserving filters
         String page = request.getParameter("page") != null ? request.getParameter("page") : "1";
         String searchKeyword = request.getParameter("searchKeyword") != null ? request.getParameter("searchKeyword") : "";
-        String statusFilter = request.getParameter("statusFilter") != null ? request.getParameter("statusFilter") : "all"; // The status from the tab
+        String statusFilter = request.getParameter("statusFilter") != null ? request.getParameter("statusFilter") : "all";
 
         response.sendRedirect(request.getContextPath() + SERVLET_PATH + "?page=" + page + "&status=" + statusFilter + "&searchKeyword=" + searchKeyword);
     }

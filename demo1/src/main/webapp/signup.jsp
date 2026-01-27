@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Đăng ký | TechNova</title>
-    <link rel="stylesheet" href="css/form.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/form.css"/>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
 </head>
 
@@ -14,33 +15,37 @@
     <div class="login-modal">
         <h2>Tạo tài khoản mới</h2>
 
+        <c:if test="${not empty errors.general}">
+            <div class="error-message-general">${errors.general}</div>
+        </c:if>
+
         <form action="signup" method="post">
 
             <div class="input-group">
-                <input type="text" name="name" placeholder="Họ và tên" required/>
+                <input type="text" name="name" placeholder="Họ và tên" value="${name_value}" required/>
             </div>
 
-            <div class="input-group">
-                <input type="email" name="email" placeholder="Nhập email" required/>
+            <div class="input-group ${not empty errors.email ? 'has-error' : ''}">
+                <input type="email" name="email" placeholder="Nhập email" value="${email_value}" class="${not empty errors.email ? 'input-error' : ''}" required/>
+                <c:if test="${not empty errors.email}">
+                    <span class="error-message">${errors.email}</span>
+                </c:if>
             </div>
 
-            <div class="input-group">
-                <input type="password" name="password" placeholder="Tạo mật khẩu" required/>
+            <div class="input-group ${not empty errors.password ? 'has-error' : ''}">
+                <input type="password" name="password" placeholder="Tạo mật khẩu" class="${not empty errors.password ? 'input-error' : ''}" required/>
+                <c:if test="${not empty errors.password}">
+                    <span class="error-message">${errors.password}</span>
+                </c:if>
             </div>
 
-            <div class="input-group">
-                <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" required/>
+            <div class="input-group ${not empty errors.confirmPassword ? 'has-error' : ''}">
+                <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" class="${not empty errors.confirmPassword ? 'input-error' : ''}" required/>
+                <c:if test="${not empty errors.confirmPassword}">
+                    <span class="error-message">${errors.confirmPassword}</span>
+                </c:if>
             </div>
-            <%
-                String error = (String) request.getAttribute("error");
-                if (error != null) {
-            %>
-            <c:if test="${not empty error}">
-                <span style="color: red; font-size: 12px;">${error}</span>
-            </c:if>
-            <%
-                }
-            %>
+
             <button type="submit" class="signup-btn">Đăng ký</button>
 
         </form>

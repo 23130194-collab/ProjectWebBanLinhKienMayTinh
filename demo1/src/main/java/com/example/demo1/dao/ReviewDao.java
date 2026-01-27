@@ -10,8 +10,6 @@ import java.util.Map;
 
 public class ReviewDao {
     private Jdbi jdbi = DatabaseDao.get();
-
-    // ĐÃ SỬA: Thay JOIN thành LEFT JOIN ở đây để đảm bảo không mất review
     private final String REVIEW_COLUMNS = "r.id, r.user_id, r.product_id, r.rating, r.content, r.created_at, r.status, ";
     private final String USER_PRODUCT_COLUMNS = "u.name AS userName, p.name AS productName, p.image as productImage ";
     private final String JOIN_TABLES = "FROM reviews r LEFT JOIN users u ON r.user_id = u.id LEFT JOIN products p ON r.product_id = p.id ";
@@ -74,7 +72,6 @@ public class ReviewDao {
 
     public Map<Integer, Integer> getRawStarCounts(int productId) {
         return jdbi.withHandle(handle ->
-                // SỬA: Dùng LIKE '%active%' thay vì = 'active' để đếm đủ
                 handle.createQuery("SELECT rating, COUNT(*) as count FROM reviews WHERE product_id = :productId AND status LIKE '%active%' GROUP BY rating")
                         .bind("productId", productId)
                         .reduceRows(new HashMap<Integer, Integer>(), (map, row) -> {
@@ -86,7 +83,6 @@ public class ReviewDao {
 
     public List<Review> getReviewsWithFilterAndPagination(int productId, int ratingFilter, int limit, int offset, boolean forAdmin) {
         return jdbi.withHandle(handle -> {
-            // Thêm COALESCE để chặn null ngay từ database
             StringBuilder sql = new StringBuilder("SELECT r.*, COALESCE(u.name, 'Người dùng ẩn danh') AS userName ")
                     .append("FROM reviews r ")
                     .append("LEFT JOIN users u ON r.user_id = u.id ")
@@ -126,7 +122,6 @@ public class ReviewDao {
         );
     }
 
-    /* --- METHODS FOR PAGINATION --- */
     public List<Review> getReviewsByPage(int offset, int limit, String keyword, String status) {
         return jdbi.withHandle(handle -> {
             StringBuilder sql = new StringBuilder(BASE_SELECT);

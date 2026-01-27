@@ -9,7 +9,6 @@ public class DiscountService {
     private final DiscountDao discountDao = new DiscountDao();
 
     public int createDiscount(Discount discount) {
-        // Có thể thêm logic kiểm tra dữ liệu ở đây trong tương lai
         return discountDao.addDiscountAndReturnId(discount);
     }
 

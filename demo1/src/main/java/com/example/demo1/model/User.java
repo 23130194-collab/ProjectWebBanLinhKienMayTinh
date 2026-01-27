@@ -1,5 +1,6 @@
 package com.example.demo1.model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class User {
@@ -11,34 +12,19 @@ public class User {
     private String phone;
     private String address;
     private String gender;
-    private String birthday;
+    private Date birthday;
     private String status;
+    private String otpCode;
+    private Timestamp otpExpiry;
+    private Timestamp passwordUpdatedAt;
     private String updated_at;
     private Timestamp created_at;
     private int orderCount;
 
-
-    public User(int id, int role, String email, String password,
-                String name, String phone, String address, String gender,
-                String birthday, String status, Timestamp created_at, String updated_at, int orderCount) {
-        this.id = id;
-        this.role = role;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.status = status;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.orderCount = orderCount;
-    }
-
     public User() {
     }
 
+    // Getters và Setters
     public int getId() {
         return id;
     }
@@ -103,11 +89,11 @@ public class User {
         this.gender = gender;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -119,12 +105,28 @@ public class User {
         this.status = status;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public String getOtpCode() {
+        return otpCode;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setOtpCode(String otpCode) {
+        this.otpCode = otpCode;
+    }
+
+    public Timestamp getOtpExpiry() {
+        return otpExpiry;
+    }
+
+    public void setOtpExpiry(Timestamp otpExpiry) {
+        this.otpExpiry = otpExpiry;
+    }
+
+    public Timestamp getPasswordUpdatedAt() {
+        return passwordUpdatedAt;
+    }
+
+    public void setPasswordUpdatedAt(Timestamp passwordUpdatedAt) {
+        this.passwordUpdatedAt = passwordUpdatedAt;
     }
 
     public String getUpdated_at() {
@@ -134,6 +136,15 @@ public class User {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
     public int getOrderCount() {
         return orderCount;
     }

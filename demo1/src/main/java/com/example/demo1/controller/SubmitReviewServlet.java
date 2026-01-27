@@ -1,6 +1,10 @@
 package com.example.demo1.controller;
 
+import com.example.demo1.dao.NotificationDao;
+import com.example.demo1.dao.ProductDao;
 import com.example.demo1.dao.ReviewDao;
+import com.example.demo1.model.Notification;
+import com.example.demo1.model.Product;
 import com.example.demo1.model.User;
 
 import jakarta.servlet.ServletException;
@@ -18,15 +22,13 @@ public class SubmitReviewServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        HttpSession session = request.getSession(false); // Lấy session hiện có, không tạo mới
+        HttpSession session = request.getSession(false);
         User user = null;
         if (session != null) {
-            user = (User) session.getAttribute("auth"); // Sửa khóa từ "user" thành "auth"
+            user = (User) session.getAttribute("user");
         }
 
-        // Kiểm tra xem người dùng đã đăng nhập chưa
         if (user == null) {
-            // Nếu chưa, chuyển hướng đến trang đăng nhập
             response.sendRedirect("login.jsp");
             return;
         }
@@ -40,13 +42,28 @@ public class SubmitReviewServlet extends HttpServlet {
             ReviewDao reviewDao = new ReviewDao();
             reviewDao.addReview(productId, userId, rating, comment);
 
-            // Chuyển hướng người dùng trở lại trang sản phẩm sau khi gửi đánh giá
+            try {
+                NotificationDao notiDao = new NotificationDao();
+
+                ProductDao productDao = new ProductDao();
+                Product product = productDao.getById(productId);
+                String productName = (product != null) ? product.getName() : "Sản phẩm " + productId;
+
+                String adminContent = "Đánh giá mới " + rating + "* cho: " + productName;
+                String adminLink = "admin/reviews";
+
+                Notification adminNoti = new Notification(null, adminContent, adminLink, 1);
+                notiDao.insert(adminNoti);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             response.sendRedirect("product-detail?id=" + productId);
 
         } catch (NumberFormatException e) {
-            // Xử lý lỗi nếu productId hoặc rating không phải là số
             e.printStackTrace();
-            response.sendRedirect("home.jsp"); // Hoặc trang lỗi
+            response.sendRedirect("home.jsp");
         }
     }
 }

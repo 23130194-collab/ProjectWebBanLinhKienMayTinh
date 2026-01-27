@@ -16,13 +16,14 @@ public class ProductDao {
 
     private static final String SELECT_PRODUCT_FIELDS =
             "p.id, p.category_id AS categoryId, p.brand_id AS brandId, p.name, p.discount_id AS discountId, p.description, p.stock, p.image, p.created_at, p.status, " +
-            "p.old_price AS oldPrice, p.price, " + "p.sold_quantity AS soldQuantity, " +
-            "d.discount_value AS discountValue, " +
-            "d.start_time AS discountStart, " +
-            "d.end_time AS discountEnd, " +
-            "IFNULL(ROUND(AVG(r.rating), 1), 0) AS avgRating ";
+                    "p.old_price AS oldPrice, " +
+                    "(CASE WHEN d.id IS NOT NULL AND NOW() BETWEEN d.start_time AND d.end_time THEN p.price ELSE p.old_price END) AS price, " +
+                    "p.sold_quantity AS soldQuantity, " +
+                    "(CASE WHEN d.id IS NOT NULL AND NOW() BETWEEN d.start_time AND d.end_time THEN d.discount_value ELSE 0 END) AS discountValue, " +
+                    "d.start_time AS discountStart, " +
+                    "d.end_time AS discountEnd, " +
+                    "IFNULL(ROUND(AVG(r.rating), 1), 0) AS avgRating ";
 
-    // Helper class to hold query parts
     private static class QueryParts {
         String whereSql;
         String joinSql;
@@ -51,10 +52,12 @@ public class ProductDao {
         if (status != null && !status.isEmpty()) {
             whereSql.append(" AND p.status = :status");
             params.put("status", status);
+        } else {
+            whereSql.append(" AND p.status != 'delete'");
         }
         if (keyword != null && !keyword.isEmpty()) {
-            whereSql.append(" AND p.name LIKE :keyword");
-            params.put("keyword", "%" + keyword + "%");
+            whereSql.append(" AND (LOWER(p.name) LIKE :keyword)");
+            params.put("keyword", "%" + keyword.toLowerCase() + "%");
         }
         if (brandId != null) {
             whereSql.append(" AND p.brand_id = :brandId");
@@ -132,8 +135,9 @@ public class ProductDao {
                 break;
             case "popular":
                 orderBy = " ORDER BY p.sold_quantity DESC, p.id DESC ";
+                break;
             default:
-                orderBy = " ORDER BY p.sold_quantity DESC, p.created_at DESC, p.id DESC ";
+                orderBy = " ORDER BY p.created_at DESC, p.id DESC ";
                 break;
         }
         sql.append(orderBy);
@@ -144,7 +148,7 @@ public class ProductDao {
             QueryParts queryParts = buildQueryParts(categoryId, status, keyword, brandId, specFilters);
 
             if ("popular".equals(sortOrder)) {
-                queryParts.whereSql += " AND p.sold_quantity > 0 ";
+                queryParts.whereSql += " AND p.sold_quantity >= 0 ";
             }
 
             int totalProducts = countTotalProducts(handle, queryParts, specFilters);
@@ -164,7 +168,7 @@ public class ProductDao {
                                 "FROM products p " +
                                 "LEFT JOIN discounts d ON p.discount_id = d.id " +
                                 "LEFT JOIN reviews r ON p.id = r.product_id " +
-                                "WHERE p.id = :id " +
+                                "WHERE p.id = :id AND p.status != 'delete' " +
                                 "GROUP BY p.id")
                         .bind("id", productId)
                         .mapToBean(Product.class)
@@ -193,7 +197,7 @@ public class ProductDao {
                                 "FROM products p " +
                                 "LEFT JOIN discounts d ON p.discount_id = d.id " +
                                 "LEFT JOIN reviews r ON p.id = r.product_id " +
-                                "WHERE p.category_id = :categoryId AND p.id != :currentProductId " +
+                                "WHERE p.category_id = :categoryId AND p.id != :currentProductId AND p.status = 'active' AND p.status != 'delete' " + // Thêm điều kiện loại trừ 'delete'
                                 "GROUP BY p.id " +
                                 "ORDER BY p.created_at DESC " +
                                 "LIMIT :limit OFFSET :offset")
@@ -258,10 +262,9 @@ public class ProductDao {
                         .execute());
     }
 
-    // Thêm hàm này vào trong class ProductDao
     public List<Product> getRandomProducts(int limit) {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT * FROM products WHERE status = 'active' ORDER BY RAND() LIMIT :limit")
+                handle.createQuery("SELECT * FROM products WHERE status = 'active' AND status != 'delete' ORDER BY RAND() LIMIT :limit") // Loại trừ 'delete'
                         .bind("limit", limit)
                         .mapToBean(Product.class)
                         .list()
@@ -275,5 +278,58 @@ public class ProductDao {
                         .bind("id", productId)
                         .execute()
         );
+    }
+
+    public void incrementStock(int productId, int quantity) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("UPDATE products SET stock = stock + :qty WHERE id = :id")
+                    .bind("qty", quantity)
+                    .bind("id", productId)
+                    .execute();
+            handle.createUpdate("UPDATE products SET status = 'active' WHERE id = :id AND stock > 0 AND status = 'inactive'")
+                    .bind("id", productId)
+                    .execute();
+        });
+    }
+
+    public List<Product> searchByNameForSuggestion(String keyword, int limit) {
+
+        String sql = "SELECT id, name, price, image, old_price FROM products " +
+                "WHERE status = 'active' AND LOWER(name) LIKE :keyword " +
+                "ORDER BY sold_quantity DESC " +
+                "LIMIT :limit";
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("keyword", "%" + keyword.toLowerCase() + "%")
+                        .bind("limit", limit)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
+    public int getActiveProductsCount() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM products WHERE status = 'active'")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public boolean isProductNameExistsInCategory(String productName, int categoryId, int excludeProductId) {
+        return jdbi.withHandle(handle -> {
+            StringBuilder sql = new StringBuilder("SELECT COUNT(*) FROM products WHERE name = :productName AND category_id = :categoryId");
+            if (excludeProductId > 0) {
+                sql.append(" AND id != :excludeProductId");
+            }
+            sql.append(" AND status != 'delete'");
+            Query query = handle.createQuery(sql.toString())
+                    .bind("productName", productName)
+                    .bind("categoryId", categoryId);
+            if (excludeProductId > 0) {
+                query.bind("excludeProductId", excludeProductId);
+            }
+            return query.mapTo(Integer.class).one() > 0;
+        });
     }
 }
