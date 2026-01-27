@@ -74,59 +74,5 @@ public class CustomerDetailController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
-        String idStr = request.getParameter("id");
-        int id = 0;
-
-        try {
-            if (idStr == null || idStr.isEmpty()) {
-                throw new Exception("ID khách hàng không tồn tại.");
-            }
-            id = Integer.parseInt(idStr);
-
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String phone = request.getParameter("phone");
-            String address = request.getParameter("address");
-            String gender = request.getParameter("gender");
-            String birthdayStr = request.getParameter("birthday");
-
-
-            Date birthdayDate = null;
-            if (birthdayStr != null && !birthdayStr.trim().isEmpty()) {
-                birthdayDate = Date.valueOf(birthdayStr);
-            }
-
-            User user = new User();
-            user.setId(id);
-            user.setName(name);
-            user.setEmail(email);
-            user.setPhone(phone);
-            user.setAddress(address);
-            user.setGender(gender);
-            user.setBirthday(birthdayDate);
-
-            UserDao userDao = new UserDao();
-            userDao.updateUser(user);
-
-            HttpSession session = request.getSession();
-            session.setAttribute("updateSuccess", "Cập nhật thông tin thành công!");
-
-            response.sendRedirect(request.getContextPath() + "/admin/customer-detail?id=" + id);
-
-        } catch (Exception e) {
-            System.err.println("=== LỖI CẬP NHẬT USER ID: " + id + " ===");
-            e.printStackTrace();
-
-            HttpSession session = request.getSession();
-            session.setAttribute("updateError", "Lỗi: " + e.getMessage());
-
-            if (id > 0) {
-                response.sendRedirect(request.getContextPath() + "/admin/customer-detail?id=" + id);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/admin/customers");
-            }
-        }
     }
 }
