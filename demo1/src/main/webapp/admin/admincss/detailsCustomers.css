@@ -2,9 +2,7 @@ body {
    font-family: "Segoe UI", sans-serif;
     
 }
-/* =============================
-   Customer Details Page Layout
-============================= */
+
 .customer-detail {
     display: block;
     margin-top: 24px;
@@ -12,82 +10,6 @@ body {
     box-sizing: border-box;
 }
 
-
-/* =============================
-   Left column: Profile Card
-============================= */
-/* .customer-profile {
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 20px 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    border: 1px solid #e2e8f0;
-}
-
-.profile-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: -10px;
-    margin-top: -15px;
-}
-
-
-
-.customer-name {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #111827;
-}
-
-.customer-phone {
-    font-size: 14px;
-    color: #64748b;
-}
-
-.customer-email {
-    color: #2563eb;
-    font-size: 14px;
-    margin-bottom: 10px;
-    display: block;
-    text-decoration: none;
-}
-
-.balance-box {
-    margin: 14px auto;
-    background: #f1f5f9;
-    color: #111827;
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-weight: 500;
-    border: 1px solid #e2e8f0;
-    font-size: 14px;
-}
-
-.customer-stats {
-    margin-top: 16px;
-    text-align: left;
-    font-size: 13.5px;
-    color: #334155;
-    line-height: 1.7;
-}
-
-.customer-stats a {
-    color: #3b82f6;
-    text-decoration: none;
-} */
-
-/* =============================
-   Right column: Orders section
-============================= */
 .orders-section {
     background: #ffffff;
     border-radius: 10px;
@@ -174,25 +96,6 @@ body {
     color: #b91c1c;
 }
 
-/* .view-all-orders {
-  background: #f8fafc;
-  padding: 16px 0px;
-  text-align: center;
-}
-
-.view-all-orders a {
-  color: #3b82f6;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.view-all-orders a:hover {
-  color: #1d4ed8;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  background: #bdd8f2;
-} */
-
 .view-all-orders {
     background: #f8fafc;
     padding: 16px 0;
@@ -221,7 +124,6 @@ body {
     cursor: not-allowed;
 }
 
-/* Ẩn các dòng extra */
 .hidden {
     display: none;
 }
@@ -242,9 +144,6 @@ body {
     }
 }
 
-/* =============================
-   Responsive adjustments
-============================= */
 @media (max-width: 992px) {
     .customer-detail {
         grid-template-columns: 1fr;
@@ -256,10 +155,6 @@ body {
     }
 }
 
-
-/* =============================
-   Personal Info Section
-============================= */
 .personal-info {
     background: #ffffff;
     border-radius: 10px;
@@ -399,7 +294,6 @@ body {
     flex-shrink: 0;
 }
 
-/* Sản phẩm yêu thích */
 .favorite-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -418,9 +312,8 @@ body {
     position: relative;
     min-height: 120px;
 
-    /* Đồng bộ chữ với phần "Đơn hàng" */
     font-size: 14px;
-    color: #333;     /* màu chữ giống orders */
+    color: #333;
     line-height: 1.4;
 }
 
@@ -444,13 +337,12 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 6px; /* thu nhỏ giống orders */
+    gap: 6px;
 }
 
-/* Tiêu đề giống orders */
 .product-fav-title {
     margin: 0;
-    font-size: 15px;      /* đồng bộ */
+    font-size: 15px;
     font-weight: 600;
     color: #222;
     display: -webkit-box;
@@ -460,7 +352,6 @@ body {
     padding-right: 20px;
 }
 
-/* Giá */
 .product-fav-price {
     display: flex;
     flex-direction: column;
@@ -470,7 +361,7 @@ body {
 .new-price {
     font-size: 15px;
     font-weight: 700;
-    color: #d62828; /* nổi bật giống accent-dark nhưng đẹp hơn */
+    color: #d62828;
 }
 
 .old-price {
@@ -479,19 +370,14 @@ body {
     text-decoration: line-through;
 }
 
-/* Trái tim – chuyển sang màu đỏ */
 .product-fav-heart {
     position: absolute;
     bottom: 16px;
     right: 16px;
     font-size: 18px;
-    color: #ff4d4d;   /* ❤️ Đỏ */
+    color: #ff4d4d;
     cursor: pointer;
 }
-
-/* =============================
-   Review Section - Giống Orders Table
-============================= */
 
 .review-section {
     margin-top: 35px;
@@ -546,7 +432,6 @@ body {
     background: #f9fafb;
 }
 
-/* Link sản phẩm giống Orders */
 .product-name a {
     color: #3b82f6;
     text-decoration: none;
@@ -557,22 +442,18 @@ body {
     color: #1d4ed8;
 }
 
-/* Rating stars */
 .rating-stars i {
-    color: #f59e0b;  /* vàng giống design */
+    color: #f59e0b;
     font-size: 12px;
     margin-right: 2px;
 }
 
-
-/* Review text đồng nhất font */
 .review-text {
     max-width: 480px;
     line-height: 1.5;
     color: #334155;
 }
 
-/* STATUS */
 .status {
     padding: 4px 10px;
     border-radius: 6px;
@@ -597,13 +478,11 @@ body {
     color: #b91c1c;
 }
 
-/* Ngày tháng giống Orders */
 .date {
     color: #475569;
     white-space: nowrap;
 }
 
-/* PHÂN TRANG (PAGINATION) */
 .pagination-container {
     display: flex;
     justify-content: center;
@@ -631,19 +510,17 @@ body {
     text-decoration: none;
 }
 
-/*Thong bao*/
   .alert-box {
       padding: 15px;
       margin-bottom: 20px;
       border-radius: 4px;
       border: 1px solid transparent;
       display: flex;
-      justify-content: space-between; /* Đẩy nội dung và nút X ra 2 bên */
+      justify-content: space-between;
       align-items: center;
-      opacity: 1; /* Để JS xử lý fade out */
+      opacity: 1;
   }
 
-/* Màu sắc */
 .success-message {
     color: #155724;
     background-color: #d4edda;
@@ -656,7 +533,6 @@ body {
     border-color: #f5c6cb;
 }
 
-/* Style nút X */
 .close-btn {
     margin-left: 15px;
     color: inherit;

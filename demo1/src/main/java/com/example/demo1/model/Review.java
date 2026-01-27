@@ -12,15 +12,13 @@ public class Review implements Serializable {
     private Date createdAt;
     private String status;
 
-    // Các trường bổ sung để hiển thị, không có trong bảng 'reviews'
     private String userName;
     private String productName;
-    private String productImage; // Thêm trường ảnh sản phẩm
+    private String productImage;
 
     public Review() {
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }

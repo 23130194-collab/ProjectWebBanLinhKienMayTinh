@@ -2,6 +2,7 @@ package com.example.demo1.controller.cart;
 
 import com.example.demo1.dao.NotificationDao;
 import com.example.demo1.dao.OrderDao;
+import com.example.demo1.dao.ProductDao;
 import com.example.demo1.model.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -12,6 +13,7 @@ import java.util.Map;
 @WebServlet(name = "ProcessOrderServlet", value = "/ProcessOrderServlet")
 public class ProcessOrderServlet extends HttpServlet {
     private OrderDao orderDao = new OrderDao();
+    private ProductDao productDao = new ProductDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +27,8 @@ public class ProcessOrderServlet extends HttpServlet {
 
         Map<Integer, CartItem> cart = (Map<Integer, CartItem>) session.getAttribute("cart");
         if (cart == null || cart.isEmpty()) {
-            response.sendRedirect("home.jsp");
+            session.setAttribute("cartError", "Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi mua ngay.");
+            response.sendRedirect("AddCart?action=view");
             return;
         }
 
@@ -42,6 +45,22 @@ public class ProcessOrderServlet extends HttpServlet {
         if (phone == null || !phone.matches(phoneRegex) || email == null || !email.matches(emailRegex)) {
             response.sendRedirect("thanhToan.jsp?error=invalid_format");
             return;
+        }
+
+        for (CartItem item : cart.values()) {
+            Product dbProduct = productDao.getById(item.getProduct().getId());
+
+            if (dbProduct == null) {
+                session.setAttribute("cartError", "Một số sản phẩm trong giỏ hàng không còn khả dụng.");
+                response.sendRedirect("AddCart?action=view");
+                return;
+            }
+
+            if (item.getQuantity() > dbProduct.getStock()) {
+                session.setAttribute("cartError", "Sản phẩm " + dbProduct.getName() + " chỉ còn " + dbProduct.getStock() + " cái.");
+                response.sendRedirect("AddCart?action=view");
+                return;
+            }
         }
 
         Order order = new Order();
@@ -62,6 +81,10 @@ public class ProcessOrderServlet extends HttpServlet {
         double discountAmount = subprice - total;
         double shippingFee = 0;
 
+        String paymentMethod = request.getParameter("payment_method");
+        if (paymentMethod == null) paymentMethod = "Thanh toán khi nhận hàng (COD)";
+        Payment payment = new Payment(0, paymentMethod, "Thành công", total);
+
         order.setUserId(user.getId());
         order.setOrderCode("TN-" + System.currentTimeMillis());
         order.setOrderStatus("Chờ xác nhận");
@@ -78,16 +101,20 @@ public class ProcessOrderServlet extends HttpServlet {
         recipient.setDistrict(district);
         recipient.setAddress(addressDetail);
 
-        boolean success = orderDao.createOrder(order, recipient, cart);
+        boolean success = orderDao.createOrder(order, recipient, cart, payment);
 
         if (success) {
             try {
                 NotificationDao notiDao = new NotificationDao();
                 String content = "Đơn hàng " + order.getOrderCode() + " đặt thành công. Cảm ơn bạn!";
                 String link = "user";
+                Notification userNoti = new Notification(user.getId(), content, link, 0);
+                notiDao.insert(userNoti);
 
-                Notification noti = new Notification(user.getId(), content, link);
-                notiDao.insert(noti);
+                String adminContent = "Đơn hàng mới " + order.getOrderCode() + " từ khách hàng " + fullName;
+                String adminLink = "admin/orders?action=view&id=" + order.getId();
+                Notification adminNoti = new Notification(null, adminContent, adminLink, 1);
+                notiDao.insert(adminNoti);
 
             } catch (Exception e) {
                 e.printStackTrace();

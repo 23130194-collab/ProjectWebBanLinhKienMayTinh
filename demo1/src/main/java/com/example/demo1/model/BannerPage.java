@@ -14,7 +14,6 @@ public class BannerPage {
         this.totalBanners = totalBanners;
     }
 
-    // Getters
     public List<Banner> getBanners() {
         return banners;
     }
@@ -23,7 +22,6 @@ public class BannerPage {
         return totalBanners;
     }
 
-    // Setters
     public void setBanners(List<Banner> banners) {
         this.banners = banners;
     }

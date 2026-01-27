@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 language: 'vi',
                 height: 400,
                 menubar: false,
-                placeholder: 'Nhập mô tả chi tiết cho sản phẩm ở đây...',
+                placeholder: 'Nhập mô tả chi tiết cho sản phẩm...',
                 entity_encoding: 'raw',
                 verify_html: false,
                 forced_root_block: 'p',
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(initTinyMCE, 500);
         }
     }
-
     initTinyMCE();
 
     const btnAddImage = document.getElementById('btn-add-image');
@@ -76,58 +75,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loadExistingImages();
 
-    const btnBrowseFile = document.getElementById('btn-browse-file');
-    const fileInput = document.getElementById('file-upload-input');
-    const uploadStatus = document.getElementById('upload-status');
-
-    if (btnBrowseFile && fileInput) {
-        btnBrowseFile.addEventListener('click', function() {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const file = this.files[0];
-                uploadFileToServer(file);
+    function showInlineError(message) {
+        let errorDiv = document.querySelector('.js-error-message');
+        if (!errorDiv) {
+            errorDiv = document.createElement('div');
+            errorDiv.className = 'js-error-message';
+            errorDiv.style.cssText = "background-color: #ffebee; color: #c62828; padding: 15px; margin: 20px 0; border: 1px solid #ef9a9a; border-radius: 4px;";
+            const formContainer = document.querySelector('.upload-product-container');
+            if (formContainer) {
+                formContainer.parentNode.insertBefore(errorDiv, formContainer);
             }
-        });
-    }
-
-    function uploadFileToServer(file) {
-        if(uploadStatus) uploadStatus.style.display = 'block';
-        if(btnBrowseFile) btnBrowseFile.disabled = true;
-        if(btnAddImage) btnAddImage.disabled = true;
-
-        const formData = new FormData();
-        formData.append('file', file);
-
-        const contextPath = (typeof globalContextPath !== 'undefined') ? globalContextPath : '';
-        const apiUrl = contextPath + '/api/upload-image';
-
-        fetch(apiUrl, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.url) {
-                    const fullUrl = contextPath + "/" + data.url;
-                    imageUrlInput.value = fullUrl;
-                    btnAddImage.click();
-                } else {
-                    alert('Lỗi upload: ' + (data.error || 'Không rõ nguyên nhân'));
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Lỗi kết nối đến server.');
-            })
-            .finally(() => {
-                if(uploadStatus) uploadStatus.style.display = 'none';
-                if(btnBrowseFile) btnBrowseFile.disabled = false;
-                if(btnAddImage) btnAddImage.disabled = false;
-                fileInput.value = '';
-            });
+        }
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        setTimeout(() => {
+            errorDiv.style.display = 'none';
+        }, 5000);
     }
 
     if (btnAddImage) {
@@ -205,6 +168,50 @@ document.addEventListener('DOMContentLoaded', function () {
     const attributeSelect = document.getElementById('attribute-select');
     const attributesContainer = document.getElementById('attributes-container');
 
+    const deleteModal = document.getElementById('delete-spec-modal');
+    const btnCancelDelete = document.getElementById('btn-cancel-delete');
+    const btnConfirmDelete = document.getElementById('btn-confirm-delete');
+    const modalSpecName = document.getElementById('modal-spec-name');
+    let itemToDelete = null;
+
+    function closeModal() {
+        if(deleteModal) {
+            deleteModal.classList.remove('show');
+            itemToDelete = null;
+        }
+    }
+
+    if(btnConfirmDelete) {
+        btnConfirmDelete.addEventListener('click', function() {
+            if(itemToDelete) {
+                itemToDelete.classList.add('is-deleting');
+                itemToDelete.style.transition = 'all 0.2s ease';
+                itemToDelete.style.opacity = '0';
+                itemToDelete.style.maxHeight = '0';
+                itemToDelete.style.margin = '0';
+                itemToDelete.style.padding = '0';
+                itemToDelete.style.overflow = 'hidden';
+
+                setTimeout(() => {
+                    itemToDelete.remove();
+                }, 200);
+            }
+            closeModal();
+        });
+    }
+
+    if(btnCancelDelete) {
+        btnCancelDelete.addEventListener('click', closeModal);
+    }
+
+    if(deleteModal) {
+        deleteModal.addEventListener('click', function(e) {
+            if (e.target === deleteModal) {
+                closeModal();
+            }
+        });
+    }
+
     if (categorySelect && attributeSelect && attributesContainer) {
 
         categorySelect.addEventListener('change', function() {
@@ -218,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetch(apiUrl)
                     .then(res => res.json())
                     .then(data => {
-                        attributeSelect.innerHTML = '<option value="">-- Chọn thuộc tính --</option>';
+                        attributeSelect.innerHTML = '<option value="">Chọn thuộc tính</option>';
                         if (data.length === 0) {
                             attributeSelect.innerHTML = '<option value="">(Không có thuộc tính nào)</option>';
                         } else {
@@ -251,8 +258,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!attrId) return;
 
-            if (attributesContainer.querySelector(`input[name="specIds"][value="${attrId}"]`)) {
-                alert("Thuộc tính này đã được thêm!");
+            const existingSpecs = Array.from(attributesContainer.querySelectorAll('input[name="specIds"]'));
+            const isDuplicate = existingSpecs.some(input => {
+                return input.value === attrId && !input.closest('.attribute-item').classList.contains('is-deleting');
+            });
+
+            if (isDuplicate) {
+                showInlineError("Thuộc tính '" + attrName + "' đã tồn tại trong danh sách!");
                 this.value = "";
                 return;
             }
@@ -276,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     <div class="attr-row">
                         <span class="attr-label">Giá trị:</span>
-                        <input type="text" name="specValues" class="form-input" placeholder="Nhập giá trị..." required>
+                        <input type="text" name="specValues" class="form-input" placeholder="Nhập giá trị...">
                     </div>
                 </div>
             `;
@@ -286,12 +298,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         attributesContainer.addEventListener('click', function(e) {
             const target = e.target;
-
+            console.log("Bạn vừa click vào:", target);
             if (target.classList.contains('attr-delete')) {
+                console.log("Đã bắt được sự kiện xóa!");
                 e.stopPropagation();
-                if(confirm('Bạn có chắc muốn xóa thuộc tính này?')) {
-                    const item = target.closest('.attribute-item');
-                    if(item) item.remove();
+
+                const item = target.closest('.attribute-item');
+                if(item) {
+                    itemToDelete = item;
+
+                    const nameEl = item.querySelector('.attr-name');
+                    if(nameEl && modalSpecName) {
+                        modalSpecName.textContent = nameEl.textContent;
+                    }
+
+                    if(deleteModal) deleteModal.classList.add('show');
                 }
                 return;
             }
@@ -303,4 +324,77 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    const productForm = document.querySelector('.upload-product-container');
+    productForm.addEventListener('submit', function(e) {
+        const discountInput = document.querySelector('input[name="discountValue"]');
+        if (discountInput && discountInput.value.trim() !== "") {
+            const val = parseFloat(discountInput.value);
+            if (val < 0 || val > 100) {
+                e.preventDefault();
+                showInlineError("Giá trị giảm giá phải nằm trong khoảng từ 0 đến 100%!");
+                discountInput.style.borderColor = '#ef4444';
+                discountInput.focus();
+                return;
+            }
+        }
+
+        const startDateInput = document.querySelector('input[name="discountStart"]');
+        const endDateInput = document.querySelector('input[name="discountEnd"]');
+        const discountValue = document.querySelector('input[name="discountValue"]').value;
+
+        if (discountValue && parseFloat(discountValue) > 0) {
+            if (startDateInput.value && endDateInput.value) {
+                const start = new Date(startDateInput.value);
+                const end = new Date(endDateInput.value);
+
+                if (start >= end) {
+                    e.preventDefault();
+                    showInlineError("Ngày kết thúc giảm giá phải sau ngày bắt đầu!");
+                    endDateInput.style.borderColor = '#ef4444';
+                    endDateInput.focus();
+                    return;
+                }
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const discountInput = document.querySelector('input[name="discountValue"]');
+        const startDateInput = document.querySelector('input[name="discountStart"]');
+        const endDateInput = document.querySelector('input[name="discountEnd"]');
+
+        function toggleDiscountDates() {
+            const hasDiscount = discountInput.value.trim() !== "" && parseFloat(discountInput.value) > 0;
+
+            startDateInput.addEventListener('change', function() {
+                if (startDateInput.value) {
+                    endDateInput.min = startDateInput.value;
+                }
+            });
+
+            endDateInput.addEventListener('change', function() {
+                if (endDateInput.value) {
+                    startDateInput.max = endDateInput.value;
+                }
+            });
+
+            if (hasDiscount) {
+                startDateInput.removeAttribute('disabled');
+                endDateInput.removeAttribute('disabled');
+                startDateInput.style.backgroundColor = "#fff";
+                endDateInput.style.backgroundColor = "#fff";
+            } else {
+                startDateInput.setAttribute('disabled', 'true');
+                endDateInput.setAttribute('disabled', 'true');
+                startDateInput.value = "";
+                endDateInput.value = "";
+                startDateInput.style.backgroundColor = "#f1f5f9";
+                endDateInput.style.backgroundColor = "#f1f5f9";
+            }
+        }
+
+        toggleDiscountDates();
+
+        discountInput.addEventListener('input', toggleDiscountDates);
+    });
 });

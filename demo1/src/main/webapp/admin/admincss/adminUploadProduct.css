@@ -21,9 +21,6 @@ h3 {
     color: #334155;
 }
 
-/* =========================================
-   2. LAYOUT & CONTAINERS
-   ========================================= */
 .main-content {
     width: 940px;
     margin: 80px auto 40px auto;
@@ -38,7 +35,6 @@ h3 {
     0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
-/* Breadcrumb & Title */
 .page-title {
     font-size: 24px;
     font-weight: 800;
@@ -57,9 +53,6 @@ h3 {
     text-decoration: underline;
 }
 
-/* =========================================
-   3. FORMS & INPUTS
-   ========================================= */
 .upload-product-container {
     display: flex;
     flex-direction: column;
@@ -115,9 +108,6 @@ h3 {
     color: #94a3b8;
 }
 
-/* =========================================
-   4. IMAGE UPLOADER
-   ========================================= */
 .image-uploader {
     border: 1px dashed #cbd5e1;
     padding: 20px;
@@ -208,9 +198,6 @@ h3 {
     padding: 4px 0;
 }
 
-/* =========================================
-   5. ATTRIBUTE ACCORDION (QUAN TRỌNG)
-   ========================================= */
 .attribute-header {
     display: flex;
     justify-content: space-between;
@@ -218,18 +205,16 @@ h3 {
     margin-bottom: 15px;
 }
 
-/* Khung bao ngoài của mỗi thuộc tính */
 .attribute-item {
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     margin-bottom: 12px;
     background: #fff;
-    overflow: hidden; /* Bắt buộc để ẩn nội dung */
+    overflow: hidden;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
 }
 
-/* Header: Luôn hiển thị */
 .attr-top {
     display: flex;
     justify-content: space-between;
@@ -274,7 +259,6 @@ h3 {
     transition: transform 0.3s ease;
 }
 
-/* Body: Mặc định ẨN (Quan trọng nhất) */
 .attr-body {
     display: none;
     padding: 20px;
@@ -282,19 +266,18 @@ h3 {
     border-top: 1px solid #e2e8f0;
 }
 
-/* --- TRẠNG THÁI ACTIVE (KHI MỞ RỘNG) --- */
 .attribute-item.active .attr-body {
-    display: block; /* Hiện body */
+    display: block;
     animation: slideDown 0.3s ease;
 }
 
 .attribute-item.active .attr-toggle-icon {
-    transform: rotate(180deg); /* Xoay mũi tên */
+    transform: rotate(180deg);
 }
 
 .attribute-item.active .attr-top {
     border-bottom-color: #e2e8f0;
-    background-color: #eef2ff; /* Màu nền nhẹ khi active */
+    background-color: #eef2ff;
 }
 
 .attribute-item.active .attr-name {
@@ -306,7 +289,6 @@ h3 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Style input bên trong accordion */
 .attr-row {
     display: flex;
     align-items: center;
@@ -330,9 +312,6 @@ h3 {
     font-size: 14px;
 }
 
-/* =========================================
-   6. FOOTER ACTIONS
-   ========================================= */
 .form-actions-footer {
     display: flex;
     justify-content: flex-end;
@@ -377,9 +356,6 @@ h3 {
     box-shadow: 0 4px 6px rgba(66, 133, 244, 0.2);
 }
 
-/* =========================================
-   7. RESPONSIVE
-   ========================================= */
 @media (max-width: 1024px) {
     .main-content {
         width: 90%;
@@ -403,4 +379,60 @@ h3 {
     .attr-label {
         width: 100%;
     }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 10000000;
+}
+
+.modal-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.modal-confirm {
+    background-color: #ef4444;
+    color: white;
+}
+
+.modal-cancel {
+    background-color: #e2e8f0;
+    color: #334155;
 }

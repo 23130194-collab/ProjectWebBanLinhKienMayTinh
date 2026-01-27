@@ -4,24 +4,15 @@ import com.example.demo1.model.Category;
 import com.example.demo1.service.CategoryService;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
 
 @WebServlet(name = "AdminCategoryServlet", value = "/admin/categories")
-@MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
-    maxFileSize = 1024 * 1024 * 10, // 10MB
-    maxRequestSize = 1024 * 1024 * 50 // 50MB
-)
 public class AdminCategoryServlet extends HttpServlet {
     private static final String SERVLET_PATH = "/admin/categories";
     private static final String JSP_PATH = "/admin/adminCategories.jsp";
@@ -80,7 +71,6 @@ public class AdminCategoryServlet extends HttpServlet {
                 request.setAttribute("categoryToEdit", categoryToEdit);
             }
         } catch (NumberFormatException e) {
-            // Bỏ qua
         }
         showCategoryList(request, response);
     }
@@ -106,6 +96,7 @@ public class AdminCategoryServlet extends HttpServlet {
         String name = request.getParameter("categoryName");
         String displayOrderStr = request.getParameter("displayOrder");
         String status = request.getParameter("status");
+        String imageUrl = request.getParameter("imageUrl");
 
         if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Tên danh mục và thứ tự không được để trống!");
@@ -119,15 +110,14 @@ public class AdminCategoryServlet extends HttpServlet {
             return;
         }
 
-        String imagePath = handleImageUpload(request);
-        if (imagePath == null) {
-            request.setAttribute("errorMessage", "Vui lòng cung cấp hình ảnh cho danh mục!");
+        if (imageUrl == null || imageUrl.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Vui lòng cung cấp đường dẫn hình ảnh cho danh mục!");
             forwardWithData(request, response);
             return;
         }
 
         int displayOrder = Integer.parseInt(displayOrderStr);
-        categoryService.addCategory(name, displayOrder, imagePath, status);
+        categoryService.addCategory(name, displayOrder, imageUrl, status);
         request.getSession().setAttribute("successMessage", "Thêm danh mục mới thành công!");
         refreshApplicationScopeCategories();
         response.sendRedirect(request.getContextPath() + SERVLET_PATH);
@@ -138,6 +128,7 @@ public class AdminCategoryServlet extends HttpServlet {
         String name = request.getParameter("categoryName");
         String displayOrderStr = request.getParameter("displayOrder");
         String status = request.getParameter("status");
+        String imageUrl = request.getParameter("imageUrl");
 
         if (name == null || name.trim().isEmpty() || displayOrderStr == null || displayOrderStr.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Tên danh mục và thứ tự không được để trống!");
@@ -152,8 +143,8 @@ public class AdminCategoryServlet extends HttpServlet {
         }
 
         Category oldCategory = categoryService.getCategoryById(categoryId);
-        String imagePath = handleImageUpload(request);
-        if (imagePath == null) {
+        String imagePath = imageUrl;
+        if (imagePath == null || imagePath.trim().isEmpty()) {
             imagePath = oldCategory.getImage();
         }
 
@@ -163,25 +154,6 @@ public class AdminCategoryServlet extends HttpServlet {
         request.getSession().setAttribute("successMessage", "Cập nhật danh mục thành công!");
         refreshApplicationScopeCategories();
         response.sendRedirect(request.getContextPath() + SERVLET_PATH);
-    }
-
-    private String handleImageUpload(HttpServletRequest request) throws IOException, ServletException {
-        String imageUrl = request.getParameter("imageUrl");
-        Part filePart = request.getPart("imageFile");
-        String fileName = (filePart != null) ? Paths.get(filePart.getSubmittedFileName()).getFileName().toString() : "";
-
-        if (filePart != null && fileName != null && !fileName.isEmpty()) {
-            String realPath = getServletContext().getRealPath("/uploads");
-            File uploadDir = new File(realPath);
-            if (!uploadDir.exists()) uploadDir.mkdirs();
-            
-            String uniqueFileName = System.currentTimeMillis() + "_" + fileName;
-            filePart.write(realPath + File.separator + uniqueFileName);
-            return "uploads/" + uniqueFileName;
-        } else if (imageUrl != null && !imageUrl.trim().isEmpty()) {
-            return imageUrl;
-        }
-        return null;
     }
 
     private void refreshApplicationScopeCategories() {
@@ -199,7 +171,6 @@ public class AdminCategoryServlet extends HttpServlet {
         try {
             category.setDisplay_order(Integer.parseInt(request.getParameter("displayOrder")));
         } catch (NumberFormatException e) {
-            // ignore
         }
         category.setStatus(request.getParameter("status"));
         category.setImage(request.getParameter("imageUrl"));

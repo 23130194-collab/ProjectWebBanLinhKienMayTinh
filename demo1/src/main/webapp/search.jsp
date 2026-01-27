@@ -2,22 +2,36 @@
 <%@ page import="java.util.Map" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<fmt:setLocale value="vi_VN"/>
 
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới Thiệu | TechNova</title>
+    <title>Tìm kiếm: ${selectedKeyword} | TechNova</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mucSanPham.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gioiThieu.css">
-</head>
+    <style>
+        .product-grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
 
+        .page-title {
+            margin: 20px 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+    </style>
+</head>
 <body>
 <header class="header">
     <div class="header-container">
@@ -34,16 +48,14 @@
         </nav>
 
         <div class="search-box">
-            <form action="search" method="get" id="searchForm" style="display: flex; width: 100%;">
-                <input type="text" name="keyword" id="searchInput"
-                       placeholder="Bạn muốn mua gì hôm nay?" autocomplete="off">
+            <form action="search" method="get" style="display: flex; width: 100%;">
+                <input type="text" name="keyword" value="${selectedKeyword}" placeholder="Bạn muốn mua gì hôm nay?"
+                       autocomplete="off">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <div id="suggestion-box" class="suggestion-box" style="display:none;"></div>
         </div>
 
         <div class="header-actions">
-
             <%
                 int totalQuantity = 0;
                 Map<Integer, CartItem> cart = (Map<Integer, CartItem>) session.getAttribute("cart");
@@ -52,11 +64,8 @@
                     totalQuantity = cart.size();
                 }
             %>
-
-            <a href="${pageContext.request.contextPath}/AddCart?action=view" class="icon-btn cart-btn-wrapper"
-               title="Giỏ hàng">
+            <a href="${pageContext.request.contextPath}/AddCart?action=view" class="icon-btn" title="Giỏ hàng">
                 <i class="fas fa-shopping-cart"></i>
-
                 <% if (totalQuantity > 0) { %>
                 <span class="cart-badge"><%= totalQuantity %></span>
                 <% } %>
@@ -64,8 +73,7 @@
 
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/account" class="icon-btn active"
-                       title="Tài khoản của bạn">
+                    <a href="${pageContext.request.contextPath}/user" class="icon-btn" title="Tài khoản của bạn">
                         <i class="fas fa-user"></i>
                     </a>
                 </c:when>
@@ -99,97 +107,68 @@
     </div>
 </header>
 <div class="overlay" id="overlay"></div>
-<section class="hero-section">
-    <div class="hero-content">
-        <h1 class="hero-logo">TECHNOVA</h1>
-        <p class="tagline">Nơi Công Nghệ Trở Nên Hoàn Hảo</p>
-        <p class="subtitle">Đối tác tin cậy cho mọi dự án công nghệ của bạn</p>
-    </div>
-</section>
-
-<section class="section values-section">
-    <h2 class="section-title">Giá Trị Cốt Lõi</h2>
-    <div class="values-grid">
-        <div class="value-card">
-            <div class="value-icon">⚡</div>
-            <h3 class="value-title">Chất Lượng</h3>
-            <p class="value-desc">Cam kết 100% linh kiện chính hãng, được nhập khẩu trực tiếp từ các nhà sản xuất uy
-                tín hàng đầu thế giới. Mỗi sản phẩm đều trải qua kiểm tra nghiêm ngặt.</p>
-        </div>
-        <div class="value-card">
-            <div class="value-icon">💎</div>
-            <h3 class="value-title">Uy Tín</h3>
-            <p class="value-desc">Xây dựng niềm tin qua hơn 10 năm phục vụ hàng nghìn khách hàng. Chính sách bảo
-                hành rõ ràng, đổi trả linh hoạt, hỗ trợ tận tâm 24/7.</p>
-        </div>
-        <div class="value-card">
-            <div class="value-icon">🚀</div>
-            <h3 class="value-title">Đổi Mới</h3>
-            <p class="value-desc">Luôn cập nhật những công nghệ mới nhất, mang đến cho bạn những sản phẩm tiên tiến
-                nhất với giá cả cạnh tranh nhất thị trường.</p>
+<main class="container">
+    <h1 class="page-title">Kết quả tìm kiếm cho: "${selectedKeyword}"</h1>
+    <div class="sort-wrapper">
+        <div class="sort-buttons">
+            <c:url var="baseUrl" value="search">
+                <c:param name="keyword" value="${selectedKeyword}"/>
+            </c:url>
+            <a href="${baseUrl}&sort=popular" class="sort-btn ${selectedSortOrder == 'popular' ? 'active' : ''}">Phổ
+                biến</a>
+            <a href="${baseUrl}&sort=price_asc" class="sort-btn ${selectedSortOrder == 'price_asc' ? 'active' : ''}">Giá
+                Thấp - Cao</a>
+            <a href="${baseUrl}&sort=price_desc" class="sort-btn ${selectedSortOrder == 'price_desc' ? 'active' : ''}">Giá
+                Cao - Thấp</a>
         </div>
     </div>
-</section>
-
-<section class="section vision-section">
-    <h2 class="section-title">Tầm Nhìn</h2>
-    <div class="vision-content">
-        <div class="vision-image">
-            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&q=80"
-                 alt="Technology Vision">
-        </div>
-        <div class="vision-text">
-            <h2>Dẫn Đầu Tương Lai</h2>
-            <p>Trở thành nhà cung cấp linh kiện máy tính hàng đầu Việt Nam, nơi mọi game thủ, developer và công nghệ
-                viên tìm thấy giải pháp hoàn hảo cho setup của mình.</p>
-            <p>Chúng tôi không chỉ bán sản phẩm, mà còn xây dựng một cộng đồng đam mê công nghệ, nơi mọi người có
-                thể chia sẻ kinh nghiệm và cùng nhau phát triển.</p>
-            <p>Mục tiêu của chúng tôi là làm cho công nghệ trở nên dễ tiếp cận hơn, giúp mọi người hiện thực hóa ý
-                tưởng của mình.</p>
-        </div>
+    <div class="product-grid">
+        <c:forEach items="${productList}" var="p">
+            <div class="product-card">
+                <c:if test="${p.discountValue > 0}">
+                    <div class="discount-tag">
+                        <span class="discount-percent">-<fmt:formatNumber value="${p.discountValue}"
+                                                                          pattern="#"/>%</span>
+                    </div>
+                </c:if>
+                <a href="product-detail?id=${p.id}" class="product-link">
+                    <img src="${p.image.startsWith('http') ? p.image : pageContext.request.contextPath.concat('/').concat(p.image)}"
+                         class="product-image" alt="${p.name}">
+                    <h3 class="product-title">${p.name}</h3>
+                    <div class="price-section">
+                        <div class="current-price"><fmt:formatNumber value="${p.price}" pattern="#,###"/>đ</div>
+                        <c:if test="${p.discountValue > 0}">
+                            <div class="original-price"><fmt:formatNumber value="${p.oldPrice}" pattern="#,###"/>đ</div>
+                        </c:if>
+                    </div>
+                </a>
+                <div class="product-footer-interaction">
+                    <div class="action-item rating">
+                        <div class="stars-container">
+                            <div class="stars-outer">
+                                <div class="stars-inner" style="width: ${(p.avgRating / 5) * 100}%;"></div>
+                            </div>
+                        </div>
+                        <span class="rating-value"><fmt:formatNumber value="${p.avgRating}" pattern="0.0"/></span>
+                    </div>
+                    <button class="action-item like-btn"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </div>
+        </c:forEach>
     </div>
-</section>
-
-<section class="section core-section">
-    <h2 class="section-title">Tại Sao Chọn TECHNOVA?</h2>
-    <div class="core-grid">
-        <div class="core-item">
-            <div class="core-number">01</div>
-            <h3 class="core-title">Giá Tốt Nhất</h3>
-            <p class="core-desc">Cam kết giá tốt nhất thị trường với nhiều chương trình khuyến mãi hấp dẫn</p>
+    <c:if test="${totalPages > 1}">
+        <div class="pagination-container">
+            <c:forEach begin="1" end="${totalPages}" var="i">
+                <c:url var="pageUrl" value="search">
+                    <c:param name="keyword" value="${selectedKeyword}"/>
+                    <c:param name="sort" value="${selectedSortOrder}"/>
+                    <c:param name="page" value="${i}"/>
+                </c:url>
+                <a href="${pageUrl}" class="page-number ${currentPage == i ? 'active' : ''}">${i}</a>
+            </c:forEach>
         </div>
-        <div class="core-item">
-            <div class="core-number">02</div>
-            <h3 class="core-title">Giao Hàng Nhanh</h3>
-            <p class="core-desc">Giao hàng toàn quốc trong 24h, miễn phí ship cho đơn từ 500K</p>
-        </div>
-        <div class="core-item">
-            <div class="core-number">03</div>
-            <h3 class="core-title">Bảo Hành Tận Tâm</h3>
-            <p class="core-desc">Bảo hành chính hãng lên đến 36 tháng, đổi mới trong 7 ngày đầu</p>
-        </div>
-        <div class="core-item">
-            <div class="core-number">04</div>
-            <h3 class="core-title">Tư Vấn Chuyên Nghiệp</h3>
-            <p class="core-desc">Đội ngũ kỹ thuật giàu kinh nghiệm, tư vấn tận tình cho mọi nhu cầu</p>
-        </div>
-    </div>
-</section>
-
-<section class="section mission-section">
-    <h2 class="section-title">Sứ Mệnh</h2>
-    <div class="mission-content">
-        <div class="mission-text">
-            <p>TechNova ra đời với sứ mệnh <span class="highlight">mang công nghệ đến gần hơn với mọi người</span>,
-                giúp bạn xây dựng hệ thống máy tính trong mơ với chi phí hợp lý nhất.</p>
-            <p>Chúng tôi tin rằng mỗi khách hàng đều xứng đáng có được sản phẩm chất lượng cao và dịch vụ chăm sóc
-                tốt nhất. Đó là lý do tại sao chúng tôi không ngừng nỗ lực để <span class="highlight">hoàn thiện
-                        từng chi tiết</span>.</p>
-            <p>Với TechNova, bạn không chỉ mua linh kiện - bạn đang đầu tư cho tương lai công nghệ của chính mình.
-            </p>
-        </div>
-    </div>
-</section>
+    </c:if>
+</main>
 <footer>
     <div class="footer-container">
         <div class="footer-main-content">
@@ -256,7 +235,7 @@
         <div class="footer-subscription"></div>
     </div>
 </footer>
-<script src="${pageContext.request.contextPath}/js/header.js"></script>
-</body>
 
+<script src="js/header.js"></script>
+</body>
 </html>

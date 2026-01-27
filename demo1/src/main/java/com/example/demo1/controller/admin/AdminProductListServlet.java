@@ -14,10 +14,10 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet(name = "AdminProductListServlet", value = "/admin-product-list")
+@WebServlet(name = "AdminProductListServlet", value = "/admin/products")
 public class AdminProductListServlet extends HttpServlet {
 
-    private static final int PRODUCTS_PER_PAGE = 2; // Để 15 khi chạy thật, để 3 hoặc 5 để test
+    private static final int PRODUCTS_PER_PAGE = 10;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +25,6 @@ public class AdminProductListServlet extends HttpServlet {
         CategoryService cs = new CategoryService();
 
         try {
-            // Xử lý hành động xóa
             String action = request.getParameter("action");
             if ("delete".equals(action)) {
                 String productIdStr = request.getParameter("id");
@@ -33,8 +32,7 @@ public class AdminProductListServlet extends HttpServlet {
                     try {
                         int productId = Integer.parseInt(productIdStr);
                         ps.deleteProduct(productId);
-                        // Redirect để tránh thực hiện lại hành động xóa khi tải lại trang
-                        response.sendRedirect(request.getContextPath() + "/admin-product-list");
+                        response.sendRedirect(request.getContextPath() + "/admin/products");
                         return;
                     } catch (NumberFormatException e) {
                         System.err.println("Invalid product ID for deletion: " + productIdStr);
@@ -42,17 +40,14 @@ public class AdminProductListServlet extends HttpServlet {
                 }
             }
 
-            // Lấy danh sách tất cả các danh mục để hiển thị trong bộ lọc
             List<Category> allCategories = cs.getAllCategories();
 
-            // Lấy các tham số từ request
             String categoryIdStr = request.getParameter("categoryId");
             String status = request.getParameter("status");
             String keyword = request.getParameter("keyword");
             String pageStr = request.getParameter("page");
             String sortOrder = request.getParameter("sort");
 
-            // Xử lý giá trị mặc định
             Integer categoryId = null;
             if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
                 try {
@@ -71,7 +66,6 @@ public class AdminProductListServlet extends HttpServlet {
                 }
             }
 
-            // Xử lý sort mặc định nếu null
             if (sortOrder == null || sortOrder.isEmpty()) {
                 sortOrder = "popular";
             }
@@ -81,10 +75,8 @@ public class AdminProductListServlet extends HttpServlet {
                     sortOrder, currentPage, PRODUCTS_PER_PAGE
             );
 
-            // Tính toán tổng số trang
             int totalPages = (int) Math.ceil((double) productPage.getTotalProducts() / PRODUCTS_PER_PAGE);
 
-            // Đặt các thuộc tính cho JSP
             request.setAttribute("productList", productPage.getProducts());
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("currentPage", currentPage);
@@ -100,9 +92,8 @@ public class AdminProductListServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "Lỗi khi tải danh sách sản phẩm: " + e.getMessage());
-//            request.getRequestDispatcher("/admin/error.jsp").forward(request, response);
             request.getSession().setAttribute("errorMessage", "Không thể xóa sản phẩm. Lỗi: " + e.getMessage());
-            response.sendRedirect(request.getContextPath() + "/admin-product-list");
+            response.sendRedirect(request.getContextPath() + "/admin/products");
         }
     }
 
