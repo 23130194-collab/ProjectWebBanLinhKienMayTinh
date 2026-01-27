@@ -1,4 +1,3 @@
-/* --- BỐ CỤC CHUNG --- */
 .main-content {
     position: fixed;
     left: 50%;
@@ -87,13 +86,11 @@
     border-color: #5b86e5;
 }
 
-/* Input file */
 .banner-form-grid input[type="file"] {
     padding: 8px;
     height: auto;
 }
 
-/* ---  BUTTON --- */
 .form-action-row {
     grid-column: span 3;
     display: flex;
@@ -125,42 +122,60 @@
     justify-content: center;
     font-size: 14px;
     transition: background 0.2s;
+    text-decoration: none;
+    gap:8px;
 }
 
 .btn-add-banner:hover {
     background-color: #2563eb;
 }
 
-/* --- TÌM KIẾM --- */
 .form-search-row {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
 }
-
 .search-wrapper {
     position: relative;
-    width: 300px;
+    width: 320px;
 }
-
 .search-input-banner {
     width: 100%;
     height: 40px;
-    padding: 0 15px 0 38px;
+    padding: 10px 45px 10px 15px;
     border-radius: 8px;
     border: 1px solid #e2e8f0;
+    outline: none;
     box-sizing: border-box;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.search-input-banner:focus {
+    border-color: #5b86e5;
+    box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.15);
 }
 
-.search-icon {
+.search-icon-btn {
     position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.2s, color 0.2s;
+    background: none;
+    border: none;
+}
+.search-icon-btn:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
 }
 
-/* --- TABLE --- */
 .banner-table-container {
     background: white;
     border-radius: 10px;
@@ -209,7 +224,7 @@
     line-height: 1.5;
 }
 
-/* Các nút hành động */
+/* nút */
 .action-buttons {
     display: flex;
     justify-content: center;
@@ -238,7 +253,6 @@
     color: #b91c1c;
 }
 
-/* Status Badge */
 .status {
     padding: 4px 10px;
     border-radius: 20px;
