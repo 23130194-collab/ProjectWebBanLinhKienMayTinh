@@ -72,7 +72,7 @@
 
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/user" class="icon-btn" title="Tài khoản của bạn">
+                    <a href="${pageContext.request.contextPath}/my-orders" class="icon-btn" title="Tài khoản của bạn">
                         <i class="fas fa-user"></i>
                     </a>
                 </c:when>
@@ -179,6 +179,51 @@
                 <div class="notice-box" id="noticeBox">
                     <div class="notice-header">
                         <span>Thông báo</span>
+                    </div>
+
+                    <div class="notice-content">
+
+                        <%
+                            com.example.demo1.model.User userNoti = (com.example.demo1.model.User) session.getAttribute("user");
+
+                            if (userNoti != null) {
+                                com.example.demo1.dao.NotificationDao notiDao = new com.example.demo1.dao.NotificationDao();
+                                java.util.List<com.example.demo1.model.Notification> notiList = notiDao.getByUser(userNoti.getId());
+
+                                if (notiList != null && !notiList.isEmpty()) {
+                                    for (com.example.demo1.model.Notification n : notiList) {
+                        %>
+                        <div class="notice-item">
+                            <i class="fa-solid fa-truck icon"></i>
+                            <div>
+                                <div><%= n.getContent() %>
+                                </div>
+
+                                <div class="notice-meta">
+                                <span>
+                                    <%= new java.text.SimpleDateFormat("dd/MM HH:mm").format(n.getCreatedAt()) %>
+                                </span>
+                                    <a class="notice-detail"
+                                       href="${pageContext.request.contextPath}/<%= n.getLink() %>">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                        <%
+                            }
+                        } else {
+                        %>
+                        <div style="padding: 20px; text-align: center; color: #666; font-size: 14px;">
+                            Bạn chưa có thông báo nào.
+                        </div>
+                        <%
+                            }
+                        } else {
+                        %>
+                        <div style="padding: 20px; text-align: center; font-size: 14px;">
+                            Vui lòng <a href="login" style="color: #d70018; font-weight: bold;">đăng nhập</a> để xem.
+                        </div>
+                        <% } %>
+
                     </div>
 
                     <div id="closeNoticeBtn" class="close-btn">Đóng</div>
